@@ -12,16 +12,25 @@
        /* var ReviewReportDetailParams = {};*/
         $scope.ReviewReportDetailScope = {
             VerticalId: 0,
+            ProjectId: 0,
+            ProjectName:'',
            VerticalName:'',
         };
 
 
 
-        //For Company Dropdown
+        //For vertical Dropdown
         $scope.Verticallist = function () {
             ReviewReportService.getverticallist()
                 .then(function (res) {
                     $scope.Vertical = res.data.Result;
+                });
+        }
+
+        $scope.Projectlist = function () {
+            ReviewReportService.getprojectlist()
+                .then(function (res) {
+                    $scope.Project = res.data.Result;
                 });
         }
 

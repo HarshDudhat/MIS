@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Resource.ReviewReport;
+    ViewBag.Title = Resource.Reportreview;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -76,8 +76,9 @@
                                     @Resource.Project
                                 </label>
                                 <div class="input-group">
-                                    <select class="form-select" name="txtCompanyName" id="txtCompanyName" tabindex="1">
-                                        <option value="">Select Project</option>
+                                    <select class="form-select" ng-model="ReviewReportDetailScope.ProjectId" name="txtVertical" id="txtVertical" ng-init="Projectlist()" tabindex="1"
+                                            ng-options="Projectlists.ProjectId as Projectlists.ProjectName for Projectlists in Project">
+                                        <option value="">Select Vertical</option>
                                         <!-- Add other options here -->
                                     </select>
                                 </div>

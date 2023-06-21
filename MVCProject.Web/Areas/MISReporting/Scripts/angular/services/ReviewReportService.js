@@ -9,5 +9,12 @@
             });
         };
 
+        list.getprojectlist = function () {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/MISReport/GetProjectList'
+            });
+        };
+
         return list;
     }]);

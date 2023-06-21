@@ -1357,6 +1357,24 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Month-Year.
+        /// </summary>
+        public static string Month_Year {
+            get {
+                return ResourceManager.GetString("Month_Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MONTHLY EHS PERFORMANCE REVIEW REPORT.
+        /// </summary>
+        public static string MonthlyEHSPerformacereviewreport {
+            get {
+                return ResourceManager.GetString("MonthlyEHSPerformacereviewreport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My SOPs.
         /// </summary>
         public static string MySOP {
@@ -1546,6 +1564,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string Project {
+            get {
+                return ResourceManager.GetString("Project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quantity must be greater than zero..
         /// </summary>
         public static string QtyGreaterThanZeroRequired {
@@ -1623,6 +1650,15 @@ namespace MVCProject.Common.Resources {
         public static string ReportDate {
             get {
                 return ResourceManager.GetString("ReportDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Review Report.
+        /// </summary>
+        public static string Reportreview {
+            get {
+                return ResourceManager.GetString("Reportreview", resourceCulture);
             }
         }
         
@@ -2235,6 +2271,15 @@ namespace MVCProject.Common.Resources {
         public static string ValueIsRequired {
             get {
                 return ResourceManager.GetString("ValueIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical.
+        /// </summary>
+        public static string Vertical {
+            get {
+                return ResourceManager.GetString("Vertical", resourceCulture);
             }
         }
         
