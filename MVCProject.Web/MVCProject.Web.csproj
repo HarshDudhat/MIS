@@ -163,6 +163,8 @@
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />
     <Compile Include="Areas\Configuration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\MISReporting\Controllers\ReviewReportController.cs" />
+    <Compile Include="Areas\MISReporting\MISReportingAreaRegistration.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -213,6 +215,8 @@
     <Content Include="Areas\Configuration\Scripts\angular\services\ApplicationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
+    <Content Include="Areas\MISReporting\Scripts\angular\controllers\ReviewReportCtrl.js" />
+    <Content Include="Areas\MISReporting\Scripts\angular\services\ReviewReportService.js" />
     <Content Include="Areas\Public\Content\css\css\blank.gif" />
     <Content Include="Areas\Public\Content\css\HomePageStyle.css" />
     <Content Include="Areas\Public\Content\css\skins\fullwidth\loading.gif" />
@@ -417,6 +421,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Configuration\Views\Shared\" />
+    <Folder Include="Areas\MISReporting\Models\" />
+    <Folder Include="Areas\MISReporting\Views\Shared\" />
     <Folder Include="Areas\Public\Controllers\" />
     <Folder Include="Areas\Public\Models\" />
     <Folder Include="Areas\Public\Scripts\angular\controllers\" />
@@ -452,6 +458,8 @@
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="Content\fonts\arial.ttf" />
     <Content Include="Content\fonts\Calibri.ttf" />
+    <Content Include="Areas\MISReporting\Views\ReviewReport\Index.cshtml" />
+    <Content Include="Areas\MISReporting\Views\Web.config" />
     <Content Include="Areas\Configuration\Views\Designation\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
