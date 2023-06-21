@@ -861,4 +861,19 @@
   <data name="IncorrectCredentials" xml:space="preserve">
     <value>Incorrect Credentials</value>
   </data>
+  <data name="MonthlyEHSPerformacereviewreport" xml:space="preserve">
+    <value>MONTHLY EHS PERFORMANCE REVIEW REPORT</value>
+  </data>
+  <data name="Month_Year" xml:space="preserve">
+    <value>Month-Year</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ReviewReport" xml:space="preserve">
+    <value>Review Report</value>
+  </data>
+  <data name="Vertical" xml:space="preserve">
+    <value>Vertical</value>
+  </data>
 </root>
