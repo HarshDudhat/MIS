@@ -28,8 +28,22 @@
     }
 </style>
 <script>
-    function getCurrentYear() {
-        return new Date().getFullYear().toString();
+    function onMonthChange() {
+        var monthPicker = document.getElementById('monthPicker');
+        var selectedMonth = new Date(monthPicker.value + '-01'); // Assuming day is always set to '01'
+
+        var currentMonth = new Date(); // Get the current month and year
+        var currentYear = currentMonth.getFullYear();
+        var currentMonthIndex = currentMonth.getMonth();
+
+        var selectedYear = selectedMonth.getFullYear();
+        var selectedMonthIndex = selectedMonth.getMonth();
+
+        if (selectedYear > currentYear || (selectedYear === currentYear && selectedMonthIndex > currentMonthIndex)) {
+            // Selected month is in the future, reset the value to the current month and year
+            monthPicker.value = currentYear + '-' + ('0' + (currentMonthIndex + 1)).slice(-2); // Format: yyyy-mm
+        } else {
+        }
     }
 </script>
 <div ng-controller="ReviewReportCtrl" novalidate>
@@ -51,63 +65,104 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- start designation form -->
-                <form name="frmDesignations" novalidate>
+                <form name="frmReviewReport" novalidate>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <!-- Vertical field -->
                             <div class="form-group">
                                 <label for="txtVertical">
                                     @Resource.Vertical
                                 </label>
                                 <div class="input-group">
-                                    <select class="form-select" ng-model="ReviewReportDetailScope.VerticalId" name="txtVertical" id="txtVertical" ng-init="Verticallist()" tabindex="1" 
+                                    <select class="form-select" ng-model="ReviewReportDetailScope.VerticalId" name="txtVertical" id="txtVertical" ng-init="Verticallist()" tabindex="1"
                                             ng-options="Verticallists.VerticalId as Verticallists.VerticalName for Verticallists in Vertical">
                                         <option value="">Select Vertical</option>
                                         <!-- Add other options here -->
                                     </select>
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmDesignations.txtVertical.$dirty && frmDesignations.txtVertical.$invalid">
-                                    <span data-ng-show="frmDesignations.txtVertical.$error.required">@Resource.DesignationRequired</span>
+                                <div class="label label-danger" data-ng-show="frmReviewReport.txtVertical.$dirty && frmReviewReport.txtVertical.$invalid">
+                                    <span data-ng-show="frmReviewReport.txtVertical.$error.required">@Resource.DesignationRequired</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <!-- Project field -->
                             <div class="form-group">
                                 <label for="txtCompanyName">
                                     @Resource.Project
                                 </label>
                                 <div class="input-group">
-                                    <select class="form-select" ng-model="ReviewReportDetailScope.ProjectId" name="txtVertical" id="txtVertical" ng-init="Projectlist()" tabindex="1"
+                                    <select class="form-select" ng-model="ReviewReportDetailScope.ProjectId" name="txtCompanyName" id="txtCompanyName" ng-init="Projectlist()" tabindex="1"
                                             ng-options="Projectlists.ProjectId as Projectlists.ProjectName for Projectlists in Project">
-                                        <option value="">Select Vertical</option>
+                                        <option value="">Select Project</option>
                                         <!-- Add other options here -->
                                     </select>
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmDesignations.txtCompanyName.$dirty && frmDesignations.txtCompanyName.$invalid">
-                                    <span data-ng-show="frmDesignations.txtCompanyName.$error.required">@Resource.DesignationRequired</span>
+                                <div class="label label-danger" data-ng-show="frmReviewReport.txtCompanyName.$dirty && frmReviewReport.txtCompanyName.$invalid">
+                                    <span data-ng-show="frmReviewReport.txtCompanyName.$error.required">@Resource.DesignationRequired</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <!-- Month and Year field -->
                             <div class="form-group">
                                 <label for="txtdoj">
                                     @Resource.Month_Year
                                 </label>
                                 <div class="input-group">
-                                    <input type="month" class="form-control" id="txtdoj" ng-focus="true" name="txtdoj" required tabindex="1" placeholder="mm-yyyy" min="{{getCurrentYear()}}-01" max="{{maxDate | date:'yyyy-MM'}}">
+                                    @*<input type="month" class="form-control" id="txtdoj" ng-focus="true" name="txtdoj" required tabindex="1" placeholder="mm-yyyy" ng-model="selectedMonth" min="{{minMonth}}" max="{{maxDate | date:'yyyy-MM'}}">*@
+                                    <input type="month" id="monthPicker" class="form-control" onchange="onMonthChange()" />
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmDesignations.txtdoj.$dirty && frmDesignations.txtdoj.$invalid">
-                                    <span data-ng-show="frmDesignations.txtdoj.$error.required">@Resource.DesignationRequired</span>
+                                <div class="label label-danger" data-ng-show="frmReviewReport.txtdoj.$dirty && frmReviewReport.txtdoj.$invalid">
+                                    <span data-ng-show="frmReviewReport.txtdoj.$error.required">@Resource.DesignationRequired</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <!-- Search and Reset buttons -->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-primary" ng-click="search()">Search</button>
+                                    <button type="button" class="btn btn-secondary" ng-click="ClearFormData(frmReviewReport)">Reset</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
+                <br />
+            </div>
+            <br />
+            <div class="banner-text">
+                @*<h1>@Resource.EmployeeHandBook</h1>*@
+            </div>
+        </div>
+        <div class="container bg-transparent">
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="accordion" ng-init="Projectlist()">
+                            <div class="accordion-item" ng-repeat="ProjectList in Project">
+                                <h2 class="accordion-header" id="headingTwo" @*ng-repeat="NewDocumentRequestData in NewDocumentRequestList| filter:documentrepositoryDetailScope.DocumentNo"*@>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo{{ProjectList.ProjectId}}" aria-expanded="false" aria-controls="collapseTwo{{ProjectList.ProjectId}}"> {{ ProjectList.ProjectName }}</button>
+                                </h2>
+                                <div id="collapseTwo{{ProjectList.ProjectId}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div ng-bind-html="trustAsHtml(ProjectList.Detail)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <!-- end body section-->
-</div>
+
 @section scripts {
     @Scripts.Render("~/bundles/MISReporting/ReviewReport")
 }
