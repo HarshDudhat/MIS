@@ -195,6 +195,12 @@
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="USP_MIS_GetGroupById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GroupId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_MIS_GetGroupList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_GetProjectList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_GetVerticalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MIS_FieldData" EntityType="Self.MIS_FieldData" Schema="dbo" store:Type="Tables" />
@@ -473,6 +479,12 @@
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="USP_MIS_GetGroupList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupList_Result)" />
+          <FunctionImport Name="USP_MIS_GetProjectList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetProjectList_Result)" />
+          <FunctionImport Name="USP_MIS_GetVerticalList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetVerticalList_Result)" />
+          <FunctionImport Name="USP_MIS_GetGroupById" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupById_Result)">
+            <Parameter Name="GroupId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Designation">
           <Key>
@@ -493,6 +505,27 @@
           <Property Type="Int32" Name="UpdateBy" Nullable="true" />
           <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_GetGroupList_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_GetProjectList_Result">
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_GetVerticalList_Result">
+          <Property Type="Int32" Name="VerticalId" Nullable="false" />
+          <Property Type="String" Name="VerticalName" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_GetGroupById_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" />
+          <Property Type="Int32" Name="FieldId" Nullable="false" />
+          <Property Type="String" Name="FieldName" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -624,6 +657,43 @@
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetGroupList" FunctionName="MVCProjectModel.Store.USP_MIS_GetGroupList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetGroupList_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetProjectList" FunctionName="MVCProjectModel.Store.USP_MIS_GetProjectList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetProjectList_Result">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetVerticalList" FunctionName="MVCProjectModel.Store.USP_MIS_GetVerticalList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetVerticalList_Result">
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="VerticalName" ColumnName="VerticalName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetGroupById" FunctionName="MVCProjectModel.Store.USP_MIS_GetGroupById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetGroupById_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

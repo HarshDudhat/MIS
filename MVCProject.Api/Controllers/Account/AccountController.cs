@@ -53,7 +53,7 @@ namespace MVCProject.Api.Controllers.Account
                 userContext.UserName = user.Email;
                 userContext.RoleId = (int)user.RoleId;
                 userContext.Ticks = DateTime.Now.Ticks;
-                userContext.Token = SecurityUtility.GetToken(userContext);
+                //userContext.Token = SecurityUtility.GetToken(userContext);
                 userContext.TimeZoneMinutes = 330;
                 return this.Response(MessageTypes.Success, string.Empty, userContext);
             }

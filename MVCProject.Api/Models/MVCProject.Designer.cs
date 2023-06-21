@@ -354,6 +354,49 @@ namespace MVCProject.Api.Models
     
             return base.ExecuteFunction<USP_MIS_AuthenticateUser_Result>("USP_MIS_AuthenticateUser", emailParameter, passwordParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<USP_MIS_GetGroupList_Result> USP_MIS_GetGroupList()
+        {
+            return base.ExecuteFunction<USP_MIS_GetGroupList_Result>("USP_MIS_GetGroupList");
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<USP_MIS_GetProjectList_Result> USP_MIS_GetProjectList()
+        {
+            return base.ExecuteFunction<USP_MIS_GetProjectList_Result>("USP_MIS_GetProjectList");
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<USP_MIS_GetVerticalList_Result> USP_MIS_GetVerticalList()
+        {
+            return base.ExecuteFunction<USP_MIS_GetVerticalList_Result>("USP_MIS_GetVerticalList");
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="groupId">No Metadata Documentation available.</param>
+        public ObjectResult<USP_MIS_GetGroupById_Result> USP_MIS_GetGroupById(Nullable<global::System.Int32> groupId)
+        {
+            ObjectParameter groupIdParameter;
+            if (groupId.HasValue)
+            {
+                groupIdParameter = new ObjectParameter("GroupId", groupId);
+            }
+            else
+            {
+                groupIdParameter = new ObjectParameter("GroupId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<USP_MIS_GetGroupById_Result>("USP_MIS_GetGroupById", groupIdParameter);
+        }
 
         #endregion
 
@@ -2617,6 +2660,436 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.DateTime> _UpdateDate;
         partial void OnUpdateDateChanging(Nullable<global::System.DateTime> value);
         partial void OnUpdateDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVCProjectModel", Name="USP_MIS_GetGroupById_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class USP_MIS_GetGroupById_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new USP_MIS_GetGroupById_Result object.
+        /// </summary>
+        /// <param name="groupId">Initial value of the GroupId property.</param>
+        /// <param name="fieldId">Initial value of the FieldId property.</param>
+        public static USP_MIS_GetGroupById_Result CreateUSP_MIS_GetGroupById_Result(global::System.Int32 groupId, global::System.Int32 fieldId)
+        {
+            USP_MIS_GetGroupById_Result uSP_MIS_GetGroupById_Result = new USP_MIS_GetGroupById_Result();
+            uSP_MIS_GetGroupById_Result.GroupId = groupId;
+            uSP_MIS_GetGroupById_Result.FieldId = fieldId;
+            return uSP_MIS_GetGroupById_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 GroupId
+        {
+            get
+            {
+                return _GroupId;
+            }
+            set
+            {
+                OnGroupIdChanging(value);
+                ReportPropertyChanging("GroupId");
+                _GroupId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GroupId");
+                OnGroupIdChanged();
+            }
+        }
+        private global::System.Int32 _GroupId;
+        partial void OnGroupIdChanging(global::System.Int32 value);
+        partial void OnGroupIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String GroupName
+        {
+            get
+            {
+                return _GroupName;
+            }
+            set
+            {
+                OnGroupNameChanging(value);
+                ReportPropertyChanging("GroupName");
+                _GroupName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("GroupName");
+                OnGroupNameChanged();
+            }
+        }
+        private global::System.String _GroupName;
+        partial void OnGroupNameChanging(global::System.String value);
+        partial void OnGroupNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FieldId
+        {
+            get
+            {
+                return _FieldId;
+            }
+            set
+            {
+                OnFieldIdChanging(value);
+                ReportPropertyChanging("FieldId");
+                _FieldId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FieldId");
+                OnFieldIdChanged();
+            }
+        }
+        private global::System.Int32 _FieldId;
+        partial void OnFieldIdChanging(global::System.Int32 value);
+        partial void OnFieldIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FieldName
+        {
+            get
+            {
+                return _FieldName;
+            }
+            set
+            {
+                OnFieldNameChanging(value);
+                ReportPropertyChanging("FieldName");
+                _FieldName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FieldName");
+                OnFieldNameChanged();
+            }
+        }
+        private global::System.String _FieldName;
+        partial void OnFieldNameChanging(global::System.String value);
+        partial void OnFieldNameChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVCProjectModel", Name="USP_MIS_GetGroupList_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class USP_MIS_GetGroupList_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new USP_MIS_GetGroupList_Result object.
+        /// </summary>
+        /// <param name="groupId">Initial value of the GroupId property.</param>
+        public static USP_MIS_GetGroupList_Result CreateUSP_MIS_GetGroupList_Result(global::System.Int32 groupId)
+        {
+            USP_MIS_GetGroupList_Result uSP_MIS_GetGroupList_Result = new USP_MIS_GetGroupList_Result();
+            uSP_MIS_GetGroupList_Result.GroupId = groupId;
+            return uSP_MIS_GetGroupList_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 GroupId
+        {
+            get
+            {
+                return _GroupId;
+            }
+            set
+            {
+                OnGroupIdChanging(value);
+                ReportPropertyChanging("GroupId");
+                _GroupId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GroupId");
+                OnGroupIdChanged();
+            }
+        }
+        private global::System.Int32 _GroupId;
+        partial void OnGroupIdChanging(global::System.Int32 value);
+        partial void OnGroupIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String GroupName
+        {
+            get
+            {
+                return _GroupName;
+            }
+            set
+            {
+                OnGroupNameChanging(value);
+                ReportPropertyChanging("GroupName");
+                _GroupName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("GroupName");
+                OnGroupNameChanged();
+            }
+        }
+        private global::System.String _GroupName;
+        partial void OnGroupNameChanging(global::System.String value);
+        partial void OnGroupNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVCProjectModel", Name="USP_MIS_GetProjectList_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class USP_MIS_GetProjectList_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new USP_MIS_GetProjectList_Result object.
+        /// </summary>
+        /// <param name="projectId">Initial value of the ProjectId property.</param>
+        public static USP_MIS_GetProjectList_Result CreateUSP_MIS_GetProjectList_Result(global::System.Int32 projectId)
+        {
+            USP_MIS_GetProjectList_Result uSP_MIS_GetProjectList_Result = new USP_MIS_GetProjectList_Result();
+            uSP_MIS_GetProjectList_Result.ProjectId = projectId;
+            return uSP_MIS_GetProjectList_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectId
+        {
+            get
+            {
+                return _ProjectId;
+            }
+            set
+            {
+                OnProjectIdChanging(value);
+                ReportPropertyChanging("ProjectId");
+                _ProjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectId");
+                OnProjectIdChanged();
+            }
+        }
+        private global::System.Int32 _ProjectId;
+        partial void OnProjectIdChanging(global::System.Int32 value);
+        partial void OnProjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProjectName
+        {
+            get
+            {
+                return _ProjectName;
+            }
+            set
+            {
+                OnProjectNameChanging(value);
+                ReportPropertyChanging("ProjectName");
+                _ProjectName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProjectName");
+                OnProjectNameChanged();
+            }
+        }
+        private global::System.String _ProjectName;
+        partial void OnProjectNameChanging(global::System.String value);
+        partial void OnProjectNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVCProjectModel", Name="USP_MIS_GetVerticalList_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class USP_MIS_GetVerticalList_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new USP_MIS_GetVerticalList_Result object.
+        /// </summary>
+        /// <param name="verticalId">Initial value of the VerticalId property.</param>
+        public static USP_MIS_GetVerticalList_Result CreateUSP_MIS_GetVerticalList_Result(global::System.Int32 verticalId)
+        {
+            USP_MIS_GetVerticalList_Result uSP_MIS_GetVerticalList_Result = new USP_MIS_GetVerticalList_Result();
+            uSP_MIS_GetVerticalList_Result.VerticalId = verticalId;
+            return uSP_MIS_GetVerticalList_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 VerticalId
+        {
+            get
+            {
+                return _VerticalId;
+            }
+            set
+            {
+                OnVerticalIdChanging(value);
+                ReportPropertyChanging("VerticalId");
+                _VerticalId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VerticalId");
+                OnVerticalIdChanged();
+            }
+        }
+        private global::System.Int32 _VerticalId;
+        partial void OnVerticalIdChanging(global::System.Int32 value);
+        partial void OnVerticalIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String VerticalName
+        {
+            get
+            {
+                return _VerticalName;
+            }
+            set
+            {
+                OnVerticalNameChanging(value);
+                ReportPropertyChanging("VerticalName");
+                _VerticalName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("VerticalName");
+                OnVerticalNameChanged();
+            }
+        }
+        private global::System.String _VerticalName;
+        partial void OnVerticalNameChanging(global::System.String value);
+        partial void OnVerticalNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
