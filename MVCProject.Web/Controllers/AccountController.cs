@@ -26,17 +26,17 @@ namespace MVCProject.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Login()
         {
-            //if (this.Session["UserContext"] == null || Request.Url.PathAndQuery.Contains("noSession"))
-            //{
-            //    ViewBag.IsSessionExpired = Request.QueryString["noSession"] != null ? true : false;
-            //    return this.View();
-            //}
-            //else
-            //{
-            //    return this.RedirectToAction("RedirectToDefaultUrl");
-            //}
+            if (this.Session["UserContext"] == null || Request.Url.PathAndQuery.Contains("noSession"))
+            {
+                ViewBag.IsSessionExpired = Request.QueryString["noSession"] != null ? true : false;
+                return this.View();
+            }
+            else
+            {
+                return this.RedirectToAction("RedirectToDefaultUrl");
+            }
 
-            return this.RedirectToAction("RedirectToDefaultUrl");
+            //return this.RedirectToAction("RedirectToDefaultUrl");
         }
 
         /// <summary>
@@ -102,37 +102,37 @@ namespace MVCProject.Controllers
         /// <returns>ActionResult object</returns>
         public ActionResult RedirectToDefaultUrl()
         {
-            //if (this.Session["UserContext"] == null)
-            //{
-            //    // No session, redirect to login                
-            //    this.LogoutUser();
-            //    return this.RedirectToAction("Login", "Account", new { noSession = "y" });
-            //}
-            //else
-            //{
-            //    if (this.Session["LastUrl"] != null)
-            //    {
-            //        string url = this.Session["LastUrl"].ToString();
-            //        this.Session["LastUrl"] = null;
-            //        Response.Redirect(url);
-            //    }
+            if (this.Session["UserContext"] == null)
+            {
+                // No session, redirect to login                
+                this.LogoutUser();
+                return this.RedirectToAction("Login", "Account", new { noSession = "y" });
+            }
+            else
+            {
+                if (this.Session["LastUrl"] != null)
+                {
+                    string url = this.Session["LastUrl"].ToString();
+                    this.Session["LastUrl"] = null;
+                    Response.Redirect(url);
+                }
 
-            //    UserContext userContext = (UserContext)this.Session["UserContext"];
-            //    UserContext.PagePermission generalPermission = userContext.PageAccess.Where(p => p.PageId == Pages.General.Designation || p.PageId == Pages.General.CommonConfiguartion).FirstOrDefault();
-            //    bool hasGeneralAccess = generalPermission.CanWrite || generalPermission.CanRead;
+                //UserContext userContext = (UserContext)this.Session["UserContext"];
+                //UserContext.PagePermission generalPermission = userContext.PageAccess.Where(p => p.PageId == Pages.General.Designation || p.PageId == Pages.General.CommonConfiguartion).FirstOrDefault();
+                //bool hasGeneralAccess = generalPermission.CanWrite || generalPermission.CanRead;
 
-            //    if (hasGeneralAccess)
-            //    {
-            //        return RedirectToAction("Index", "Designation", new { area = "Configuration" });
-            //    }
-            //    else
-            //    {
-            //        return this.RedirectToAction("ServerError", "Error", new { id = 404 });
-            //    }
-            //    //}
-            //}
+                //if (hasGeneralAccess)
+                //{
+                return RedirectToAction("Index", "ReviewReport", new { area = "MISReporting" });
+                //}
+                //else
+                //{
+                //    return this.RedirectToAction("ServerError", "Error", new { id = 404 });
+                //}
 
-            return RedirectToAction("Index", "Designation", new { area = "Configuration" });
+            }
+
+            //return RedirectToAction("Index", "Designation", new { area = "Configuration" });
         }
 
         /// <summary>
@@ -172,27 +172,27 @@ namespace MVCProject.Controllers
         /// </summary>
         private void LogoutUser()
         {
-            /*
-            try
-            {
-                if (Request.Cookies["SAFEZydusSESSION" + Request.Url.Port] != null && Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString() != string.Empty)
-                {
-                    string apiBaseUrl = WebConfigurationManager.AppSettings["ApiBaseUrl"].ToString();
-                    string logoutApi = string.Format("{0}{1}", apiBaseUrl, "Account/LogOut");
 
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(logoutApi);
-                    request.Method = WebRequestMethods.Http.Post;
-                    request.ContentType = "application/json";
-                    request.ContentLength = 0;
-                    request.Headers.Add("__RequestAuthToken", Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString());
-                    request.GetResponse();
-                    Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Expires = DateTime.Now.AddDays(-1);
-                }
-            }
-            catch
-            {
-            }
-              */
+            //try
+            //{
+            //    if (Request.Cookies["SAFEZydusSESSION" + Request.Url.Port] != null && Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString() != string.Empty)
+            //    {
+            //        string apiBaseUrl = WebConfigurationManager.AppSettings["ApiBaseUrl"].ToString();
+            //        string logoutApi = string.Format("{0}{1}", apiBaseUrl, "Account/LogOut");
+
+            //        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(logoutApi);
+            //        request.Method = WebRequestMethods.Http.Post;
+            //        request.ContentType = "application/json";
+            //        request.ContentLength = 0;
+            //        request.Headers.Add("__RequestAuthToken", Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString());
+            //        request.GetResponse();
+            //        Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Expires = DateTime.Now.AddDays(-1);
+            //    }
+            //}
+            //catch
+            //{
+            //}
+
         }
     }
 }

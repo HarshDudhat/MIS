@@ -107,14 +107,14 @@ function CommonFunctions($rootScope, $timeout, $cookies, $window, $filter) {
 
     // Redirect to Login
     vm.RedirectToLoginPage = function (NoSession) {
-        //sessionStorage.removeItem("IsSmallMenu");
-        //localStorage.setItem("logout", true);
-        //vm.RedirectToLogout(NoSession);
+        sessionStorage.removeItem("IsSmallMenu");
+        localStorage.setItem("logout", true);
+        vm.RedirectToLogout(NoSession);
     };
 
     // Redirect to logout
     vm.RedirectToLogout = function (NoSession) {
-        //$window.location.href = "/Account/Logout" + (NoSession ? "?noSession=y" : "");
+        $window.location.href = "/Account/Logout" + (NoSession ? "?noSession=y" : "");
     };
 
     // Redirect to Error Page
@@ -124,7 +124,7 @@ function CommonFunctions($rootScope, $timeout, $cookies, $window, $filter) {
 
     // Redirect to DefaultUrl
     vm.RedirectToDefaultUrl = function () {
-        //$window.location.href = "/Account/RedirectToDefaultUrl";
+        $window.location.href = "/Account/RedirectToDefaultUrl";
     };
 
     // Scroll to top

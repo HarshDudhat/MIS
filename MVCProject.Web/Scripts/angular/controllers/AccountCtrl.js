@@ -56,7 +56,7 @@
                         CommonService.CreateSession(data.Result).then(function (response) {
                             $rootScope.isAjaxLoadingChild = true;
                             if (Login.Remember) {
-                                var userdata = Login.UserName + "░" + Login.UserPassword;
+                                var userdata = Login.Email + "░" + Login.Password;
                                 userdata = CommonFunctions.EncryptData(userdata);
                                 CommonFunctions.SetCookie("REM", userdata);
                             } else {

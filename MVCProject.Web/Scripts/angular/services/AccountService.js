@@ -13,8 +13,8 @@
     // Login
     list.DoLogOut = function () {
         return $http({
-            method: 'POST',
-            url: $rootScope.apiURL + '/Account/LogOut'
+            method: 'GET',
+            url: '/Account/LogOut'
         });
     };
 

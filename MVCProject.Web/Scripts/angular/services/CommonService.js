@@ -25,6 +25,15 @@
             url: $rootScope.apiURL + '/Common/GetCompanyName'
         });
     };
+
+    list.CreateSession = function (context) {
+        return $http({
+            method: 'POST',
+            url: '/Account/CreateSession',
+            data: JSON.stringify(context)
+        });
+    }
+
     
     //Get Project
     list.GetProjects = function (param) {

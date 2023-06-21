@@ -38,10 +38,10 @@ namespace System.Web.Mvc
 
               
                     menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Configuration, "fa fa-gears"));
+                    menuString.AppendFormat(GetParentMenu(Resource.Reportreview, "fa fa-gears"));
                     menuString.Append("<ul class='nav child_menu'>");
 
-                    menuString.Append(GetSubMenu(Resource.Designation, "ti-id-badge", "/Configuration/Designation"));
+                    menuString.Append(GetSubMenu(Resource.Reportreview, "ti-id-badge", "/MISReporting/ReviewReport"));
 
                     menuString.Append("</ul></li>");
                 

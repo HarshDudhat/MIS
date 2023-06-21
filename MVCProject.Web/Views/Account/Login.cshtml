@@ -19,7 +19,7 @@
                         <div class="textbox-wrap">
                             <div class="input-group">
                                 <span class="input-group-addon "><i class="ti-user icon-color"></i></span>
-                                <input type="text" id="txtUserName" name="txtUserName" ng-model="loginFormData.UserName" @*autocomplete=off*@
+                                <input type="text" id="txtUserName" name="txtUserName" ng-model="loginFormData.Email" @*autocomplete=off*@
                                            class="form-control" maxlength="50" required ng-focus="true" tabindex="1" placeholder="@Resource.UserName" />
                                 <div class="c">
                                 </div>
@@ -31,7 +31,7 @@
                         <div class="textbox-wrap">
                             <div class="input-group">
                                 <span class="input-group-addon "><i class="ti-key icon-color"></i></span>
-                                <input name="txtPassword" id="txtPassword" type="password" ng-model="loginFormData.UserPassword" autocomplete=off @*readonly onfocus="$(this).removeAttr('readonly');"*@
+                                <input name="txtPassword" id="txtPassword" type="password" ng-model="loginFormData.Password" autocomplete=off @*readonly onfocus="$(this).removeAttr('readonly');"*@
                                            class="form-control password" maxlength="25" required tabindex="2" placeholder="@Resource.Password" />
                                 <div class="c">
                                 </div>
