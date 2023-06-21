@@ -163,6 +163,8 @@
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />
     <Compile Include="Areas\Configuration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\ProjectMasterController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\VerticalMasterController.cs" />
     <Compile Include="Areas\MISReporting\Controllers\ReviewReportController.cs" />
     <Compile Include="Areas\MISReporting\MISReportingAreaRegistration.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
@@ -210,9 +212,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\WebApiConfig.cs" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ApplicationCtrl.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\controllers\ProjectMasterCtrl.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\controllers\VerticalMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DesignationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ResetToLoginCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ApplicationService.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\services\ProjectMasterService.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\services\VerticalMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
     <Content Include="Areas\MISReporting\Scripts\angular\controllers\ReviewReportCtrl.js" />
@@ -461,6 +467,8 @@
     <Content Include="Areas\MISReporting\Views\ReviewReport\Index.cshtml" />
     <Content Include="Areas\MISReporting\Views\Web.config" />
     <Content Include="Areas\Configuration\Views\Designation\Index.cshtml" />
+    <Content Include="Areas\Configuration\Views\VerticalMaster\Index.cshtml" />
+    <Content Include="Areas\Configuration\Views\ProjectMaster\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

@@ -87,6 +87,17 @@ namespace MVCProject.Areas.Configuration
                 .Include("~/Areas/Configuration/Scripts/angular/services/DesignationService.js")
                 .Include("~/Areas/Configuration/Scripts/angular/controllers/DesignationCtrl.js"));
 
+
+            // Vertical Master 
+            bundles.Add(new ScriptBundle("~/bundles/Configuration/VerticalMaster")
+                .Include("~/Areas/Configuration/Scripts/angular/services/VerticalMasterService.js")
+                .Include("~/Areas/Configuration/Scripts/angular/controllers/VerticalMasterCtrl.js"));
+
+
+            // Project Master 
+            bundles.Add(new ScriptBundle("~/bundles/Configuration/ProjectMaster")
+                .Include("~/Areas/Configuration/Scripts/angular/services/ProjectMasterService.js")
+                .Include("~/Areas/Configuration/Scripts/angular/controllers/ProjectMasterCtrl.js"));
         }
     }
 }
