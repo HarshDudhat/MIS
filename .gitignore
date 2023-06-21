@@ -1,0 +1,13 @@
+MVCProject.Api\bin\
+MVCProject.Api\obj\Debug\ 
+MVCProject.Common\bin\Debug\
+MVCProject.Common\obj\Debug\
+MVCProject.Web\bin\
+MVCProject.Web\obj\Debug\
+
+.dll
+.cache
+.csdl
+.msl
+.ssdl
+.pdb
