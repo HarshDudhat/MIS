@@ -1,0 +1,49 @@
+/*
+ * imgAreaSelect default style
+ */
+
+.imgareaselect-border1 {
+	background: url(../images/border-v.gif) repeat-y left top;
+}
+
+.imgareaselect-border2 {
+    background: url(../images/border-h.gif) repeat-x left top;
+}
+
+.imgareaselect-border3 {
+    background: url(../images/border-v.gif) repeat-y right top;
+}
+
+.imgareaselect-border4 {
+    background: url(../images/border-h.gif) repeat-x left bottom;
+}
+
+.imgareaselect-border1, .imgareaselect-border2,
+.imgareaselect-border3, .imgareaselect-border4 
+{
+    filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.imgareaselect-handle {
+   /* background-color: #FF5B5B;
+    border: solid 1px #fff;
+    filter: alpha(opacity=50);
+    opacity: 0.5;*/
+}
+
+.imgareaselect-outer {
+   /* background-color: #fff;
+    filter: alpha(opacity=50);
+    opacity: 0.5; */
+}
+
+.imgareaselect-selection  
+{
+	/* FF5B5B*/
+	background-color: #EF0000;
+    border: solid 1px #fff;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+

@@ -1,0 +1,15 @@
+﻿<div class="col-md-3">
+    <div class="form-group">
+        <label>
+            @Resource.HWMGSRequestedBy <span class="required-field">*</span>
+        </label>
+
+        <input type="text" class="form-control" id="txtEntryBy" name="txtEntryBy" ng-model="Obj.WasteGeneration.EmployeeName"
+               ng-readonly="true" ng-required="true" placeholder="@Resource.HWMGSRequestedBy" />
+        <div class="c">
+        </div>
+        <div class="label label-danger " data-ng-show="frmWasteGeneration.txtEntryBy.$dirty && frmWasteGeneration.txtEntryBy.$invalid">
+            <span data-ng-show="frmWasteGeneration.txtEntryBy.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.HWMGSRequestedBy))</span>
+        </div>
+    </div>
+</div>

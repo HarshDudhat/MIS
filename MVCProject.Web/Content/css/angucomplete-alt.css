@@ -1,0 +1,63 @@
+.angucomplete-holder
+{
+    position: relative;
+}
+
+.angucomplete-dropdown
+{
+    border:1px solid #D5D5D5;
+    padding: 5px;
+    cursor: pointer;
+    z-index: 9999;
+    position: absolute;
+    background-color: #F9F7F7;
+    max-height: 115px;
+    overflow-y: auto;    
+}
+
+.angucomplete-searching
+{
+    color: #acacac;
+    font-size: 14px;
+}
+
+.angucomplete-description
+{
+    font-size: 11px;
+}
+
+.angucomplete-row
+{
+    padding: 2px 10px;
+    color: #000000;
+    margin-bottom: 4px;
+    clear: both;
+}
+
+.angucomplete-selected-row
+{
+    background-color: #71B6F9;
+    color: #ffffff;
+}
+
+.angucomplete-image-holder
+{
+    padding-top: 2px;
+    float: left;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+.angucomplete-image
+{
+    margin-top: -5px; /*height: 34px;     width: 34px;     border-radius: 50%;     border-color: #ececec;     border-style: solid;     border-width: 1px;*/
+}
+
+.angucomplete-image-default
+{
+    /* Add your own default image here      background-image: url('/assets/default.png');     */
+    background-position: center;
+    background-size: contain;
+    height: 34px;
+    width: 34px;
+}

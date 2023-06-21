@@ -1,0 +1,19 @@
+﻿<div class="col-md-3">
+    <div class="form-group">
+        <label>
+            @Resource.HWMGSWasteType <span class="required-field">*</span>
+        </label>
+
+        <select class="form-control" ng-model="Obj.WasteGeneration.WasteTypeId" tabindex="2" id="txtWasteTypeId"
+                name="txtWasteTypeId" ng-required="true" ng-options="category.Id as category.Name for category in WasteCategories"
+                ng-change="fnWasteTypeChange(Obj.WasteGeneration.WasteTypeId)">
+            <option value="">@string.Format("{0} {1}", Resource.Select, Resource.HWMGSWasteType)</option>
+        </select>
+
+        <div class="c">
+        </div>
+        <div class="label label-danger " data-ng-show="frmWasteGeneration.txtWasteTypeId.$dirty && frmWasteGeneration.txtWasteTypeId.$invalid">
+            <span data-ng-show="frmWasteGeneration.txtWasteTypeId.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.HWMGSWasteType))</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,929 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="AADUserGUID">
+    <Key>
+      <PropertyRef Name="AId" />
+    </Key>
+    <Property Name="AId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="UserGUID" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ApplicationConfiguration">
+    <Key>
+      <PropertyRef Name="ConfigId" />
+    </Key>
+    <Property Name="ConfigId" Type="int" Nullable="false" />
+    <Property Name="ConfigDesc" Type="varchar" MaxLength="255" />
+    <Property Name="ConfigValue" Type="varchar" MaxLength="255" />
+    <Property Name="ConfigCode" Type="varchar" MaxLength="255" />
+    <Property Name="ConfigValueUnit" Type="varchar" MaxLength="255" />
+    <Property Name="ConfigShotCode" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="ControlUse" Type="varchar" MaxLength="50" />
+    <Property Name="IsCommon" Type="bit" />
+  </EntityType>
+  <EntityType Name="AshWasteGeneration">
+    <Key>
+      <PropertyRef Name="MuncipalWasteGenerationId" />
+    </Key>
+    <Property Name="MuncipalWasteGenerationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteLeveleId" Type="int" />
+    <Property Name="RequestedDate" Type="datetime" />
+    <Property Name="CoalConsumed" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Ashcontentcoalper" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TotalAshGeneration" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FlyAshGeneration" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="BottomAshGeneration" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FlyAshUtilized" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="BottomAshUtilized" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FlyAshUtilizationper" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TotalAshUtilizationper" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="CementMfdUtilization" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ClayMfdUtilization" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="RoadDevUtilization" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Quaryyfilling" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="AshpondDumping" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="PonfAshLifting" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Attachments">
+    <Key>
+      <PropertyRef Name="AttachmentId" />
+    </Key>
+    <Property Name="AttachmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleId" Type="int" Nullable="false" />
+    <Property Name="ReferenceId" Type="int" Nullable="false" />
+    <Property Name="OriginalFileName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FileName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DeleteFlag" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="DeleteBy" Type="int" />
+    <Property Name="DeleteDate" Type="datetime" />
+    <Property Name="FilePath" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="BioMedicalWasteGeneration">
+    <Key>
+      <PropertyRef Name="BioMedicalWasteGenerationId" />
+    </Key>
+    <Property Name="BioMedicalWasteGenerationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteLeveleId" Type="int" />
+    <Property Name="RequestedDate" Type="datetime" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ConfigHierarchy">
+    <Key>
+      <PropertyRef Name="UHierarchyId" />
+    </Key>
+    <Property Name="UHierarchyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HierarchyId" Type="int" Nullable="false" />
+    <Property Name="HierarchyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="LevelId" Type="int" Nullable="false" />
+    <Property Name="LanguageId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="IsSibling" Type="bit" />
+  </EntityType>
+  <EntityType Name="ConfigLanguage">
+    <Key>
+      <PropertyRef Name="LanguageId" />
+    </Key>
+    <Property Name="LanguageId" Type="int" Nullable="false" />
+    <Property Name="LanguageCulture" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Language" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConfigLevel">
+    <Key>
+      <PropertyRef Name="ULevelId" />
+    </Key>
+    <Property Name="ULevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LevelId" Type="int" Nullable="false" />
+    <Property Name="LevelName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LevelCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="UHierarchyId" Type="int" Nullable="false" />
+    <Property Name="HierarchyId" Type="int" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="LevelHierarchy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LanguageId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="AccessHierarchy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ConfigModule">
+    <Key>
+      <PropertyRef Name="UModuleId" />
+    </Key>
+    <Property Name="UModuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleId" Type="int" Nullable="false" />
+    <Property Name="ModuleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModuleHierarchy" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LanguageId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ConfigRole">
+    <Key>
+      <PropertyRef Name="URoleId" />
+    </Key>
+    <Property Name="URoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UHierarchyId" Type="int" Nullable="false" />
+    <Property Name="HierarchyId" Type="int" Nullable="false" />
+    <Property Name="LanguageId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Designations">
+    <Key>
+      <PropertyRef Name="DesignationId" />
+    </Key>
+    <Property Name="DesignationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DesignationName" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="bigint" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="bigint" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CompanyId" Type="int" />
+  </EntityType>
+  <EntityType Name="MedicineConsumption">
+    <Key>
+      <PropertyRef Name="MedConsumptionId" />
+    </Key>
+    <Property Name="MedConsumptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConsumptionReferenceId" Type="int" />
+    <Property Name="ConsumptionById" Type="int" Nullable="false" />
+    <Property Name="ConsumptionEntryDate" Type="datetime" Nullable="false" />
+    <Property Name="Remarks" Type="varchar(max)" />
+    <Property Name="MedicineId" Type="int" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="SiteLevelId" Type="int" />
+  </EntityType>
+  <EntityType Name="MedicineDeadStock">
+    <Key>
+      <PropertyRef Name="DeadStockId" />
+    </Key>
+    <Property Name="DeadStockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeadStockEntryDate" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="MedicineId" Type="int" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="SiteLevelId" Type="int" />
+  </EntityType>
+  <EntityType Name="MedicineMaster">
+    <Key>
+      <PropertyRef Name="MedicineId" />
+    </Key>
+    <Property Name="MedicineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MedCode" Type="int" Nullable="false" />
+    <Property Name="MedName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MedTypeId" Type="int" Nullable="false" />
+    <Property Name="CriticalStock" Type="int" Nullable="false" />
+    <Property Name="SiteLevelId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="IsExpiryRequired" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MedicineReceived">
+    <Key>
+      <PropertyRef Name="MedicineReceivedId" />
+    </Key>
+    <Property Name="MedicineReceivedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceiptNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="ReceivedDate" Type="datetime" Nullable="false" />
+    <Property Name="ReceivedFrom" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MedReceivedSourceId" Type="int" Nullable="false" />
+    <Property Name="MedicineId" Type="int" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="Price" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="SiteLevelId" Type="int" />
+  </EntityType>
+  <EntityType Name="MedicineType">
+    <Key>
+      <PropertyRef Name="MedTypeId" />
+    </Key>
+    <Property Name="MedTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MedType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MethodStorageMaster">
+    <Key>
+      <PropertyRef Name="StorageId" />
+    </Key>
+    <Property Name="StorageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ModuleMaster">
+    <Key>
+      <PropertyRef Name="ModuleId" />
+    </Key>
+    <Property Name="ModuleId" Type="int" Nullable="false" />
+    <Property Name="ModuleName" Type="varchar" MaxLength="350" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="isMainModule" Type="bit" />
+  </EntityType>
+  <EntityType Name="ModulePage">
+    <Key>
+      <PropertyRef Name="PageId" />
+    </Key>
+    <Property Name="PageId" Type="int" Nullable="false" />
+    <Property Name="PageName" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="IsMainModule" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MuncipalWasteGeneration">
+    <Key>
+      <PropertyRef Name="MuncipalWasteGenerationId" />
+    </Key>
+    <Property Name="MuncipalWasteGenerationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteLeveleId" Type="int" />
+    <Property Name="RequestedDate" Type="datetime" />
+    <Property Name="CompostableQuantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NonCompostableQuantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PageAccess">
+    <Key>
+      <PropertyRef Name="AccessId" />
+    </Key>
+    <Property Name="AccessId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="CanRead" Type="bit" Nullable="false" />
+    <Property Name="CanWrite" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleLevel">
+    <Key>
+      <PropertyRef Name="RoleLevelId" />
+    </Key>
+    <Property Name="RoleLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LevelName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleMaster">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="RoleLevelId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StatusMaster">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="UnitofMeasure">
+    <Key>
+      <PropertyRef Name="UnitId" />
+    </Key>
+    <Property Name="UnitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UnitShortCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserRoleId" />
+    </Key>
+    <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="LevelId" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="100" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="DesignationId" Type="int" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="UnitId" Type="int" />
+    <Property Name="UserEmail" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Contact" Type="varchar" MaxLength="30" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="ResetPasswordToken" Type="varchar" MaxLength="200" />
+    <Property Name="IsUserLoggedIn" Type="bit" />
+    <Property Name="IsTokenExpired" Type="bit" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WasteCategory">
+    <Key>
+      <PropertyRef Name="WasteCategoryId" />
+    </Key>
+    <Property Name="WasteCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WasteDescription" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="WasteTypeId" Type="int" Nullable="false" />
+    <Property Name="UnitOfMeasure" Type="int" Nullable="false" />
+    <Property Name="WastestateId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="WasteDisposal">
+    <Key>
+      <PropertyRef Name="WasteDisposalId" />
+    </Key>
+    <Property Name="WasteDisposalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteLeveleId" Type="int" Nullable="false" />
+    <Property Name="WasteTypeId" Type="int" Nullable="false" />
+    <Property Name="RequestedDate" Type="datetime" Nullable="false" />
+    <Property Name="SenderAuthno" Type="varchar" MaxLength="50" />
+    <Property Name="Mainfestdocno" Type="varchar" MaxLength="50" />
+    <Property Name="TranspoterName" Type="varchar" MaxLength="50" />
+    <Property Name="ConatctNo" Type="varchar" MaxLength="50" />
+    <Property Name="Emailaddress" Type="varchar" MaxLength="50" />
+    <Property Name="Transporteraddress" Type="varchar" MaxLength="500" />
+    <Property Name="TranspoterRegNo" Type="varchar" MaxLength="50" />
+    <Property Name="VehicleType" Type="varchar" MaxLength="50" />
+    <Property Name="TranspoterVehicleNo" Type="varchar" MaxLength="50" />
+    <Property Name="RecieverName" Type="varchar" MaxLength="50" />
+    <Property Name="RecieverConatctNo" Type="varchar" MaxLength="50" />
+    <Property Name="RecieverEmailaddress" Type="varchar" MaxLength="50" />
+    <Property Name="Recieveraddress" Type="varchar" MaxLength="500" />
+    <Property Name="RecieverAuthorisation" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="SenderMailingAddress" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="WasteDisposalDetail">
+    <Key>
+      <PropertyRef Name="WasteDisposalDetailId" />
+    </Key>
+    <Property Name="WasteDisposalDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WasteDisposalId" Type="int" Nullable="false" />
+    <Property Name="WasteCategoryId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="NoofContainer" Type="int" />
+    <Property Name="Weight" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WasteGeneration">
+    <Key>
+      <PropertyRef Name="WasteGenerationId" />
+    </Key>
+    <Property Name="WasteGenerationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteLeveleId" Type="int" />
+    <Property Name="FunctionLevelId" Type="int" />
+    <Property Name="WasteTypeId" Type="int" Nullable="false" />
+    <Property Name="RequestedDate" Type="datetime" />
+    <Property Name="MethodofStorage" Type="int" />
+    <Property Name="MonitoringDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="DocumentNo" Type="varchar" MaxLength="50" />
+    <Property Name="Characteristics" Type="varchar(max)" />
+    <Property Name="IncompatibleWasteSubstances" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="WasteGenerationDetail">
+    <Key>
+      <PropertyRef Name="WasteGenerationDetailId" />
+    </Key>
+    <Property Name="WasteGenerationDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WasteGenerationId" Type="int" />
+    <Property Name="WasteCategoryId" Type="int" />
+    <Property Name="MethodofStorage" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="RecQuantity" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WasteState">
+    <Key>
+      <PropertyRef Name="WasteStateId" />
+    </Key>
+    <Property Name="WasteStateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WasteStateName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="WasteType">
+    <Key>
+      <PropertyRef Name="WasteTypeId" />
+    </Key>
+    <Property Name="WasteTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WasteType" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="int" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <Association Name="FK_CMedicineMaster">
+    <End Role="MedicineMaster" Type="Self.MedicineMaster" Multiplicity="1" />
+    <End Role="MedicineConsumption" Type="Self.MedicineConsumption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicineMaster">
+        <PropertyRef Name="MedicineId" />
+      </Principal>
+      <Dependent Role="MedicineConsumption">
+        <PropertyRef Name="MedicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConfigHierarchy_ConfigLanguage">
+    <End Role="ConfigLanguage" Type="Self.ConfigLanguage" Multiplicity="1" />
+    <End Role="ConfigHierarchy" Type="Self.ConfigHierarchy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConfigLanguage">
+        <PropertyRef Name="LanguageId" />
+      </Principal>
+      <Dependent Role="ConfigHierarchy">
+        <PropertyRef Name="LanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConfigLevel_ConfigHierarchy">
+    <End Role="ConfigHierarchy" Type="Self.ConfigHierarchy" Multiplicity="1" />
+    <End Role="ConfigLevel" Type="Self.ConfigLevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConfigHierarchy">
+        <PropertyRef Name="UHierarchyId" />
+      </Principal>
+      <Dependent Role="ConfigLevel">
+        <PropertyRef Name="UHierarchyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConfigLevel_ConfigLanguage">
+    <End Role="ConfigLanguage" Type="Self.ConfigLanguage" Multiplicity="1" />
+    <End Role="ConfigLevel" Type="Self.ConfigLevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConfigLanguage">
+        <PropertyRef Name="LanguageId" />
+      </Principal>
+      <Dependent Role="ConfigLevel">
+        <PropertyRef Name="LanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConfigModule_ConfigLanguage">
+    <End Role="ConfigLanguage" Type="Self.ConfigLanguage" Multiplicity="1" />
+    <End Role="ConfigModule" Type="Self.ConfigModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConfigLanguage">
+        <PropertyRef Name="LanguageId" />
+      </Principal>
+      <Dependent Role="ConfigModule">
+        <PropertyRef Name="LanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConfigRole_ConfigHierarchy">
+    <End Role="ConfigHierarchy" Type="Self.ConfigHierarchy" Multiplicity="1" />
+    <End Role="ConfigRole" Type="Self.ConfigRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConfigHierarchy">
+        <PropertyRef Name="UHierarchyId" />
+      </Principal>
+      <Dependent Role="ConfigRole">
+        <PropertyRef Name="UHierarchyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConfigRole_ConfigLanguage">
+    <End Role="ConfigLanguage" Type="Self.ConfigLanguage" Multiplicity="1" />
+    <End Role="ConfigRole" Type="Self.ConfigRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConfigLanguage">
+        <PropertyRef Name="LanguageId" />
+      </Principal>
+      <Dependent Role="ConfigRole">
+        <PropertyRef Name="LanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DSMedicineMaster">
+    <End Role="MedicineMaster" Type="Self.MedicineMaster" Multiplicity="1" />
+    <End Role="MedicineDeadStock" Type="Self.MedicineDeadStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicineMaster">
+        <PropertyRef Name="MedicineId" />
+      </Principal>
+      <Dependent Role="MedicineDeadStock">
+        <PropertyRef Name="MedicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicineType">
+    <End Role="MedicineType" Type="Self.MedicineType" Multiplicity="1" />
+    <End Role="MedicineMaster" Type="Self.MedicineMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicineType">
+        <PropertyRef Name="MedTypeId" />
+      </Principal>
+      <Dependent Role="MedicineMaster">
+        <PropertyRef Name="MedTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModulePage_ModulePage">
+    <End Role="ModulePage" Type="Self.ModulePage" Multiplicity="0..1" />
+    <End Role="ModulePage1" Type="Self.ModulePage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModulePage">
+        <PropertyRef Name="PageId" />
+      </Principal>
+      <Dependent Role="ModulePage1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PageAccess_ModulePage">
+    <End Role="ModulePage" Type="Self.ModulePage" Multiplicity="1" />
+    <End Role="PageAccess" Type="Self.PageAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModulePage">
+        <PropertyRef Name="PageId" />
+      </Principal>
+      <Dependent Role="PageAccess">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PageAccess_RoleMaster">
+    <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+    <End Role="PageAccess" Type="Self.PageAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleMaster">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="PageAccess">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RMMedicineMaster">
+    <End Role="MedicineMaster" Type="Self.MedicineMaster" Multiplicity="1" />
+    <End Role="MedicineReceived" Type="Self.MedicineReceived" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicineMaster">
+        <PropertyRef Name="MedicineId" />
+      </Principal>
+      <Dependent Role="MedicineReceived">
+        <PropertyRef Name="MedicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleMaster_RoleLevel">
+    <End Role="RoleLevel" Type="Self.RoleLevel" Multiplicity="1" />
+    <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleLevel">
+        <PropertyRef Name="RoleLevelId" />
+      </Principal>
+      <Dependent Role="RoleMaster">
+        <PropertyRef Name="RoleLevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_RoleMaster">
+    <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleMaster">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="USP_ConfigHierarchy_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HierarchyId" Type="int" Mode="In" />
+    <Parameter Name="LanguageCulture" Type="nvarchar" Mode="In" />
+    <Parameter Name="ForList" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_ConfigLevel_Advance_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LevelIds" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="HierarchyIds" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="ModuleId" Type="int" Mode="In" />
+    <Parameter Name="SearchText" Type="nvarchar" Mode="In" />
+    <Parameter Name="LanguageCulture" Type="nvarchar" Mode="In" />
+    <Parameter Name="ParentLevelId" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="RoleId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_ConfigLevel_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LevelId" Type="int" Mode="In" />
+    <Parameter Name="HierarchyId" Type="int" Mode="In" />
+    <Parameter Name="LanguageCulture" Type="nvarchar" Mode="In" />
+    <Parameter Name="ForList" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_ConfigModule_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ModuleId" Type="int" Mode="In" />
+    <Parameter Name="LanguageCulture" Type="nvarchar" Mode="In" />
+    <Parameter Name="ForList" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_ConfigRole_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleId" Type="int" Mode="In" />
+    <Parameter Name="HierarchyId" Type="int" Mode="In" />
+    <Parameter Name="LanguageCulture" Type="nvarchar" Mode="In" />
+    <Parameter Name="ForList" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_GetCurrentMedStockDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+    <Parameter Name="MedicineName" Type="varchar" Mode="In" />
+    <Parameter Name="AsOnDate" Type="date" Mode="In" />
+    <Parameter Name="ChkExpired" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMedicineConsumptionEditList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EntryDate" Type="datetime" Mode="In" />
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMedicineDeadStockEditList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EntryDate" Type="datetime" Mode="In" />
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMedicineStockCurrentStockDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Month" Type="int" Mode="In" />
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+    <Parameter Name="Span" Type="varchar" Mode="In" />
+    <Parameter Name="PageNo" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="SortColumn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SortDirection" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMedicineStockDeadStockDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Month" Type="int" Mode="In" />
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+    <Parameter Name="Span" Type="varchar" Mode="In" />
+    <Parameter Name="PageNo" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="SortColumn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SortDirection" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMedicineStockInwardDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Month" Type="int" Mode="In" />
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+    <Parameter Name="Span" Type="varchar" Mode="In" />
+    <Parameter Name="PageNo" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="SortColumn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SortDirection" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMedicineStockOpeningStockDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Month" Type="int" Mode="In" />
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+    <Parameter Name="Span" Type="varchar" Mode="In" />
+    <Parameter Name="PageNo" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="SortColumn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SortDirection" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMedicineStockOutwardDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Month" Type="int" Mode="In" />
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+    <Parameter Name="Span" Type="varchar" Mode="In" />
+    <Parameter Name="PageNo" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="SortColumn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SortDirection" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMedicineStockReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Month" Type="int" Mode="In" />
+    <Parameter Name="SiteLevelId" Type="int" Mode="In" />
+    <Parameter Name="Span" Type="varchar" Mode="In" />
+    <Parameter Name="MedCode" Type="varchar" Mode="In" />
+    <Parameter Name="ExpiryDate" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetUserRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="LanguageCulture" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="MVCProjectModelStoreContainer">
+    <EntitySet Name="AADUserGUID" EntityType="Self.AADUserGUID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplicationConfiguration" EntityType="Self.ApplicationConfiguration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AshWasteGeneration" EntityType="Self.AshWasteGeneration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Attachments" EntityType="Self.Attachments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BioMedicalWasteGeneration" EntityType="Self.BioMedicalWasteGeneration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConfigHierarchy" EntityType="Self.ConfigHierarchy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConfigLanguage" EntityType="Self.ConfigLanguage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConfigLevel" EntityType="Self.ConfigLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConfigModule" EntityType="Self.ConfigModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConfigRole" EntityType="Self.ConfigRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Designations" EntityType="Self.Designations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicineConsumption" EntityType="Self.MedicineConsumption" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicineDeadStock" EntityType="Self.MedicineDeadStock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicineMaster" EntityType="Self.MedicineMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicineReceived" EntityType="Self.MedicineReceived" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicineType" EntityType="Self.MedicineType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MethodStorageMaster" EntityType="Self.MethodStorageMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleMaster" EntityType="Self.ModuleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModulePage" EntityType="Self.ModulePage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MuncipalWasteGeneration" EntityType="Self.MuncipalWasteGeneration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PageAccess" EntityType="Self.PageAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleLevel" EntityType="Self.RoleLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusMaster" EntityType="Self.StatusMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnitofMeasure" EntityType="Self.UnitofMeasure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WasteCategory" EntityType="Self.WasteCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WasteDisposal" EntityType="Self.WasteDisposal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WasteDisposalDetail" EntityType="Self.WasteDisposalDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WasteGeneration" EntityType="Self.WasteGeneration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WasteGenerationDetail" EntityType="Self.WasteGenerationDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WasteState" EntityType="Self.WasteState" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WasteType" EntityType="Self.WasteType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CMedicineMaster" Association="Self.FK_CMedicineMaster">
+      <End Role="MedicineMaster" EntitySet="MedicineMaster" />
+      <End Role="MedicineConsumption" EntitySet="MedicineConsumption" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConfigHierarchy_ConfigLanguage" Association="Self.FK_ConfigHierarchy_ConfigLanguage">
+      <End Role="ConfigLanguage" EntitySet="ConfigLanguage" />
+      <End Role="ConfigHierarchy" EntitySet="ConfigHierarchy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConfigLevel_ConfigHierarchy" Association="Self.FK_ConfigLevel_ConfigHierarchy">
+      <End Role="ConfigHierarchy" EntitySet="ConfigHierarchy" />
+      <End Role="ConfigLevel" EntitySet="ConfigLevel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConfigLevel_ConfigLanguage" Association="Self.FK_ConfigLevel_ConfigLanguage">
+      <End Role="ConfigLanguage" EntitySet="ConfigLanguage" />
+      <End Role="ConfigLevel" EntitySet="ConfigLevel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConfigModule_ConfigLanguage" Association="Self.FK_ConfigModule_ConfigLanguage">
+      <End Role="ConfigLanguage" EntitySet="ConfigLanguage" />
+      <End Role="ConfigModule" EntitySet="ConfigModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConfigRole_ConfigHierarchy" Association="Self.FK_ConfigRole_ConfigHierarchy">
+      <End Role="ConfigHierarchy" EntitySet="ConfigHierarchy" />
+      <End Role="ConfigRole" EntitySet="ConfigRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConfigRole_ConfigLanguage" Association="Self.FK_ConfigRole_ConfigLanguage">
+      <End Role="ConfigLanguage" EntitySet="ConfigLanguage" />
+      <End Role="ConfigRole" EntitySet="ConfigRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DSMedicineMaster" Association="Self.FK_DSMedicineMaster">
+      <End Role="MedicineMaster" EntitySet="MedicineMaster" />
+      <End Role="MedicineDeadStock" EntitySet="MedicineDeadStock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicineType" Association="Self.FK_MedicineType">
+      <End Role="MedicineType" EntitySet="MedicineType" />
+      <End Role="MedicineMaster" EntitySet="MedicineMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModulePage_ModulePage" Association="Self.FK_ModulePage_ModulePage">
+      <End Role="ModulePage" EntitySet="ModulePage" />
+      <End Role="ModulePage1" EntitySet="ModulePage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PageAccess_ModulePage" Association="Self.FK_PageAccess_ModulePage">
+      <End Role="ModulePage" EntitySet="ModulePage" />
+      <End Role="PageAccess" EntitySet="PageAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PageAccess_RoleMaster" Association="Self.FK_PageAccess_RoleMaster">
+      <End Role="RoleMaster" EntitySet="RoleMaster" />
+      <End Role="PageAccess" EntitySet="PageAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RMMedicineMaster" Association="Self.FK_RMMedicineMaster">
+      <End Role="MedicineMaster" EntitySet="MedicineMaster" />
+      <End Role="MedicineReceived" EntitySet="MedicineReceived" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleMaster_RoleLevel" Association="Self.FK_RoleMaster_RoleLevel">
+      <End Role="RoleLevel" EntitySet="RoleLevel" />
+      <End Role="RoleMaster" EntitySet="RoleMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_RoleMaster" Association="Self.FK_UserRole_RoleMaster">
+      <End Role="RoleMaster" EntitySet="RoleMaster" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Users" Association="Self.FK_UserRole_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

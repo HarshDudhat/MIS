@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="ActionItemCtrl">
+    <div class="main-page-title title-icon relative l">
+        <i class="fa fa-tasks icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">
+            @string.Format("{0} {1}", Resource.Action, Resource.Item)
+        </h4>
+    </div>
+    <div class="c">
+    </div>
+    <div class="card-box">
+        <form name="frmActionItem" novalidate>
+            <div class="row">
+                <div class="col-md-12">
+                    <label>@string.Format("{0} {1}s", Resource.Action, Resource.Item)</label>
+                    <common-capa-grid task-type-id='1' task-reference-id='0'
+                                      site-id='9' start-date="startDate"
+                                      read-only="false"
+                                      current-date="currentDate" add-attachment="false" tasks="ActionItems"
+                                      add-type="false" add-reviewer="false"
+                                      save-local="true" display-fix-header="false" tab-index="1">
+                    </common-capa-grid>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Attachments
+                        </label>
+                        <div>
+                            <safe-file-upload max-limit="10" options="fileUpload" model-data="DocumentsList"
+                                              is-view-only="false" changed-data="AttachmentsList" is-all-file-uploaded="isAllFileUploaded"
+                                              file-format=",jpg,jpeg,png,bmp,xls,xlsx,doc,docx,rtf,pdf,mp3,mp4,m4a" placeholder=".JPEG, .PNG, .BMP, .XLS, .XLSX, .DOC, .DOCX, .RTF, .PDF, .mp3, .mp4 and m4a"
+                                              input-container-class="col-md-12" grid-container-class="col-md-12">
+                            </safe-file-upload>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/TaskManagement/ActionItem")
+}

@@ -1,0 +1,253 @@
+﻿@{
+    ViewBag.Title = Resource.HWMGenerationAndStorageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="HWMCtrl">
+
+    <div class="main-page-title title-icon relative l">
+
+        <i class="zmdi zmdi-accounts-alt icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">
+            @Resource.HWMGenerationAndStorage {{Obj.WasteGeneration.DocumentNo}}
+        </h4>
+
+    </div>
+
+    <div class="card-box" ng-init="GetWasteGenerationDetails(@ViewBag.WasteGenerationId)">
+
+        <form name="frmWasteGeneration" ng-submit="SaveWasteGeneration(frmWasteGeneration,Obj)" novalidate>
+
+            <input type="hidden" class="form-control" ng-model="Obj.WasteGeneration.FunctionalWasteTypeName" ng-readonly="true" />
+            <input type="hidden" class="form-control" ng-model="Obj.WasteGeneration.FunctionalWasteTypeId" ng-readonly="true" />
+            <input type="hidden" class="form-control" ng-model="Obj.WasteGeneration.SiteLeveleId" ng-required="true" />
+            <input type="hidden" class="form-control" ng-model="Obj.WasteGeneration.FunctionLevelId" ng-required="true" />
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Designation">
+                            @Resource.WSite <span class="required-field">*</span>
+                        </label>
+
+                        <div angucomplete-alt
+                             ng-model="Obj.WasteGeneration.SiteName"
+                             pause="400"
+                             minlength="1"
+                             maxlength="100"
+                             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.Site)"
+                             remote-url="{{GetLevelAutoCompleteUrl}}"
+                             remote-url-data-field="Result"
+                             initial-value="Obj.WasteGeneration.SiteName"
+                             match-class="blue"
+                             selected-object="SetLevel"
+                             title-field="Name"
+                             description-field="Description"
+                             text-searching="@Resource.AutocompleteSearching"
+                             text-no-results="@Resource.NoRecordAvailable"
+                             input-class="form-control"
+                             disable-input="IsDisableOnEdit">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Function <span class="required-field">*</span>
+                        </label>
+
+                        <div angucomplete-alt
+                             ng-model="Obj.WasteGeneration.FunctionLevelName"
+                             pause="400"
+                             minlength="1"
+                             maxlength="100"
+                             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.Function)"
+                             remote-url="{{GetFunctionAutoCompleteUrl}}"
+                             remote-url-data-field="Result"
+                             initial-value="Obj.WasteGeneration.FunctionLevelName"
+                             match-class="blue"
+                             selected-object="ChangedFunctionLevelId"
+                             title-field="Name"
+                             description-field="Description"
+                             text-searching="@Resource.AutocompleteSearching"
+                             text-no-results="@Resource.NoRecordAvailable"
+                             input-class="form-control"
+                             disable-input="IsDisableOnEdit">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.RequestedBy <span class="required-field">*</span>
+                        </label>
+                        <input type="text" class="form-control" ng-model="Obj.WasteGeneration.EmployeeName" ng-readonly="true"
+                               ng-required="true" placeholder="@Resource.RequestedBy" />
+                        <div class="clearfix">
+                        </div>
+                        <div class="badge badge-danger" data-ng-show="frmMedicineOpeningStock.txtConfigLevel.$dirty && frmMedicineOpeningStock.txtConfigLevel.$invalid && frmMedicineOpeningStock.txtConfigLevel.$error.required">
+                            <span ng-show="frmWasteGeneration.Obj.WasteGeneration.EmployeeName.$error.required">
+                                @(string.Format(Resource.ValueIsRequired, Resource.RequestedBy))
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.RequestedDate <span class="required-field">*</span>
+                        </label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{defaultSettings.dateFormat}}"
+                                   ng-model="Obj.WasteGeneration.RequestedDate" is-open="datePickerRD.Open" max-date="MaxDate"
+                                   datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                   readonly="readonly" ng-disabled="IsDisableOnEdit"
+                                   placeholder="@Resource.RequestedDate" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="datePickerRD.Open=true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.WasteType <span class="required-field">*</span>
+                        </label>
+
+                        <select class="form-control" ng-model="Obj.WasteGenerationDetail.WasteCategoryId" ng-required="true" ng-options="category.Id as category.Name for category in WasteCategories"
+                                ng-change="fnWasteTypeChange(Obj.WasteGenerationDetail)" ng-disabled="IsDisableOnEdit">
+                            <option value="">@string.Format("{0} {1}", Resource.Select, Resource.WasteType)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MethodofStorage<span class="required-field">*</span>
+                        </label>
+                        <select class="form-control" ng-model="Obj.WasteGenerationDetail.MethodofStorage"
+                                ng-required="true" ng-options="storage.Id as storage.Name for storage in WasteStorages" ng-disabled="IsDisableOnEdit">
+                            <option value="">
+                                @string.Format("{0} {1}", Resource.Select, Resource.MethodofStorage)
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Quantity<span class="required-field">*</span>
+                        </label>
+                        <div class="form-inline">
+                            <input type="number" class="form-control" ng-model="Obj.WasteGenerationDetail.Quantity" ng-cut="$event.preventDefault()" allow-numbers-only
+                                   id="txtWasteGenerationDetailQuantity" name="txtWasteGenerationDetailQuantity"
+                                   ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-required="true" placeholder="@Resource.Quantity" />
+                            <input type="text" class="form-control" ng-model="Obj.WasteGenerationDetail.UOM" ng-required="true" ng-disabled="true" placeholder="@Resource.Unit" />
+
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmWasteGeneration.txtWasteGenerationDetailQuantity.$dirty && frmWasteGeneration.txtWasteGenerationDetailQuantity.$invalid">
+                                <span data-ng-show="frmWasteGeneration.txtWasteGenerationDetailQuantity.$error.required">
+                                    @(string.Format(Resource.ValueIsRequired, Resource.Quantity))
+                                </span>
+                                <span data-ng-show="frmWasteGeneration.txtWasteGenerationDetailQuantity.$error.min">
+                                    @(string.Format(Resource.Min1Quantity, Resource.Quantity))
+                                </span>
+                            </div>
+
+                            <input type="hidden" ng-model="Obj.WasteGenerationDetail.UOM" ng-disabled="true" id="txtWasteGenerationDetailUOM" name="txtWasteGenerationDetailUOM" />
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmWasteGeneration.txtWasteGenerationDetailUOM.$dirty && frmWasteGeneration.txtWasteGenerationDetailUOM.$invalid">
+                                <span data-ng-show="frmWasteGeneration.txtWasteGenerationDetailUOM.$error.required">@Resource.HWMGSUOMRequired</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.EnvironmentMonitoringDate<span class="required-field">*</span>
+                        </label>
+                        <p class="input-group">
+                            <input type="text"
+                                   class="form-control" uib-datepicker-popup="{{defaultSettings.dateFormat}}"
+                                   ng-model="Obj.WasteGeneration.MonitoringDate" is-open="dateMD.opened" max-date="MaxDate"
+                                   datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                   readonly="readonly"
+                                   placeholder="@Resource.EnvironmentMonitoringDate" ng-disabled="IsDisableOnEdit" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="dateMD.opened=true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3" ng-if="IsDisableOnEdit">
+                    <div class="form-group">
+                        <label>
+                            @Resource.AuthorizationIssueDate<span class="required-field">*</span>
+                        </label>
+                        <p class="input-group">
+                            <input type="text"
+                                   class="form-control" uib-datepicker-popup="{{defaultSettings.dateFormat}}"
+                                   ng-model="Obj.WasteGeneration.EPRAuthorizationIssueDate" is-open="dateAZI.opened" max-date="MaxDate"
+                                   datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                   readonly="readonly"
+                                   placeholder="@Resource.AuthorizationIssueDate" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="dateAZI.opened=true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success w-md waves-light"
+                            ng-disabled="(frmWasteGeneration.$invalid)"
+                            ng-class="{'': (frmWasteGeneration.$invalid ), 'waves-effect':!(frmWasteGeneration.$invalid)}">
+                        {{ IsEdit? '@Resource.Update' : '@Resource.Submit' }}
+                    </button>
+                </div>
+            </div>
+
+        </form>
+        <hr />
+
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Configuration/HWM");
+}

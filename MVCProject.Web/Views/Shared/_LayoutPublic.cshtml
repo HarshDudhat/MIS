@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html ng-app="MVCApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Html.Partial("~/Views/Shared/_CommonScriptOuter.cshtml")
+    @{BundleTable.EnableOptimizations = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["IsJsCssMinified"]);}
+    @Styles.Render("~/css/outer")    
+</head>
+<body id="LayoutBody" class="colorBg1 colorBg hide-backtotop" ng-cloak>
+    @Html.Partial("~/Views/Shared/_Loader.cshtml")
+
+    @RenderBody()
+    <span class="backToTop"><i class="fa fa-arrow-circle-o-up"></i></span>
+    <script type="text/javascript">
+        var resizefunc = [];
+        var baseApiURL = '@System.Configuration.ConfigurationManager.AppSettings["ApiServiceUrl"]';
+    </script>
+    <script type="text/javascript">
+        var angularmodule = [
+            "ngCookies",
+            "ngAnimate",
+            "ui.bootstrap"
+        ];
+    </script>
+    @Scripts.Render("~/bundles/outer")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

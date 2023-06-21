@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = Resource.MedicineReceived;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="MedicineOpeningStockDemoCtrl" ng-init="Init('@ViewBag.GroupId')">
+    <form name="frmMedicineReceived" ng-submit="SaveMedicineReceivedDetails(medicineOpeningStock,frmMedicineReceived)"
+          novalidate>
+        <div class="main-page-title title-icon relative">
+            <!-- start page title-->
+            <h4 class="header-title-sub">
+                <i class="icofont-capsule icon-position"></i>
+                @Resource.MedicineReceived
+            </h4>
+            <!-- end page title-->
+            <div class="c">
+            </div>
+        </div>
+        <div class="c">
+        </div>
+        <div class="card-box">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>@Resource.Site</label><span class="required-field">*</span>
+                        <div angucomplete-alt
+                             input-name="txtConfigLevel"
+                             id="txtConfigLevel"
+                             required
+                             ng-model="Filter.SiteName"
+                             pause="400"
+                             minlength="1"
+                             maxlength="100"
+                             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.Site)"
+                             remote-url="{{GetLevelAutoCompleteUrl}}"
+                             remote-url-data-field="Result"
+                             initial-value="Filter.SiteName"
+                             match-class="blue"
+                             selected-object="SetLevel"
+                             title-field="Name"
+                             description-field="Description"
+                             text-searching="@Resource.AutocompleteSearching"
+                             text-no-results="@Resource.NoRecordAvailable" input-class="form-control">
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        <div class="badge badge-danger" data-ng-show="frmMedicineOpeningStock.txtConfigLevel.$dirty && frmMedicineOpeningStock.txtConfigLevel.$invalid && frmMedicineOpeningStock.txtConfigLevel.$error.required">
+                            <span ng-show="frmMedicineOpeningStock.txtConfigLevel.$error.required">@Resource.SiteRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Receipt <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" id="txtReceipt" name="txtReceipt" ng-model="Filter.ReceiptNo" @*ng-disabled="IsEdit"*@ ng-change="SetFilter()"
+                               required tabindex="1" type="text" ng-focus="true" maxlength="20">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmMedicineReceived.txtReceipt.$dirty && frmMedicineReceived.txtReceipt.$invalid">
+                            <span data-ng-show="frmMedicineReceived.txtReceipt.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Receipt))</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Date <span class="required-field">*</span>
+                        </label>
+                        <p class="input-group">
+                            <input type="text" name="txtOpeningStockEntryDate" id="txtOpeningStockEntryDate"
+                                   class="form-control" ng-change="SetFilter()" uib-datepicker-popup="{{defaultSettings.dateFormat}}"
+                                   ng-model="Filter.OpeningStockEntryDate" is-open="Initstatus.opened" max-date="MaxDate"
+                                   datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                   readonly="readonly" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-icon waves-effect btn-default" @*ng-disabled="IsEdit"*@ ng-click="Initstatus.opened=true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmMedicineReceived.txtOpeningStockEntryDate.$dirty && frmMedicineReceived.txtOpeningStockEntryDate.$invalid">
+                            <span data-ng-show="frmMedicineReceived.txtOpeningStockEntryDate.$error.required">@Resource.ScheduleDateRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>
+                            @Resource.ReceivedFrom <span class="required-field">*</span>
+                        </label>
+                        <div class="form-control-static no-padding">
+                            <div 
+                                 angucomplete-alt field-tabindex="3" 
+                                 input-name="txtReceivedFrom" 
+                                 id="txtReceivedFrom" 
+                                 input-class="form-control" 
+                                 pause="400" 
+                                 minlength="1" 
+                                 maxlength="255"
+                                 selected-object="SetMedicineReceivedFrom" 
+                                 remote-url="{{medicineReceivedFromAutoCompleteUrl}}" 
+                                 remote-url-data-field="Result"
+                                 initial-value="Filter.ReceivedFrom"
+                                 match-class="blue" 
+                                 override-suggestions="true"
+                                 title-field="ReceivedFrom" field-required="true" text-searching="@Resource.AutocompleteSearching" text-no-results="@Resource.NoRecordAvailable">
+                            </div>
+                            <div class="c">
+                            </div>
+                            <span class="pull-left m-t-8" ng-show="isDisable || isbtnAssigntoEmployeesDisabled ">
+                                {{task.TaskAssignByName}}
+                            </span>
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmNewTask.txtTaskAssignBy.$dirty && frmNewTask.txtTaskAssignBy.$invalid">
+                                <span data-ng-show="frmNewTask.txtTaskAssignBy.$error.required || frmNewTask.txtTaskAssignBy.$error['autocomplete-required']">@Resource.TaskAssignByIsRequired</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success w-md waves-light" ng-disabled="(frmMedicineReceived.$invalid)"
+                            ng-class="{'': frmMedicineReceived.$invalid, 'waves-effect':!frmMedicineReceived.$invalid}"
+                            tabindex="18">
+                        {{ IsEdit ? '@Resource.Update' : '@Resource.Submit' }}
+                    </button>
+                    <a href="/InventoryManagement/Inventory/MedicineReceived" class="btn btn-info w-md waves-effect waves-light"
+                       tabindex="20">
+                        @Resource.Clear
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/InventoryManagement/MedicineReceivedDemo")
+}
+<script type="text/javascript">
+    var DuplicateMedicineDetails = '@Resource.DuplicateMedicineDetails';
+    var MaxQuantityReached = '@Resource.MaxQuantityReached';
+    var PriceAndQtyGreaterThanZeroRequired = '@Resource.PriceAndQtyGreaterThanZeroRequired';
+    var ExpiryDateLessThenCurrentWarningMessaage = '@Resource.ExpiryDateLessThenCurrentWarningMessaage';
+    var DeleteConfirmMsg = '@Resource.DeleteConfirmMsg';
+</script>

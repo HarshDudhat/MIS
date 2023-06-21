@@ -1,0 +1,49 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="CancelClick()">
+        ×
+    </button>
+    <h4 class="modal-title" id="custom-width-modalLabel">
+        @Resource.Comments
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="row" ng-if="!isReadOnly">
+        <div class="col-md-12">
+            <textarea class="form-control" ng-model="Comments.Comment" maxlength="{{maxLength}}" placeholder="@Resource.Comments" required></textarea>
+            <br>
+           {{Comments.Comment | countCharactersRemaining : maxLength}}@Resource.CharactersRemaining
+        </div>
+    </div>
+    <div class="row" ng-if="!isReadOnly">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <div class="btn btn-success waves-effect w-md waves-light m-b-5" ng-click="OKClick()"
+                     ng-if="!isReadOnly">
+                    @Resource.Save
+                </div>
+                <div class="btn btn-danger waves-effect w-md waves-light m-b-5" ng-click="CancelClick()">
+                    @Resource.Cancel
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>
+                @Resource.History
+            </label>
+            <div class="alert alert-info m-b-10" ng-repeat="c in commentsList">
+                <h6>
+                    {{c.Commentby}} @Resource.CommentedOn ({{c.EntryDate | toDateString:'UtcTolocalDateTime'}})
+                </h6>
+                <p ng-bind-html="c.Comment.split('\n').join('<br>')">
+                </p>
+            </div>
+            <div class="alert alert-info m-b-0" ng-if="commentsList.length==0">
+                <p>
+                    @Resource.NoRecordFound
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

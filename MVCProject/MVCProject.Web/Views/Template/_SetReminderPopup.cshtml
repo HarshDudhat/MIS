@@ -1,0 +1,363 @@
+﻿<style type="text/css">
+    .colSelect-popup
+    {
+        width: 30px !important;
+        min-width: 30px !important;
+        max-width: 30px !important;
+    }
+    
+    .colBadgeNo-popup
+    {
+        width: 140px !important;
+        min-width: 140px !important;
+    }
+    .colEmpName1-popup
+    {
+        width: 180px !important;
+        min-width: 180px !important;
+    }
+    .colEmpName2-popup
+    {
+        width: 180px !important;
+        min-width: 180px !important;
+    }
+    
+    .colDesignation-popup
+    {
+        width: 170px !important;
+        min-width: 170px !important;
+        max-width: 170px !important;
+    }
+    
+    .colDesignation2-popup
+    {
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
+    }
+    
+    .colSite-popup
+    {
+        width: 100px !important;
+        min-width: 100px !important;
+        max-width: 100px !important;
+    }
+    
+    .colDepartment-popup
+    {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+    
+    .colDepartment2-popup
+    {
+        width: 160px !important;
+        min-width: 160px !important;
+        max-width: 160px !important;
+    }
+    
+    .colDelete-popup
+    {
+        width: 100px !important;
+        min-width: 100px !important;
+        max-width: 100px !important;
+    }
+    
+    .colEscalationDate-popup
+    {
+        width: 150px;
+        min-width: 150px !important;
+        max-width: 150px !important;
+    }
+    
+    .colAction-popup
+    {
+        width: 80px;
+        min-width: 80px !important;
+        max-width: 80px !important;
+    }
+    
+    .colEscalationDateEdit-popup
+    {
+        display: table;
+        border-collapse: separate;
+    }
+    
+    .colEscalationDate2-popup
+    {
+        width: 185px;
+        min-width: 185px !important;
+        max-width: 185px !important;
+    }
+    
+    [ng-table-pagination]
+    {
+        display: none;
+    }
+    
+    .employeeClose
+    {
+        color: #fff !important;
+        opacity: 1 !important;
+    }
+    
+    th.colSelect-popup div.th-inner
+    {
+        width: auto !important;
+        margin-left: -2px;
+    }
+    
+    th.colSelect-popup div.th-inner div.box .checkbox
+    {
+        margin-top: 7px;
+    }
+    
+    th.colSelect-popup div.th-inner div.box .checkbox-primary input[type="checkbox"]:checked + label::after
+    {
+        top: -10px;
+    }
+    
+    .vertical-middle
+    {
+        vertical-align: middle !important;
+    }
+</style>
+<div class="modal-header">
+    <button type="button" class="close employeeClose" ng-click="cancelActionToPerform()">
+        ×
+    </button>
+    <h4 class="modal-title" id="custom-width-modalLabel">
+        {{title}}
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="StartDate">
+                    @Resource.ReminderStartOn</label>
+                <p class="input-group">
+                    <input type="text" name="txtReminderStartDate" tabindex="3" id="txtStartDate" class="form-control"
+                        uib-datepicker-popup="{{defaultSettings.dateFormat}}" date-lower-than="{{task.TaskDueDate | toDateString:'date'}}"
+                        ng-model="result.ReminderStartOn" is-open="datepickerOpenStatus.ReminderStartDate"
+                        min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true"
+                        close-text="Close" alt-input-formats="'M!/d!/yyyy'" ng-disabled="isStartDateDisabled || !permission.CanWrite" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="datepickerOpenStatus.ReminderStartDate=true"
+                            ng-disabled="isStartDateDisabled || !permission.CanWrite">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group text-align">
+                <label>
+                    @Resource.ReminderRepeatOn
+                </label>
+                <input type="text" class="form-control" ng-model="result.ReminderRepeatedOn" name="txtReminderRepeatedOn"
+                    placeholder="In Days" />
+            </div>
+        </div>
+        <div class="col-sm-7" style="text-align: right;">
+            <div class="form-group">
+                <label>Enable/Disable Alerts</label>
+                <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="result.IsActive"
+                    ng-click="DisableAlerts()" />
+            </div>
+        </div>
+    </div>
+    <h4 class="header-title m-t-20">
+        @Resource.SendReminderAlert
+    </h4>
+    <div class="form-control-static main-table table-responsive">
+        <table ng-table="selectedEmployeeTableParams" class="table-bordered table table-striped b-a b-light breakwordrow single-checkbox">
+            <tr ng-repeat="h in $data">
+                <td data-title="'@Resource.EmployeeName *'" header-class="'colEmpName1-popup'" ng-class="'colEmpName1-popup vertical-middle'">
+                    {{h.Name}}
+                </td>
+                <td data-title="'@Resource.Designation'" header-class="'colDesignation-popup'"
+                    ng-class="'colDesignation-popup overflow-ellipsis vertical-middle'">
+                    <span title="{{h.DesignationName}}">{{h.DesignationName}}</span>
+                </td>
+                <td data-title="'@Resource.Site'" header-class="'colSite-popup'"
+                    ng-class="'colSite-popup overflow-ellipsis vertical-middle'">
+                    <span title="{{h.SiteName}}">{{h.SiteName}}</span>
+                </td>
+                <td data-title="'@Resource.Department'" header-class="'colDepartment-popup'"
+                    ng-class="'colDepartment-popup overflow-ellipsis vertical-middle'">
+                    <span title="{{h.DepartmentName}}">{{h.DepartmentName}}</span>
+                </td>
+                <td data-title="'@Resource.Action'"
+                    ng-class="'colAction-popup overflow-ellipsis text-middle vertical-middle'">
+                    <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5" title="@Resource.Delete" ng-bootbox-confirm="@Resource.AreYouSureYouWantToDelete"
+        ng-bootbox-confirm-action="DeleteSelectedEmployee(h.EmployeeId, false)"><i class="fa fa-trash-o">
+        </i></a>
+                </td>
+            </tr>
+            <tr ng-if="$data.length == 0 && !options.showAddReminderAlerts">
+                <td colspan="6" class="no-record" style="width: 1000px">
+                    @Resource.NoRecordFound
+                </td>
+            </tr>
+            <tr ng-form="frmAddReminderAlert" ng-if="options.showAddReminderAlerts">
+                <td header-class="'colEmpName1-popup'" ng-class="'colEmpName1-popup vertical-middle'">
+                    <div class="form-control-static no-padding">
+                        <div angucomplete-alt field-tabindex="14" input-name="txtReminderAlertEmployeeName" id="txtReminderAlertEmployeeName" placeholder="Employee Name"
+                             input-class="form-control" pause="400" minlength="1" maxlength="255" disable-input="!permission.CanWrite" field-required="true"
+                             selected-object="SetReminderAlertByName" remote-url="{{employeeAutoCompleteUrl}}" remote-url-data-field="Result" initial-value="" match-class="blue"
+                             title-field="Name" text-searching="@Resource.AutocompleteSearching" text-no-results="@Resource.NoRecordFound">
+                        </div>
+                    </div>
+                    {{e.Name}}
+                </td>
+                <td header-class="'colDesignation-popup'" ng-class="'colDesignation-popup overflow-ellipsis vertical-middle'">
+                    {{e.DesignationName}} {{selectedReminderAlertEmployee.DesignationName}}
+                </td>
+                <td header-class="'colSite-popup'" ng-class="'colSite-popup overflow-ellipsis vertical-middle'">
+                    {{e.SiteName}} {{selectedReminderAlertEmployee.SiteName}}
+                </td>
+                <td header-class="'colDepartment-popup'" ng-class="'colDepartment-popup overflow-ellipsis vertical-middle'">
+                    {{e.DepartmentName}} {{selectedReminderAlertEmployee.DepartmentName}}
+                </td>
+                <td ng-class="'colAction-popup overflow-ellipsis vertical-middle'">
+                    <button type="button" ng-disabled="frmAddReminderAlert.txtReminderAlertEmployeeName.$error['autocomplete-required']" title="@Resource.Save"
+        class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5" ng-click="AddReminderAlert(e);">
+                        <span class="fa fa-save"></span>
+                    </button>
+                    <a class="btn btn-icon btn-white btn-xs
+        waves-effect waves-light m-r-5" title="@Resource.Cancel" ng-click="options.showAddReminderAlerts =!options.showAddReminderAlerts">
+                        <i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        </table>
+        <a class="btn btn-primary waves-effect waves-light btn-xs pull-right" ng-hide="options.showAddReminderAlerts"
+            ng-click="options.showAddReminderAlerts =!options.showAddReminderAlerts"><i class="zmdi zmdi-accounts-add m-r-5">
+            </i>@Resource.AddEmployee </a>
+    </div>
+    <h4 class="header-title m-t-20">
+        @Resource.EscalationEmployeesDetails
+    </h4>
+    <div class="form-control-static main-table table-responsive">
+        <table ng-table="selectedEscalationEmployeeTableParams" class="table-bordered table table-striped b-a b-light breakwordrow">
+            <tr ng-repeat="h in $data">
+                <td data-title="'@Resource.EmployeeName *'" header-class="'colEmpName2-popup'" ng-class="'colEmpName2-popup vertical-middle'">
+                    {{h.Name}}
+                </td>
+                <td data-title="'@Resource.Designation'" header-class="'colDesignation2-popup'"
+                        ng-class="'colDesignation2-popup overflow-ellipsis vertical-middle'">
+                    <span title="{{h.DesignationName}}">{{h.DesignationName}}</span>
+                </td>
+                <td data-title="'@Resource.Site'" header-class="'colSite-popup'"
+                        ng-class="'colSite-popup overflow-ellipsis vertical-middle'">
+                    <span title="{{h.SiteName}}">{{h.SiteName}}</span>
+                </td>
+                <td data-title="'@Resource.Department'" header-class="'colDepartment2-popup'"
+                        ng-class="'colDepartment2-popup overflow-ellipsis vertical-middle'">
+                    <span title="{{h.DepartmentName}}">{{h.DepartmentName}}</span>
+                </td>
+                <td data-title="'@Resource.EscalationDate *'" header-class="'colEscalationDate2-popup'"
+                        ng-class="'colEscalationDate2-popup overflow-ellipsis vertical-middle'" ng-hide="h.isEdit">
+                    <span title="{{h.EscalationDate}}">{{ h.EscalationDate | date:'dd-MMM-yyyy'}}</span>
+                </td>
+                <td header-class="'colEscalationDate2-popup'" ng-class="'colEscalationDate2-popup colEscalationDateEdit-popup overflow-ellipsis vertical-middle'"
+                    ng-show="h.isEdit">
+                    <input type="text" name="txtEscalationDate" tabindex="3" id="txtEscalationDate" class="form-control"
+                        uib-datepicker-popup="{{defaultSettings.dateFormat}}" ng-model="h.EscalationDate"
+                        is-open="datepickerOpenStatus.EscalationDate" min-date="minDate" max-date="maxDate"
+                        datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                        ng-disabled="isStartDateDisabled || !permission.CanWrite" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-icon waves-effect btn-default" tabindex="4"
+                            ng-click="datepickerOpenStatus.EscalationDate=true" ng-disabled="isStartDateDisabled || !permission.CanWrite">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </td>
+                <td data-title="'@Resource.Action'"
+                        ng-class="'colAction-popup overflow-ellipsis vertical-middle'" ng-hide="h.isEdit">
+                    <button type="button" ng-disabled="frmAddEscalationEmployee.$invalid" title="@Resource.Save"
+                                    class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" ng-click="onEditEscalationEmployee(h);">
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5" title="@Resource.Delete" ng-bootbox-confirm="@Resource.AreYouSureYouWantToDelete"
+            ng-bootbox-confirm-action="DeleteSelectedEmployee(h.EmployeeId, true)"><i class="fa fa-trash-o">
+            </i></a>
+                </td>
+                <td class="colAction-popup text-center vertical-middle" ng-show="h.isEdit">
+                    <button type="button" ng-disabled="frmEditEscalationEmployee.$invalid" title="@Resource.Save"
+        class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5" ng-click="EditEscalationEmployee(h);">
+                        <span class="fa fa-save"></span>
+                    </button>
+                    <a class="btn btn-icon btn-white btn-xs
+        waves-effect waves-light m-r-5" title="@Resource.Cancel" ng-click="onCancelEditEscalationEmployee(h);">
+                        <i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+            <tr ng-if="$data.length == 0 && !options.showAddEscalationEmployees">
+                <td colspan="6" class="no-record" style="width: 1000px">
+                    @Resource.NoRecordFound
+                </td>
+            </tr>
+            <tr ng-form="frmAddEscalationEmployee" ng-if="options.showAddEscalationEmployees">
+                <td header-class="'colEmpName2-popup'" ng-class="'colEmpName2-popup vertical-middle'">
+                    <div class="form-control-static no-padding">
+                        <div angucomplete-alt field-tabindex="14" input-name="txtEmployeeName" id="txtEmployeeName" placeholder="Employee Name"
+                             input-class="form-control" pause="400" minlength="1" maxlength="255" disable-input="!permission.CanWrite" 
+                             selected-object="SetEscalationEmployeeByName" remote-url="{{employeeAutoCompleteUrl}}" remote-url-data-field="Result" initial-value="" match-class="blue"
+                             title-field="Name" text-searching="@Resource.AutocompleteSearching" text-no-results="@Resource.NoRecordFound" field-required="true">
+                        </div>
+                    </div>
+                    {{Employee.Name}}
+                </td>
+                <td header-class="'colDesignation2-popup'" ng-class="'colDesignation2-popup overflow-ellipsis vertical-middle'">
+                    {{Employee.DesignationName}} {{selectedEscalationEmployee.DesignationName}}
+                </td>
+                <td header-class="'colSite-popup'" ng-class="'colSite-popup overflow-ellipsis vertical-middle'">
+                    {{Employee.SiteName}} {{selectedEscalationEmployee.SiteName}}
+                </td>
+                <td header-class="'colDepartment2-popup'" ng-class="'colDepartment2-popup overflow-ellipsis vertical-middle'">
+                    {{Employee.DepartmentName}} {{selectedEscalationEmployee.DepartmentName}}
+                </td>
+                <td header-class="'colEscalationDate2-popup'" ng-class="'colEscalationDateEdit-popup overflow-ellipsis vertical-middle'">
+                    <input type="text" name="txtEscalationDate" tabindex="3" id="txtEscalationDate" class="form-control"
+                        uib-datepicker-popup="{{defaultSettings.dateFormat}}" ng-model="Employee.EscalationDate"
+                        is-open="datepickerOpenStatus.EscalationDate" min-date="minDate" max-date="maxDate"
+                        datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                        ng-disabled="isStartDateDisabled || !permission.CanWrite" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-icon waves-effect btn-default" tabindex="4"
+                            ng-click="datepickerOpenStatus.EscalationDate=true" ng-disabled="isStartDateDisabled || !permission.CanWrite">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </td>
+                <td ng-class="'colAction-popup overflow-ellipsis vertical-middle'" ng-hide="!permission.CanWrite">
+                    <button type="button" ng-disabled="frmAddEscalationEmployee.$invalid || frmAddEscalationEmployee.txtEmployeeName.$error['autocomplete-required']" title="@Resource.Save"
+        class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5" ng-click="AddEscalationEmployee(Employee);">
+                        <span class="fa fa-save"></span>
+                    </button>
+                    <a class="btn btn-icon btn-white btn-xs
+        waves-effect waves-light m-r-5" title="@Resource.Cancel" ng-click="options.showAddEscalationEmployees =!options.showAddEscalationEmployees">
+                        <i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        </table>
+        <a class="btn btn-primary waves-effect waves-light btn-xs pull-right" ng-hide="options.showAddEscalationEmployees"
+            ng-click="options.showAddEscalationEmployees =!options.showAddEscalationEmployees">
+            <i class="zmdi zmdi-accounts-add m-r-5"></i>@Resource.AddEmployee </a>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success w-md waves-effect waves-light" ng-click="AddReminder($data)"
+        ng-disabled="!isEditRecord" tabindex="104">
+        @Resource.Add
+    </button>
+    &nbsp&nbsp
+    <button ng-if="!isUseForIdleScreen" tabindex="105" class="btn btn-danger w-md waves-effect waves-light"
+        ng-click="cancelActionToPerform()">
+        @Resource.Close
+    </button>
+</div>

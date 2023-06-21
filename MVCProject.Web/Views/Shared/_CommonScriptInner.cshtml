@@ -1,0 +1,122 @@
+﻿<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+<script type="text/javascript">
+    /*Error Message Title*/
+    var errorTitle = '@Html.Raw(Resource.Error)';
+    var successTitle = '@Html.Raw(Resource.Success)';
+    var warningTitle = '@Html.Raw(Resource.Warning)';
+        
+    /* Response Message Types */
+    var messageTypes = {
+        Error: 0,
+        Success: 1,
+        Warning: 2,
+        Information: 3,
+        NotFound: 4
+    } 
+
+    /*Date Ranges*/
+    var dateRangeApplyLabel = '@Html.Raw(Resource.Apply)';
+    var dateRangeCancelLabel = '@Html.Raw(Resource.Cancel)';
+    var dateRangeFromLabel = '@Html.Raw(Resource.From)';
+    var dateRangeToLabel = '@Html.Raw(Resource.To)';
+    var dateRangeCustomRangeLabel = '@Html.Raw(Resource.CustomRange)';
+
+    var dateRangeToday = '@Html.Raw(Resource.Today)';
+    var dateRangeYesterday = '@Html.Raw(Resource.Yesterday)';
+    var dateRangeDayBeforeYesterday = '@Html.Raw(Resource.DayBeforeYesterday)';
+    var dateRangeLast7Days = '@Html.Raw(string.Format(Resource.LastNoOfDays, 7))';
+    var dateRangeLast15Days = '@Html.Raw(string.Format(Resource.LastNoOfDays, 15))';
+    var dateRangeLast30Days = '@Html.Raw(string.Format(Resource.LastNoOfDays, 30))';
+     var dateRangeLast12Months = '@Html.Raw(string.Format(Resource.LastNoOfMonths, 12))';
+    var dateRangeThisWeek = '@Html.Raw(string.Format(Resource.ThisCalender, Resource.Week))';
+    var dateRangeThisMonth = '@Html.Raw(string.Format(Resource.ThisCalender, Resource.Month))';
+    var dateRangeThisYear = '@Html.Raw(string.Format(Resource.ThisCalender, Resource.Year))';
+    var dateRangeLastWeek = '@Html.Raw(string.Format(Resource.LastCalender, Resource.Week))';
+    var dateRangeLastMonth = '@Html.Raw(string.Format(Resource.LastCalender, Resource.Month))';
+    var dateRangeLastYear = '@Html.Raw(string.Format(Resource.LastCalender, Resource.Year))';
+
+    /* MultiSelect */
+    var checkAll = '@Html.Raw(Resource.CheckAll)';
+    var uncheckAll = '@Html.Raw(Resource.UncheckAll)';
+    var checked = '@Html.Raw(Resource.Checked)';
+    var select = '@Html.Raw(Resource.Select)';
+
+    /*Auto Complete*/
+    var textSearching = '@Html.Raw(Resource.Searching)';
+    var textNoResultsFound = '@Html.Raw(Resource.NoResultsFound)';
+
+    /*File Uploader*/
+    var msgInvalidFileFormat = '@Html.Raw(Resource.InvalidFileFormat)';
+    var msgFileSizeExceeded = '@Html.Raw(Resource.FileSizeExceeded)';
+    var msgFileLimitExceeded = '@Html.Raw(Resource.FileLimitExceeded)';
+    var msgFileAlreadyExist = '@Html.Raw(Resource.FileAlreadyExist)';
+
+     var msgMaxFilelimitOf = '@Html.Raw(Resource.MaxFilelimitOf)';
+     var msgReached = '@Html.Raw(Resource.Reached)';
+
+
+
+
+    /*Enum Resource*/
+    var enumResource = {
+        PermissionLevel : {
+            Admin:'Admin',
+            Corporate:'Corporate',
+            Site:'Site',
+            Department:'Department'
+        },
+        ModuleName: {
+            Incident: 'Incident',
+            Training: 'Training',
+            Task: 'Task',
+            MultiTask: 'MultiTask',
+            Walkthrough: 'Walkthrough',
+            SafetyObservation: 'Safety Observation',
+            Manpower: 'Manpower',
+            Audit: 'Audit',
+            Employee: 'Employee',
+            ListOfRegulation: 'List Of Regulation',
+            BBSObservation: 'BBS Observation',
+            Permit: 'Permit',
+            Meeting: 'Meeting',
+            Banner: 'Banner',
+            EhsTools: 'EhsTools',
+            MedicalCheckup: 'MedicalCheckup',
+            UserRightThumb: 'UserRightThumb',
+            UserLeftThumb: 'UserLeftThumb',
+            TrainingSchedule: 'TrainingScheduleTitle',
+            Slider : 'Slider',
+            IncidentInvestigation: 'IncidentInvestigation',
+            News: 'News',
+            SiteInspection: 'Site Inspection',
+            CommonInternalAudit: 'Common Internal Audit',
+            EquipmentInspection: 'Equipment Inspection',
+            Meeting: 'Meeting',
+            IncidentSafetyAlerts: 'Incident Safety Alerts',
+            IncidentDMAIC: 'Incident DMAIC',
+            ChangeManagement: 'Change Management'
+        },
+        Direction: {
+            East: '@Html.Raw(Resource.East)',
+            North: '@Html.Raw(Resource.North)',
+            South: '@Html.Raw(Resource.South)',
+            West: '@Html.Raw(Resource.West)'
+        },
+        Month: {
+            January: '@Html.Raw(Resource.January)',
+            February: '@Html.Raw(Resource.February)',
+            March: '@Html.Raw(Resource.March)',
+            April: '@Html.Raw(Resource.April)',
+            May: '@Html.Raw(Resource.May)',
+            June: '@Html.Raw(Resource.June)',
+            July: '@Html.Raw(Resource.July)',
+            August: '@Html.Raw(Resource.August)',
+            September: '@Html.Raw(Resource.September)',
+            October: '@Html.Raw(Resource.October)',
+            November: '@Html.Raw(Resource.November)',
+            December: '@Html.Raw(Resource.December)'
+        }
+    };
+
+</script>

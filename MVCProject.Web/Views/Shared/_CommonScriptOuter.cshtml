@@ -1,0 +1,49 @@
+﻿<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+<script type="text/javascript">
+    /*Error Message Title*/
+    var errorTitle = '@Html.Raw(Resource.Error)';
+    var successTitle = '@Html.Raw(Resource.Success)';
+    var warningTitle = '@Html.Raw(Resource.Warning)';
+
+    /* Response Message Types */
+    var messageTypes = {
+        Error: 0,
+        Success: 1,
+        Warning: 2,
+        Information: 3,
+        NotFound: 4
+    }
+
+    /*Date Ranges*/
+    var dateRangeApplyLabel = '@Html.Raw(Resource.Apply)';
+    var dateRangeCancelLabel = '@Html.Raw(Resource.Cancel)';
+    var dateRangeFromLabel = '@Html.Raw(Resource.From)';
+    var dateRangeToLabel = '@Html.Raw(Resource.To)';
+    var dateRangeCustomRangeLabel = '@Html.Raw(Resource.CustomRange)';
+
+    var dateRangeToday = '@Html.Raw(Resource.Today)';
+    var dateRangeYesterday = '@Html.Raw(Resource.Yesterday)';
+    var dateRangeDayBeforeYesterday = '@Html.Raw(Resource.DayBeforeYesterday)';
+    var dateRangeLast7Days = '@Html.Raw(string.Format(Resource.LastNoOfDays, 7))';
+    var dateRangeLast15Days = '@Html.Raw(string.Format(Resource.LastNoOfDays, 15))';
+    var dateRangeLast30Days = '@Html.Raw(string.Format(Resource.LastNoOfDays, 30))';
+    var dateRangeLast12Months = '@Html.Raw(string.Format(Resource.LastNoOfMonths, 12))';
+    var dateRangeThisWeek = '@Html.Raw(string.Format(Resource.ThisCalender, Resource.Week))';
+    var dateRangeThisMonth = '@Html.Raw(string.Format(Resource.ThisCalender, Resource.Month))';
+    var dateRangeThisYear = '@Html.Raw(string.Format(Resource.ThisCalender, Resource.Year))';
+    var dateRangeLastWeek = '@Html.Raw(string.Format(Resource.LastCalender, Resource.Week))';
+    var dateRangeLastMonth = '@Html.Raw(string.Format(Resource.LastCalender, Resource.Month))';
+    var dateRangeLastYear = '@Html.Raw(string.Format(Resource.LastCalender, Resource.Year))';
+
+    /* MultiSelect */
+    var checkAll = '@Html.Raw(Resource.CheckAll)';
+    var uncheckAll = '@Html.Raw(Resource.UncheckAll)';
+    var checked = '@Html.Raw(Resource.Checked)';
+    var select = '@Html.Raw(Resource.Select)';
+
+    /*Auto Complete*/
+    var textSearching = '@Html.Raw(Resource.Searching)';
+    var textNoResultsFound = '@Html.Raw(Resource.NoResultsFound)';
+
+</script>

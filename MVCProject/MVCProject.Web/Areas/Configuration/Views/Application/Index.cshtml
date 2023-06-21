@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = Resource.ApplicationConfiguration;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="ApplicationCtrl">
+    <div class="main-page-title title-icon relative">
+        <i class="fa fa-connectdevelop icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub">
+            @Resource.ApplicationConfiguration</h4>
+    </div>
+    <div class="card-box">
+        <form name="frmApplicationConfiguration" role="form" novalidate>
+        <h4 class="header-title m-t-0 m-b-30">
+            @Resource.GeneralConfiguration</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group m-b-30">
+                    <label>
+                        @Resource.ApplicationLogo
+                    </label>
+                    <div class="form-control-static">
+                        <img src="/Content/images/company-logo.png" ng-src="{{applicationConfiguration.Application_Logo.FileRelativePath}}"
+                            style="height: 44px;" fallback-src="/Content/images/company-logo.png" alt="Application Logo">
+                        <div class="custom_file_upload">
+                            <div class="file_upload btn btn-primary waves-effect waves-light cursor-pointer relative"
+                                ng-disabled="!permission.CanWrite" style="padding: 0px; cursor: pointer;" id="file_upload"
+                                name="file_info" class="cursor-pointer" style="width: 100%; padding: 4px;">
+                                <div class="upload-txt">
+                                    @Resource.Upload</div>
+                                <input type="file" id="fileApplicationLogo" ng-disabled="!permission.CanWrite" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group m-b-30">
+                    @*<label>
+                        @Resource.ReportLogo
+                    </label>
+                    <div class="form-control-static">
+                        <img src="/Content/images/company-logo.png" ng-src="{{applicationConfiguration.Report_Logo.FileRelativePath}}"
+                            style="height: 44px;" fallback-src="/Content/images/company-logo.png" alt="Application Logo">
+                        <div class="custom_file_upload">
+                            <div class="file_upload btn btn-primary waves-effect waves-light cursor-pointer relative"
+                                ng-disabled="!permission.CanWrite" style="padding: 0px; cursor: pointer;" id="file_upload"
+                                name="file_info" class="cursor-pointer" style="width: 100%; padding: 4px;">
+                                <div class="upload-txt">
+                                    @Resource.Upload</div>
+                                <input type="file" id="fileReportLogo" ng-disabled="!permission.CanWrite" />
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h4 class="header-title m-t-0 m-b-30">
+            @Resource.EmailConfiguration</h4>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>
+                        @Resource.SMTPServerHost
+                    </label>
+                    <input type="text" id="txtSMTP_Server_Host" ng-disabled="!permission.CanWrite" name="txtSMTP_Server_Host"
+                        class="form-control" ng-model="applicationConfiguration.SMTP_Server_Host.ConfigValue"
+                        maxlength="255" />
+                    <div class="c">
+                    </div>
+                    <div class="label label-danger" data-ng-show="frmApplicationConfiguration.txtSMTP_Server_Host.$dirty && frmApplicationConfiguration.txtSMTP_Server_Host.$invalid">
+                        @*<span data-ng-show="frmApplicationConfiguration.txtNo_of_Days_before_alert_for_User_subscription.$error.required">@string.Format(Resource.NoOfDaysBeforeAlertForSubscriptionRequired, Resource.User)</span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>
+                        @Resource.SMTPServerPort
+                    </label>
+                    <input type="text" id="txtSMTP_Server_Port" ng-disabled="!permission.CanWrite" name="txtSMTP_Server_Port"
+                        class="form-control" ng-model="applicationConfiguration.SMTP_Server_Port.ConfigValue"
+                        maxlength="255" />
+                    <div class="c">
+                    </div>
+                    <div class="label label-danger" data-ng-show="frmApplicationConfiguration.txtSMTP_Server_Port.$dirty && frmApplicationConfiguration.txtSMTP_Server_Port.$invalid">
+                        @*<span data-ng-show="frmApplicationConfiguration.txtNo_of_Days_before_alert_for_User_subscription.$error.required">@string.Format(Resource.NoOfDaysBeforeAlertForSubscriptionRequired, Resource.User)</span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>
+                        &nbsp;
+                    </label>
+                    <div class="checkbox checkbox-primary checkbox-inline" style="width: 100%">
+                        <input type="checkbox" id="chkSMTP_Enable_SSL" ng-disabled="!permission.CanWrite"
+                            name="chkSMTP_Enable_SSL" ng-model="applicationConfiguration.SMTP_Enable_SSL.ConfigValue" />
+                        <label for="chkSMTP_Enable_SSL">
+                            @Resource.EnableSSL
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>
+                        @Resource.FromEmailId
+                    </label>
+                    <input type="text" maxlength="255" id="txtSMTP_Server_Network_Credential_User_Name"
+                        name="txtSMTP_Server_Network_Credential_User_Name" class="form-control" ng-disabled="!permission.CanWrite"
+                        ng-model="applicationConfiguration.SMTP_Server_Network_Credential_User_Name.ConfigValue" />
+                    <div class="c">
+                    </div>
+                    <div class="label label-danger" data-ng-show="frmApplicationConfiguration.SMTP_Server_Network_Credential_User_Name.$dirty
+        && frmApplicationConfiguration.SMTP_Server_Network_Credential_User_Name.$invalid">
+                        @*<span data-ng-show="frmApplicationConfiguration.txtNo_of_Days_before_alert_for_User_subscription.$error.required">@string.Format(Resource.NoOfDaysBeforeAlertForSubscriptionRequired, Resource.User)</span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>
+                        @Resource.FromEmailPassword
+                    </label>
+                    <div class="input-group">
+                        <input type="{{showPassword?'text':'password'}}" id="txtSMTP_Server_Network_Credential_Password"
+                            name="txtSMTP_Server_Network_Credential_Password" ng-disabled="!permission.CanWrite"
+                            class="form-control" ng-model="applicationConfiguration.SMTP_Server_Network_Credential_Password.ConfigValue"
+                            maxlength="255" />
+                        <span class="input-group-addon">
+                            <input type="checkbox" title="@Resource.ShowHideFromEmailPassword" ng-model="showPassword" ng-disabled="!permission.CanWrite">
+                        </span>
+                    </div>
+                    <div class="c">
+                    </div>
+                    <div class="label label-danger" data-ng-show="frmApplicationConfiguration.txtSMTP_Server_Network_Credential_Password.$dirty
+        && frmApplicationConfiguration.txtSMTP_Server_Network_Credential_Password.$invalid">
+                        @*<span data-ng-show="frmApplicationConfiguration.txtNo_of_Days_before_alert_for_User_subscription.$error.required">@string.Format(Resource.NoOfDaysBeforeAlertForSubscriptionRequired, Resource.User)</span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>
+                        @Resource.FromEmailName
+                    </label>
+                    <input type="text" maxlength="255" id="txtFrom_Email_Name" name="txtFrom_Email_Name"
+                        class="form-control" ng-model="applicationConfiguration.From_Email_Name.ConfigValue"
+                        ng-disabled="!permission.CanWrite" />
+                    <div class="c">
+                    </div>
+                    <div class="label label-danger" data-ng-show="frmApplicationConfiguration.txtFrom_Email_Name.$dirty
+        && frmApplicationConfiguration.txtFrom_Email_Name.$invalid">
+                        @*<span data-ng-show="frmApplicationConfiguration.txtNo_of_Days_before_alert_for_User_subscription.$error.required">@string.Format(Resource.NoOfDaysBeforeAlertForSubscriptionRequired, Resource.User)</span>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn
+        btn-success waves-effect w-md waves-light m-b-5" tabindex="10" ng-click="SaveApplicationConfiguration(applicationConfiguration,
+        frmApplicationConfiguration)" ng-disabled="frmApplicationConfiguration.$invalid || !permission.CanWrite">
+                    @Resource.Save
+                </button>
+                <button type="button" class="btn btn-warning waves-effect w-md waves-light
+        m-b-5" tabindex="11" ng-click="ResetForm(frmApplicationConfiguration)">
+                    @Resource.Reset
+                </button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    var InvalidFileExtensionMsg = '@Html.Raw(Resource.InvalidFileExtensionMsg)';
+    var FileSizeValidationMsg = '@Html.Raw(string.Format(Resource.FileSizeValidationMsg, 1))';
+    var FileDimensionValidationMsg = '@Html.Raw(string.Format(Resource.FileDimensionValidationMsg, 162, 55))';
+</script>
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/Application")
+}

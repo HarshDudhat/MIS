@@ -1,0 +1,1533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Activity" xml:space="preserve">
+    <value>Activity being performed at the time of event</value>
+  </data>
+  <data name="AlreadyExists" xml:space="preserve">
+    <value>{0} already exists</value>
+  </data>
+  <data name="AnErrorHasOccurred" xml:space="preserve">
+    <value>An error has occurred.</value>
+  </data>
+  <data name="AnErrorHasOccurredUserAreas" xml:space="preserve">
+    <value>An error has occurred while getting data.</value>
+  </data>
+  <data name="ApplicationConfiguration" xml:space="preserve">
+    <value>Application Configuration</value>
+  </data>
+  <data name="AttachFile" xml:space="preserve">
+    <value>Attach File</value>
+  </data>
+  <data name="AttachFileNotFound" xml:space="preserve">
+    <value>Attachment is not found.</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Attachments (Picture/Sketch)</value>
+  </data>
+  <data name="AuthenticationFailedDueToBadRequest" xml:space="preserve">
+    <value>Authentication failed due to bad request.</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirm New Password</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="ContactNo" xml:space="preserve">
+    <value>Contact #</value>
+  </data>
+  <data name="ContactNoInvalid" xml:space="preserve">
+    <value>Contact # is not valid</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="CreatedSuccessfully" xml:space="preserve">
+    <value>{0} created successfully</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>dd-MMM-yyyy</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Date Time</value>
+  </data>
+  <data name="DateTimeFormat" xml:space="preserve">
+    <value>dd-MMM-yyyy HH:mm</value>
+  </data>
+  <data name="Designation" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="DesignationDetails" xml:space="preserve">
+    <value>Designation Details</value>
+  </data>
+  <data name="DesignationRequired" xml:space="preserve">
+    <value>Designation is required</value>
+  </data>
+  <data name="EmailId" xml:space="preserve">
+    <value>Email Id</value>
+  </data>
+  <data name="EmailIdExist" xml:space="preserve">
+    <value>Email Id is already exist.</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Email is not valid</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorInSendingEmail" xml:space="preserve">
+    <value>Error in sending email</value>
+  </data>
+  <data name="ErrorMsgFor404" xml:space="preserve">
+    <value>Sorry, the page you tried cannot be found.</value>
+  </data>
+  <data name="ErrorMsgFor500" xml:space="preserve">
+    <value>We're experiencing an internal server problem. Please try again.</value>
+  </data>
+  <data name="ErrorOccurred" xml:space="preserve">
+    <value>An error has occurred.</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active</value>
+  </data>
+  <data name="ModifiedBy" xml:space="preserve">
+    <value>Modified By</value>
+  </data>
+  <data name="Module" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="ModuleOrPagePermissions" xml:space="preserve">
+    <value>Module/Page Permissions</value>
+  </data>
+  <data name="ModuleOrPages" xml:space="preserve">
+    <value>Module/Pages</value>
+  </data>
+  <data name="NoPageAccess" xml:space="preserve">
+    <value>You do not have sufficient privilege to access this application, please contact administrator. </value>
+  </data>
+  <data name="NoRecordFound" xml:space="preserve">
+    <value>No record found</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>{0} not found</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>Of</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="PageNo" xml:space="preserve">
+    <value>Page No.</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Page not found</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordMustBeSame" xml:space="preserve">
+    <value>Password and Confirm password must be same</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>Password is required</value>
+  </data>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>Password has been reset successfully. Please login with new password.</value>
+  </data>
+  <data name="PDFFooterText" xml:space="preserve">
+    <value>Note: This is electronic system generated report.</value>
+  </data>
+  <data name="ReportDate" xml:space="preserve">
+    <value>Report Date</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="RoleExists" xml:space="preserve">
+    <value>Role Name already exists</value>
+  </data>
+  <data name="RoleLevel" xml:space="preserve">
+    <value>Role Level</value>
+  </data>
+  <data name="RoleLevelRequired" xml:space="preserve">
+    <value>Role Level is required.</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="RoleNameRequired" xml:space="preserve">
+    <value>Role Name is required.</value>
+  </data>
+  <data name="RoleRequired" xml:space="preserve">
+    <value>Role is required</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>An error ocurred while saving {0} details</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>{0} details has been saved successfully</value>
+  </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Something Went Wrong.</value>
+  </data>
+  <data name="SomethingWrong" xml:space="preserve">
+    <value>oops something went wrong please try again.</value>
+  </data>
+  <data name="SrNo" xml:space="preserve">
+    <value>Sr. #</value>
+  </data>
+  <data name="TokenInvalid" xml:space="preserve">
+    <value>Token is invalid or expired</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>{0} updated successfully</value>
+  </data>
+  <data name="UpdateError" xml:space="preserve">
+    <value>An error ocurred while updating {0} details</value>
+  </data>
+  <data name="UpdateSuccess" xml:space="preserve">
+    <value>{0} details has been updated sucessfully</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="UploadAll" xml:space="preserve">
+    <value>Upload All</value>
+  </data>
+  <data name="UpperLimit" xml:space="preserve">
+    <value>Upper Limit</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="UserInactive" xml:space="preserve">
+    <value>User's inactive, please contact administrator.</value>
+  </data>
+  <data name="UserInvalid" xml:space="preserve">
+    <value>User name or password is invalid</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="UserNameAlreadyInUse" xml:space="preserve">
+    <value>Specified user name is already in use</value>
+  </data>
+  <data name="UserNameRequired" xml:space="preserve">
+    <value>User Name is required</value>
+  </data>
+  <data name="UserNotExists" xml:space="preserve">
+    <value>User Name doesn't exist, please contact administrator.</value>
+  </data>
+  <data name="UserRequired" xml:space="preserve">
+    <value>User is required.</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="ApplicationLogo" xml:space="preserve">
+    <value>Application Logo</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CheckAll" xml:space="preserve">
+    <value>Check All</value>
+  </data>
+  <data name="Checked" xml:space="preserve">
+    <value>Checked</value>
+  </data>
+  <data name="CheckList" xml:space="preserve">
+    <value>CheckList</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CustomRange" xml:space="preserve">
+    <value>Custom Range</value>
+  </data>
+  <data name="DayBeforeYesterday" xml:space="preserve">
+    <value>Day Before Yesterday</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DidNotMatchAnyRecord" xml:space="preserve">
+    <value>did not match any record</value>
+  </data>
+  <data name="East" xml:space="preserve">
+    <value>East</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EmailConfiguration" xml:space="preserve">
+    <value>Email Configuration</value>
+  </data>
+  <data name="EmailConfigurationInComplete" xml:space="preserve">
+    <value>Email configuration is not complete in application configuration</value>
+  </data>
+  <data name="EnableSSL" xml:space="preserve">
+    <value>Enable SSL</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="ExportToPDF" xml:space="preserve">
+    <value>Export To PDF</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="FileAlreadyExist" xml:space="preserve">
+    <value>File already exists</value>
+  </data>
+  <data name="FileDimensionValidationMsg" xml:space="preserve">
+    <value>File dimension must be less than or equal to {0}X{1}</value>
+  </data>
+  <data name="FileLimitExceeded" xml:space="preserve">
+    <value>File limit exceeded</value>
+  </data>
+  <data name="FileSizeExceeded" xml:space="preserve">
+    <value>File size exceeded</value>
+  </data>
+  <data name="FileSizeNewsImage" xml:space="preserve">
+    <value>File size must be less than 1 MB</value>
+  </data>
+  <data name="FileSizeValidationMsg" xml:space="preserve">
+    <value>File size must be less than {0} MB</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FromEmailId" xml:space="preserve">
+    <value>From Email Id</value>
+  </data>
+  <data name="FromEmailName" xml:space="preserve">
+    <value>From Email Name</value>
+  </data>
+  <data name="FromEmailPassword" xml:space="preserve">
+    <value>From Email Password</value>
+  </data>
+  <data name="FromMonth" xml:space="preserve">
+    <value>From Month</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="GeneralConfiguration" xml:space="preserve">
+    <value>General Configuration</value>
+  </data>
+  <data name="GetResetPasswordLink" xml:space="preserve">
+    <value>Get Reset Password Link</value>
+  </data>
+  <data name="GoBackToOurHomepage" xml:space="preserve">
+    <value>Go back to our homepage</value>
+  </data>
+  <data name="GoToLoginPage" xml:space="preserve">
+    <value>Go to login page</value>
+  </data>
+  <data name="InvalidFileExtensionMsg" xml:space="preserve">
+    <value>Invalid file extension. Only files with the following extensions are allowed:</value>
+  </data>
+  <data name="InvalidFileFormat" xml:space="preserve">
+    <value>Invalid file format</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="LastCalender" xml:space="preserve">
+    <value>Last {0}</value>
+  </data>
+  <data name="LastNoOfDays" xml:space="preserve">
+    <value>Last {0} Days</value>
+  </data>
+  <data name="LastNoOfMonths" xml:space="preserve">
+    <value>Last {0} Months</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="MaxFilelimitOf" xml:space="preserve">
+    <value>Max File limit of </value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="NoResultsFound" xml:space="preserve">
+    <value>No results found</value>
+  </data>
+  <data name="North" xml:space="preserve">
+    <value>North</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="ProfilePicture" xml:space="preserve">
+    <value>Profile Picture</value>
+  </data>
+  <data name="Reached" xml:space="preserve">
+    <value>Reached</value>
+  </data>
+  <data name="RecordsFound" xml:space="preserve">
+    <value>records found</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>Requested</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>required</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="ResetPasswordMailSentSuccess" xml:space="preserve">
+    <value>Reset password link sent to your registered email address ({0}). Check your mail account to reset password.</value>
+  </data>
+  <data name="ResetPasswordTokenIsExpired" xml:space="preserve">
+    <value>Reset password token is not valid or expired</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Searching...</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="SessionHasBeenExpired" xml:space="preserve">
+    <value>Your session has been expired. Please sign in again.</value>
+  </data>
+  <data name="ShowHideFromEmailPassword" xml:space="preserve">
+    <value>Show/Hide From Email Password</value>
+  </data>
+  <data name="SMTPServerHost" xml:space="preserve">
+    <value>SMTP Server Host</value>
+  </data>
+  <data name="SMTPServerPort" xml:space="preserve">
+    <value>SMTP Server Port</value>
+  </data>
+  <data name="South" xml:space="preserve">
+    <value>South</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="ThisCalender" xml:space="preserve">
+    <value>This {0}</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="TimeLine" xml:space="preserve">
+    <value>Time line</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="UncheckAll" xml:space="preserve">
+    <value>Uncheck All</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="UnitIsRequired" xml:space="preserve">
+    <value>Unit is required</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="West" xml:space="preserve">
+    <value>West</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="YourSearch" xml:space="preserve">
+    <value>Your Search</value>
+  </data>
+  <data name="ActionPerform" xml:space="preserve">
+    <value>Action Perform</value>
+  </data>
+  <data name="CharactersRemaining" xml:space="preserve">
+    <value>Characters is Remaining</value>
+  </data>
+  <data name="CommentedOn" xml:space="preserve">
+    <value>Commented on</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="CommentsRequired" xml:space="preserve">
+    <value>Comments is required</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="RemarksRequired" xml:space="preserve">
+    <value>Remarks is required</value>
+  </data>
+  <data name="SelectAndSave" xml:space="preserve">
+    <value>Select &amp; Save</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="ManageSections" xml:space="preserve">
+    <value>Manage Sections</value>
+  </data>
+  <data name="MySOP" xml:space="preserve">
+    <value>My SOPs</value>
+  </data>
+  <data name="RiskMatrix" xml:space="preserve">
+    <value>Risk Matrix</value>
+  </data>
+  <data name="SubCatgory" xml:space="preserve">
+    <value>Sub-Catgory</value>
+  </data>
+  <data name="CreateSOP" xml:space="preserve">
+    <value>Create SOP</value>
+  </data>
+  <data name="SearchSOP" xml:space="preserve">
+    <value>Search SOPs</value>
+  </data>
+  <data name="SOP" xml:space="preserve">
+    <value>SOP</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>User Details</value>
+  </data>
+  <data name="ValueIsRequired" xml:space="preserve">
+    <value>{0} is required</value>
+  </data>
+  <data name="CopyrightCompanyName" xml:space="preserve">
+    <value>2018 © Dorf Ketal Pvt. Ltd.</value>
+  </data>
+  <data name="NoRecordAvailable" xml:space="preserve">
+    <value>No record found</value>
+  </data>
+  <data name="AddMedicineStock" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="AutocompleteSearching" xml:space="preserve">
+    <value>Searching..</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteConfirmMsg" xml:space="preserve">
+    <value>Are you sure want to delete record ?</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DuplicateDeadStockDetails" xml:space="preserve">
+    <value>Duplicate Dead Stock Details.</value>
+  </data>
+  <data name="DuplicateMedicineDetails" xml:space="preserve">
+    <value>Duplicate Medicine Details.</value>
+  </data>
+  <data name="DuplicateOpeningStockDetails" xml:space="preserve">
+    <value>Duplicate Opening Stock Details.</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="ExpiryDate" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
+  <data name="ExpiryDateLessThenCurrentWarningMessaage" xml:space="preserve">
+    <value>Selected Medicine Expiry date is already expired.</value>
+  </data>
+  <data name="Inventory" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="MaxQuantityReached" xml:space="preserve">
+    <value>Quantity must be less than or equal to available quantity</value>
+  </data>
+  <data name="MedicalCheckup" xml:space="preserve">
+    <value>Medical Checkup</value>
+  </data>
+  <data name="MedicineCode" xml:space="preserve">
+    <value>Medicine Code</value>
+  </data>
+  <data name="MedicineConsumptionByAgency" xml:space="preserve">
+    <value>Daily Medicine Consumption by Agency</value>
+  </data>
+  <data name="MedicineConsumptionSaveSuccessfully" xml:space="preserve">
+    <value>Medicine Consumption details saved successfully.</value>
+  </data>
+  <data name="MedicineConsumptionUpdatedSuccessfully" xml:space="preserve">
+    <value>Medicine Consumption details updated successfully.</value>
+  </data>
+  <data name="MedicineDeadStock" xml:space="preserve">
+    <value>Expiry/Dead Medicine Stock</value>
+  </data>
+  <data name="MedicineDeadStockSaveSuccessfully" xml:space="preserve">
+    <value>Expiry/Dead Stock details saved successfully.</value>
+  </data>
+  <data name="MedicineDeadStockUpdatedSuccessfully" xml:space="preserve">
+    <value>Expiry/Dead Stock details updated successfully.</value>
+  </data>
+  <data name="MedicineName" xml:space="preserve">
+    <value>Medicine Name</value>
+  </data>
+  <data name="MedicineOpeningStock" xml:space="preserve">
+    <value>Medicine Opening Stock</value>
+  </data>
+  <data name="MedicineOpeningStockSaveFailed" xml:space="preserve">
+    <value>Medicine opening stock saving failed.</value>
+  </data>
+  <data name="MedicineOpeningStockSaveSuccessfully" xml:space="preserve">
+    <value>Opening Stock details saved successfully.</value>
+  </data>
+  <data name="MedicineOpeningStockUpdatedSuccessfully" xml:space="preserve">
+    <value>Opening Stock details updated successfully.</value>
+  </data>
+  <data name="MedicineReceived" xml:space="preserve">
+    <value>Medicine Received</value>
+  </data>
+  <data name="MedicineReceivedSaveSuccessfully" xml:space="preserve">
+    <value>Received Medicine Details saved successfully.</value>
+  </data>
+  <data name="MedicineReceivedUpdatedSuccessfully" xml:space="preserve">
+    <value>Received Medicine Details updated successfully.</value>
+  </data>
+  <data name="MedicineType" xml:space="preserve">
+    <value>Medicine Type</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PriceAndQtyGreaterThanZeroRequired" xml:space="preserve">
+    <value>Price and Quantity must be greater than zero.</value>
+  </data>
+  <data name="QtyGreaterThanZeroRequired" xml:space="preserve">
+    <value>Quantity must be greater than zero.</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Receipt/Challan No</value>
+  </data>
+  <data name="ReceivedFrom" xml:space="preserve">
+    <value>Received From</value>
+  </data>
+  <data name="ScheduleDateRequired" xml:space="preserve">
+    <value>Schedule Date is Required.</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Plant</value>
+  </data>
+  <data name="SiteRequired" xml:space="preserve">
+    <value>Plant is required</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="TaskAssignByIsRequired" xml:space="preserve">
+    <value>Task Assign By is required</value>
+  </data>
+  <data name="DuplicateMedicineConsumptionDetails" xml:space="preserve">
+    <value>Duplicate Medicine Consumption Details.</value>
+  </data>
+  <data name="TakeMeHome" xml:space="preserve">
+    <value>Take Me Home</value>
+  </data>
+  <data name="ConfigLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="ConfigModule" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="ConfigModuleName" xml:space="preserve">
+    <value>Module Name</value>
+  </data>
+  <data name="HWMGenerationAndStorage" xml:space="preserve">
+    <value>Hazardous Waste Generation</value>
+  </data>
+  <data name="EnvironmentMonitoringDate" xml:space="preserve">
+    <value>Environment Monitoring Date</value>
+  </data>
+  <data name="MethodofStorage" xml:space="preserve">
+    <value>Method of Storage</value>
+  </data>
+  <data name="HWMGenerationAndStorageTitle" xml:space="preserve">
+    <value>Hazardous Waste Generation &amp; Storage (Form 3)</value>
+  </data>
+  <data name="BWGSCharacteristics" xml:space="preserve">
+    <value>Characteristics</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="BWGSHeader" xml:space="preserve">
+    <value>Battery Waste Generation &amp; Storage</value>
+  </data>
+  <data name="BWGSIncompatibleWasteSubstances" xml:space="preserve">
+    <value>Incompatible Waste Substances</value>
+  </data>
+  <data name="RequestedBy" xml:space="preserve">
+    <value>Requested By</value>
+  </data>
+  <data name="WastePhysicalState" xml:space="preserve">
+    <value>Waste Physical State</value>
+  </data>
+  <data name="HWAttachmentDisposalActions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="HWAttachmentDisposalAttachHWM" xml:space="preserve">
+    <value>Attach Hazardous Waste Manifest</value>
+  </data>
+  <data name="HWAttachmentDisposalHeader" xml:space="preserve">
+    <value>Attachment</value>
+  </data>
+  <data name="HWAttachmentDisposalName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="HWAttachmentDisposalProgress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="HWAttachmentDisposalQueueProgress" xml:space="preserve">
+    <value>Queue Progress</value>
+  </data>
+  <data name="HWAttachmentDisposalSize" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="HWAttachmentDisposalUpload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="HWDisposalHeader" xml:space="preserve">
+    <value>Hazardous Waste Disposal</value>
+  </data>
+  <data name="HWSWDDisposalAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="HWSWDDisposalDescriptionOfWaste" xml:space="preserve">
+    <value>Description Of Waste</value>
+  </data>
+  <data name="HWSWDDisposalEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="HWSWDDisposalHeader" xml:space="preserve">
+    <value>Sender &amp; Waste Details</value>
+  </data>
+  <data name="HWSWDDisposalMailingAddress" xml:space="preserve">
+    <value>Mailing Address</value>
+  </data>
+  <data name="HWSWDDisposalManifestDocument" xml:space="preserve">
+    <value>Manifest Document</value>
+  </data>
+  <data name="HWSWDDisposalNoOfContainers" xml:space="preserve">
+    <value>No Of Containers</value>
+  </data>
+  <data name="HWSWDDisposalPhysicalForm" xml:space="preserve">
+    <value>Physical Form</value>
+  </data>
+  <data name="SenderAuthorisation" xml:space="preserve">
+    <value>Sender Authorisation</value>
+  </data>
+  <data name="HWSWDDisposalSenderName" xml:space="preserve">
+    <value>Sender's Name (Site)</value>
+  </data>
+  <data name="HWSWDDisposalSpecialHandling" xml:space="preserve">
+    <value>Special Handling instructions and additional information</value>
+  </data>
+  <data name="HWSWDDisposalSr" xml:space="preserve">
+    <value>Sr.#</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="HWTRDDisposalReceiverAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ReceiverAuthorisation" xml:space="preserve">
+    <value>Receiver Authorisation #</value>
+  </data>
+  <data name="TransporterName" xml:space="preserve">
+    <value>Transporter Name</value>
+  </data>
+  <data name="TrasnporterRegistration" xml:space="preserve">
+    <value>Trasnporter Registration #</value>
+  </data>
+  <data name="HWTRDHeader" xml:space="preserve">
+    <value>Transporter &amp; Receiver Details</value>
+  </data>
+  <data name="BWDAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="BWDCharacteristics" xml:space="preserve">
+    <value>Characteristics</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="ContactPersonPhone" xml:space="preserve">
+    <value>Contact Person Phone #</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmergencyContactPerson" xml:space="preserve">
+    <value>Emergency Contact Person</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax #</value>
+  </data>
+  <data name="BWDIncompatibleWasteSubstances" xml:space="preserve">
+    <value>Incompatible Waste Substances</value>
+  </data>
+  <data name="BWDPhysicalState" xml:space="preserve">
+    <value>Physical State</value>
+  </data>
+  <data name="BWDReceiverAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact #</value>
+  </data>
+  <data name="WasteType" xml:space="preserve">
+    <value>Waste Type</value>
+  </data>
+  <data name="BWDHeader" xml:space="preserve">
+    <value>Battery Waste Disposal</value>
+  </data>
+  <data name="eWGSEPRAAID" xml:space="preserve">
+    <value>Extended Producer Responsibility Authoratization/ Authorization Issue Date</value>
+  </data>
+  <data name="eWGSEPRAAV" xml:space="preserve">
+    <value>Extended Producer Responsibility Authoratization Validity (in years)</value>
+  </data>
+  <data name="eWGSHeader" xml:space="preserve">
+    <value>e-Waste Generation &amp; Storage</value>
+  </data>
+  <data name="eWGSItem" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="RequestedDate" xml:space="preserve">
+    <value>Requested Date</value>
+  </data>
+  <data name="HWSSenderWasterDetailsFormTitle" xml:space="preserve">
+    <value>Hazardous Waste Disposal (Form 10)</value>
+  </data>
+  <data name="DescriptionOfWaste" xml:space="preserve">
+    <value>Description of Waste</value>
+  </data>
+  <data name="NoOfContainer" xml:space="preserve">
+    <value>No. of Container</value>
+  </data>
+  <data name="PhysicalForm" xml:space="preserve">
+    <value>Physical Form</value>
+  </data>
+  <data name="SpecialHandlingInstructionsAndAdditionalInformation" xml:space="preserve">
+    <value>Special Handling Instructions And Additional Information</value>
+  </data>
+  <data name="HWSenderWasteDetailSRNo" xml:space="preserve">
+    <value>Sr.#</value>
+  </data>
+  <data name="DBWRHeader" xml:space="preserve">
+    <value>Daily Biomedical Waste Record</value>
+  </data>
+  <data name="BWRHeader" xml:space="preserve">
+    <value>BiomedicalWasteReport</value>
+  </data>
+  <data name="BWRTRAT" xml:space="preserve">
+    <value>Annual Total (in kg)</value>
+  </data>
+  <data name="BWRTRMT" xml:space="preserve">
+    <value>Monthly Total (in g)</value>
+  </data>
+  <data name="HWMGenerationAndStorageError" xml:space="preserve">
+    <value>Daily Biomedical Waste Issue</value>
+  </data>
+  <data name="HWMGenerationAndStorageSuccess" xml:space="preserve">
+    <value>Daily Biomedical Waste Generation</value>
+  </data>
+  <data name="WACAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="WACHeader" xml:space="preserve">
+    <value>Waste Action Center</value>
+  </data>
+  <data name="RequestBy" xml:space="preserve">
+    <value>Request By</value>
+  </data>
+  <data name="RequestDate" xml:space="preserve">
+    <value>Request Date</value>
+  </data>
+  <data name="WasteDisposal" xml:space="preserve">
+    <value>Waste Disposal</value>
+  </data>
+  <data name="WACWasteStorageNo" xml:space="preserve">
+    <value>Waste Storage No.</value>
+  </data>
+  <data name="WACWDAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="DisposalDoneby" xml:space="preserve">
+    <value>Disposal Done By</value>
+  </data>
+  <data name="WACWDManifestAttachement" xml:space="preserve">
+    <value>Manifest Attachement</value>
+  </data>
+  <data name="WSite" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="WACWDWasteDisposalNo" xml:space="preserve">
+    <value>Waste Disposal No</value>
+  </data>
+  <data name="eWDisposalAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="eWDisposalAddWastetem" xml:space="preserve">
+    <value>Add Waste tem</value>
+  </data>
+  <data name="eWDisposalAttachmentActions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="eWDisposalAttachmentAttacheWasteManifest" xml:space="preserve">
+    <value>Attach e-Waste Manifest</value>
+  </data>
+  <data name="eWDisposalAttachmentHeader" xml:space="preserve">
+    <value>Attachment</value>
+  </data>
+  <data name="eWDisposalAttachmentName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="eWDisposalAttachmentProgress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="eWDisposalAttachmentSize" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="eWDisposalItem" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="MailingAddress" xml:space="preserve">
+    <value>Mailing Address</value>
+  </data>
+  <data name="ManifestDocument" xml:space="preserve">
+    <value>Manifest Document #</value>
+  </data>
+  <data name="eWDisposalSenderAuthorization" xml:space="preserve">
+    <value>Sender's Authorization</value>
+  </data>
+  <data name="eWDisposalSenderName" xml:space="preserve">
+    <value>Sender's Name (Site)</value>
+  </data>
+  <data name="eWDisposalSenderWaste" xml:space="preserve">
+    <value>Sender &amp; Waste Details</value>
+  </data>
+  <data name="eWDisposalSWDHeader" xml:space="preserve">
+    <value>Sender &amp; Waste Details</value>
+  </data>
+  <data name="eWDisposalTRDReceiverReceiverAuthorization" xml:space="preserve">
+    <value>Receiver Authorization #</value>
+  </data>
+  <data name="eWDisposalTRDTN" xml:space="preserve">
+    <value>Transporter Name</value>
+  </data>
+  <data name="eWDisposalTRDTR" xml:space="preserve">
+    <value>Transporter Registration #</value>
+  </data>
+  <data name="TypeOfVehicle" xml:space="preserve">
+    <value>TypeOfVehicle</value>
+  </data>
+  <data name="VehicleRegistration" xml:space="preserve">
+    <value>Vehicle Registration</value>
+  </data>
+  <data name="WasteCategory" xml:space="preserve">
+    <value>Waste Category</value>
+  </data>
+  <data name="WeightUnit" xml:space="preserve">
+    <value>Weight Unit</value>
+  </data>
+  <data name="TotalWeight" xml:space="preserve">
+    <value>Total Weight</value>
+  </data>
+  <data name="ewHeader" xml:space="preserve">
+    <value>e-Waste Disposal</value>
+  </data>
+  <data name="DMSWRHeader" xml:space="preserve">
+    <value>Daily Municipal Solid Waste Record</value>
+  </data>
+  <data name="DMSWRNCompostableWasteHeader" xml:space="preserve">
+    <value>Compostable Waste</value>
+  </data>
+  <data name="DMSWRNCWNote" xml:space="preserve">
+    <value>Note: It is required to enter quantity for at-least one of the waste type</value>
+  </data>
+  <data name="DMSWRNNonCompostableWasteHeader" xml:space="preserve">
+    <value>Compostable Waste</value>
+  </data>
+  <data name="DMSWRReportedBy" xml:space="preserve">
+    <value>Reported By</value>
+  </data>
+  <data name="DMSWRReportedDate" xml:space="preserve">
+    <value>Reported Date</value>
+  </data>
+  <data name="MADRHeader" xml:space="preserve">
+    <value>Monthly Ash Disposal </value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="MonthApr" xml:space="preserve">
+    <value>Apr</value>
+  </data>
+  <data name="MonthAug" xml:space="preserve">
+    <value>Aug</value>
+  </data>
+  <data name="MonthDec" xml:space="preserve">
+    <value>Dec</value>
+  </data>
+  <data name="MonthFeb" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="MonthJan" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="MonthJul" xml:space="preserve">
+    <value>Jul</value>
+  </data>
+  <data name="MonthJun" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="MonthMar" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="MonthMay" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="MonthNov" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="MonthOct" xml:space="preserve">
+    <value>Oct</value>
+  </data>
+  <data name="MonthSep" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="MSWR1AprTo31Mar" xml:space="preserve">
+    <value>1st Apr to 31st Mar</value>
+  </data>
+  <data name="MSWRAT" xml:space="preserve">
+    <value>Annual Total (in kg)</value>
+  </data>
+  <data name="FinYear" xml:space="preserve">
+    <value>Select Financial Year</value>
+  </data>
+  <data name="MSWRHeader" xml:space="preserve">
+    <value>Biomedical Waste Rport</value>
+  </data>
+  <data name="MSWRMT" xml:space="preserve">
+    <value>Monthly Total (in g)</value>
+  </data>
+  <data name="AURAshGenAndUtili" xml:space="preserve">
+    <value>Ash Generation and Utilization</value>
+  </data>
+  <data name="AURHeader" xml:space="preserve">
+    <value>Ash Utilization Report</value>
+  </data>
+  <data name="AURInstalledCapacity" xml:space="preserve">
+    <value>Installed Capacity(Total)</value>
+  </data>
+  <data name="AURMonth" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="AURMU" xml:space="preserve">
+    <value>Mode of Utilization</value>
+  </data>
+  <data name="MADRADD" xml:space="preserve">
+    <value>Mode of Ash Utilization</value>
+  </data>
+  <data name="MADRAGAU" xml:space="preserve">
+    <value>Ash Generation and Utilization</value>
+  </data>
+  <data name="MADRAPD" xml:space="preserve">
+    <value>Ash Pond Dumping</value>
+  </data>
+  <data name="MADRAshContentofcoal" xml:space="preserve">
+    <value>Ash Content of coal (%)</value>
+  </data>
+  <data name="MADRBottomAshGeneration" xml:space="preserve">
+    <value>Bottom Ash Geneation (MT)</value>
+  </data>
+  <data name="MADRBottomAshutilized" xml:space="preserve">
+    <value>Bottom Ash utilized (MT)</value>
+  </data>
+  <data name="MADRCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="MADRClayBrickMfd" xml:space="preserve">
+    <value>Clay Brick Mfd (MT)</value>
+  </data>
+  <data name="MADRCoalConsumed" xml:space="preserve">
+    <value>Coal consumed (MT)</value>
+  </data>
+  <data name="MADRFlyAshGeneration" xml:space="preserve">
+    <value>Fly Ash Generation (MT)</value>
+  </data>
+  <data name="MADRFlyAshutilization" xml:space="preserve">
+    <value>Fly Ash utilization (%)</value>
+  </data>
+  <data name="MADRFlyAshUtilized" xml:space="preserve">
+    <value>Fly Ash utilized (MT)</value>
+  </data>
+  <data name="MADRIMOPPCM" xml:space="preserve">
+    <value>In manufacturing of portland puzzolona cement Mfd (MT)</value>
+  </data>
+  <data name="MADRInstalledCapacity" xml:space="preserve">
+    <value>Installed Capacity (Total)</value>
+  </data>
+  <data name="MADRMonth" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="MADRNRD" xml:space="preserve">
+    <value>NHAI / Road Development</value>
+  </data>
+  <data name="MADRPAL" xml:space="preserve">
+    <value>Pond Ash Lifting</value>
+  </data>
+  <data name="MADRQF" xml:space="preserve">
+    <value>Quarry Filling</value>
+  </data>
+  <data name="MADRTotalAshGeneration" xml:space="preserve">
+    <value>Total Ash Generation (MT)</value>
+  </data>
+  <data name="MADRTotalAshutilization" xml:space="preserve">
+    <value>Total Ash utilization (%)</value>
+  </data>
+  <data name="MSWRAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="MSWRComp" xml:space="preserve">
+    <value>Compostable</value>
+  </data>
+  <data name="MSWRNonComp" xml:space="preserve">
+    <value>Non-Compostable</value>
+  </data>
+  <data name="WDSGenerateCumulativeWasteReport" xml:space="preserve">
+    <value>Generate Cumulative Waste Report</value>
+  </data>
+  <data name="WDSHeader" xml:space="preserve">
+    <value>Waste Disposal Search</value>
+  </data>
+  <data name="WDSManifestAttachment" xml:space="preserve">
+    <value>Manifest Attachment</value>
+  </data>
+  <data name="WDSNote" xml:space="preserve">
+    <value>Note: Select Site, Waste Type and select time line to match the financial year(or tenure) for which cumulative report is required</value>
+  </data>
+  <data name="WDSReport" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="WDSTimeLine" xml:space="preserve">
+    <value>Time Line</value>
+  </data>
+  <data name="WDSWasteDisposalNo" xml:space="preserve">
+    <value>Waste Disposal No</value>
+  </data>
+  <data name="WGSSHeader" xml:space="preserve">
+    <value>Waste Generation &amp; Storage Search</value>
+  </data>
+  <data name="WGSSReport" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="WGSSRequestDate" xml:space="preserve">
+    <value>Request Date</value>
+  </data>
+  <data name="WGSSTimeLine" xml:space="preserve">
+    <value>TimeLine</value>
+  </data>
+  <data name="BWGSCharacteristicsRequired" xml:space="preserve">
+    <value>Characteristics is required</value>
+  </data>
+  <data name="BWGSIncompatibleWasteSubstancesRequired" xml:space="preserve">
+    <value>Incompatible Waste Substances is required</value>
+  </data>
+  <data name="HWMGSUOMRequired" xml:space="preserve">
+    <value>UOM is Required</value>
+  </data>
+  <data name="HWSWDDisposalEmailRequired" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
+  <data name="HWSWDDisposalMailingAddressRequired" xml:space="preserve">
+    <value>Mailing Address is required</value>
+  </data>
+  <data name="HWSWDDisposalManifestDocumentRequired" xml:space="preserve">
+    <value>Manifest Document is required</value>
+  </data>
+  <data name="AuthorizationIssueDate" xml:space="preserve">
+    <value>Authorization Issue Date</value>
+  </data>
+  <data name="BWDReceiverAddressRequired" xml:space="preserve">
+    <value>Receiver Address is required</value>
+  </data>
+  <data name="ValidEmailRequired" xml:space="preserve">
+    <value>Please enter valid {0}</value>
+  </data>
+  <data name="MADRAPDRequired" xml:space="preserve">
+    <value>APD is required</value>
+  </data>
+  <data name="MADRAshContentofcoalRequired" xml:space="preserve">
+    <value>Ash Contentofcoal is required</value>
+  </data>
+  <data name="MADRBottomAshGenerationRequired" xml:space="preserve">
+    <value>Bottom Ash Generation is required</value>
+  </data>
+  <data name="MADRBottomAshutilizedRequired" xml:space="preserve">
+    <value>Bottom Ashutilized is required</value>
+  </data>
+  <data name="MADRClayBrickMfdRequired" xml:space="preserve">
+    <value>Clay Brick Mfd is required</value>
+  </data>
+  <data name="MADRFlyAshGenerationRequired" xml:space="preserve">
+    <value>Fly Ash Generation is required</value>
+  </data>
+  <data name="MADRFlyAshutilizationRequired" xml:space="preserve">
+    <value>Fly Ashutilization is required</value>
+  </data>
+  <data name="MADRFlyAshUtilizedRequired" xml:space="preserve">
+    <value>Fly Ash Utilized is required</value>
+  </data>
+  <data name="MADRIMOPPCMRequired" xml:space="preserve">
+    <value>IMOPPCM is required</value>
+  </data>
+  <data name="OneMoreRequired" xml:space="preserve">
+    <value>1 or more required</value>
+  </data>
+  <data name="MADRNRDRequired" xml:space="preserve">
+    <value>NRD is required</value>
+  </data>
+  <data name="MADRPALRequired" xml:space="preserve">
+    <value>PAL is required</value>
+  </data>
+  <data name="MADRQFRequired" xml:space="preserve">
+    <value>QF is required</value>
+  </data>
+  <data name="MADRTotalAshGenerationRequired" xml:space="preserve">
+    <value>Total Ash Generation is required</value>
+  </data>
+  <data name="MADRTotalAshutilizationRequired" xml:space="preserve">
+    <value>Total Ashutilization is required</value>
+  </data>
+  <data name="ManifestAttachment" xml:space="preserve">
+    <value>Manifest Attachment</value>
+  </data>
+  <data name="Min1Quantity" xml:space="preserve">
+    <value>1 or more {0} required</value>
+  </data>
+  <data name="ReportedBy" xml:space="preserve">
+    <value>Reported By</value>
+  </data>
+  <data name="ReportedDate" xml:space="preserve">
+    <value>Reported Date</value>
+  </data>
+  <data name="WasteStorage" xml:space="preserve">
+    <value>Waste Storage</value>
+  </data>
+  <data name="WasteStorageNo" xml:space="preserve">
+    <value>Waste Storage No.</value>
+  </data>
+  <data name="EmergencyContactPersonPhone" xml:space="preserve">
+    <value>Emergency Contact Person Phone</value>
+  </data>
+  <data name="eWDisposalTRDHeader" xml:space="preserve">
+    <value>Trasporter &amp; Receiver Details</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="ReceiverName" xml:space="preserve">
+    <value>Receiver Name</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="WasteDisposalSearch" xml:space="preserve">
+    <value>Waste Disposal Search</value>
+  </data>
+  <data name="AshDisposal" xml:space="preserve">
+    <value>Ash Disposal</value>
+  </data>
+  <data name="Ashdisposalreport" xml:space="preserve">
+    <value>Ash disposal report</value>
+  </data>
+  <data name="BatteryWaste" xml:space="preserve">
+    <value>Battery Waste</value>
+  </data>
+  <data name="BiomedicalWaste" xml:space="preserve">
+    <value>Biomedical Waste</value>
+  </data>
+  <data name="BiomedicalWasteReport" xml:space="preserve">
+    <value>Biomedical Waste Report</value>
+  </data>
+  <data name="BWDisposal" xml:space="preserve">
+    <value>BW Disposal</value>
+  </data>
+  <data name="Common" xml:space="preserve">
+    <value>Common</value>
+  </data>
+  <data name="DaywiseBiomedicalWaste" xml:space="preserve">
+    <value>Day -wise Biomedical Waste</value>
+  </data>
+  <data name="Daywisemunicipalsolidwaste" xml:space="preserve">
+    <value>Day -wise municipal solid waste</value>
+  </data>
+  <data name="EWDisposal" xml:space="preserve">
+    <value>EW Disposal</value>
+  </data>
+  <data name="GeneratefunctionwiseBW" xml:space="preserve">
+    <value>Generate function-wise BW</value>
+  </data>
+  <data name="GeneratefunctionwiseEW" xml:space="preserve">
+    <value>Generate function-wise EW</value>
+  </data>
+  <data name="GeneratefunctionwiseHW" xml:space="preserve">
+    <value>Generate function-wise HW</value>
+  </data>
+  <data name="HazardousWaste" xml:space="preserve">
+    <value>Hazardous Waste</value>
+  </data>
+  <data name="HWDisposal" xml:space="preserve">
+    <value>HW Disposal</value>
+  </data>
+  <data name="MonthwiseAshdisposal" xml:space="preserve">
+    <value>Month -wise Ash disposal</value>
+  </data>
+  <data name="MunicipalSolidWaste" xml:space="preserve">
+    <value>Municipal Solid Waste</value>
+  </data>
+  <data name="Municipalsolidwastereport" xml:space="preserve">
+    <value>Municipal solid waste report</value>
+  </data>
+  <data name="WasteGenerationStorageSearch" xml:space="preserve">
+    <value>Waste Generation Storage Search</value>
+  </data>
+</root>

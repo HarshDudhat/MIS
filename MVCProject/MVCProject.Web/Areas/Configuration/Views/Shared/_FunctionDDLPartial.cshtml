@@ -1,0 +1,33 @@
+﻿<div class="col-md-3">
+    <div class="form-group">
+        <label>
+            @Resource.HWMGSFunction <span class="required-field">*</span>
+        </label>
+
+        <div angucomplete-alt
+             input-name="ddlFunctionLevelId"
+             id="ddlFunctionLevelId"
+             ng-model="Obj.WasteGeneration.FunctionLevelId"
+             pause="400"
+             minlength="1"
+             maxlength="100"
+             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.HWMGSFunction)"
+             remote-url="{{GetFunctionAutoCompleteUrl}}"
+             remote-url-data-field="Result"
+             
+             match-class="blue"
+             selected-object="ChangedFunctionLevelId"
+             title-field="Name"
+             description-field="Description"
+             text-searching="@Resource.AutocompleteSearching"
+             text-no-results="@Resource.NoRecordAvailable"
+             tabindex="1" input-class="form-control">
+        </div>
+
+        <div class="c">
+        </div>
+        <div class="label label-danger " data-ng-show="frmWasteGeneration.ddlFunctionLevelId.$dirty && frmWasteGeneration.ddlFunctionLevelId.$invalid">
+            <span data-ng-show="frmWasteGeneration.ddlFunctionLevelId.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.HWMGSSite))</span>
+        </div>
+    </div>
+</div>

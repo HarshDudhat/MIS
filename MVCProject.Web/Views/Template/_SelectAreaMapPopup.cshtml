@@ -1,0 +1,117 @@
+﻿<style type="text/css">
+    .colSelect-popup
+    {
+        width: 30px !important;
+        min-width: 30px !important;
+        max-width: 30px !important;
+    }
+    
+    .colBadgeNo-popup
+    {
+        width: 140px !important;
+        min-width: 140px !important;
+    }
+    .colEmpName1-popup
+    {
+        width: 180px !important;
+        min-width: 180px !important;
+    }
+    .colEmpName2-popup
+    {
+        width: 180px !important;
+        min-width: 180px !important;
+    }
+    
+    .colDesignation-popup
+    {
+        width: 170px !important;
+        min-width: 170px !important;
+        max-width: 170px !important;
+    }
+    
+    .colDesignation2-popup
+    {
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
+    }
+    
+    .colSite-popup
+    {
+        width: 100px !important;
+        min-width: 100px !important;
+        max-width: 100px !important;
+    }
+    
+    .colDepartment-popup
+    {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+    
+    .colDepartment2-popup
+    {
+        width: 267px !important;
+        min-width: 267px !important;
+        max-width: 267px !important;
+    }
+    
+    .colDelete-popup
+    {
+        width: 100px !important;
+        min-width: 100px !important;
+        max-width: 100px !important;
+    }
+    
+    [ng-table-pagination]
+    {
+        display: none;
+    }
+    
+    .employeeClose
+    {
+        color: #fff !important;
+        opacity: 1 !important;
+    }
+    
+    th.colSelect-popup div.th-inner
+    {
+        width: auto !important;
+        margin-left: -2px;
+    }
+    
+    th.colSelect-popup div.th-inner div.box .checkbox
+    {
+        margin-top: 7px;
+    }
+    
+    th.colSelect-popup div.th-inner div.box .checkbox-primary input[type="checkbox"]:checked + label::after
+    {
+        top: -10px;
+    }
+</style>
+<div class="modal-header">
+    <button type="button" class="close employeeClose" ng-click="cancelActionToPerform()">
+        ×
+    </button>
+    <h4 class="modal-title" id="custom-width-modalLabel">
+        {{title}}
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <img id="photo" src="{{File}}" width="880" height="600" />
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success w-md waves-effect waves-light" ng-click="OnOkClick()"
+        tabindex="1">
+        @Resource.SelectAndSave
+    </button>
+    &nbsp&nbsp
+    <button tabindex="2" class="btn btn-danger w-md waves-effect waves-light"
+        ng-click="cancelActionToPerform()">
+        @Resource.Close
+    </button>
+</div>

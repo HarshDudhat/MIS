@@ -1,0 +1,335 @@
+/*html, body {
+	height: 100%;
+}*/
+body {
+	font-family: Verdana;
+	background: #ffffff;
+	color: #333333;
+	margin: 0;
+}
+a {
+	font-size: 10pt;
+	cursor: pointer;
+}
+a:visited {
+	color: #3e87c6;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 10pt
+}
+a:link {
+	color: #3e87c6;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 10pt
+}
+a:hover {
+	color: #3e87c6;
+	text-decoration: underline;
+	font-weight: bold;
+	font-size: 10pt
+}
+a:active {
+	color: #3e87c6;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 10pt
+}
+::-moz-selection {
+ color: #fff;
+ background: #1a599f
+}
+::selection {
+	color: #fff;
+	background: #1a599f
+}
+form {
+	margin-left : 10px;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: #000000;
+}
+
+.navbar {
+	background:#2b81bb;
+	min-height:60px;
+	margin:0;
+	box-shadow: 0 1px 10px rgba(79, 95, 112, 0.3);
+    -webkit-box-shadow: 0 1px 10px rgba(79, 95, 112, 0.3);
+}
+.navbar-header {
+	float: left;
+}
+.navbar-brand{
+	float: left;
+    height: auto;
+    padding: 5px 15px;
+}
+.navbar-brand>.navbar-brand-logo {
+    display: inline-block;
+}
+.navbar .container-fluid p{
+	text-align:right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+	padding:25px 0 0 0;
+	margin:0;
+}
+.page-container {
+	padding: 15px 10px;
+}
+hr {
+	border: 0px;
+	border-top: solid 1px #94c3f9;
+	border-bottom: transparent;
+	margin-left : 10px;
+	margin-right: 10px;
+}
+h1 {
+	/*background-image: url(../images/verlauf-gelb.png); 
+    background-repeat: repeat-y;*/
+	font-family: Verdana;
+	font-size: 13pt;
+	font-weight: bold;
+	margin: 0 10px;
+	padding: 0 0 10px;
+	color: #3e87c6;
+	text-transform:uppercase;
+}
+h2 {
+	background-image: url(../images/verlauf-blau.png);
+	background-repeat: repeat-y;
+	font-family: Verdana;
+	font-size: 10pt;
+	font-weight: bold;
+	margin-left : 10px;
+	margin-right: 10px;
+	padding: 10px 10px;
+}
+h3 {
+	background-image: url(../images/verlauf-rot.png);
+	background-repeat: repeat-y;
+	font-family: Verdana;
+	font-size: 10pt;
+	font-weight: bold;
+	margin-left : 10px;
+	margin-right: 10px;
+	padding: 8px 10px;
+}
+h4 {
+	background-image: url(../images/verlauf-gray.png);
+	background-repeat: repeat-y;
+	font-family: Verdana;
+	font-size: 10pt;
+	font-weight: bold;
+	margin-left : 10px;
+	margin-right: 10px;
+	background-repeat: repeat-y;
+	padding: 6px 10px;
+}
+h5 {
+	background-image: url(../images/verlauf-gray.png);
+	background-repeat: repeat-y;
+	font-family: Verdana;
+	font-size: 10pt;
+	font-weight: bold;
+	margin-left : 10px;
+	margin-right: 10px;
+	background-repeat: repeat-y;
+	padding: 6px 10px;
+}
+h6 {
+	background-image: url(../images/verlauf-rot.png);
+	background-repeat: repeat-y;
+	color: white;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+	margin-left : 10px;
+	margin-right: 10px;
+}
+li {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10pt;
+	line-height: 13pt;
+	margin-left : 10px;
+	margin-top: 5px;
+}
+p {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10pt;
+	line-height: 18px;
+	margin-left : 10px;
+	margin-right: 10px;
+}
+/* note box */
+p.note, div.note {
+	background-color: #ffffe2;
+    border: 1px solid #ffd37e;
+    clear: both;
+    color: #774b07;
+	margin: 12px 20px 12px 20px;
+	padding: 10px 15px;
+}
+div.note p {
+	margin: 0;
+}
+/* used in tutorial */
+p.tip {
+	background-color : #FFFFCC;
+	border : 1px solid black;
+	clear : both;
+	color : black;
+	margin-left : 10%;
+	padding : 6px 6px;
+	width : 90%;
+}
+/* pre note box */
+pre {
+	background-color : #FFFFCC;
+	border : 1px solid #FFCC00;
+	clear : both;
+	color : black;
+	margin : 12px 30px 12px 20px;
+	padding : 6px 6px;
+}
+table.sitemap {
+	margin-left: 10px;
+}
+table.color {
+	width : 95%;
+	margin-left : 10px;
+ cell-spacing=2;
+	padding : 10;
+}
+table.code {
+
+	margin-left: 10px;
+}
+table.top {
+	background-image: url(../images/help-info_logo_3px.jpg);
+	margin-left: 0px;
+	margin-top: 0px;
+}
+td.siteheader {
+	background-color: #E10033;
+	COLOR: white;
+	padding-left: 3px;
+}
+td {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10pt;
+	line-height: 13pt;
+}
+td.color {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10pt;
+	background-color : #FFFFCC;
+}
+tr {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10pt;
+}
+tr.color {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10pt;
+	background-color : #FFFFCC;
+	padding-bottom : 20px;
+	padding-left : 20px;
+	padding-right : 20px;
+	padding-top : 20px;
+}
+ul {
+	list-style-image : url(../images/list_arrow.gif);
+	padding: 0 15px;
+}
+ul.extlinklist {
+	list-style-image : url(../images/extlink.gif);
+	list-style-position : outside;
+}
+ul.bullet-square-green {
+	list-style-image : url(../images/gbullet.gif);
+	list-style-position : outside;
+}
+ul.download {
+	list-style-image : url(../images/download.gif);
+	list-style-position : outside;
+}
+.left {
+	text-align: left;
+}
+.center {
+	text-align: center;
+}
+.right {
+	text-align: center;
+}
+.image {text-align: center;}
+.image img {
+	margin:10px 0;
+	display: inline-block;
+    border: 5px solid rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.08);
+    box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.08);
+    /*max-width: 95%;*/
+    height: auto;
+}
+.image p {
+	font-style: italic;
+	color: #777;
+}
+@media (max-width: 767px){
+	.image img{
+		max-width:100%;
+	}
+}
+
+.icon {
+	display: inline-block;
+	vertical-align: middle;
+}
+.red {
+	color: #C00;
+}
+.green {
+	color: #090;
+}
+.orange {
+	color: #F90;
+}
+.blue {
+	color: #0099FF;
+}
+
+/*
+Back to Top */
+#topcontrol {
+    color: #ffffff;
+    z-index: 1030;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+	line-height:36px;
+    text-align: center;
+    position: relative;
+    right: 15px;
+    bottom: 15px;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    background: #b0bd1c;
+	-webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+#topcontrol:hover{
+	background:#3e87c6;
+}
+#topcontrol:after {
+    content: "\e093";
+    text-align: center;
+    font-family: 'Glyphicons Halflings';
+}

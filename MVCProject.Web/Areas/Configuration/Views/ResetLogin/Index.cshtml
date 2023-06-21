@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = Resource.Reset + Resource.Details;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .colSrDotNo
+    {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+        text-align: right;
+    }
+    
+    .colUserName
+    {
+        width: 300px !important;
+        min-width: 300px !important;
+        max-width: 300px !important;
+    }
+    
+    .colEmployeeName
+    {
+        width: 300px !important;
+        min-width: 300px !important;
+        max-width: 300px !important;
+    }
+    
+    .colSiteName
+    {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+    
+    .colDepartmentName
+    {
+        width: 250px !important;
+        min-width: 250px !important;
+        max-width: 250px !important;
+    }
+    
+    .colAction
+    {
+        width: 109px !important;
+        min-width: 109px !important;
+        max-width: 109px !important;
+    }
+</style>
+<div ng-controller="ResetToLoginCtrl" novalidate>
+    <!-- start title section-->
+    <div class="main-page-title title-icon relative l">
+        <i class="zmdi zmdi-collection-item icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">@Resource.Reset</h4>
+        <!-- start button-->
+        <div class="pull-right">
+            <button type="button" class="btn btn-success btn-xs waves-effect" ng-disabled="!permission.CanWrite" ng-click="createReport()">
+                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+            </button>
+        </div>
+        <!-- end button-->
+    </div>
+    <!-- end title section-->
+    <!-- start body section-->
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- start reset to login details list -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">
+                                @Resource.Reset @Resource.Details
+                            </label>
+                            <div class="form-control-static">
+                                <table ng-table="tableParams" id="datatable" class="table-bordered table table-striped b-a b-light breakwordrow">
+                                    <colgroup>
+                                        <col style="width: 10% !important;">
+                                        <col style="width: 25% !important;">
+                                        <col style="width: 25% !important;">
+                                        <col style="width: 20% !important;">
+                                        <col style="width: 10% !important;">
+                                        <col style="width: 10% !important;">
+                                    </colgroup>
+                                    <tr ng-repeat="h in $data">
+                                        <td data-title="'@Resource.SrNo'" >
+                                            {{$index + 1}}
+                                        </td>
+                                        <td data-title="'@Resource.UserName'" ng-class="'breakword overflow-ellipsis'" >
+                                            {{h.UserName}}
+                                        </td>
+                                        <td data-title="'@Resource.Employee'" ng-class="'breakword overflow-ellipsis'" >
+                                            {{h.EmployeeName}}
+                                        </td>
+                                        <td data-title="'@Resource.Site'" ng-class="'breakword overflow-ellipsis'" >
+                                            {{h.SiteName}}
+                                        </td>
+                                        <td data-title="'@Resource.Department'" ng-class="'breakword overflow-ellipsis'" class="text-center">
+                                            {{h.DepartmentName}}
+                                        </td>
+                                        <td data-title="'@Resource.Action'" class="text-center" >
+                                            <a class="btn btn-icon waves-effect waves-light btn-danger btn-xs" href ng-disabled="!permission.CanWrite" title="@Resource.Reset @Resource.User"
+                                        ng-click="UpdateUserFlagDetails(h.UserId)"><i class="fa fa-repeat"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="$data.length == 0">
+                                        <td colspan="10" class="no-record">
+                                            @Resource.NoRecordFound
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end body section-->
+                </div>
+                <!-- end reset to login details list -->
+            </div>
+        </div>
+    </div>
+    <!-- end body section-->
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/ResetToLogin")
+}

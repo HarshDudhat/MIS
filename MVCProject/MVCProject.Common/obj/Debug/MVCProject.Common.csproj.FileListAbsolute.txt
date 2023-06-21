@@ -1,0 +1,7 @@
+D:\LATESTPROJECTTFS\MVCProject\Dev2\MVCProject\MVCProject.Common\bin\Debug\MVCProject.Common.dll
+D:\LATESTPROJECTTFS\MVCProject\Dev2\MVCProject\MVCProject.Common\bin\Debug\MVCProject.Common.pdb
+D:\LATESTPROJECTTFS\MVCProject\Dev2\MVCProject\MVCProject.Common\obj\Debug\MVCProject.Common.Resources.Resource.resources
+D:\LATESTPROJECTTFS\MVCProject\Dev2\MVCProject\MVCProject.Common\obj\Debug\MVCProject.Common.csproj.GenerateResource.Cache
+D:\LATESTPROJECTTFS\MVCProject\Dev2\MVCProject\MVCProject.Common\obj\Debug\MVCProject.Common.dll
+D:\LATESTPROJECTTFS\MVCProject\Dev2\MVCProject\MVCProject.Common\obj\Debug\MVCProject.Common.pdb
+D:\LATESTPROJECTTFS\MVCProject\Dev2\MVCProject\MVCProject.Common\obj\Debug\MVCProject.Common.csprojResolveAssemblyReference.cache

@@ -1,0 +1,19 @@
+﻿<div class="col-md-3">
+    <div class="form-group">
+        <label>
+            @Resource.HWMGSQuantity<span class="required-field">*</span>
+        </label>
+        <div class="form-inline">
+            <input type="text" class="form-control" id="txtQuantity" name="txtQuantity" ng-model="Obj.WasteGenerationDetail.Quantity"
+                   ng-required="true" placeholder="@Resource.HWMGSQuantity" />
+            <input type="text" class="form-control" id="txtUOM" name="txtUOM" ng-model="Obj.WasteGeneration.UOM"
+                   ng-disabled="true" placeholder="@Resource.HWMGSUnit" />
+        </div>
+
+        <div class="c">
+        </div>
+        <div class="label label-danger " data-ng-show="frmWasteGeneration.txtQuantity.$dirty && frmWasteGeneration.txtQuantity.$invalid">
+            <span data-ng-show="frmWasteGeneration.txtQuantity.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.HWMGSQuantity))</span>
+        </div>
+    </div>
+</div>

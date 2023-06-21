@@ -1,0 +1,296 @@
+﻿@{
+    ViewBag.Title = Resource.User;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .colSrno
+    {
+        width: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
+    }
+    
+    .colUserName
+    {
+        width: 170px !important;
+        min-width: 170px !important;
+        max-width: 170px !important;
+    }
+    
+    .colRoleName
+    {
+        width: 170px !important;
+        min-width: 170px !important;
+        max-width: 170px !important;
+    }
+    
+    .colEmpName
+    {
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
+    }
+    
+    .colSite
+    {
+        width: 70px !important;
+        min-width: 70px !important;
+        max-width: 70px !important;
+    }
+    
+    .colDepartment
+    {
+        width: 100px !important;
+        min-width: 100px !important;
+        max-width: 100px !important;
+    }
+    
+    .colActive
+    {
+        width: 70px !important;
+        min-width: 70px !important;
+        max-width: 70px !important;
+    }
+    
+    .colAction
+    {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+</style>
+<div ng-controller="UsersCtrl">
+    <div class="main-page-title title-icon relative l">
+        <!-- start page title-->
+        <i class="zmdi zmdi-accounts-alt icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">
+            @Resource.User</h4>
+        <!-- end page title-->
+        <div class="pull-right">
+            <button tabindex="14" class="btn btn-success btn-xs waves-effect" ng-disabled="!permission.CanWrite"
+                ng-click="ExportToExcel()" ng-if="tableParams.total() > 0" type="button">
+                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+            </button>
+        </div>
+    </div>
+    <div class="c">
+    </div>
+    <div class="card-box">
+        <form name="frmUser" novalidate>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <a href class="btn btn-primary waves-effect waves-light btn-xs" ng-disabled="!permission.CanWrite"
+                        ng-click="SelectEmployee()" tabindex="1"><i class="zmdi zmdi-account-add m-r-5">
+                        </i>{{(user.Employee.EmployeeId > 0?'Change':'@Resource.Select')}}</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="checkbox checkbox-primary checkbox-inline">
+                        <input type="checkbox" id="chkIsActive" ng-disabled="!permission.CanWrite" ng-model="user.IsActive"
+                            tabindex="2" />
+                        <label for="chkIsActive">
+                            @Resource.IsActive
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.EmployeeCode</label>
+                    <input type="text" class="form-control" tabindex="3" ng-model="user.Employee.BadgeNo"
+                        ng-readonly="true" placeholder="@Resource.EmployeeCode" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.EmployeeName</label>
+                    <input type="text" class="form-control" tabindex="4" ng-model="user.Employee.Name"
+                        ng-readonly="true" placeholder="@Resource.EmployeeName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.Site</label>
+                    <input type="text" class="form-control" tabindex="5" ng-model="user.Employee.SiteName"
+                        ng-readonly="true" placeholder="@Resource.Site" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.Department</label>
+                    <input type="text" class="form-control" tabindex="6" ng-model="user.Employee.DepartmentName"
+                        ng-readonly="true" placeholder="@Resource.Department" />
+                </div>
+            </div>
+        </div>*@
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.UserName <span class="required-field">*</span></label>
+                    <input type="text" class="form-control" id="txtUserName" name="txtUserName" ng-model="user.UserName"  ng-readonly="true" 
+                        tabindex="7" ng-disabled="!permission.CanWrite" ng-required="true" maxlength="100" placeholder="@Resource.UserName" />
+                    <div class="c">
+                    </div>
+                    <div class="label label-danger " data-ng-show="frmUser.txtUserName.$dirty && frmUser.txtUserName.$invalid">
+                        <span data-ng-show="frmUser.txtUserName.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.UserName))</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.Role <span class="required-field">*</span></label>
+                    <div ng-dropdown-multiselect="" search-filter="roleSearchFilter" extra-settings="roleMultiSelectSettings"
+                     translation-texts="defaultTextSettings" options="roles"selected-model="user.UserRole" checkboxes="true" 
+                     tab-index="8" button-default-text="@Resource.Select @Resource.Role">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.Password <span class="required-field">*</span></label>
+                    <input type="password" class="form-control" id="txtPassword" name="txtPassword" ng-model="user.Password"
+                        ng-focus="true" tabindex="9" ng-required="true" ng-disabled="!permission.CanWrite" maxlength="25" placeholder="@Resource.Password" />
+                    <div class="c">
+                    </div>
+                    <div class="label label-danger " data-ng-show="frmUser.txtPassword.$dirty && frmUser.txtPassword.$invalid">
+                        <span data-ng-show="frmUser.txtPassword.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Password))</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.ConfirmPassword <span class="required-field">*</span></label>
+                    <input type="password" class="form-control" id="txtConfirmPassword" name="txtConfirmPassword"
+                        tabindex="10" ng-model="user.ConfirmPassword" ng-required="true" compare-to="user.Password"
+                        maxlength="25" placeholder="@Resource.ConfirmPassword" ng-disabled="!permission.CanWrite" />
+                    <div class="c">
+                    </div>
+                    <div class="label label-danger " data-ng-show="frmUser.txtConfirmPassword.$dirty && frmUser.txtConfirmPassword.$invalid">
+                        <span data-ng-show="frmUser.txtConfirmPassword.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.ConfirmPassword))</span>
+                        <span data-ng-show="frmUser.txtConfirmPassword.$error.compareTo">@Resource.PasswordMustBeSame</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        @Resource.Area</label>
+                    <div ng-dropdown-multiselect=""
+                                search-filter="areaSearchFilter"
+                                extra-settings="areaMultiSelectSettings"
+                                translation-texts="defaultTextSettings"
+                                options="areas"
+                                selected-model="user.UserArea"
+                                checkboxes="true"
+                                tab-index="11"
+                                button-default-text="@Resource.Select @Resource.Area">
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    <button type="button" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                        ng-disabled="frmUser.$invalid || !(user.EmployeeId > 0) || !permission.CanWrite"
+                        ng-click="SaveUser(frmUser,user)" tabindex="12">
+                        {{user.UserId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                    </button>
+                    <button type="button" ng-click="ClearForm(frmUser)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                        tabindex="12">
+                        @Resource.Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+        </form>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8">
+                        <label class="table-title">
+                            @Resource.UserDetails
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" tabindex="104" ng-model="search" tabindex="13" ng-change="isSearchClicked = false;" class="form-control" placeholder="@string.Format("{0} {1}", Resource.Search, Resource.UserDetails)" />
+                            <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked = true;tableParams.page(1);tableParams.reload();">
+                                <i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <label class="label label-info m-r-5" ng-show="tableParams.total()>0">
+                            {{tableParams.total()}} @Resource.RecordsFound
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control-static">
+                        <scrollable-table scroll-height="427">
+                            <table ng-table="tableParams" id="datatable" class="table-bordered table table-striped b-a b-light breakwordrow" >
+                                <tr ng-repeat="h in $data">
+                                    <td data-title="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'" >
+                                        {{(tableParams.page() - 1 ) * tableParams.count() + $index + 1 }}
+                                    </td>
+                                    <td data-title="'@Resource.UserName'" sortable="'UserName'" header-class="'colUserName'" ng-class="'colUserName breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserName}}">
+                                        {{h.UserName}}
+                                    </td>
+                                    <td data-title="'@Resource.Role'" sortable="'RoleName'" header-class="'colRoleName'" ng-class="'colRoleName breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.RoleName}}">
+                                        {{h.RoleName}}
+                                    </td>
+                                    <td data-title="'@Resource.Designation'" sortable="'EmpName'" header-class="'colEmpName'" ng-class="'colEmpName breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.EmpName}}">
+                                        {{h.EmpName}}
+                                    </td>
+                                    <td data-title="'@Resource.Designation'" sortable="'SiteName'" header-class="'colSite'" ng-class="'colSite breakword overflow-ellipsis cursor-pointer'"  angular-tooltip data-side="bottom" data-content="{{h.SiteName}}">
+                                        {{h.SiteName}}
+                                    </td>
+                                    <td data-title="'@Resource.Designation'" sortable="'DepartmentName'" header-class="'colDepartment'" ng-class="'colDepartment breakword overflow-ellipsis cursor-pointer'"  angular-tooltip data-side="bottom" data-content="{{h.DepartmentName}}">
+                                        {{h.DepartmentName}}
+                                    </td>
+                                    <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'" >
+                                        <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="h.IsActive"
+                                            ng-disabled="true" />
+                                    </td>
+                                    <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'" >
+                                        <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit"
+                                            title="@Resource.Edit" ng-click="GetUser(h.UserId)">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr ng-if="$data.length == 0">
+                                    <td colspan="10" class="no-record">
+                                        @Resource.NoRecordFound
+                                        <span ng-if="search!=''">
+                                            <br />@Resource.YourSearch - '{{search}}' @Resource.DidNotMatchAnyRecord
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </scrollable-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/Configuration/Users");
+}

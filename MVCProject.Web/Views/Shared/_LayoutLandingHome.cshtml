@@ -1,0 +1,33 @@
+﻿@using MVCProject.ViewModel
+@{UserContext userContext = Session["UserContext"] != null ? (UserContext)Session["UserContext"] : new UserContext();}
+<!DOCTYPE html>
+<html ng-app="MVCApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css' />    @Html.Partial("~/Views/Shared/_CommonScriptInner.cshtml")
+    @{BundleTable.EnableOptimizations = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["IsJsCssMinified"]);}
+    @Styles.Render("~/css/landing")
+    <script type="text/javascript">
+        var sessionToken = '@userContext.Token';
+        var baseApiURL = '@System.Configuration.ConfigurationManager.AppSettings["ApiServiceUrl"]';
+    </script>
+</head>
+<body id="LayoutBody"  class="colorBg1 colorBg" ng-cloak ng-controller="PublicMasterCtrl">
+   @* @Html.Partial("~/Views/Shared/_Loader.cshtml")*@
+
+    @RenderBody()
+     <span class="backToTop"><i class="fa fa-arrow-circle-o-up"></i></span>
+   <script type="text/javascript">
+       var angularmodule = [
+            "ngCookies",
+            "textAngular",
+            "ui.bootstrap"
+        ];
+    </script>
+    @Scripts.Render("~/bundles/landing")
+    @Scripts.Render("~/bundles/Public/Master")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

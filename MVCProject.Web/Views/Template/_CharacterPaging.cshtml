@@ -1,0 +1,11 @@
+﻿<style>
+.sel {
+    color:red
+}
+</style>
+<div class="donate-now table_footer  btn-group" style="width:100%;">
+    <label ng-repeat="chr in charcharterPaging" for="{{chr}}" ng-click="SelectChrPaging($index)" ng-class="'btn btn-sm waves-effect waves-light btn-' + ($index == selectedChrPaging ? 'primary' : 'default')">
+        <input type="radio" id="{{chr}}" name="rdCharcharcterPaging" ng-model="charcharter.value"
+            ng-value="chr!='All'?chr:''" style="display:none;">{{chr}}
+     </label>
+</div>

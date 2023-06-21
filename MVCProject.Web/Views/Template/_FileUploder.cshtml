@@ -1,0 +1,317 @@
+﻿<style type="text/css">
+    .colFileName
+    {
+        width: 100%;
+    }
+    
+    .colFileSize
+    {
+        min-width: 70px !important;
+        max-width: 70px !important;
+        width: 70px !important;
+    }
+    
+    .colFileProgress
+    {
+        min-width: 100px !important;
+        max-width: 100px !important;
+        width: 100px !important;
+    }
+    
+    .colFileProgress div.progress
+    {
+        margin: 0px !important;
+        margin-top: 5px !important;
+    }
+    
+    .colFileStatus
+    {
+        min-width: 60px !important;
+        max-width: 60px !important;
+        width: 60px !important;
+    }
+    
+    .colFileAction
+    {
+        min-width: 110px !important;
+        max-width: 110px !important;
+        width: 110px !important;
+    }
+    
+    .hovereffect
+    {
+        width: 100%;
+        height: 100%;
+        float: left;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        cursor: default;
+    }
+    
+    .hovereffect .overlay
+    {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        margin-top: 40%;
+    }
+    
+    .hovereffect img
+    {
+        display: block;
+        position: relative;
+        -webkit-transition: all 0.4s ease-in;
+        transition: all 0.4s ease-in;
+    }
+    
+    .hovereffect:hover img
+    {
+        filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" /><feGaussianBlur stdDeviation="3" /></filter></svg>#filter');
+        filter: grayscale(1) blur(3px);
+        -webkit-filter: grayscale(1) blur(3px);
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    
+    .hovereffect span
+    {
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        font-size: 17px;
+        padding: 10px;
+        background: transparent;
+    }
+    
+    .hovereffect a.info
+    {
+        display: inline-block;
+        text-decoration: none;
+        padding: 7px 14px;
+        border: 1px solid #fff;
+        margin: 50px 0 0 0;
+        background-color: transparent;
+    }
+    
+    .hovereffect a.info:hover
+    {
+        box-shadow: 0 0 5px #fff;
+    }
+    
+    .hovereffect a.info, .hovereffect span
+    {
+        -webkit-transform: scale(0.7);
+        -ms-transform: scale(0.7);
+        transform: scale(0.7);
+        -webkit-transition: all 0.4s ease-in;
+        transition: all 0.4s ease-in;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        color: #fff;
+        text-transform: uppercase;
+    }
+    
+    .hovereffect:hover a.info, .hovereffect:hover span
+    {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    
+    
+    .reported-nearmiss-attachments
+    {
+    }
+    .reported-nearmiss-attachments ul
+    {
+        margin: 0;
+        padding: 0;
+    }
+    .reported-nearmiss-attachments ul li
+    {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: inline-block;
+        margin-right: 5px;
+        position: relative;
+    }
+    .reported-nearmiss-attachments ul li a
+    {
+        display: block;
+        height: 120px;
+        width: 120px;
+        border: 1px solid #cbd3d6;
+        padding: 1px;
+        opacity: 1;
+    }
+    .reported-nearmiss-attachments ul li a:hover
+    {
+        opacity: 0.8;
+    }
+    
+    .reported-nearmiss-attachments ul li a img
+    {
+        height: 116px;
+        width: 116px;
+        display: block;
+    }
+    .reported-nearmiss-attachments ul li .overlay
+    {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        margin: -11px 0 0 0;
+        text-align: center;
+    }
+</style>
+<div class="row" ng-if="!isViewOnly">
+    <div ng-class="inputContainerClass">
+        <div class="custom_file_upload">
+            <input type="text" class="file" placeholder="{{placeholder}}" disabled="disabled" />
+            <div class="file_upload btn btn-icon btn-custom btn-trans waves-effect waves-light cursor-pointer relative"
+                style="cursor: pointer;" id="file_upload" name="file_info" class="cursor-pointer">
+                <div class="upload-txt">
+                    <i class="fa fa-paperclip"></i>
+                </div>
+                <input type="file" nv-file-select="" uploader="uploader" multiple tabindex="{{tabIndex}}"
+                    base-sixty-four-input />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row m-t-10" ng-if="!isForThumbnail">
+    <div class="Container">
+        <div class="col-sm-12" ng-class="gridContainerClass">
+            <scrollable-table scroll-height="scrollHeight">
+                <table class="table table-bordered table-striped b-a b-light breakwordrow">
+                    <thead>
+                        <tr>
+                            <th class="colFileName">
+                                @Resource.Name
+                            </th>
+                            <th ng-show="uploader.isHTML5" class="colFileSize">
+                                @Resource.Size
+                            </th>
+                            <th ng-show="!isViewOnly && uploader.isHTML5" class="colFileProgress">
+                                @Resource.Progress
+                            </th>
+                            <th ng-hide="isViewOnly" class="colFileStatus">
+                                @Resource.Status
+                            </th>
+                            <th class="colFileAction">
+                                {{isViewOnly ? '@Resource.View' : '@Resource.Actions'}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in uploader.queue">
+                            <td class="colFileName overflow-ellipsis">
+                                <span title="{{ item.file.name }}">{{ item.file.name }}</span><br />
+                                {{item.file.Fid}}
+                            </td>
+                            <td ng-show="uploader.isHTML5" nowrap class="colFileSize text-right">
+                                {{ item.file.size/1024/1024|number:2 }} @Resource.MB
+                            </td>
+                            <td ng-show="!isViewOnly && uploader.isHTML5" class="colFileProgress">
+                                <uib-progressbar value="item.progress?item.progress:0" type="primary" class="m-t-5"><b>{{item.progress?item.progress:0}}%</b></uib-progressbar>
+                            </td>
+                            <td class="text-center" ng-hide="isViewOnly" class="colFileStatus">
+                                <span ng-show="item.isSuccess"><i class="zmdi zmdi-check"></i></span><span ng-show="item.isCancel">
+                                    <i class="zmdi zmdi-block"></i>
+                                </span><span ng-show="item.isError">
+                                    <i class="zmdi zmdi-close">
+                                    </i>
+                                </span>
+                            </td>
+                            <td nowrap class="colFileAction">
+                                <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5"
+                                        ng-hide="item.AttachmentId >0" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" title="@Resource.Upload">
+                                    <i class="fa fa-upload"></i>
+                                </button>
+                                {{CheckPendingDocument((item.isReady || item.isUploading || item.isSuccess))}}
+                                <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5"
+                                        ng-click="deleteDocumentFromQueue(item)" ng-hide="item.isNotATemp" title="@Resource.Remove">
+                                    <i class="fa fa-trash-o"></i>
+                                    <!--local-->
+                                </button>
+                                <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5"
+                                        ng-click="deleteDocumentFromQueue(item)" ng-show="item.isNotATemp && !isViewOnly" title="@Resource.Remove">
+                                    <i class="fa fa-trash-o"></i>
+                                    <!--Server-->
+                                </button>
+                                <a target="_blank" ng-href="{{item.file.AttachmentPath}}"
+                                   ng-show="item.AttachmentId > 0" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5" title="@Resource.View">
+                                    <i class="zmdi zmdi-eye"></i>
+                                </a>
+                                <a target="_blank" ng-href="{{AttachmentTempPath + getEncryptedFileName(item.file.name)}}"
+                                   ng-show="!(item.AttachmentId > 0) && (item.isReady || item.isUploading || item.isSuccess)"
+                                   class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5" title="@Resource.View">
+                                    <i class="zmdi zmdi-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr ng-if="uploader.queue.length == 0">
+                            <td class="text-center" colspan="5">
+                                @Resource.NoFileUploaded
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </crollable-table>
+        </div>
+        <div ng-if="!isViewOnly">
+            <div class="col-sm-9 col-md-9 m-t-10">
+                @Resource.QueueProgress:
+                <uib-progressbar value="uploader.progress?uploader.progress:0" type="primary"><b>{{uploader.progress?uploader.progress:0}}%</b></uib-progressbar>
+            </div>
+            <div class="col-sm-3 col-md-3 text-right m-t-10">
+                <button name="btnUploadAll" type="button" class="btn btn-custom btn-xs waves-effect w-md waves-light"
+                    ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                    <i class="fa fa-upload m-r-5"></i>@Resource.UploadAll
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row m-t-10" ng-if="isForThumbnail">
+    <div class="Container">
+        <div ng-class="gridContainerClass">
+            <div class="reported-nearmiss-attachments">
+                <ul>
+                    <li ng-repeat="item in uploader.queue"><a href="#">
+                        <img ng-if="item.AttachmentId > 0" ng-src="{{item.file.AttachmentPath ? item.file.AttachmentPath : '../../Content/images/attchment-placeholder-img.png'}}"/>                        
+                        <img ng-if="!item.isNotATemp" ng-src="{{AttachmentTempPath + getEncryptedFileName(item.file.name)}}" />                        
+                        <span class="overlay">                            
+                            {{UploadDocument(item)}} 
+                            {{CheckPendingDocument((item.isReady || item.isUploading || item.isSuccess))}}
+                            <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5"
+                                        ng-click="deleteDocumentFromQueue(item)" ng-if="!isViewOnly && (item.AttachmentId > 0 || item.isReady || item.isUploading || item.isSuccess)"  title="@Resource.Remove"> @*ng-hide="item.isNotATemp"*@
+                                <i class="fa fa-trash-o"></i>                                
+                            </button>
+                            <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5"
+                                        ng-click="deleteDocumentFromQueue(item)" ng-if="!(item.isReady || item.isUploading || item.isSuccess) && !isViewOnly" title="@Resource.Remove">  @*ng-show="item.isNotATemp && !isViewOnly"*@
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                            <button ng-click="viewImage(item)" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5" ng-show="item.AttachmentId > 0 || item.isReady || item.isUploading || item.isSuccess" title="@Resource.View">
+                                <i class="zmdi zmdi-eye"></i>
+                            </button>
+                        </span></a></li>
+                    <li ng-repeat="n in [].constructor(maxLimit - uploader.queue.length) track by $index">
+                        <a href="#">
+                            <img src="../../Content/images/attchment-placeholder-img.png" height="116" width="116"
+                                alt="" />
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@*class="progress progress-md progress-bar-primary progress-bar-striped"*@

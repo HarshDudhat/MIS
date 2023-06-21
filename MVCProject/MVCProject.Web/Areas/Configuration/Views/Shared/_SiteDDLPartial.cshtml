@@ -1,0 +1,68 @@
+﻿
+@*<div class="col-md-3">
+    <div class="form-group">
+        <label for="Designation">
+            @Resource.HWMGSSite <span class="required-field">*</span>
+        </label>
+
+        <div angucomplete-alt
+             input-name="ddlSiteLeveleId"
+             ng-model="Obj.WasteGeneration.SiteLeveleId"
+             pause="400"
+             minlength="1"
+             maxlength="100"
+             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.HWMGSSite)"
+             remote-url="{{GetSiteAutoCompleteUrl}}"
+             remote-url-data-field="Result"
+             initial-value="Obj.WasteGeneration.SiteLeveleId"
+             match-class="blue"
+             selected-object="ChangedSiteLeveleId"
+             title-field="Name"
+             description-field="Description"
+             text-searching="@Resource.AutocompleteSearching"
+             text-no-results="@Resource.NoRecordAvailable"
+             tabindex="1"
+             input-class="form-control">
+        </div>
+        <div class="c">
+        </div>
+        <div class="label label-danger" data-ng-show="frmWasteGeneration.ddlSiteLeveleId.$dirty && frmWasteGeneration.ddlSiteLeveleId.$invalid">
+            <span data-ng-show="frmWasteGeneration.ddlSiteLeveleId.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.HWMGSSite))</span>
+        </div>
+    </div>
+</div>*@
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="Designation">
+            @Resource.HWMGSSite <span class="required-field">*</span>
+        </label>
+
+        <div angucomplete-alt
+             input-name="txtConfigLevel"
+             id="txtConfigLevel"
+             ng-model="Obj.WasteGeneration.SiteName"
+             pause="400"
+             minlength="1"
+             maxlength="100"
+             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.Site)"
+             remote-url="{{GetLevelAutoCompleteUrl}}"
+             remote-url-data-field="Result"
+             initial-value="Obj.WasteGeneration.SiteName"
+             match-class="blue"
+             selected-object="SetLevel"
+             title-field="Name"
+             description-field="Description"
+             field-required="Obj.WasteGeneration.SiteName != 0"
+             text-searching="@Resource.AutocompleteSearching"
+             text-no-results="@Resource.NoRecordAvailable" 
+             input-class="form-control">
+        </div>
+
+        <div class="clearfix">
+        </div>
+        <div class="badge badge-danger" data-ng-show="frmWasteGeneration.txtConfigLevel.$dirty && frmMedicineOpeningStock.txtConfigLevel.$invalid && frmWasteGeneration.txtConfigLevel.$error.required">
+            <span ng-show="frmWasteGeneration.txtConfigLevel.$error.required">@Resource.SiteRequired</span>
+        </div>
+    </div>
+</div>

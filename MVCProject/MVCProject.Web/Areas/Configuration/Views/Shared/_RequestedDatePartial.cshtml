@@ -1,0 +1,25 @@
+﻿<div class="col-md-3">
+    <div class="form-group">
+        <label>
+            @Resource.HWMGSRequestedDate <span class="required-field">*</span>
+        </label>
+        <p class="input-group">
+            <input type="text" name="txtRequestedDate" id="txtRequestedDate"
+                   class="form-control" uib-datepicker-popup="{{defaultSettings.dateFormat}}"
+                   ng-model="Obj.WasteGeneration.RequestedDate" is-open="datePickerRD.Open" max-date="MaxDate"
+                   datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                   readonly="readonly"
+                   placeholder="@Resource.HWMGSRequestedDate" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="datePickerRD.Open=true">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+        </p>
+        <div class="c">
+        </div>
+        <div class="label label-danger" data-ng-show="frmWasteGeneration.txtRequestedDate.$dirty && frmWasteGeneration.txtRequestedDate.$invalid">
+            <span data-ng-show="frmWasteGeneration.txtRequestedDate.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.HWMGSRequestedDate))</span>
+        </div>
+    </div>
+</div>

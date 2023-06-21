@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = Resource.Roles;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .panel-body
+    {
+        padding: 0px !important;
+    }
+    
+    .colSrno
+    {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+        text-align: right;
+    }
+    
+    .colRole
+    {
+        width: 170px !important;
+        min-width: 170px !important;
+        max-width: 170px !important;
+    }
+    
+    .colLevel
+    {
+        width: 90px !important;
+        min-width: 90px !important;
+    }
+    
+    .colActive
+    {
+        width: 70px !important;
+        min-width: 70px !important;
+        max-width: 70px !important;
+        text-align: center;
+    }
+    
+    .colAction
+    {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+        text-align: center;
+    }
+    
+    .colPage
+    {
+        width: 190px !important;
+        min-width: 190px !important;
+        max-width: 190px !important;
+    }
+    
+    .colCanReadWrite
+    {
+        width: 80px !important;
+        min-width: 80px !important;
+        text-align: center;
+    }
+    
+    .tdHead
+    {
+        background-color: #ebeff2 !important;
+        border: 1px solid #dddddd !important;
+        color: #666666 !important;
+    }
+</style>
+<div ng-controller="RoleMasterCtrl">
+    <!-- start title section-->
+    <div class="main-page-title title-icon relative l">
+        <!-- start page title-->
+        <i class="ti-map-alt icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">
+            @Resource.Roles</h4>
+        <!-- end page title-->
+    </div>
+    <!-- end title section-->
+    <!-- start body section-->
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-5">
+                <form name="frmRole" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="Designation">
+                                @Resource.RoleName <span class="required-field">*</span></label>
+                            <input type="text" maxlength="100" class="form-control" id="txtRoleName" name="txtRoleName"
+                                ng-focus="true" ng-model="role.RoleName" ng-required="true" ng-disabled="!permission.CanWrite" tabindex="1" placeholder="@Resource.RoleName">
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmRole.txtRoleName.$dirty && frmRole.txtRoleName.$invalid">
+                                <span data-ng-show="frmRole.txtRoleName.$error.required">@Resource.RoleNameRequired</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Designation">
+                                @Resource.RoleLevel <span class="required-field">*</span></label>
+                            <select class="form-control" ng-model="role.RoleLevelId" tabindex="2" id="ddlRoleLevel"
+                                name="ddlRoleLevel" ng-required="true" ng-disabled="!permission.CanWrite" ng-options="level.RoleLevelId as level.LevelName for level in roleLeveles">
+                                <option value="">@string.Format("{0} {1}", Resource.Select, Resource.RoleLevel)</option>
+                            </select>
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmRole.ddlRoleLevel.$dirty && frmRole.ddlRoleLevel.$invalid">
+                                <span data-ng-show="frmRole.ddlRoleLevel.$error.required">@Resource.RoleLevelRequired</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox checkbox-info">
+                                <input type="checkbox" id="chkIsActive" ng-disabled="!permission.CanWrite" name="chkIsActive"
+                                    ng-model="role.IsActive" tabindex="3" />
+                                <label for="chkIsActive">
+                                    @Resource.IsActive
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Designation">
+                                @Resource.ModuleOrPagePermissions <span class="required-field">*</span></label>
+                            <div class="form-control-static singlelevel-accordion">
+                                <uib-accordion close-others="oneAtATime">
+                                    <uib-accordion-group is-open="module.isOpen" ng-repeat="module in modules">
+                                        <uib-accordion-heading>
+                                            <i class="m-r-5 fa" ng-class="{'fa-minus-circle': module.isOpen, 'fa-plus-circle': !module.isOpen}"></i>{{module.PageName}}
+                                        </uib-accordion-heading>
+                                        <div class="main-table table-responsive">
+                                            <table class="table table-striped table-bordered table-hover no-margin">
+                                                <tbody>
+                                                    <tr>
+                                                        <th class="colPage">
+                                                            @Resource.Page
+                                                        </th>
+                                                        <td class="colCanReadWrite tdHead">
+                                                            <div class="checkbox checkbox-primary no-margin">
+                                                                <input type="checkbox" id="chkModuleCanRead{{module.PageId}}" ng-disabled="!permission.CanWrite" ng-change="CheckAll(module,'CanRead')" name="chkModuleCanRead{{module.PageId}}" ng-model="module.CanRead" />
+                                                                    <label for="chkModuleCanRead{{module.PageId}}"><b>Read</b></label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="colCanReadWrite tdHead">
+                                                        <div class="checkbox checkbox-primary no-margin">
+                                                                <input type="checkbox" id="chkModuleCanWrite{{module.PageId}}" ng-disabled="!permission.CanWrite" ng-change="CheckAll(module,'CanWrite')" name="chkModuleCanWrite{{module.PageId}}" ng-model="module.CanWrite" />
+                                                                    <label for="chkModuleCanWrite{{module.PageId}}"><b>Write</b></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>                                                
+                                                    <tr ng-repeat="page in module.Pages">                                                        
+                                                        <td class="colPage overflow-ellipsis cursor-pointer" angular-tooltip data-side="bottom" data-content="{{page.PageName}}">
+                                                            {{page.PageName}}
+                                                        </td>
+                                                        <td class="colCanReadWrite">
+                                                            <div class="checkbox checkbox-primary no-margin">
+                                                                <input type="checkbox" ng-change="SetCheckAll(page, module,'CanRead')" ng-disabled="!permission.CanWrite" ng-model="page.CanRead" />
+                                                                    <label></label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="colCanReadWrite">
+                                                            <div class="checkbox checkbox-primary no-margin">
+                                                                <input type="checkbox" ng-change="SetCheckAll(page, module,'CanWrite')" ng-disabled="!permission.CanWrite" ng-model="page.CanWrite" />
+                                                                    <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </uib-accordion-group>
+                                </uib-accordion>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                tabindex="4" ng-click="SaveRole(role, frmRole);" ng-disabled="frmRole.$invalid || !permission.CanWrite">
+                                {{role.RoleId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                            </button>
+                            <button type="button" class="btn btn-info waves-effect w-md waves-light m-b-5" tabindex="5"
+                                ng-click="ClearForm(frmRole);">
+                                @Resource.Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h3 class="table-title">
+                                    @Resource.Roles @Resource.Details
+                                </h3>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="input-group">
+                                    <input type="text" tabindex="104" ng-model="search" class="form-control" placeholder="@string.Format("{0} {1}", Resource.Search, Resource.Roles)" />
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-search" tabindex="105"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="form-control-static">
+                                <div class="table-responsive main-table">
+                                    <table class="table table-striped table-bordered table-hover no-margin">
+                                        <thead>
+                                            <tr>
+                                                <th class="colSrno">
+                                                    @Resource.SrNo
+                                                </th>
+                                                <th class="colRole">
+                                                    @Resource.Role
+                                                </th>
+                                                <th class="colLevel">
+                                                    @Resource.Level
+                                                </th>
+                                                <th class="colActive">
+                                                    @Resource.IsActive
+                                                </th>
+                                                <th class="colAction">
+                                                    @Resource.Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="role in roles | filter : search">
+                                                <td class="colSrno">
+                                                    {{$index+1}}
+                                                </td>
+                                                <td class="colRole overflow-ellipsis cursor-pointer" angular-tooltip data-side="bottom" data-content="{{role.RoleName}}">
+                                                    {{role.RoleName}}
+                                                </td>
+                                                <td class="colLevel overflow-ellipsis cursor-pointer" angular-tooltip data-side="bottom" data-content="{{role.LevelName}}">
+                                                    {{role.LevelName}}
+                                                </td>
+                                                <td class="colActive">
+                                                    <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="role.IsActive"
+                                                        ng-disabled="true" />
+                                                </td>
+                                                <td class="colAction">
+                                                    <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" title="@Resource.Edit"
+                                                   ng-click="EditRole(role.RoleId)"><i class="fa fa-edit"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="(roles | filter : search).length == 0">
+                                                <td colspan="5" class="no-record">
+                                                    @Resource.NoRecordFound
+                                                    <span ng-if="search!=''">
+                                                        <br />@Resource.YourSearch - '{{search}}' @Resource.DidNotMatchAnyRecord
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end body section-->
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/RoleMaster")
+}

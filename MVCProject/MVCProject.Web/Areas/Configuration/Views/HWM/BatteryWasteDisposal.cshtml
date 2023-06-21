@@ -1,0 +1,510 @@
+﻿@{
+    ViewBag.Title = Resource.BWDHeader;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="HWBatteryWasteDisposalCtrl" ng-submit="SaveBatteryDisposal(frmWasteBattery,Obj)" novalidate>
+    <form name="frmWasteBattery" novalidate>
+        <div class="main-page-title title-icon relative">
+            <h4 class="header-title-sub">
+                <i class="icofont-capsule icon-position"></i>
+                @Resource.BWDHeader  {{Obj.wasteDisposal.DocumentNo}}
+            </h4>
+        </div>
+
+        <div class="card-box" ng-init="GetWasteDisposalDetails(@ViewBag.WasteDisposalId)">
+
+            <input type="hidden" class="form-control" ng-model="Obj.WasteDisposal.FunctionalWasteTypeName" ng-readonly="true" />
+            <input type="hidden" class="form-control" ng-model="Obj.WasteDisposal.FunctionalWasteTypeId" ng-readonly="true" />
+            <input type="hidden" class="form-control" ng-model="Obj.WasteDisposal.SiteLeveleId" ng-readonly="true" />
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-table table-responsive">
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Resource.SrNo
+                                    </th>
+                                    <th>
+                                        @Resource.WasteType<span class="required-field">*</span>
+                                    </th>
+                                    <th>
+                                        @Resource.BWDCharacteristics<span class="required-field">*</span>
+                                    </th>
+                                    <th>
+                                        @Resource.Quantity<span class="required-field">*</span>
+                                    </th>
+                                    <th>
+                                        @Resource.Unit<span class="required-field">*</span>
+                                    </th>
+                                    <th>
+                                        @Resource.BWDPhysicalState<span class="required-field">*</span>
+                                    </th>
+                                    <th>
+                                        @Resource.BWDIncompatibleWasteSubstances<span class="required-field">*</span>
+                                    </th>
+                                    <th>
+                                        @Resource.Action
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            <tbody ng-switch="showHideAction.isEdit" ng-repeat="item in medicineOpeningStock track by $index"
+                                   ng-init="showHideAction={isEdit:false};actionToEdit={};item.index=$index+1;">
+                                <tr ng-switch-when="false">
+                                    <td>
+                                        <span>
+                                            {{ $index + 1}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            {{item.WasteCategoryName}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            {{item.Characteristics}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>{{item.Quantity}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{item.UOM}}</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            {{item.PhysicalStateName}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            {{item.IncompatibleWasteSubstances}}
+                                        </span>
+                                    </td>
+                                    <td class="colAction">
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-info btn-xs waves-effect waves-light m-r-5"
+                                           title="@Resource.Edit"
+                                           ng-click="EditMedicineDetails(item,actionToEdit,showHideAction);">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Delete"
+                                           ng-if="!IsDisableOnEdit"
+                                           ng-click="DeleteHWMDisposal(medicineOpeningStock,item);">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr ng-form="frmMedicineDetailsEdit" ng-switch-when="true">
+                                    <td>
+                                        {{ $index + 1}}
+                                    </td>
+                                    <td>
+                                        <select class="form-control" ng-model="actionToEdit.WasteCategoryId" ng-required="true"
+                                                ng-options="category.Id as category.Name for category in WasteCategories" ng-disabled="IsDisableOnEdit"
+                                                ng-change="fnWasteTypeChange(actionToEdit)">
+                                            <option value="">@string.Format("{0} {1}", Resource.Select, Resource.WasteCategory)</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" autocomplete="off" oncopy="return false" ng-disabled="IsDisableOnEdit"
+                                               required ng-model="actionToEdit.Characteristics" maxlength="20" />
+                                    </td>
+                                    <td ng-class="'text-center'">
+                                        <input type="number" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToEdit.Quantity" min="1"
+                                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only validate-integer />
+                                    </td>
+                                    <td ng-class="'text-center'">
+                                        <input type="text" class="form-control" autocomplete="off" oncopy="return false" readonly="readonly" required ng-model="actionToEdit.UOM" maxlength="3" />
+                                    </td>
+                                    <td ng-class="'text-center'">
+                                        <input type="text" class="form-control" autocomplete="off" oncopy="return false" readonly="readonly" required ng-model="actionToEdit.PhysicalStateName"
+                                               maxlength="10" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" autocomplete="off" oncopy="return false" ng-disabled="IsDisableOnEdit"
+                                               required ng-model="actionToEdit.IncompatibleWasteSubstances" maxlength="30" />
+                                    </td>
+                                    <td class="colAction">
+                                        <a href="javascript:void(0);"
+                                           class="btn btn-icon btn-success btn-xs waves-effect waves-light m-r-5"
+                                           ng-disabled="frmMedicineDetailsEdit.$invalid"
+                                           title="@Resource.Save"
+                                           ng-click="frmMedicineDetailsEdit.$invalid || UpdateMedicineDetails(frmMedicineDetailsEdit,medicineOpeningStock,item,actionToEdit,showHideAction);">
+                                            <i class="fa fa-save"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Cancel"
+                                           ng-click="showHideAction.isEdit=!showHideAction.isEdit">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                            <tr ng-form="frmMedicineDetailsAdd" ng-if="options.showAddHWMDisposal">
+                                <td>
+                                    {{ medicineOpeningStock.length + 1}}
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-model="actionToAdd.WasteCategoryId" ng-required="true"
+                                            ng-options="category.Id as category.Name for category in WasteCategories"
+                                            ng-change="fnWasteTypeChange(actionToAdd)">
+                                        <option value="">@string.Format("{0} {1}", Resource.Select, Resource.WasteCategory)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToAdd.Characteristics" maxlength="20" />
+                                </td>
+                                <td ng-class="'text-center'">
+                                    <input type="number" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToAdd.Quantity" min="1"
+                                           ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only validate-integer />
+                                </td>
+                                <td ng-class="'text-center'">
+                                    <input type="text" class="form-control" autocomplete="off" oncopy="return false" readonly="readonly" required ng-model="actionToAdd.UOM" maxlength="3" />
+                                </td>
+                                <td ng-class="'text-center'">
+                                    <input type="text" class="form-control" autocomplete="off" oncopy="return false" readonly="readonly" required ng-model="actionToAdd.PhysicalStateName"
+                                           maxlength="10" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToAdd.IncompatibleWasteSubstances" maxlength="30" />
+                                </td>
+                                <td class="colAction">
+                                    <a href="javascript:void(0);" class="btn btn-icon btn-success btn-xs waves-effect waves-light m-r-5" ng-disabled="frmMedicineDetailsAdd.$invalid"
+                                       title="@Resource.Save" ng-click="frmMedicineDetailsAdd.$invalid || AddMedicineDetails(frmMedicineDetailsAdd,medicineOpeningStock,actionToAdd,options);">
+                                        <i class="fa fa-save"></i>
+                                    </a>
+                                    <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Cancel"
+                                       ng-click="options.showAddMedicineDetails=!options.showAddMedicineDetails">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <a class="btn btn-primary waves-effect waves-light btn-xs pull-right m-t-5"
+                           ng-click="options.showAddHWMDisposal=!options.showAddHWMDisposal" ng-if="!IsDisableOnEdit">
+                            <i class="zmdi zmdi-plus m-r-5"></i>@Resource.AddMedicineStock
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>@Resource.WSite</label><span class="required-field">*</span>
+
+                        <div angucomplete-alt
+                             input-name="ddlSiteLeveleId"
+                             id="ddlSiteLeveleId"
+                             ng-model="Obj.WasteDisposal.SiteName"
+                             initial-value="Obj.WasteDisposal.SiteName"
+                             pause="400"
+                             minlength="1"
+                             maxlength="100"
+                             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.WSite)"
+                             remote-url="{{GetSiteAutoCompleteUrl}}"
+                             remote-url-data-field="Result"
+                             match-class="blue"
+                             selected-object="SetLevel"
+                             title-field="Name"
+                             description-field="Description"
+                             text-searching="@Resource.AutocompleteSearching"
+                             text-no-results="@Resource.NoRecordAvailable"
+                             tabindex="1" input-class="form-control"
+                             disable-input="IsDisableOnEdit">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Contact <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.TranspoterConatctNo" required tabindex="2" type="text" ng-disabled="IsDisableOnEdit"
+                               id="txtWasteDisposalTranspoterConatctNo" name="txtWasteDisposalTranspoterConatctNo"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only maxlength="20">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterConatctNo.$dirty && frmWasteBattery.txtWasteDisposalTranspoterConatctNo.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterConatctNo.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Contact))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Email <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.TranspoterEmail" required tabindex="3" type="text"
+                               id="txtWasteDisposalTranspoterEmail" name="txtWasteDisposalTranspoterEmail"
+                               ng-pattern="emailPattern" ng-disabled="IsDisableOnEdit" maxlength="20">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterEmail.$dirty && frmWasteBattery.txtWasteDisposalTranspoterEmail.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterEmail.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Email))</span>
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterEmail.$error.pattern">@(string.Format(Resource.ValidEmailRequired, Resource.Email))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Address <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.Transporteraddress" required tabindex="4" ng-disabled="IsDisableOnEdit"
+                               id="txtWasteDisposalTransporteraddress" name="txtWasteDisposalTransporteraddress"
+                               type="text" maxlength="1000">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalTransporteraddress.$dirty && frmWasteBattery.txtWasteDisposalTransporteraddress.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalTransporteraddress.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Address))</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Fax <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.TranspoterFax" required tabindex="5" type="text" ng-disabled="IsDisableOnEdit"
+                               id="txtWasteDisposalTranspoterFax" name="txtWasteDisposalTranspoterFax"
+                               maxlength="20">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterFax.$dirty && frmWasteBattery.txtWasteDisposalTranspoterFax.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterFax.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Fax))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.ContactPerson <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.TranspoterContactPerson" required tabindex="6" type="text"
+                               id="txtWasteDisposalTranspoterContactPerson" name="txtWasteDisposalTranspoterContactPerson"
+                               ng-disabled="IsDisableOnEdit" maxlength="20">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterContactPerson.$dirty && frmWasteBattery.txtWasteDisposalTranspoterContactPerson.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterContactPerson.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.ContactPerson))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.ContactPersonPhone<span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.TranspoterContactPersonPhone" required tabindex="7" type="text" ng-disabled="IsDisableOnEdit"
+                               id="txtWasteDisposalTranspoterContactPersonPhone" name="txtWasteDisposalTranspoterContactPersonPhone"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only>
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterContactPersonPhone.$dirty && frmWasteBattery.txtWasteDisposalTranspoterContactPersonPhone.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalTranspoterContactPersonPhone.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.ContactPersonPhone))</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.ReceiverName <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.RecieverName" required tabindex="8" type="text"
+                               id="txtWasteDisposalRecieverName" name="txtWasteDisposalRecieverName"
+                               ng-disabled="IsDisableOnEdit" maxlength="50">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalRecieverName.$dirty && frmWasteBattery.txtWasteDisposalRecieverName.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalRecieverName.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.ReceiverName))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Contact <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.RecieverConatctNo" required tabindex="9" type="text" ng-disabled="IsDisableOnEdit"
+                               id="txtWasteDisposalRecieverConatctNo" name="txtWasteDisposalRecieverConatctNo"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only>
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalRecieverConatctNo.$dirty && frmWasteBattery.txtWasteDisposalRecieverConatctNo.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalRecieverConatctNo.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Contact))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Email<span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.RecieverEmailaddress" required tabindex="10" type="text" ng-pattern="emailPattern"
+                               id="txtWasteDisposalRecieverEmailaddress" name="txtWasteDisposalRecieverEmailaddress"
+                               ng-disabled="IsDisableOnEdit" maxlength="20">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalRecieverEmailaddress.$dirty && frmWasteBattery.txtWasteDisposalRecieverEmailaddress.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalRecieverEmailaddress.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Email))</span>
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalRecieverEmailaddress.$error.pattern">@(string.Format(Resource.ValidEmailRequired, Resource.Email))</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Address<span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.Recieveraddress" required tabindex="11" type="text" ng-disabled="IsDisableOnEdit"
+                               id="txtWasteDisposalRecieveraddress" name="txtWasteDisposalRecieveraddress" maxlength="1000">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalRecieveraddress.$dirty && frmWasteBattery.txtWasteDisposalRecieveraddress.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalRecieveraddress.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Address))</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Fax <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.RecieverFax" required tabindex="12" type="text" ng-disabled="IsDisableOnEdit" maxlength="20"
+                               id="txtWasteDisposalRecieverFax" name="txtWasteDisposalRecieverFax">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalRecieverFax.$dirty && frmWasteBattery.txtWasteDisposalRecieverFax.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalRecieverFax.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Fax))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.ContactPerson <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.RecieverContactPerson" tabindex="13" ng-disabled="IsDisableOnEdit" required type="text"
+                               id="txtWasteDisposalRecieverContactPerson" name="txtWasteDisposalRecieverContactPerson" maxlength="30">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalRecieverContactPerson.$dirty && frmWasteBattery.txtWasteDisposalRecieverContactPerson.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalRecieverContactPerson.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.ContactPerson))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.ContactPersonPhone<span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.RecieverContactPersonPhone" ng-disabled="IsDisableOnEdit" required type="text" tabindex="14"
+                               id="txtWasteDisposalRecieverContactPersonPhone" name="txtWasteDisposalRecieverContactPersonPhone"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only>
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalRecieverContactPersonPhone.$dirty && frmWasteBattery.txtWasteDisposalRecieverContactPersonPhone.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalRecieverContactPersonPhone.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.ContactPersonPhone))</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.EmergencyContactPerson <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.EmergencyContactPerson" required tabindex="15" type="text" ng-disabled="IsDisableOnEdit" maxlength="50"
+                               id="txtWasteDisposalEmergencyContactPerson" name="txtWasteDisposalEmergencyContactPerson">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalEmergencyContactPerson.$dirty && frmWasteBattery.txtWasteDisposalEmergencyContactPerson.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalEmergencyContactPerson.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.EmergencyContactPerson))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.EmergencyContactPersonPhone <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteDisposal.EmergencyContactPersonPhone" required tabindex="16" type="text" ng-disabled="IsDisableOnEdit"
+                               id="txtWasteDisposalEmergencyContactPersonPhone" name="txtWasteDisposalEmergencyContactPersonPhone"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only>
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmWasteBattery.txtWasteDisposalEmergencyContactPersonPhone.$dirty && frmWasteBattery.txtWasteDisposalEmergencyContactPersonPhone.$invalid">
+                            <span data-ng-show="frmWasteBattery.txtWasteDisposalEmergencyContactPersonPhone.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.EmergencyContactPersonPhone))</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success w-md waves-light"
+                            ng-disabled="((medicineOpeningStock).length <=0 || frmWasteBattery.$invalid)"
+                            ng-class="{'': ((medicineOpeningStock).length <=0 && frmWasteBattery.$invalid), 'waves-effect':!((medicineOpeningStock).length <=0 && frmWasteBattery.$invalid)}">
+                        {{ IsEdit? '@Resource.Update' : '@Resource.Submit' }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/HWBatteryWasteDisposal")
+}
+
+<script type="text/javascript">
+    var DuplicateMedicineDetails = '@Resource.DuplicateMedicineDetails';
+    var MaxQuantityReached = '@Resource.MaxQuantityReached';
+    var PriceAndQtyGreaterThanZeroRequired = '@Resource.PriceAndQtyGreaterThanZeroRequired';
+    var ExpiryDateLessThenCurrentWarningMessaage = '@Resource.ExpiryDateLessThenCurrentWarningMessaage';
+    var DeleteConfirmMsg = '@Resource.DeleteConfirmMsg';
+</script>

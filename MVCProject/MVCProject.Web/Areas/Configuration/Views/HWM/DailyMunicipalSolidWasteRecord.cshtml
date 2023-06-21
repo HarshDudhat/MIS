@@ -1,0 +1,186 @@
+﻿@{
+    ViewBag.Title = Resource.DMSWRHeader;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="DailyMunicipalSolidWasteRecordCtrl">
+    <div class="main-page-title title-icon relative l">
+
+        <i class="zmdi zmdi-accounts-alt icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">
+            @Resource.DMSWRHeader
+        </h4>
+
+        <div class="pull-right">
+            <button tabindex="14" class="btn btn-success btn-xs waves-effect" ng-disabled="!permission.CanWrite"
+                    ng-click="ExportToExcel()" ng-if="tableParams.total() > 0" type="button">
+                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+            </button>
+        </div>
+    </div>
+    <div class="c">
+    </div>
+
+    <div class="card-box">
+
+        <form name="frmMuncipalWasteGenerationId" ng-submit="SaveBiomedicalWaste(frmMuncipalWasteGenerationId,MuncipalWasteGeneration)" novalidate>
+
+            <div class="row">
+
+                <input type="hidden" class="form-control" ng-model="MuncipalWasteGeneration.SiteLeveleId" ng-required="true" />
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Designation">
+                            @Resource.WSite <span class="required-field">*</span>
+                        </label>
+
+                        <div angucomplete-alt
+                             input-name="ddlSiteLeveleId"
+                             id="ddlSiteLeveleId"
+                             ng-required="true"
+                             ng-model="MuncipalWasteGeneration.SiteName"
+                             initial-value="Obj.AshWasteGeneration.SiteName"
+                             pause="400"
+                             minlength="1"
+                             maxlength="100"
+                             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.WSite)"
+                             remote-url="{{GetSiteAutoCompleteUrl}}"
+                             remote-url-data-field="Result"
+                             match-class="blue"
+                             selected-object="SetLevel"
+                             title-field="Name"
+                             description-field="Description"
+                             text-searching="@Resource.AutocompleteSearching"
+                             text-no-results="@Resource.NoRecordAvailable"
+                             tabindex="1" input-class="form-control"
+                             disable-input="IsDisableOnEdit">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.ReportedBy <span class="required-field">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="txtEntryBy" name="txtEntryBy" ng-model="MuncipalWasteGeneration.EntryBy"
+                               ng-readonly="true" ng-required="true" placeholder="@Resource.ReportedBy" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.ReportedDate <span class="required-field">*</span>
+                        </label>
+                        <p class="input-group">
+                            <input type="text" name="txtRequestedDate" id="txtRequestedDate"
+                                   class="form-control" uib-datepicker-popup="{{defaultSettings.dateFormat}}"
+                                   ng-model="MuncipalWasteGeneration.RequestedDate" is-open="datePickerRD.Open" max-date="MaxDate"
+                                   datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                   readonly="readonly"
+                                   placeholder="@Resource.ReportedDate" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="datePickerRD.Open=true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <h4 class="header-title-sub l">
+                    @Resource.DMSWRNCompostableWasteHeader
+                </h4>
+                <br />
+                <hr />
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Quantity<span class="required-field">*</span>
+                        </label>
+                        <div class="form-inline">
+                            <input type="number" class="form-control" ng-model="MuncipalWasteGeneration.CompostableQuantity" min="1"
+                                   id="MuncipalWasteGenerationCompostableQuantity" name="MuncipalWasteGenerationCompostableQuantity"
+                                   ng-required="true" placeholder="@Resource.Quantity"
+                                   ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only />
+                            <input type="text" class="form-control" ng-model="MuncipalWasteGeneration.ComUOM"
+                                   placeholder="@Resource.Unit" />
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger " data-ng-show="frmMuncipalWasteGenerationId.MuncipalWasteGenerationCompostableQuantity.$dirty && frmMuncipalWasteGenerationId.MuncipalWasteGenerationCompostableQuantity.$invalid">
+                                <span data-ng-show="frmMuncipalWasteGenerationId.MuncipalWasteGenerationCompostableQuantity.$error.required">
+                                    @(string.Format(Resource.ValueIsRequired, Resource.Quantity))
+                                </span>
+                                <span data-ng-show="frmMuncipalWasteGenerationId.MuncipalWasteGenerationCompostableQuantity.$error.min">
+                                    @(string.Format(Resource.Min1Quantity, Resource.Quantity))
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4 class="header-title-sub l">
+                    @Resource.DMSWRNNonCompostableWasteHeader
+                </h4>
+                <br />
+                <hr />
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Quantity<span class="required-field">*</span>
+                        </label>
+                        <div class="form-inline">
+                            <input type="number" class="form-control" ng-model="MuncipalWasteGeneration.NonCompostableQuantity" min="1"
+                                   id="MuncipalWasteGenerationNonCompostableQuantity" name="MuncipalWasteGenerationNonCompostableQuantity"
+                                   ng-required="true" placeholder="@Resource.Quantity"
+                                   ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only />
+                            <input type="text" class="form-control" ng-model="MuncipalWasteGeneration.NonComUOM"
+                                   placeholder="@Resource.Unit" />
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger " data-ng-show="frmMuncipalWasteGenerationId.MuncipalWasteGenerationNonCompostableQuantity.$dirty && frmMuncipalWasteGenerationId.MuncipalWasteGenerationNonCompostableQuantity.$invalid">
+                                <span data-ng-show="frmMuncipalWasteGenerationId.MuncipalWasteGenerationNonCompostableQuantity.$error.required">
+                                    @(string.Format(Resource.ValueIsRequired, Resource.Quantity))
+                                </span>
+                                <span data-ng-show="frmMuncipalWasteGenerationId.MuncipalWasteGenerationNonCompostableQuantity.$error.min">
+                                    @(string.Format(Resource.Min1Quantity, Resource.Quantity))
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Resource.DMSWRNCWNote (@Resource.DMSWRNCompostableWasteHeader / @Resource.DMSWRNNonCompostableWasteHeader)
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success w-md waves-light"
+                            ng-disabled="(frmMuncipalWasteGenerationId.$invalid)">
+                        {{ IsEdit? '@Resource.Update' : '@Resource.Submit' }}
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+        <hr />
+
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Configuration/DailyMunicipalSolidWasteRecord");
+}
+

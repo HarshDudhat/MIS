@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVCProjectModelStoreContainer" CdmEntityContainer="MVCProjectEntities">
+    <EntitySetMapping Name="Designations">
+      <EntityTypeMapping TypeName="MVCProjectModel.Designations">
+        <MappingFragment StoreEntitySet="Designations">
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleMaster">
+      <EntityTypeMapping TypeName="MVCProjectModel.ModuleMaster">
+        <MappingFragment StoreEntitySet="ModuleMaster">
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="isMainModule" ColumnName="isMainModule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModulePage">
+      <EntityTypeMapping TypeName="MVCProjectModel.ModulePage">
+        <MappingFragment StoreEntitySet="ModulePage">
+          <ScalarProperty Name="PageId" ColumnName="PageId" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="IsMainModule" ColumnName="IsMainModule" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PageAccess">
+      <EntityTypeMapping TypeName="MVCProjectModel.PageAccess">
+        <MappingFragment StoreEntitySet="PageAccess">
+          <ScalarProperty Name="AccessId" ColumnName="AccessId" />
+          <ScalarProperty Name="PageId" ColumnName="PageId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="CanRead" ColumnName="CanRead" />
+          <ScalarProperty Name="CanWrite" ColumnName="CanWrite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleLevel">
+      <EntityTypeMapping TypeName="MVCProjectModel.RoleLevel">
+        <MappingFragment StoreEntitySet="RoleLevel">
+          <ScalarProperty Name="RoleLevelId" ColumnName="RoleLevelId" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleMaster">
+      <EntityTypeMapping TypeName="MVCProjectModel.RoleMaster">
+        <MappingFragment StoreEntitySet="RoleMaster">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleLevelId" ColumnName="RoleLevelId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRole">
+      <EntityTypeMapping TypeName="MVCProjectModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+          <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MVCProjectModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ResetPasswordToken" ColumnName="ResetPasswordToken" />
+          <ScalarProperty Name="IsUserLoggedIn" ColumnName="IsUserLoggedIn" />
+          <ScalarProperty Name="IsTokenExpired" ColumnName="IsTokenExpired" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attachments">
+      <EntityTypeMapping TypeName="MVCProjectModel.Attachments">
+        <MappingFragment StoreEntitySet="Attachments">
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+          <ScalarProperty Name="DeleteBy" ColumnName="DeleteBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="DeleteFlag" ColumnName="DeleteFlag" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+          <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="AttachmentId" ColumnName="AttachmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicineConsumption">
+      <EntityTypeMapping TypeName="MVCProjectModel.MedicineConsumption">
+        <MappingFragment StoreEntitySet="MedicineConsumption">
+          <ScalarProperty Name="SiteLevelId" ColumnName="SiteLevelId" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ConsumptionEntryDate" ColumnName="ConsumptionEntryDate" />
+          <ScalarProperty Name="ConsumptionById" ColumnName="ConsumptionById" />
+          <ScalarProperty Name="ConsumptionReferenceId" ColumnName="ConsumptionReferenceId" />
+          <ScalarProperty Name="MedConsumptionId" ColumnName="MedConsumptionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicineDeadStock">
+      <EntityTypeMapping TypeName="MVCProjectModel.MedicineDeadStock">
+        <MappingFragment StoreEntitySet="MedicineDeadStock">
+          <ScalarProperty Name="SiteLevelId" ColumnName="SiteLevelId" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DeadStockEntryDate" ColumnName="DeadStockEntryDate" />
+          <ScalarProperty Name="DeadStockId" ColumnName="DeadStockId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicineMaster">
+      <EntityTypeMapping TypeName="MVCProjectModel.MedicineMaster">
+        <MappingFragment StoreEntitySet="MedicineMaster">
+          <ScalarProperty Name="IsExpiryRequired" ColumnName="IsExpiryRequired" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SiteLevelId" ColumnName="SiteLevelId" />
+          <ScalarProperty Name="CriticalStock" ColumnName="CriticalStock" />
+          <ScalarProperty Name="MedTypeId" ColumnName="MedTypeId" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicineReceived">
+      <EntityTypeMapping TypeName="MVCProjectModel.MedicineReceived">
+        <MappingFragment StoreEntitySet="MedicineReceived">
+          <ScalarProperty Name="SiteLevelId" ColumnName="SiteLevelId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedReceivedSourceId" ColumnName="MedReceivedSourceId" />
+          <ScalarProperty Name="ReceivedFrom" ColumnName="ReceivedFrom" />
+          <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+          <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+          <ScalarProperty Name="MedicineReceivedId" ColumnName="MedicineReceivedId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicineType">
+      <EntityTypeMapping TypeName="MVCProjectModel.MedicineType">
+        <MappingFragment StoreEntitySet="MedicineType">
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="MedTypeId" ColumnName="MedTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMedicineConsumptionEditList" FunctionName="MVCProjectModel.Store.USP_GetMedicineConsumptionEditList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetMedicineConsumptionEditList_Result">
+          <ScalarProperty Name="MedConsumptionId" ColumnName="MedConsumptionId" />
+          <ScalarProperty Name="ConsumptionEntryDate" ColumnName="ConsumptionEntryDate" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedTypeId" ColumnName="MedTypeId" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ActualQuantity" ColumnName="ActualQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMedicineDeadStockEditList" FunctionName="MVCProjectModel.Store.USP_GetMedicineDeadStockEditList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetMedicineDeadStockEditList_Result">
+          <ScalarProperty Name="DeadStockId" ColumnName="DeadStockId" />
+          <ScalarProperty Name="DeadStockEntryDate" ColumnName="DeadStockEntryDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedTypeId" ColumnName="MedTypeId" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ActualQuantity" ColumnName="ActualQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMedicineStockDeadStockDetails" FunctionName="MVCProjectModel.Store.USP_GetMedicineStockDeadStockDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetMedicineStockDeadStockDetails_Result">
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="DeadStockDate" ColumnName="DeadStockDate" />
+          <ScalarProperty Name="DeadDescr" ColumnName="DeadDescr" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetCurrentMedStockDetails" FunctionName="MVCProjectModel.Store.USP_GetCurrentMedStockDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetCurrentMedStockDetails_Result">
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="Medicine" ColumnName="Medicine" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ConfigHierarchy">
+      <EntityTypeMapping TypeName="MVCProjectModel.ConfigHierarchy">
+        <MappingFragment StoreEntitySet="ConfigHierarchy">
+          <ScalarProperty Name="IsSibling" ColumnName="IsSibling" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="HierarchyName" ColumnName="HierarchyName" />
+          <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+          <ScalarProperty Name="UHierarchyId" ColumnName="UHierarchyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigLanguage">
+      <EntityTypeMapping TypeName="MVCProjectModel.ConfigLanguage">
+        <MappingFragment StoreEntitySet="ConfigLanguage">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="LanguageCulture" ColumnName="LanguageCulture" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigLevel">
+      <EntityTypeMapping TypeName="MVCProjectModel.ConfigLevel">
+        <MappingFragment StoreEntitySet="ConfigLevel">
+          <ScalarProperty Name="AccessHierarchy" ColumnName="AccessHierarchy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="LevelHierarchy" ColumnName="LevelHierarchy" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+          <ScalarProperty Name="UHierarchyId" ColumnName="UHierarchyId" />
+          <ScalarProperty Name="LevelCode" ColumnName="LevelCode" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+          <ScalarProperty Name="ULevelId" ColumnName="ULevelId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigModule">
+      <EntityTypeMapping TypeName="MVCProjectModel.ConfigModule">
+        <MappingFragment StoreEntitySet="ConfigModule">
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="ModuleHierarchy" ColumnName="ModuleHierarchy" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="UModuleId" ColumnName="UModuleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="USP_ConfigHierarchy_Search" FunctionName="MVCProjectModel.Store.USP_ConfigHierarchy_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_ConfigHierarchy_Search_Result">
+          <ScalarProperty Name="ULanguageId" ColumnName="ULanguageId" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+          <ScalarProperty Name="UHierarchyId" ColumnName="UHierarchyId" />
+          <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+          <ScalarProperty Name="HierarchyName" ColumnName="HierarchyName" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ConfigLevel_Search" FunctionName="MVCProjectModel.Store.USP_ConfigLevel_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_ConfigLevel_Search_Result">
+          <ScalarProperty Name="ULanguageId" ColumnName="ULanguageId" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="HierarchyName" ColumnName="HierarchyName" />
+          <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+          <ScalarProperty Name="ULevelId" ColumnName="ULevelId" />
+          <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="LevelCode" ColumnName="LevelCode" />
+          <ScalarProperty Name="UHierarchyId" ColumnName="UHierarchyId" />
+          <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="LevelHierarchy" ColumnName="LevelHierarchy" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ConfigModule_Search" FunctionName="MVCProjectModel.Store.USP_ConfigModule_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_ConfigModule_Search_Result">
+          <ScalarProperty Name="ULanguageId" ColumnName="ULanguageId" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="HierarchyName" ColumnName="HierarchyName" />
+          <ScalarProperty Name="UModuleId" ColumnName="UModuleId" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="ModuleHierarchy" ColumnName="ModuleHierarchy" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ConfigRole_Search" FunctionName="MVCProjectModel.Store.USP_ConfigRole_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_ConfigRole_Search_Result">
+          <ScalarProperty Name="ULanguageId" ColumnName="ULanguageId" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="HierarchyName" ColumnName="HierarchyName" />
+          <ScalarProperty Name="URoleId" ColumnName="URoleId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="UHierarchyId" ColumnName="UHierarchyId" />
+          <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMedicineStockCurrentStockDetails" FunctionName="MVCProjectModel.Store.USP_GetMedicineStockCurrentStockDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetMedicineStockCurrentStockDetails_Result">
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMedicineStockInwardDetails" FunctionName="MVCProjectModel.Store.USP_GetMedicineStockInwardDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetMedicineStockInwardDetails_Result">
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="InwardDate" ColumnName="InwardDate" />
+          <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+          <ScalarProperty Name="ReceivedFrom" ColumnName="ReceivedFrom" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMedicineStockOpeningStockDetails" FunctionName="MVCProjectModel.Store.USP_GetMedicineStockOpeningStockDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetMedicineStockOpeningStockDetails_Result">
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMedicineStockOutwardDetails" FunctionName="MVCProjectModel.Store.USP_GetMedicineStockOutwardDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetMedicineStockOutwardDetails_Result">
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="MedType" ColumnName="MedType" />
+          <ScalarProperty Name="OutwardDate" ColumnName="OutwardDate" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMedicineStockReport" FunctionName="MVCProjectModel.Store.USP_GetMedicineStockReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetMedicineStockReport_Result">
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="MedCode" ColumnName="MedCode" />
+          <ScalarProperty Name="MedName" ColumnName="MedName" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="OpeningStock" ColumnName="OpeningStock" />
+          <ScalarProperty Name="InwardItem" ColumnName="InwardItem" />
+          <ScalarProperty Name="OutwardItem" ColumnName="OutwardItem" />
+          <ScalarProperty Name="DeadItem" ColumnName="DeadItem" />
+          <ScalarProperty Name="CurrentStock" ColumnName="CurrentStock" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ConfigLevel_Advance_Search" FunctionName="MVCProjectModel.Store.USP_ConfigLevel_Advance_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_ConfigLevel_Advance_Search_Result">
+          <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LevelCode" ColumnName="LevelCode" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="LevelHierarchy" ColumnName="LevelHierarchy" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetUserRole" FunctionName="MVCProjectModel.Store.USP_GetUserRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.USP_GetUserRole_Result">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+          <ScalarProperty Name="LevelIds" ColumnName="LevelIds" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AADUserGUID">
+      <EntityTypeMapping TypeName="MVCProjectModel.AADUserGUID">
+        <MappingFragment StoreEntitySet="AADUserGUID">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UserGUID" ColumnName="UserGUID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AId" ColumnName="AId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigRole">
+      <EntityTypeMapping TypeName="MVCProjectModel.ConfigRole">
+        <MappingFragment StoreEntitySet="ConfigRole">
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+          <ScalarProperty Name="UHierarchyId" ColumnName="UHierarchyId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="URoleId" ColumnName="URoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationConfiguration">
+      <EntityTypeMapping TypeName="MVCProjectModel.ApplicationConfiguration">
+        <MappingFragment StoreEntitySet="ApplicationConfiguration">
+          <ScalarProperty Name="IsCommon" ColumnName="IsCommon" />
+          <ScalarProperty Name="ControlUse" ColumnName="ControlUse" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ConfigShotCode" ColumnName="ConfigShotCode" />
+          <ScalarProperty Name="ConfigValueUnit" ColumnName="ConfigValueUnit" />
+          <ScalarProperty Name="ConfigCode" ColumnName="ConfigCode" />
+          <ScalarProperty Name="ConfigValue" ColumnName="ConfigValue" />
+          <ScalarProperty Name="ConfigDesc" ColumnName="ConfigDesc" />
+          <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AshWasteGeneration">
+      <EntityTypeMapping TypeName="MVCProjectModel.AshWasteGeneration">
+        <MappingFragment StoreEntitySet="AshWasteGeneration">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PonfAshLifting" ColumnName="PonfAshLifting" />
+          <ScalarProperty Name="AshpondDumping" ColumnName="AshpondDumping" />
+          <ScalarProperty Name="Quaryyfilling" ColumnName="Quaryyfilling" />
+          <ScalarProperty Name="RoadDevUtilization" ColumnName="RoadDevUtilization" />
+          <ScalarProperty Name="ClayMfdUtilization" ColumnName="ClayMfdUtilization" />
+          <ScalarProperty Name="CementMfdUtilization" ColumnName="CementMfdUtilization" />
+          <ScalarProperty Name="TotalAshUtilizationper" ColumnName="TotalAshUtilizationper" />
+          <ScalarProperty Name="FlyAshUtilizationper" ColumnName="FlyAshUtilizationper" />
+          <ScalarProperty Name="BottomAshUtilized" ColumnName="BottomAshUtilized" />
+          <ScalarProperty Name="FlyAshUtilized" ColumnName="FlyAshUtilized" />
+          <ScalarProperty Name="BottomAshGeneration" ColumnName="BottomAshGeneration" />
+          <ScalarProperty Name="FlyAshGeneration" ColumnName="FlyAshGeneration" />
+          <ScalarProperty Name="TotalAshGeneration" ColumnName="TotalAshGeneration" />
+          <ScalarProperty Name="Ashcontentcoalper" ColumnName="Ashcontentcoalper" />
+          <ScalarProperty Name="CoalConsumed" ColumnName="CoalConsumed" />
+          <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+          <ScalarProperty Name="SiteLeveleId" ColumnName="SiteLeveleId" />
+          <ScalarProperty Name="MuncipalWasteGenerationId" ColumnName="MuncipalWasteGenerationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BioMedicalWasteGeneration">
+      <EntityTypeMapping TypeName="MVCProjectModel.BioMedicalWasteGeneration">
+        <MappingFragment StoreEntitySet="BioMedicalWasteGeneration">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+          <ScalarProperty Name="SiteLeveleId" ColumnName="SiteLeveleId" />
+          <ScalarProperty Name="BioMedicalWasteGenerationId" ColumnName="BioMedicalWasteGenerationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MuncipalWasteGeneration">
+      <EntityTypeMapping TypeName="MVCProjectModel.MuncipalWasteGeneration">
+        <MappingFragment StoreEntitySet="MuncipalWasteGeneration">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="NonCompostableQuantity" ColumnName="NonCompostableQuantity" />
+          <ScalarProperty Name="CompostableQuantity" ColumnName="CompostableQuantity" />
+          <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+          <ScalarProperty Name="SiteLeveleId" ColumnName="SiteLeveleId" />
+          <ScalarProperty Name="MuncipalWasteGenerationId" ColumnName="MuncipalWasteGenerationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusMaster">
+      <EntityTypeMapping TypeName="MVCProjectModel.StatusMaster">
+        <MappingFragment StoreEntitySet="StatusMaster">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitofMeasure">
+      <EntityTypeMapping TypeName="MVCProjectModel.UnitofMeasure">
+        <MappingFragment StoreEntitySet="UnitofMeasure">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UnitShortCode" ColumnName="UnitShortCode" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WasteCategory">
+      <EntityTypeMapping TypeName="MVCProjectModel.WasteCategory">
+        <MappingFragment StoreEntitySet="WasteCategory">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="WastestateId" ColumnName="WastestateId" />
+          <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+          <ScalarProperty Name="WasteTypeId" ColumnName="WasteTypeId" />
+          <ScalarProperty Name="WasteDescription" ColumnName="WasteDescription" />
+          <ScalarProperty Name="WasteCategoryId" ColumnName="WasteCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WasteDisposal">
+      <EntityTypeMapping TypeName="MVCProjectModel.WasteDisposal">
+        <MappingFragment StoreEntitySet="WasteDisposal">
+          <ScalarProperty Name="SenderMailingAddress" ColumnName="SenderMailingAddress" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RecieverAuthorisation" ColumnName="RecieverAuthorisation" />
+          <ScalarProperty Name="Recieveraddress" ColumnName="Recieveraddress" />
+          <ScalarProperty Name="RecieverEmailaddress" ColumnName="RecieverEmailaddress" />
+          <ScalarProperty Name="RecieverConatctNo" ColumnName="RecieverConatctNo" />
+          <ScalarProperty Name="RecieverName" ColumnName="RecieverName" />
+          <ScalarProperty Name="TranspoterVehicleNo" ColumnName="TranspoterVehicleNo" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="TranspoterRegNo" ColumnName="TranspoterRegNo" />
+          <ScalarProperty Name="Transporteraddress" ColumnName="Transporteraddress" />
+          <ScalarProperty Name="Emailaddress" ColumnName="Emailaddress" />
+          <ScalarProperty Name="ConatctNo" ColumnName="ConatctNo" />
+          <ScalarProperty Name="TranspoterName" ColumnName="TranspoterName" />
+          <ScalarProperty Name="Mainfestdocno" ColumnName="Mainfestdocno" />
+          <ScalarProperty Name="SenderAuthno" ColumnName="SenderAuthno" />
+          <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+          <ScalarProperty Name="WasteTypeId" ColumnName="WasteTypeId" />
+          <ScalarProperty Name="SiteLeveleId" ColumnName="SiteLeveleId" />
+          <ScalarProperty Name="WasteDisposalId" ColumnName="WasteDisposalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WasteDisposalDetail">
+      <EntityTypeMapping TypeName="MVCProjectModel.WasteDisposalDetail">
+        <MappingFragment StoreEntitySet="WasteDisposalDetail">
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="NoofContainer" ColumnName="NoofContainer" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="WasteCategoryId" ColumnName="WasteCategoryId" />
+          <ScalarProperty Name="WasteDisposalId" ColumnName="WasteDisposalId" />
+          <ScalarProperty Name="WasteDisposalDetailId" ColumnName="WasteDisposalDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WasteGenerationDetail">
+      <EntityTypeMapping TypeName="MVCProjectModel.WasteGenerationDetail">
+        <MappingFragment StoreEntitySet="WasteGenerationDetail">
+          <ScalarProperty Name="RecQuantity" ColumnName="RecQuantity" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="MethodofStorage" ColumnName="MethodofStorage" />
+          <ScalarProperty Name="WasteCategoryId" ColumnName="WasteCategoryId" />
+          <ScalarProperty Name="WasteGenerationId" ColumnName="WasteGenerationId" />
+          <ScalarProperty Name="WasteGenerationDetailId" ColumnName="WasteGenerationDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WasteState">
+      <EntityTypeMapping TypeName="MVCProjectModel.WasteState">
+        <MappingFragment StoreEntitySet="WasteState">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="WasteStateName" ColumnName="WasteStateName" />
+          <ScalarProperty Name="WasteStateId" ColumnName="WasteStateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WasteType">
+      <EntityTypeMapping TypeName="MVCProjectModel.WasteType">
+        <MappingFragment StoreEntitySet="WasteType">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="WasteType1" ColumnName="WasteType" />
+          <ScalarProperty Name="WasteTypeId" ColumnName="WasteTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MethodStorageMaster">
+      <EntityTypeMapping TypeName="MVCProjectModel.MethodStorageMaster">
+        <MappingFragment StoreEntitySet="MethodStorageMaster">
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="StorageName" ColumnName="StorageName" />
+          <ScalarProperty Name="StorageId" ColumnName="StorageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WasteGeneration">
+      <EntityTypeMapping TypeName="MVCProjectModel.WasteGeneration">
+        <MappingFragment StoreEntitySet="WasteGeneration">
+          <ScalarProperty Name="IncompatibleWasteSubstances" ColumnName="IncompatibleWasteSubstances" />
+          <ScalarProperty Name="Characteristics" ColumnName="Characteristics" />
+          <ScalarProperty Name="DocumentNo" ColumnName="DocumentNo" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="MonitoringDate" ColumnName="MonitoringDate" />
+          <ScalarProperty Name="MethodofStorage" ColumnName="MethodofStorage" />
+          <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+          <ScalarProperty Name="WasteTypeId" ColumnName="WasteTypeId" />
+          <ScalarProperty Name="FunctionLevelId" ColumnName="FunctionLevelId" />
+          <ScalarProperty Name="SiteLeveleId" ColumnName="SiteLeveleId" />
+          <ScalarProperty Name="WasteGenerationId" ColumnName="WasteGenerationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

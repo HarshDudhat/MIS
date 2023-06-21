@@ -1,0 +1,256 @@
+﻿@using MVCProject.ViewModel
+@using MVCProject.Utilities
+@{
+    UserContext userContext = new UserContext();
+    UserContext.PagePermission permission = new UserContext.PagePermission();
+    if (Session["UserContext"] != null)
+    {
+        userContext = (UserContext)Session["UserContext"];
+    }
+
+    if (Session["PagePermission"] != null)
+    {
+        permission = (UserContext.PagePermission)Session["PagePermission"];
+    }    
+}
+<!DOCTYPE html>
+<html ng-app="DorfKetalMVCApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/Content/images/favicon.ico">
+    <title>@ViewBag.Title</title>
+    @Html.Partial("~/Views/Shared/_CommonScriptInner.cshtml")
+    @{BundleTable.EnableOptimizations = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["IsJsCssMinified"]);}
+    @Styles.Render("~/css/inner")
+    <script>
+        var sessionToken = '@Html.Raw(userContext.Token)';
+        var baseApiURL = '@System.Configuration.ConfigurationManager.AppSettings["ApiServiceUrl"]';
+        var userContext = {
+            UserName: '@Html.Raw(userContext.UserName)',
+            CompanyDB: '@userContext.CompanyDB',
+            CompanyId: parseInt('@userContext.CompanyId'),
+            UserId: parseInt('@userContext.UserId'),
+            RoleId: parseInt('@userContext.RoleId'),
+            RoleGroupId: [@(userContext.RoleGroupId == null || userContext.RoleGroupId.Length < 1 ? "" : string.Join(",", userContext.RoleGroupId))],
+            RoleLevel: parseInt('@userContext.RoleLevel'),
+            SiteId: parseInt('@userContext.SiteId'),
+            DepartmentId: parseInt('@userContext.DepartmentId'),
+            EmployeeId: parseInt('@userContext.EmployeeId'),
+            EmployeeName: '@Html.Raw(userContext.EmployeeName)',
+            ProfilePicturePath: '@userContext.ProfilePicturePath',
+            ApplicationLogo: '@userContext.ApplicationLogo',
+            DepartmentLabel: '@Html.Raw(userContext.DepartmentLabel)',
+            Designation: '@Html.Raw(userContext.Designation)',
+            Department: '@Html.Raw(userContext.Department)',
+            SiteName: '@Html.Raw(userContext.SiteName)',
+            IsCorporateSite: '@userContext.IsCorporateSite' == "True" ? true : false,
+            AllowSubArea: '@Html.Raw(userContext.AllowSubArea)',
+            AllowNearmiss: '@Html.Raw(userContext.AllowNearmiss)',
+            AllowRiskBehaviour: '@Html.Raw(userContext.AllowRiskBehaviour)',
+            AllowHazard: '@Html.Raw(userContext.AllowHazard)',
+            AllowInvestigation: '@Html.Raw(userContext.AllowInvestigation)',
+            AllowCAPA: '@Html.Raw(userContext.AllowCAPA)',
+            AllowCAPAProgress: '@Html.Raw(userContext.AllowCAPAProgress)',
+            AllowReport: '@Html.Raw(userContext.AllowReport)',
+            AllowSearch: '@Html.Raw(userContext.AllowSearch)',
+            AllowAnalytics: '@Html.Raw(userContext.AllowAnalytics)'
+        };        
+        var permission = {
+            PageId : @(permission.PageId),
+            CanRead : '@(permission.CanRead)' == 'True',
+            CanWrite : '@(permission.CanWrite)' == 'True'
+        };
+        var roles= @Html.RoleJson(userContext.UserRole);
+        
+    </script>
+    <link href="@Url.Content("~/Content/css/nv.d3.min.css")" rel="stylesheet" type="text/css" />
+</head>
+<body ng-controller="MasterCtrl" ng-cloak id="LayoutBody" class="fullscreen" ng-class="isSmallMenu?'nav-sm':'nav-md'"
+    ng-init="CheckUserSession()" style="display: none;">
+    @Html.Partial("~/Views/Shared/_Loader.cshtml")
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col menu_fixed">
+                <div id="sidebar-scroll" class="scroll-view my-scroll-area" ng-nicescroll nice-option="{cursorcolor: '#e2edff', cursoropacitymax:0.50, touchbehavior: false, cursordragontouch: true, preventmultitouchscrolling: true,preservenativescrolling:false, cursorwidth:'3px',cursorborderradius:'0px'}">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="/Account/RedirectToDefaultUrl" class="logo-expanded">
+                            <img src="/Content/images/company-logo.png" ng-src="{{userContext.ApplicationLogo}}"
+                                ng-class="{'blur-7' : !isLogoLoaded}" fallback-src="/Content/images/company-logo.png"
+                                alt="Application Logo" /> </a>
+                        <div class="nav toggle vmenuright" title="Toggle menu">
+                            <a id="menu_toggle" ng-click="SetToggleMenu()"><i class="fa fa-bars"></i></a>
+                        </div>
+                    </div>
+                    <div class="c">
+                    </div>
+                    <!-- sidebar menu -->
+                    @Html.Menu(userContext.PageAccess)
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
+                    <li class="dropdown text-center"><a data-toggle="dropdown" class="dropdown-toggle waves-effect waves-light profile">
+                        <img ng-src="{{userContext.ProfilePicturePath}}" alt="@Resource.ProfilePicture" fallback-src="/Content/images/avatar-1.jpg" src="../../Content/images/avatar-1.jpg" class="img-circle user-img profile-img thumb-sm" />
+                        <span class="username">{{userContext.EmployeeName}}</span> </a>
+                        <ul class="dropdown-menu">
+                            @*<li><a ng-click="SynchronizeReportingData()" ng-href="/Home"><i class="fa fa-home m-r-5">
+                            </i>
+                                @Resource.BackToHome
+                            </a></li>*@ @*<li><a ng-click="SynchronizeReportingData()" href="javascript:void(0)"><i class="fa fa-refresh m-r-5">
+                            </i>
+                                @Resource.SynchronizeData
+                            </a></li>
+                            <li><a ng-click="UserNotificationSetting()" href="javascript:void(0)"><i class="fa fa-bell m-r-5">
+                            </i>
+                                @Resource.NotificationSetting
+                            </a></li>*@
+                            <li><a ng-click="Logout()" href="javascript:void(0)"><i class="ti-power-off m-r-5"></i>
+                                @Resource.Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li style="max-width: 200px; margin-top: 13px; margin-right: 5px;">
+                        <select class="form-control" ng-model="userContext.RoleId" ng-change="ChangeRole(userContext.RoleId)"
+                            ng-options="r.RoleId as r.RoleName for r in userCurrentRoles" ng-disabled="userCurrentRoles.length == 1">
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <!-- /top navigation -->
+            <div class="right_col" role="main">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- footer content -->
+        <footer class="footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    @*@Resource.CopyrightCompanyName*@
+                </div>
+            </div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+    <span class="backToTop"><i class="fa fa-arrow-circle-o-up"></i></span>
+    <!--BEGIN Javascript bundles-->
+    <script type="text/javascript">
+        var angularmodule = [
+            "ngTable",
+            "ngCookies",
+            "ngBootbox",
+            "ngRoute",
+            "angucomplete-alt",
+            "ngAnimate",
+            "angularFileUpload",
+            "ngBootstrap",
+            "textAngular",
+            "angularjs-dropdown-multiselect",
+            "RadarChart",
+            "dateParser",
+            "timepickerPop",
+            "angular.filter",
+            "ui.bootstrap",
+            "NgSwitchery",
+            "colorpicker.module",
+            "angularSpectrumColorpicker",
+            "gridster",
+            "nvd3",
+            "scrollable-table",
+            "angular-nicescroll",
+            "autocomplete-dropdown-alt",
+            "ngDragDrop",
+            "dndLists"
+        ];
+    </script>
+    @Scripts.Render("~/bundles/inner")
+    @RenderSection("scripts", required: false)
+    <!--End Javascript bundles-->
+    <script type="text/javascript">
+        $(function () {
+            $('.nav-sm ul.side-menu li.active ul.child_menu').hide();
+            $('.nav-md ul.side-menu li.active ul.child_menu').show();
+            //            if ($("body").hasClass("nav-sm")) {
+            //                $(".nav-sm ul.side-menu").find("li.active").removeClass("active");
+            //            }
+
+            // Menu link click
+            $('ul.side-menu>li').click(function (e) {
+                if ($("body").hasClass("nav-sm")) {
+                    if ($(this).find("ul.child_menu").length) {
+                        $('.nav-sm ul.child_menu').css("top", GetElementOffsetTop($(this)) + "px");
+                        AdjustSideMenuHeight(true);
+                    }
+                }
+            });
+
+            // Window resize
+            $(window).resize(function () {
+                if ($('body').hasClass('nav-sm')) {
+                    $('.nav-sm ul.side-menu li.active ul.child_menu').css("top", GetElementOffsetTop($("ul.side-menu li.active")) + "px");
+                }
+                AdjustSideMenuHeight(true);
+            });
+
+            // Toggle menu button click
+            $('#menu_toggle').click(function () {
+                if ($("body").hasClass("nav-sm")) {
+                    $('.nav-sm ul.side-menu li.active ul.child_menu').css("top", GetElementOffsetTop($("ul.side-menu li.active")) + "px").show();
+                }
+
+                var $menu = $("ul.side-menu");
+                $menu.find("li a span.fa").removeClass("fa-chevron-down").addClass("fa-chevron-right");
+                $menu.find("li.active a span.fa").removeClass("fa-chevron-right").addClass("fa-chevron-down");
+
+                AdjustSideMenuHeight(true);
+
+                $('.nav-sm ul.side-menu li.active ul.child_menu').hide();
+                $('.nav-md ul.side-menu li.active ul.child_menu').show();
+
+            });
+
+            // Get element offset top property
+            function GetElementOffsetTop(element) {
+                return $(element).length > 0
+                             ? $(element).offset().top - $(window).scrollTop()
+                             : 0;
+            };
+        });
+
+        // Adjust side menu height on toggle, window resize and menu selection
+        function AdjustSideMenuHeight(isOpenCall) {
+            var offscreenHeight = 0;
+            if (isOpenCall && $('.nav-sm ul.side-menu li.active ul.child_menu').length) {
+                var $el = $('.nav-sm ul.side-menu li.active ul.child_menu'),
+                        scrollTop = $(this).scrollTop(),
+                        scrollBot = scrollTop + $(this).height(),
+                        elTop = $el.offset().top,
+                        elBottom = elTop + $el.outerHeight(),
+                        visibleTop = elTop < scrollTop ? scrollTop : elTop,
+                        visibleBottom = elBottom > scrollBot ? scrollBot : elBottom,
+                        submenuVisibleHeight = (visibleBottom - visibleTop),
+                        submenuFullHeight = $el.height();
+
+                offscreenHeight = submenuFullHeight - submenuVisibleHeight;
+            }
+
+            var height = 0;
+            var menuHeight = $(".menu_section").height();
+            var winHeight = $(window).height();
+            if (winHeight >= menuHeight) {
+                height = winHeight + offscreenHeight;
+            } else {
+                height = menuHeight + offscreenHeight;
+            }
+
+            $(".nav-sm #sidebar-menu").css("height", height + "px");
+            $(".nav-md #sidebar-menu").css("height", "");
+
+            $("#sidebar-scroll").getNiceScroll().resize();
+        }
+    </script>
+</body>
+</html>

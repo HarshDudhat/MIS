@@ -1,0 +1,267 @@
+﻿@{
+    ViewBag.Title = Resource.WACHeader;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .colSrno {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colDocno {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+
+    .colPosition {
+        width: 400px !important;
+        min-width: 400px !important;
+        max-width: 400px !important;
+    }
+
+    .colActive {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colAction {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+</style>
+
+<div ng-controller="HWMWACCtrl" novalidate>
+    <div class="main-page-title title-icon relative l">
+        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">@Resource.WACHeader</h4>
+    </div>
+
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="table-title">
+                                    @Resource.WasteStorage
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="text" tabindex="104" ng-model="search" tabindex="13" ng-change="isSearchClicked = false;" class="form-control" placeholder="@string.Format("{0} {1}", Resource.Search, Resource.WasteStorage)" />
+                                    <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked = true;tableParams.page(1);tableParams.reload();">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <label class="label label-info m-r-5" ng-show="tableParams.total()>0">
+                                    {{tableParams.total()}} @Resource.RecordsFound
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-control-static">
+                                <scrollable-table scroll-height="427">
+                                    <table ng-table="tableParams" id="datatable" class="table table-striped table-bordered table-hover">
+                                        <tr ng-repeat="h in $data">
+                                            <td data-title="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
+                                                {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
+                                            </td>
+                                            <td ng-class="'colDocno'" data-title="'@Resource.WasteStorageNo'" sortable="'DocumentNo'"
+                                                angular-tooltip
+                                                data-side="bottom"
+                                                data-content="{{h.DocumentNo}}">
+                                                {{h.DocumentNo}}
+                                            </td>
+                                            <td data-title="'@Resource.WSite'"
+                                                sortable="'SiteName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.SiteName}}">
+                                                {{h.SiteName}}
+                                            </td>
+                                            <td data-title="'@Resource.Function'"
+                                                sortable="'FunctionLevelName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.FunctionLevelName}}">
+                                                {{h.FunctionLevelName}}
+                                            </td>
+                                            <td data-title="'@Resource.RequestDate'"
+                                                sortable="'RequestedDate'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.RequestedDate}}">
+                                                {{h.RequestedDate}}
+                                            </td>
+                                            <td data-title="'@Resource.RequestBy'"
+                                                sortable="'FirstName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.DocumentNo}}">
+                                                {{h.FirstName + " " + h.LastName}}
+                                            </td>
+                                            <td data-title="'@Resource.WasteType'"
+                                                sortable="'WasteTypeName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.WasteTypeName}}">
+                                                {{h.WasteTypeName}}
+                                            </td>
+                                            <td data-title="'@Resource.WastePhysicalState'"
+                                                sortable="'StorageName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.StorageName}}">
+                                                {{h.StorageName}}
+                                            </td>
+                                            <td data-title="'@Resource.Quantity'"
+                                                sortable="'Quantity'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.Quantity}}">
+                                                {{h.Quantity}}
+                                            </td>
+                                            <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">
+                                                <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="h.IsActive"
+                                                       ng-disabled="true" />
+                                            </td>
+                                            <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'">
+                                                <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit"
+                                                        title="@Resource.Edit" ng-click="EditWasteStorage(h)">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                        <tr ng-if="$data.length == 0">
+                                            <td colspan="11" class="no-record">
+                                                @Resource.NoRecordAvailable
+                                                <span ng-if="search!=''">
+                                                    <br />@Resource.YourSearch - '{{search}}' @Resource.DidNotMatchAnyRecord
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </scrollable-table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="table-title">
+                                    @Resource.WasteDisposal
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="text" tabindex="104" ng-model="searchDisposal" tabindex="13" ng-change="isSearchClickedDisposal = false;" class="form-control" placeholder="@string.Format("{0} {1}", Resource.Search, Resource.WasteDisposal)" />
+                                    <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClickedDisposal = true;tableParamsDisposal.page(1);tableParamsDisposal.reload();">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <label class="label label-info m-r-5" ng-show="tableParamsDisposal.total()>0">
+                                    {{tableParamsDisposal.total()}} @Resource.RecordsFound
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-control-static">
+
+                                <scrollable-table scroll-height="427">
+                                    <table ng-table="tableParamsDisposal" id="datatable" class="table table-striped table-bordered table-hover">
+                                        <tr ng-repeat="h in $data">
+                                            <td data-title="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
+                                                {{(tableParamsDisposal.$params.page-1)*tableParamsDisposal.$params.count+($index + 1)}}
+                                            </td>
+                                            <td data-title="'Waste Disposal No.'" ng-class="'colDocno'" sortable="'DocumentNo'"
+                                                angular-tooltip
+                                                data-side="bottom"
+                                                data-content="{{h.DocumentNo}}">
+                                                {{h.DocumentNo}}
+                                            </td>
+                                            <td data-title="'@Resource.WSite'"
+                                                sortable="'SiteName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.SiteName}}">
+                                                {{h.SiteName}}
+                                            </td>
+                                            <td data-title="'@Resource.DisposalDoneby'"
+                                                sortable="'FirstName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.FirstName + " " + h.LastName}}">
+                                                {{h.FirstName + " " + h.LastName}}
+                                            </td>
+                                            <td data-title="'@Resource.WasteType'"
+                                                sortable="'WasteTypeName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.WasteTypeName}}">
+                                                {{h.WasteTypeName}}
+                                            </td>
+                                            <td data-title="'@Resource.Quantity'"
+                                                sortable="'WasteDisposalDetails'"
+                                                ng-class="'colActive text-center'">
+                                                <p ng-repeat="qty in h.WasteDisposalDetails">
+                                                    {{qty.Quantity}} {{qty.UOM}}
+                                                </p>
+                                            </td>
+                                            <td data-title="'@Resource.Status'"
+                                                sortable="'StatusName'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.StatusName}}">
+                                                {{h.StatusName}}
+                                            </td>
+                                            <td data-title="'@Resource.ManifestAttachment'"
+                                                sortable="'AttachmentCount'"
+                                                ng-class="'colActive text-center'"
+                                                data-content="{{h.AttachmentCount}}">
+
+                                                <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit"
+                                                        title="@Resource.Edit" ng-click="EditWasteDisposal(h)">
+                                                    {{h.AttachmentCount > 0 ? h.AttachmentCount : ""}}
+                                                    <i class="fa fa-paperclip"></i>
+                                                </button>
+                                            </td>
+                                            <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'">
+                                                <button type="button" class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit"
+                                                        title="@Resource.Edit" ng-click="EditWasteDisposal(h)">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="$data.length == 0">
+                                            <td colspan="11" class="no-record">
+                                                @Resource.NoRecordAvailable
+                                                <span ng-if="search!=''">
+                                                    <br />@Resource.YourSearch - '{{search}}' @Resource.DidNotMatchAnyRecord
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </scrollable-table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/HWMWAC")
+}

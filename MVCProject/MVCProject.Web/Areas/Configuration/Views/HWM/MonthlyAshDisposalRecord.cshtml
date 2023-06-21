@@ -1,0 +1,540 @@
+﻿@{
+    ViewBag.Title = Resource.MADRHeader;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="MonthlyAshDisposalRecordCtrl">
+    <div class="main-page-title title-icon relative l">
+
+        <i class="zmdi zmdi-accounts-alt icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">
+            @Resource.MADRHeader
+        </h4>
+
+    </div>
+
+    <div class="card-box">
+
+        <form name="frmAshWasteGeneration" ng-submit="SaveAshWasteGeneration(frmAshWasteGeneration,Obj)" novalidate>
+
+            <div class="row">
+
+                <input type="hidden" class="form-control" ng-model="Obj.AshWasteGeneration.SiteLeveleId" ng-required="true" />
+                <input type="hidden" class="form-control" ng-model="Obj.AshWasteGeneration.selectedyear" ng-required="true" />
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Designation">
+                            @Resource.WSite <span class="required-field">*</span>
+                        </label>
+                        <div angucomplete-alt
+                             input-name="ddlSiteLeveleId"
+                             id="ddlSiteLeveleId"
+                             ng-required="true"
+                             ng-model="Obj.AshWasteGeneration.SiteName"
+                             initial-value="Obj.AshWasteGeneration.SiteName"
+                             pause="400"
+                             minlength="1"
+                             maxlength="100"
+                             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.WSite)"
+                             remote-url="{{GetSiteAutoCompleteUrl}}"
+                             remote-url-data-field="Result"
+                             match-class="blue"
+                             selected-object="SetLevel"
+                             title-field="Name"
+                             description-field="Description"
+                             text-searching="@Resource.AutocompleteSearching"
+                             text-no-results="@Resource.NoRecordAvailable"
+                             tabindex="1" input-class="form-control"
+                             disable-input="IsDisableOnEdit">
+                        </div>
+
+                        <div class="clearfix">
+                        </div>
+                        <div class="badge badge-danger" data-ng-show="frmAshWasteGeneration.txtConfigLevel.$dirty && frmMedicineOpeningStock.txtConfigLevel.$invalid && frmAshWasteGeneration.txtConfigLevel.$error.required">
+                            <span ng-show="frmAshWasteGeneration.txtConfigLevel.$error.required">
+                                @(string.Format(Resource.ValueIsRequired, Resource.WSite))
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRInstalledCapacity <span class="required-field">*</span>
+                        </label>
+
+                        <input type="text" class="form-control" id="AshWasteGenerationInstalledCapacity" name="AshWasteGenerationInstalledCapacity" ng-model="Obj.AshWasteGeneration.InstalledCapacity"
+                               ng-required="true" placeholder="@Resource.MADRInstalledCapacity"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationInstalledCapacity.$dirty && frmAshWasteGeneration.AshWasteGenerationInstalledCapacity.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationInstalledCapacity.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.MADRInstalledCapacity))</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Designation">
+                            @Resource.FinYear <span class="required-field">*</span>
+                        </label>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="input-group">
+                                    <input type="text" name="txtRequestedDate" id="txtRequestedDate"
+                                           class="form-control" uib-datepicker-popup="{{defaultSettings.yyyyFormat}}" formatYear="yyyy"
+                                           ng-model="Obj.AshWasteGeneration.RequestedYear" is-open="datePickerRD.Open" max-date="MaxDate"
+                                           datepicker-options="{ minMode: 'year' }" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                           readonly="readonly" ng-change="getYearfromDate(Obj.AshWasteGeneration.RequestedYear)"
+                                           placeholder="@Resource.FinYear" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="datePickerRD.Open=true">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    :FY <element> {{Obj.AshWasteGeneration.finYear}} </element>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Designation">
+                            @Resource.Month <span class="required-field">*</span>
+                        </label>
+                        <select class="form-control" ng-model="Obj.AshWasteGeneration.RequestedMonth" ng-required="true"
+                                ng-options="category.Id as category.Name for category in WasteCategories">
+                            <option value="">@string.Format("{0} {1}", Resource.Select, Resource.Month)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <div class="row">
+                <h4 class="header-title-sub l">
+                    <b>@Resource.MADRAGAU</b>
+                </h4>
+            </div>
+            <br />
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRCoalConsumed <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.CoalConsumed" min="1"
+                               id="AshWasteGenerationCoalConsumed" name="AshWasteGenerationCoalConsumed"
+                               ng-required="true" placeholder="@Resource.MADRCoalConsumed"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationCoalConsumed.$dirty && frmAshWasteGeneration.AshWasteGenerationCoalConsumed.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationCoalConsumed.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.MADRCoalConsumed))</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationCoalConsumed.$error.min">@Resource.MADRCoalConsumed @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRAshContentofcoal <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.Ashcontentcoalper" min="1"
+                               id="AshWasteGenerationAshcontentcoalper" name="AshWasteGenerationAshcontentcoalper"
+                               ng-required="true" placeholder="@Resource.MADRAshContentofcoal"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationAshcontentcoalper.$dirty && frmAshWasteGeneration.AshWasteGenerationAshcontentcoalper.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationAshcontentcoalper.$error.required">@Resource.MADRAshContentofcoalRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationAshcontentcoalper.$error.min">@Resource.MADRAshContentofcoal @Resource.OneMoreRequired</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRTotalAshGeneration <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.TotalAshGeneration" min="1"
+                               id="AshWasteGenerationTotalAshGeneration" name="AshWasteGenerationTotalAshGeneration"
+                               ng-required="true" placeholder="@Resource.MADRTotalAshGeneration"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationTotalAshGeneration.$dirty && frmAshWasteGeneration.AshWasteGenerationTotalAshGeneration.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationTotalAshGeneration.$error.required">@Resource.MADRTotalAshGenerationRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationTotalAshGeneration.$error.min">@Resource.MADRTotalAshGeneration @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRFlyAshGeneration <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.FlyAshGeneration" min="1"
+                               id="AshWasteGenerationFlyAshGeneration" name="AshWasteGenerationFlyAshGeneration"
+                               ng-required="true" placeholder="@Resource.MADRFlyAshGeneration"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshGeneration.$dirty && frmAshWasteGeneration.AshWasteGenerationFlyAshGeneration.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshGeneration.$error.required">@Resource.MADRFlyAshGenerationRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshGeneration.$error.min">@Resource.MADRFlyAshGeneration @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRBottomAshGeneration <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.BottomAshGeneration" min="1"
+                               id="AshWasteGenerationBottomAshGeneration" name="AshWasteGenerationBottomAshGeneration"
+                               ng-required="true" placeholder="@Resource.MADRBottomAshGeneration"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationBottomAshGeneration.$dirty && frmAshWasteGeneration.AshWasteGenerationBottomAshGeneration.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationBottomAshGeneration.$error.required">@Resource.MADRBottomAshGenerationRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationBottomAshGeneration.$error.min">@Resource.MADRBottomAshGeneration @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRFlyAshUtilized <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.FlyAshUtilized" min="1"
+                               id="AshWasteGenerationFlyAshUtilized" name="AshWasteGenerationFlyAshUtilized"
+                               ng-required="true" placeholder="@Resource.MADRFlyAshUtilized"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshUtilized.$dirty && frmAshWasteGeneration.AshWasteGenerationFlyAshUtilized.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshUtilized.$error.required">@Resource.MADRFlyAshUtilizedRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshUtilized.$error.min">@Resource.MADRFlyAshUtilized @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRBottomAshutilized <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.BottomAshUtilized" min="1"
+                               id="AshWasteGenerationBottomAshUtilized" name="AshWasteGenerationBottomAshUtilized"
+                               ng-required="true" placeholder="@Resource.MADRBottomAshutilized"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationBottomAshUtilized.$dirty && frmAshWasteGeneration.AshWasteGenerationBottomAshUtilized.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationBottomAshUtilized.$error.required">@Resource.MADRBottomAshutilizedRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationBottomAshUtilized.$error.min">@Resource.MADRBottomAshutilized @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRFlyAshutilization <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.FlyAshUtilizationper" min="1"
+                               id="AshWasteGenerationFlyAshUtilizationper" name="AshWasteGenerationFlyAshUtilizationper"
+                               ng-required="true" placeholder="@Resource.MADRFlyAshutilization"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshUtilizationper.$dirty && frmAshWasteGeneration.AshWasteGenerationFlyAshUtilizationper.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshUtilizationper.$error.required">@Resource.MADRFlyAshutilizationRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationFlyAshUtilizationper.$error.min">@Resource.MADRFlyAshutilization @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRTotalAshutilization <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.TotalAshUtilizationper" min="1"
+                               id="AshWasteGenerationTotalAshUtilizationper" name="AshWasteGenerationTotalAshUtilizationper"
+                               ng-required="true" placeholder="@Resource.MADRTotalAshutilization"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationTotalAshUtilizationper.$dirty && frmAshWasteGeneration.AshWasteGenerationTotalAshUtilizationper.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationTotalAshUtilizationper.$error.required">@Resource.MADRTotalAshutilizationRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationTotalAshUtilizationper.$error.min">@Resource.MADRTotalAshutilization @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+                <h4 class="header-title-sub l">
+                    <b>@Resource.MADRADD</b>
+                </h4>
+            </div>
+            <br />
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRIMOPPCM <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.CementMfdUtilization" min="1"
+                               id="AshWasteGenerationCementMfdUtilization" name="AshWasteGenerationCementMfdUtilization"
+                               ng-required="true" placeholder="@Resource.MADRCoalConsumed"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationCementMfdUtilization.$dirty && frmAshWasteGeneration.AshWasteGenerationCementMfdUtilization.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationCementMfdUtilization.$error.required">@Resource.MADRIMOPPCMRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationCementMfdUtilization.$error.min">@Resource.MADRIMOPPCM @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRClayBrickMfd <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.ClayMfdUtilization" min="1"
+                               id="AshWasteGenerationClayMfdUtilization" name="AshWasteGenerationClayMfdUtilization"
+                               ng-required="true" placeholder="@Resource.MADRClayBrickMfd"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationClayMfdUtilization.$dirty && frmAshWasteGeneration.AshWasteGenerationClayMfdUtilization.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationClayMfdUtilization.$error.required">@Resource.MADRClayBrickMfdRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationClayMfdUtilization.$error.min">@Resource.MADRClayBrickMfd @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRNRD <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.RoadDevUtilization" min="1"
+                               id="AshWasteGenerationRoadDevUtilization" name="AshWasteGenerationRoadDevUtilization"
+                               ng-required="true" placeholder="@Resource.MADRNRD"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationRoadDevUtilization.$dirty && frmAshWasteGeneration.AshWasteGenerationRoadDevUtilization.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationRoadDevUtilization.$error.required">@Resource.MADRNRDRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationRoadDevUtilization.$error.min">@Resource.MADRNRD @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRQF <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.Quaryyfilling" min="1"
+                               id="AshWasteGenerationQuaryyfilling" name="AshWasteGenerationQuaryyfilling"
+                               ng-required="true" placeholder="@Resource.MADRQF"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationQuaryyfilling.$dirty && frmAshWasteGeneration.AshWasteGenerationQuaryyfilling.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationQuaryyfilling.$error.required">@Resource.MADRQFRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationQuaryyfilling.$error.min">@Resource.MADRQF @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRAPD <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.AshpondDumping" min="1"
+                               id="AshWasteGenerationAshpondDumping" name="AshWasteGenerationAshpondDumping"
+                               ng-required="true" placeholder="@Resource.MADRAPD"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationQuaryyfilling.$dirty && frmAshWasteGeneration.AshWasteGenerationAshpondDumping.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationAshpondDumping.$error.required">@Resource.MADRAPDRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationAshpondDumping.$error.min">@Resource.MADRAPD @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.MADRPAL <span class="required-field">*</span>
+                        </label>
+                        <input type="number" class="form-control" ng-model="Obj.AshWasteGeneration.PonfAshLifting" min="1"
+                               id="AshWasteGenerationPonfAshLifting" name="AshWasteGenerationPonfAshLifting"
+                               ng-required="true" placeholder="@Resource.MADRPAL"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-numbers-only />
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger " data-ng-show="frmAshWasteGeneration.AshWasteGenerationPonfAshLifting.$dirty && frmAshWasteGeneration.AshWasteGenerationPonfAshLifting.$invalid">
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationPonfAshLifting.$error.required">@Resource.MADRPALRequired</span>
+                            <span data-ng-show="frmAshWasteGeneration.AshWasteGenerationPonfAshLifting.$error.min">@Resource.MADRAPD @Resource.OneMoreRequired</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success w-md waves-light"
+                            ng-disabled="(frmAshWasteGeneration.$invalid)">
+                        {{ IsEdit? '@Resource.Update' : '@Resource.Submit' }}
+                    </button>
+                </div>
+            </div>
+
+
+            <br /><br />
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="form-control-static">
+                            <div class="table-responsive main-table">
+                                <table class="table table-striped table-bordered table-hover no-margin">
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Resource.MADRCategory
+                                            </th>
+                                            <td>
+                                                @Resource.MonthApr
+                                            </td>
+                                            <td>
+                                                @Resource.MonthMay
+                                            </td>
+                                            <td>
+                                                @Resource.MonthJun
+                                            </td>
+                                            <td>
+                                                @Resource.MonthJul
+                                            </td>
+                                            <td>
+                                                @Resource.MonthAug
+                                            </td>
+                                            <td>
+                                                @Resource.MonthSep
+                                            </td>
+                                            <td>
+                                                @Resource.MonthOct
+                                            </td>
+                                            <td>
+                                                @Resource.MonthNov
+                                            </td>
+                                            <td>
+                                                @Resource.MonthDec
+                                            </td>
+                                            <td>
+                                                @Resource.MonthJan
+                                            </td>
+                                            <td>
+                                                @Resource.MonthFeb
+                                            </td>
+                                            <td>
+                                                @Resource.MonthMar
+                                            </td>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr ng-repeat="x in names">
+                                            <td>
+                                                {{x.GenerationType}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthApr'">
+                                                {{x.April}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthMay'">
+                                                {{x.May}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthJun'">
+                                                {{x.June}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthJul'">
+                                                {{x.July}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthAug'">
+                                                {{x.August}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthSep'">
+                                                {{x.September}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthOct'">
+                                                {{x.October}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthNov'">
+                                                {{x.November}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthDec'">
+                                                {{x.December}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthJan'">
+                                                {{x.January}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthFeb'">
+                                                {{x.February}}
+                                            </td>
+                                            <td data-title="'@Resource.MonthMar'">
+                                                {{x.March}}
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <hr />
+
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Configuration/MonthlyAshDisposalRecord");
+}

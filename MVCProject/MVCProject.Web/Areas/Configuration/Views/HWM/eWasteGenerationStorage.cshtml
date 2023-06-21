@@ -1,0 +1,353 @@
+﻿@{
+    ViewBag.Title = Resource.eWGSHeader;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="eWasteGenerationCtrl">
+
+    <div class="main-page-title title-icon relative l">
+        <i class="zmdi zmdi-accounts-alt icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">
+            @Resource.eWGSHeader {{Obj.WasteGeneration.DocumentNo}}
+        </h4>
+    </div>
+
+    <div class="c">
+    </div>
+
+    <div class="card-box" ng-init="GetWasteGenerationDetails(@ViewBag.WasteGenerationId)">
+
+        <form name="frmeWasteGeneration" ng-submit="SaveeWasteGeneration(frmeWasteGeneration,Obj)" novalidate>
+
+            <input type="hidden" class="form-control" ng-model="Obj.WasteGeneration.FunctionalWasteTypeName" />
+            <input type="hidden" class="form-control" ng-model="Obj.WasteGeneration.FunctionalWasteTypeId" />
+            <input type="hidden" class="form-control" ng-model="Obj.WasteGeneration.SiteLeveleId" ng-required="true" />
+            <input type="hidden" class="form-control" ng-model="Obj.WasteGeneration.FunctionLevelId" ng-required="true" />
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.WSite<span class="required-field">*</span>
+                        </label>
+
+                        <div angucomplete-alt
+                             ng-model="Obj.WasteGeneration.SiteName"
+                             pause="400"
+                             minlength="1"
+                             maxlength="100"
+                             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.WSite)"
+                             remote-url="{{GetLevelAutoCompleteUrl}}"
+                             remote-url-data-field="Result"
+                             initial-value="Obj.WasteGeneration.SiteName"
+                             match-class="blue"
+                             selected-object="SetLevel"
+                             title-field="Name"
+                             description-field="Description"
+                             text-searching="@Resource.AutocompleteSearching"
+                             text-no-results="@Resource.NoRecordAvailable"
+                             input-class="form-control"
+                             disable-input="IsDisableOnEdit">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Function<span class="required-field">*</span>
+                        </label>
+
+                        <div angucomplete-alt
+                             ng-model="Obj.WasteGeneration.FunctionLevelName"
+                             pause="400"
+                             minlength="1"
+                             maxlength="100"
+                             placeholder="@string.Format("{0} {1}", Resource.Search, Resource.Function)"
+                             remote-url="{{GetFunctionAutoCompleteUrl}}"
+                             remote-url-data-field="Result"
+                             initial-value="Obj.WasteGeneration.FunctionLevelName"
+                             match-class="blue"
+                             selected-object="ChangedFunctionLevelId"
+                             title-field="Name"
+                             description-field="Description"
+                             text-searching="@Resource.AutocompleteSearching"
+                             text-no-results="@Resource.NoRecordAvailable"
+                             input-class="form-control"
+                             disable-input="IsDisableOnEdit">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.RequestedBy <span class="required-field">*</span>
+                        </label>
+                        <input type="text" class="form-control" ng-model="Obj.WasteGeneration.EmployeeName" ng-readonly="true" ng-required="true" placeholder="@Resource.RequestedBy" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.RequestedDate <span class="required-field">*</span>
+                        </label>
+
+                        <p class="input-group">
+                            <input type="text"
+                                   class="form-control" uib-datepicker-popup="{{defaultSettings.dateFormat}}"
+                                   ng-model="Obj.WasteGeneration.RequestedDate" is-open="datePickerRD.Open" max-date="MaxDate"
+                                   datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                   ng-disabled="IsDisableOnEdit"
+                                   placeholder="@Resource.RequestedDate" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="datePickerRD.Open=true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Address <span class="required-field">*</span>
+                        </label>
+                        <textarea class="form-control" ng-model="Obj.WasteGeneration.Address" placeholder="@Resource.Address" ng-required="true"
+                                  id="txtWasteGenerationAddress" name="txtWasteGenerationAddress"
+                                  rows="2" maxlength="{{maxChar}}"
+                                  ng-readonly="IsDisableOnEdit"></textarea>
+                        <span class="textarea-char-limit">
+                            {{Obj.WasteGeneration.Address | countCharactersRemaining :maxChar}}
+                            @Resource.Address
+                        </span>
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmeWasteGeneration.txtWasteGenerationAddress.$dirty && frmeWasteGeneration.txtWasteGenerationAddress.$invalid">
+                            <span data-ng-show="frmeWasteGeneration.txtWasteGenerationAddress.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.Address))</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.eWGSEPRAAID <span class="required-field">*</span>
+                        </label>
+
+                        <p class="input-group">
+                            <input type="text"
+                                   class="form-control" uib-datepicker-popup="{{defaultSettings.dateFormat}}"
+                                   ng-model="Obj.WasteGeneration.EPRAuthorizationIssueDate" is-open="datePickerAI.Open" max-date="MaxDate"
+                                   datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                   ng-disabled="IsDisableOnEdit"
+                                   placeholder="@Resource.eWGSEPRAAID" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="datePickerAI.Open=true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.eWGSEPRAAV <span class="required-field">*</span>
+                        </label>
+                        <input class="form-control" ng-model="Obj.WasteGeneration.EPRAuthorizationValidityYear" ng-required="true" type="number"
+                               id="txtWasteGenerationEPRAuthorizationValidityYear" name="txtWasteGenerationEPRAuthorizationValidityYear"
+                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only ng-readonly="IsDisableOnEdit">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmeWasteGeneration.txtWasteGenerationEPRAuthorizationValidityYear.$dirty && frmeWasteGeneration.txtWasteGenerationEPRAuthorizationValidityYear.$invalid">
+                            <span data-ng-show="frmeWasteGeneration.txtWasteGenerationEPRAuthorizationValidityYear.$error.required">@(string.Format(Resource.ValueIsRequired, Resource.eWGSEPRAAV))</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-table table-responsive">
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="10%" class="colMedicineCode">
+                                        @Resource.SrNo
+                                    </th>
+                                    <th width="35%" class="colMedicineName">
+                                        @Resource.WasteCategory
+                                    </th>
+                                    <th width="10%" class="colMedicineType">
+                                        @Resource.Item
+                                    </th>
+                                    <th width="15%" class="colExpiryDate">
+                                        @Resource.Quantity
+                                    </th>
+                                    <th width="10%" class="colQuantity">
+                                        @Resource.Unit
+                                    </th>
+                                    <th width="10%" class="colExpiryDate">
+                                        @Resource.Action
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody ng-switch="showHideAction.isEdit" ng-repeat="item in medicineOpeningStock track by $index"
+                                   ng-init="showHideAction={isEdit:false};actionToEdit={};item.index=$index+1;">
+                                <tr ng-switch-when="false">
+                                    <td>
+                                        {{ $index + 1}}
+                                    </td>
+                                    <td>
+                                        <span>
+                                            {{item.WasteCategoryName}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>{{item.Item}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{item.Quantity}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{item.UOM}}</span>
+                                    </td>
+                                    <td class="colAction">
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-info btn-xs waves-effect waves-light m-r-5" title="@Resource.Edit"
+                                           ng-click="EditMedicineDetails(item,actionToEdit,showHideAction);"><i class="fa fa-edit"></i></a>
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Delete" ng-if="!IsDisableOnEdit"
+                                           ng-click="DeleteMedicineDetails(medicineOpeningStock,item);"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+
+                                <tr ng-form="frmMedicineDetailsEdit" ng-switch-when="true">
+                                    <td>
+                                        {{ medicineOpeningStock.length + 1}}
+                                    </td>
+
+                                    <td>
+                                        <select class="form-control" ng-model="actionToEdit.WasteCategoryId" ng-required="true"
+                                                ng-options="category.Id as category.Name for category in WasteCategories"
+                                                ng-change="fnWasteTypeChangeSetName(actionToEdit)"
+                                                ng-disabled="IsDisableOnEdit">
+                                            <option value="">@string.Format("{0} {1}", Resource.Select, Resource.WasteCategory)</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToEdit.Item"
+                                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"  />
+                                    </td>
+
+                                    <td ng-class="'text-center'">
+                                        <input type="number" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToEdit.Quantity" min="1"
+                                               ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only validate-integer />
+                                    </td>
+
+                                    <td ng-class="'text-center'">
+                                        <input type="text" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToEdit.UOM" readonly="readonly"
+                                               maxlength="3" ng-disabled="IsDisableOnEdit" />
+                                    </td>
+
+                                    <td class="colAction">
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-success btn-xs waves-effect waves-light m-r-5" ng-disabled="frmMedicineDetailsEdit.$invalid"
+                                           title="@Resource.Save" ng-click="frmMedicineDetailsEdit.$invalid || UpdateMedicineDetails(frmMedicineDetailsEdit,medicineOpeningStock,item,actionToEdit,showHideAction);"><i class="fa fa-save"></i></a>
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Cancel"
+                                           ng-click="showHideAction.isEdit=!showHideAction.isEdit"><i class="fa fa-close"></i></a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                            <tr ng-form="frmMedicineDetailsAdd" ng-if="options.showAddMedicineDetails">
+                                <td>
+                                    {{ medicineOpeningStock.length + 1}}
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-model="actionToAdd.WasteCategoryId" ng-required="true"
+                                            ng-options="category.Id as category.Name for category in WasteCategories"
+                                            ng-change="fnWasteTypeChangeSetName(actionToAdd)">
+                                        <option value="">@string.Format("{0} {1}", Resource.Select, Resource.WasteCategory)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToAdd.Item"
+                                           ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" />
+                                </td>
+
+                                <td ng-class="'text-center'">
+                                    <input type="number" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToAdd.Quantity"  min="1"
+                                           ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" allow-digits-only validate-integer />
+                                </td>
+
+                                <td ng-class="'text-center'">
+                                    <input type="text" class="form-control" autocomplete="off" oncopy="return false" required ng-model="actionToAdd.UOM" readonly="readonly" maxlength="3" />
+                                </td>
+
+                                <td class="colAction">
+                                    <a href="javascript:void(0);" class="btn btn-icon btn-success btn-xs waves-effect waves-light m-r-5" ng-disabled="frmMedicineDetailsAdd.$invalid"
+                                       title="@Resource.Save" ng-click="frmMedicineDetailsAdd.$invalid || AddMedicineDetails(frmMedicineDetailsAdd,medicineOpeningStock,actionToAdd,options);">
+                                        <i class="fa fa-save"></i>
+                                    </a>
+                                    <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Cancel"
+                                       ng-click="options.showAddMedicineDetails=!options.showAddMedicineDetails">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <a class="btn btn-primary waves-effect waves-light btn-xs pull-right m-t-5"
+                           ng-click="options.showAddMedicineDetails=!options.showAddMedicineDetails" ng-if="!IsDisableOnEdit">
+                            <i class="zmdi zmdi-plus m-r-5"></i>@Resource.AddMedicineStock
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success w-md waves-light"
+                            ng-disabled="((medicineOpeningStock).length <=0 || frmeWasteGeneration.$invalid)"
+                            ng-class="{'': ((medicineOpeningStock).length <=0 && frmeWasteGeneration.$invalid), 'waves-effect':!((medicineOpeningStock).length <=0 && frmeWasteGeneration.$invalid)}">
+                        {{ IsEdit? '@Resource.Update' : '@Resource.Submit' }}
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/eWasteGeneration");
+}
+
+<script type="text/javascript">
+    var DuplicateMedicineDetails = '@Resource.DuplicateMedicineDetails';
+    var MaxQuantityReached = '@Resource.MaxQuantityReached';
+    var PriceAndQtyGreaterThanZeroRequired = '@Resource.PriceAndQtyGreaterThanZeroRequired';
+    var ExpiryDateLessThenCurrentWarningMessaage = '@Resource.ExpiryDateLessThenCurrentWarningMessaage';
+    var DeleteConfirmMsg = '@Resource.DeleteConfirmMsg';
+</script>

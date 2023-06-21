@@ -1,0 +1,313 @@
+﻿@{
+    ViewBag.Title = Resource.MedicineOpeningStock;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="MedicineOpeningStockCtrl" ng-init="Init()">
+    <form name="frmMedicineOpeningStock" ng-submit="SaveMedicineOpeningStock(medicineOpeningStock,frmMedicineOpeningStock)"
+          novalidate>
+        <div class="main-page-title title-icon relative">
+            <!-- start page title-->
+            <h4 class="header-title-sub">
+                <i class="icofont-drug icon-position"></i>
+                @Resource.MedicineOpeningStock
+            </h4>
+            <!-- end page title-->
+            <div class="c">
+            </div>
+        </div>
+        <div class="c">
+        </div>
+        <div class="card-box">
+            @*<div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>
+                                @Resource.Date <span class="required-field">*</span>
+                            </label>
+                            <p class="input-group">
+                                <input type="text" name="txtOpeningStockEntryDate" id="txtOpeningStockEntryDate" class="form-control"
+                                       uib-datepicker-popup="{{defaultSettings.dateFormat}}" ng-model="Filter.OpeningStockEntryDate"
+                                       is-open="Initstatus.opened" min-date="minDate"
+                                       datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="'M!/d!/yyyy'"
+                                       readonly="readonly" ng-change="GetMedicineOpeningStock()" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-icon waves-effect btn-default" ng-click="Initstatus.opened=true">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmMedicineOpeningStock.txtOpeningStockEntryDate.$dirty && frmMedicineOpeningStock.txtOpeningStockEntryDate.$invalid">
+                                <span data-ng-show="frmMedicineOpeningStock.txtOpeningStockEntryDate.$error.required">@Resource.ScheduleDateRequired</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>@Resource.Site</label><span class="required-field">*</span>
+                                <div angucomplete-alt
+                                     input-name="txtConfigLevel"
+                                     id="txtConfigLevel"
+                                     required
+                                     ng-model="Filter.SiteName"
+                                     pause="400"
+                                     minlength="1"
+                                     maxlength="100"
+                                     placeholder="@string.Format("{0} {1}", Resource.Search, Resource.Site)"
+                                     remote-url="{{GetLevelAutoCompleteUrl}}"
+                                     remote-url-data-field="Result"
+                                     initial-value="Filter.SiteName"
+                                     match-class="blue"
+                                     selected-object="SetLevel"
+                                     title-field="Name"
+                                     description-field="Description"
+                                     text-searching="@Resource.AutocompleteSearching"
+                                     text-no-results="@Resource.NoRecordAvailable"
+                                     tabindex="1" input-class="form-control">
+                                </div>
+                                <div class="clearfix">
+                                </div>
+                                <div class="badge badge-danger" data-ng-show="frmMedicineOpeningStock.txtConfigLevel.$dirty && frmMedicineOpeningStock.txtConfigLevel.$invalid && frmMedicineOpeningStock.txtConfigLevel.$error.required">
+                                    <span ng-show="frmMedicineOpeningStock.txtConfigLevel.$error.required">@Resource.SiteRequired</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" tabindex="2" ng-model="Filter.searchData" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}", Resource.Search, Resource.MedicineCode, Resource.MedicineName)" />
+                                <a href class="input-group-addon cursor-pointer" ng-click="SearchRecords();">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="main-table table-responsive">
+                        @*<scrollable-table scroll-height="200">*@
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    @*<th width="5%" class="SRno">
+                                            @Resource.SrNo
+                                        </th>*@
+                                    <th width="10%" class="colMedicineCode">
+                                        @Resource.MedicineCode
+                                    </th>
+                                    <th width="35%" class="colMedicineName">
+                                        @Resource.MedicineName
+                                    </th>
+                                    <th width="10%" class="colMedicineType">
+                                        @Resource.MedicineType
+                                    </th>
+                                    <th width="15%" class="colExpiryDate">
+                                        @Resource.ExpiryDate
+                                    </th>
+                                    <th width="10%" class="colQuantity">
+                                        @Resource.Quantity
+                                    </th>
+                                    <th width="10%" class="colExpiryDate">
+                                        @Resource.Price
+                                    </th>
+                                    <th width="10%" class="colAction">
+                                        @Resource.Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody ng-switch="showHideAction.isEdit" ng-repeat="item in medicineOpeningStock  | filter: {IsActive: true}"
+                                   ng-init="showHideAction={isEdit:false};actionToEdit={};item.index=$index+1;">
+                                <tr ng-switch-when="false">
+                                    @*<td ng-class="'colSrNo text-right'">
+                                            {{$index + 1}}
+                                        </td>*@
+                                    <td>
+                                        <span>{{item.MedicineCode}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{item.MedicineName}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{item.MedicineType}}</span>
+                                    </td>
+                                    <td>
+                                        <span ng-show="item.IsDefaultExpiry == false">{{item.ExpiryDate | date:'MMMM-yyyy'}}</span>
+                                    </td>
+                                    <td ng-class="'text-center'">
+                                        <span>{{item.Quantity}}</span>
+                                    </td>
+                                    <td ng-class="'text-center'">
+                                        <span>{{item.Price}}</span>
+                                    </td>
+                                    <td ng-class="'colAction'">
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-info btn-xs waves-effect waves-light m-r-5" title="@Resource.Edit" ng-click="EditMedicineDetails(item,actionToEdit,showHideAction);"><i class="fa fa-edit"></i></a>
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Delete" ng-click="DeleteMedicineDetails(medicineOpeningStock,item);"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                                <tr ng-form="frmMedicineDetailsEdit" ng-switch-when="true">
+                                    @*<td class="colSrNo text-right">
+                                            {{$index + 1}}
+                                        </td>*@
+                                    <td>
+                                        <span>{{actionToEdit.MedicineCode}}</span>
+                                    </td>
+                                    <td style="width: 300px;" ng-init="actionToEdit.AutoCompleteId='txtmedicinename'+($index + 1);setFocusTo();">
+                                        <div angucomplete-alt input-name="txtMedicineName" id="txtMedicineName{{ $index + 1}}" input-class="form-control" field-required="true"
+                                             pause="400" minlength="3" maxlength="255" placeholder="@string.Format("{0} {1} {2} {3}", Resource.Search, Resource.MedicineName, "/", Resource.Code)" selected-object="ChangedMedicineNameEdit"
+                                             remote-url="{{medicineAutoCompleteUrl}}" remote-url-data-field="Result" match-class="blue" selected-object-param="actionToEdit"
+                                             title-field="MedName" description-field="Description" text-searching="@Resource.AutocompleteSearching" initial-value="actionToEdit.MedicineName"
+                                             show-detail="{{true}}" text-no-results="@Resource.NoRecordAvailable" tabindex="3">
+                                            <div class="c">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span>{{actionToEdit.MedicineType}}</span>
+                                    </td>
+                                    <td>
+                                        <div class="input-group" ng-init="datePickerAS = {open:false}" ng-show="actionToEdit.MedicineReceivedId <= 0">
+                                            <input type="text" name="txtExpiryDate" class="form-control input-sm" uib-datepicker-popup="{{defaultSettings.MonthFormat}}"
+                                                   datepicker-options="{ minMode: 'month' }" datepicker-options="dateOptions" ng-model="actionToEdit.ExpiryDate"
+                                                   is-open="datePickerTD.Open" ng-required="actionToEdit.IsExpiryRequired" datepicker-append-to-body="true"
+                                                   readonly close-text="Close" tabindex="4" />
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-sm btn-icon waves-effect btn-default"
+                                                      ng-click="datePickerTD.Open=true"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </span>
+                                        </div>
+                                        <span ng-show="actionToEdit.MedicineReceivedId > 0">{{actionToEdit.ExpiryDate | date:'MMMM-yyyy'}}</span>
+                                    </td>
+                                    <td ng-class="'text-center'">
+                                        <input type="text" class="form-control" autocomplete="off" oncopy="return false"
+                                               oncut="return false" onpaste="return false" name="txtQuantity" tabindex="5" ng-model="actionToEdit.Quantity"
+                                               maxlength="10" required validate-integer />
+                                    </td>
+                                    <td ng-class="'text-center'">
+                                        <input type="text" class="form-control" autocomplete="off" oncopy="return false"
+                                               oncut="return false" onpaste="return false" name="txtPrice" tabindex="5" ng-model="actionToEdit.Price"
+                                               maxlength="10" required validate-decimal />
+                                    </td>
+                                    <td class="colAction">
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-success btn-xs waves-effect waves-light m-r-5" ng-disabled="frmMedicineDetailsEdit.$invalid" title="@Resource.Save" ng-click="frmMedicineDetailsEdit.$invalid || UpdateMedicineDetails(frmMedicineDetailsEdit,medicineOpeningStock,item,actionToEdit,showHideAction);"><i class="fa fa-save"></i></a>
+                                        <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Cancel" ng-click="showHideAction.isEdit=!showHideAction.isEdit"><i class="fa fa-close"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody ng-if="!options.showAddMedicineDetails && !((medicineOpeningStock | filter:{IsActive: true}).length > 0)">
+                                <tr>
+                                    <td colspan="8" align="center">
+                                        @Resource.NoRecordAvailable
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tr ng-form="frmMedicineDetailsAdd" ng-if="options.showAddMedicineDetails">
+                                <td>
+                                    <span>{{actionToAdd.MedicineCode}}</span>
+                                </td>
+                                <td style="width: 300px;" ng-init="actionToAdd.AutoCompleteId='txtmedicinename'+($index + 1);setFocusTo();">
+                                    <div angucomplete-alt input-name="txtMedicineName" id="txtMedicineName{{ $index + 1}}" input-class="form-control" field-required="true"
+                                         pause="400" minlength="3" maxlength="255" placeholder="@string.Format("{0} {1} {2} {3}", Resource.Search, Resource.MedicineName, "/", Resource.Code)" selected-object="ChangedMedicineNameAdd"
+                                         remote-url="{{medicineAutoCompleteUrl}}" remote-url-data-field="Result" match-class="blue" selected-object-param="actionToAdd"
+                                         title-field="MedName" description-field="Description" text-searching="@Resource.AutocompleteSearching" initial-value="actionToAdd.MedicineName" override-suggestions="false"
+                                         show-detail="{{true}}" text-no-results="@Resource.NoRecordAvailable" tabindex="3">
+                                        <div class="c">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td ng-class="'text-center'">
+                                    <span>{{actionToAdd.MedicineType}}</span>
+                                </td>
+                                <td ng-class="'text-center'">
+                                    <div class="input-group" ng-init="datePickerAS = {open:false}">
+                                        <input type="text" name="txtExpiryDate" class="form-control input-sm" uib-datepicker-popup="{{defaultSettings.MonthFormat}}"
+                                               datepicker-options="{ minMode: 'month' }" datepicker-options="dateOptions" ng-model="actionToAdd.ExpiryDate"
+                                               is-open="datePickerTD.Open" ng-required="actionToAdd.IsExpiryRequired" datepicker-append-to-body="true"
+                                               readonly close-text="Close" tabindex="4" />
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-sm btn-icon waves-effect btn-default"
+                                                  ng-click="datePickerTD.Open=true"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td ng-class="'text-center'">
+                                    <input type="text" class="form-control" autocomplete="off" oncopy="return false"
+                                           oncut="return false" onpaste="return false" required name="txtQuantity" tabindex="5"
+                                           ng-model="actionToAdd.Quantity" maxlength="10" validate-integer />
+                                </td>
+                                <td ng-class="'text-center'">
+                                    <input type="text" class="form-control" autocomplete="off" oncopy="return false"
+                                           oncut="return false" onpaste="return false" required name="txtPrice" tabindex="5"
+                                           ng-model="actionToAdd.Price" maxlength="10" validate-decimal />
+                                </td>
+                                <td class="colAction">
+                                    <a href="javascript:void(0);" class="btn btn-icon btn-success btn-xs waves-effect waves-light m-r-5" ng-disabled="frmMedicineDetailsAdd.$invalid" title="@Resource.Save"
+                                       ng-click="frmMedicineDetailsAdd.$invalid || AddMedicineDetails(frmMedicineDetailsAdd,medicineOpeningStock,actionToAdd,options);"><i class="fa fa-save"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-xs waves-effect waves-light m-r-5" title="@Resource.Cancel"
+                                       ng-click="options.showAddMedicineDetails=!options.showAddMedicineDetails"><i class="fa fa-close"></i></a>
+                                </td>
+                            </tr>
+                        </table>
+                        @*</scrollable-table>*@
+                        <a class="btn btn-primary waves-effect waves-light btn-xs pull-right m-t-5"
+                           tabindex="6" ng-click="options.showAddMedicineDetails=!options.showAddMedicineDetails">
+                            <i class="zmdi zmdi-plus m-r-5"></i>@Resource.AddMedicineStock
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-8">
+                    @*<button type="submit" class="btn btn-success w-md waves-light" ng-disabled="frmMedicineOpeningStock.$invalid"
+                                ng-class="{'': frmMedicineOpeningStock.$invalid, 'waves-effect':!frmMedicineOpeningStock.$invalid}" tabindex="18">
+                            {{ IsEdit ? '@Resource.Update' : '@Resource.Save' }}
+                        </button>
+                        <button ng-disabled="isReadOnly" ng-if="!IsEdit" type="button" class="btn btn-info waves-effect w-md waves-light"
+                                tabindex="19" ng-click="ClearForm(frmMedicineOpeningStock)">
+                            @Resource.Clear
+                        </button>
+                        <button ng-disabled="isReadOnly" ng-if="IsEdit" type="button" class="btn btn-info waves-effect w-md waves-light"
+                                tabindex="19" ng-click="ResetForm(frmMedicineOpeningStock)">
+                            @Resource.Reset
+                        </button>
+                        <a href="/InventoryManagement/Inventory/MedicineOpeningStock" class="btn btn-danger w-md waves-effect waves-light" tabindex="20">
+                            @Resource.Cancel
+                        </a>*@
+                    <button ng-if="!IsEdit" type="submit" class="btn btn-success w-md waves-light" ng-disabled="((medicineOpeningStock | filter:{IsActive: true}).length <= 0 || frmMedicineOpeningStock.$invalid)"
+                            ng-class="{'': frmMedicineOpeningStock.$invalid, 'waves-effect':!frmMedicineOpeningStock.$invalid}"
+                            tabindex="7">
+                        @Resource.Submit
+                    </button>
+                    <button ng-if="IsEdit" type="submit" class="btn btn-success w-md waves-light" ng-disabled="frmMedicineOpeningStock.$invalid"
+                            ng-class="{'': frmMedicineOpeningStock.$invalid, 'waves-effect':!frmMedicineOpeningStock.$invalid}"
+                            tabindex="8">
+                        @Resource.Update
+                    </button>
+                    <button ng-disabled="isReadOnly" type="button" class="btn btn-info waves-effect w-md waves-light"
+                            tabindex="9" ng-click="ClearForm(frmMedicineOpeningStock)">
+                        @Resource.Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/InventoryManagement/MedicineOpeningStock")
+}
+<script type="text/javascript">
+    var DuplicateOpeningStockDetails = '@Resource.DuplicateOpeningStockDetails';
+    var MaxQuantityReached = '@Resource.MaxQuantityReached';
+    var PriceAndQtyGreaterThanZeroRequired = '@Resource.PriceAndQtyGreaterThanZeroRequired';
+    var ExpiryDateLessThenCurrentWarningMessaage = '@Resource.ExpiryDateLessThenCurrentWarningMessaage';
+    var DeleteConfirmMsg = '@Resource.DeleteConfirmMsg';
+</script>

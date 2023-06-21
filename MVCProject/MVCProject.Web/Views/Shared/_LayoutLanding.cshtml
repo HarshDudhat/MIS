@@ -1,0 +1,52 @@
+﻿@using MVCProject.ViewModel
+@{UserContext userContext = Session["UserContext"] != null ? (UserContext)Session["UserContext"] : new UserContext();}
+<!DOCTYPE html>
+<html ng-app="DorfKetalMVCApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Html.Partial("~/Views/Shared/_CommonScriptInner.cshtml")
+    @{BundleTable.EnableOptimizations = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["IsJsCssMinified"]);}
+    @Styles.Render("~/css/landing")
+    <script type="text/javascript">
+        var sessionToken = '@userContext.Token';
+        var baseApiURL = '@System.Configuration.ConfigurationManager.AppSettings["ApiServiceUrl"]';
+    </script>
+</head>
+<body id="LayoutBody" ng-controller="PublicMasterCtrl" ng-cloak>
+    @* @Html.Partial("~/Views/Shared/_Loader.cshtml")*@
+    <!-- Header -->
+     <div class="container-fluid">
+        <div class="container logo-section-relative">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/Home"><img class="img-responsive logo-inside" ng-class="{'blur-7' : !isLogoLoaded}" src="/Content/images/company-logo.png" ng-src="{{applicationLogo}}" fallback-src="/Content/images/company-logo.png" alt="Application Logo" /></a>
+                    <a ng-click="Logout()" href="javascript:void(0)" ng-if="sessionToken != ''" class="btn btn-danger r" title="@Resource.Logout">@Resource.Logout</a>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+    <!-- Header Ends-->
+    <!-- Page Content Start -->
+    @RenderBody()
+    <span class="backToTop"><i class="fa fa-arrow-circle-o-up"></i></span>
+    <!-- Page Content End -->
+    <!-- Footer Start -->
+    <div class="footer-wraper">
+        @Resource.CopyrightCompanyName
+    </div>
+    <!-- Footer Ends -->
+    <script type="text/javascript">
+        var angularmodule = [
+            "ngCookies",
+            "textAngular",
+            "ui.bootstrap"
+        ];
+    </script>
+    @Scripts.Render("~/bundles/landing")
+    @Scripts.Render("~/bundles/Public/Master")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
