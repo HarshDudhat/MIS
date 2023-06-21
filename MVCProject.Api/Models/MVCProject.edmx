@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="DesignationId" />
+          </Key>
+          <Property Name="DesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DesignationName" Type="varchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="MIS_FieldData">
+          <Key>
+            <PropertyRef Name="DataId" />
+          </Key>
+          <Property Name="DataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportId" Type="int" />
+          <Property Name="FieldId" Type="int" />
+          <Property Name="FieldValue" Type="nvarchar(max)" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="EntryBy" Type="int" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MIS_GroupFieldsMaster">
+          <Key>
+            <PropertyRef Name="FieldId" />
+          </Key>
+          <Property Name="FieldId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FieldName" Type="nvarchar(max)" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MIS_GroupsMaster">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MIS_MISReport">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportDate" Type="date" />
+          <Property Name="VerticalId" Type="int" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="EntryBy" Type="int" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MIS_ProjectMaster">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MIS_RoleMaster">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MIS_StatusMaster">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MIS_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="EntryBy" Type="int" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MIS_VerticalMaster">
+          <Key>
+            <PropertyRef Name="VerticalId" />
+          </Key>
+          <Property Name="VerticalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VerticalName" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="FK__MIS_Field__Field__276EDEB3">
+          <End Role="MIS_GroupFieldsMaster" Type="Self.MIS_GroupFieldsMaster" Multiplicity="0..1" />
+          <End Role="MIS_FieldData" Type="Self.MIS_FieldData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_GroupFieldsMaster">
+              <PropertyRef Name="FieldId" />
+            </Principal>
+            <Dependent Role="MIS_FieldData">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_Field__Repor__267ABA7A">
+          <End Role="MIS_MISReport" Type="Self.MIS_MISReport" Multiplicity="0..1" />
+          <End Role="MIS_FieldData" Type="Self.MIS_FieldData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_MISReport">
+              <PropertyRef Name="ReportId" />
+            </Principal>
+            <Dependent Role="MIS_FieldData">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_Group__Group__1920BF5C">
+          <End Role="MIS_GroupsMaster" Type="Self.MIS_GroupsMaster" Multiplicity="0..1" />
+          <End Role="MIS_GroupFieldsMaster" Type="Self.MIS_GroupFieldsMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_GroupsMaster">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="MIS_GroupFieldsMaster">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_MISRe__Proje__22AA2996">
+          <End Role="MIS_ProjectMaster" Type="Self.MIS_ProjectMaster" Multiplicity="0..1" />
+          <End Role="MIS_MISReport" Type="Self.MIS_MISReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_ProjectMaster">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="MIS_MISReport">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_MISRe__Statu__239E4DCF">
+          <End Role="MIS_StatusMaster" Type="Self.MIS_StatusMaster" Multiplicity="0..1" />
+          <End Role="MIS_MISReport" Type="Self.MIS_MISReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_StatusMaster">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="MIS_MISReport">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_MISRe__Verti__21B6055D">
+          <End Role="MIS_VerticalMaster" Type="Self.MIS_VerticalMaster" Multiplicity="0..1" />
+          <End Role="MIS_MISReport" Type="Self.MIS_MISReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_VerticalMaster">
+              <PropertyRef Name="VerticalId" />
+            </Principal>
+            <Dependent Role="MIS_MISReport">
+              <PropertyRef Name="VerticalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_Users__RoleI__145C0A3F">
+          <End Role="MIS_RoleMaster" Type="Self.MIS_RoleMaster" Multiplicity="0..1" />
+          <End Role="MIS_Users" Type="Self.MIS_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_RoleMaster">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MIS_Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="USP_MIS_AuthenticateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MVCProjectModelStoreContainer">
+          <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_FieldData" EntityType="Self.MIS_FieldData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_GroupFieldsMaster" EntityType="Self.MIS_GroupFieldsMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_GroupsMaster" EntityType="Self.MIS_GroupsMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_MISReport" EntityType="Self.MIS_MISReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_ProjectMaster" EntityType="Self.MIS_ProjectMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_RoleMaster" EntityType="Self.MIS_RoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_StatusMaster" EntityType="Self.MIS_StatusMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_Users" EntityType="Self.MIS_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_VerticalMaster" EntityType="Self.MIS_VerticalMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MIS_Field__Field__276EDEB3" Association="Self.FK__MIS_Field__Field__276EDEB3">
+            <End Role="MIS_GroupFieldsMaster" EntitySet="MIS_GroupFieldsMaster" />
+            <End Role="MIS_FieldData" EntitySet="MIS_FieldData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_Field__Repor__267ABA7A" Association="Self.FK__MIS_Field__Repor__267ABA7A">
+            <End Role="MIS_MISReport" EntitySet="MIS_MISReport" />
+            <End Role="MIS_FieldData" EntitySet="MIS_FieldData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_Group__Group__1920BF5C" Association="Self.FK__MIS_Group__Group__1920BF5C">
+            <End Role="MIS_GroupsMaster" EntitySet="MIS_GroupsMaster" />
+            <End Role="MIS_GroupFieldsMaster" EntitySet="MIS_GroupFieldsMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_MISRe__Proje__22AA2996" Association="Self.FK__MIS_MISRe__Proje__22AA2996">
+            <End Role="MIS_ProjectMaster" EntitySet="MIS_ProjectMaster" />
+            <End Role="MIS_MISReport" EntitySet="MIS_MISReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_MISRe__Statu__239E4DCF" Association="Self.FK__MIS_MISRe__Statu__239E4DCF">
+            <End Role="MIS_StatusMaster" EntitySet="MIS_StatusMaster" />
+            <End Role="MIS_MISReport" EntitySet="MIS_MISReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_MISRe__Verti__21B6055D" Association="Self.FK__MIS_MISRe__Verti__21B6055D">
+            <End Role="MIS_VerticalMaster" EntitySet="MIS_VerticalMaster" />
+            <End Role="MIS_MISReport" EntitySet="MIS_MISReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_Users__RoleI__145C0A3F" Association="Self.FK__MIS_Users__RoleI__145C0A3F">
+            <End Role="MIS_RoleMaster" EntitySet="MIS_RoleMaster" />
+            <End Role="MIS_Users" EntitySet="MIS_Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVCProjectModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="MIS_FieldData">
+          <Key>
+            <PropertyRef Name="DataId" />
+          </Key>
+          <Property Name="DataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportId" Type="Int32" />
+          <Property Name="FieldId" Type="Int32" />
+          <Property Name="FieldValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_GroupFieldsMaster" Relationship="Self.FK__MIS_Field__Field__276EDEB3" FromRole="MIS_FieldData" ToRole="MIS_GroupFieldsMaster" />
+          <NavigationProperty Name="MIS_MISReport" Relationship="Self.FK__MIS_Field__Repor__267ABA7A" FromRole="MIS_FieldData" ToRole="MIS_MISReport" />
+        </EntityType>
+        <EntityType Name="MIS_GroupFieldsMaster">
+          <Key>
+            <PropertyRef Name="FieldId" />
+          </Key>
+          <Property Name="FieldId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FieldName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_FieldData" Relationship="Self.FK__MIS_Field__Field__276EDEB3" FromRole="MIS_GroupFieldsMaster" ToRole="MIS_FieldData" />
+          <NavigationProperty Name="MIS_GroupsMaster" Relationship="Self.FK__MIS_Group__Group__1920BF5C" FromRole="MIS_GroupFieldsMaster" ToRole="MIS_GroupsMaster" />
+        </EntityType>
+        <EntityType Name="MIS_GroupsMaster">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_GroupFieldsMaster" Relationship="Self.FK__MIS_Group__Group__1920BF5C" FromRole="MIS_GroupsMaster" ToRole="MIS_GroupFieldsMaster" />
+        </EntityType>
+        <EntityType Name="MIS_MISReport">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportDate" Type="DateTime" Precision="0" />
+          <Property Name="VerticalId" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_FieldData" Relationship="Self.FK__MIS_Field__Repor__267ABA7A" FromRole="MIS_MISReport" ToRole="MIS_FieldData" />
+          <NavigationProperty Name="MIS_ProjectMaster" Relationship="Self.FK__MIS_MISRe__Proje__22AA2996" FromRole="MIS_MISReport" ToRole="MIS_ProjectMaster" />
+          <NavigationProperty Name="MIS_StatusMaster" Relationship="Self.FK__MIS_MISRe__Statu__239E4DCF" FromRole="MIS_MISReport" ToRole="MIS_StatusMaster" />
+          <NavigationProperty Name="MIS_VerticalMaster" Relationship="Self.FK__MIS_MISRe__Verti__21B6055D" FromRole="MIS_MISReport" ToRole="MIS_VerticalMaster" />
+        </EntityType>
+        <EntityType Name="MIS_ProjectMaster">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_MISReport" Relationship="Self.FK__MIS_MISRe__Proje__22AA2996" FromRole="MIS_ProjectMaster" ToRole="MIS_MISReport" />
+        </EntityType>
+        <EntityType Name="MIS_RoleMaster">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_Users" Relationship="Self.FK__MIS_Users__RoleI__145C0A3F" FromRole="MIS_RoleMaster" ToRole="MIS_Users" />
+        </EntityType>
+        <EntityType Name="MIS_StatusMaster">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_MISReport" Relationship="Self.FK__MIS_MISRe__Statu__239E4DCF" FromRole="MIS_StatusMaster" ToRole="MIS_MISReport" />
+        </EntityType>
+        <EntityType Name="MIS_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_RoleMaster" Relationship="Self.FK__MIS_Users__RoleI__145C0A3F" FromRole="MIS_Users" ToRole="MIS_RoleMaster" />
+        </EntityType>
+        <EntityType Name="MIS_VerticalMaster">
+          <Key>
+            <PropertyRef Name="VerticalId" />
+          </Key>
+          <Property Name="VerticalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VerticalName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="MIS_MISReport" Relationship="Self.FK__MIS_MISRe__Verti__21B6055D" FromRole="MIS_VerticalMaster" ToRole="MIS_MISReport" />
+        </EntityType>
+        <Association Name="FK__MIS_Field__Field__276EDEB3">
+          <End Role="MIS_GroupFieldsMaster" Type="Self.MIS_GroupFieldsMaster" Multiplicity="0..1" />
+          <End Role="MIS_FieldData" Type="Self.MIS_FieldData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_GroupFieldsMaster">
+              <PropertyRef Name="FieldId" />
+            </Principal>
+            <Dependent Role="MIS_FieldData">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_Field__Repor__267ABA7A">
+          <End Role="MIS_MISReport" Type="Self.MIS_MISReport" Multiplicity="0..1" />
+          <End Role="MIS_FieldData" Type="Self.MIS_FieldData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_MISReport">
+              <PropertyRef Name="ReportId" />
+            </Principal>
+            <Dependent Role="MIS_FieldData">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_Group__Group__1920BF5C">
+          <End Role="MIS_GroupsMaster" Type="Self.MIS_GroupsMaster" Multiplicity="0..1" />
+          <End Role="MIS_GroupFieldsMaster" Type="Self.MIS_GroupFieldsMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_GroupsMaster">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="MIS_GroupFieldsMaster">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_MISRe__Proje__22AA2996">
+          <End Role="MIS_ProjectMaster" Type="Self.MIS_ProjectMaster" Multiplicity="0..1" />
+          <End Role="MIS_MISReport" Type="Self.MIS_MISReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_ProjectMaster">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="MIS_MISReport">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_MISRe__Statu__239E4DCF">
+          <End Role="MIS_StatusMaster" Type="Self.MIS_StatusMaster" Multiplicity="0..1" />
+          <End Role="MIS_MISReport" Type="Self.MIS_MISReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_StatusMaster">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="MIS_MISReport">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_MISRe__Verti__21B6055D">
+          <End Role="MIS_VerticalMaster" Type="Self.MIS_VerticalMaster" Multiplicity="0..1" />
+          <End Role="MIS_MISReport" Type="Self.MIS_MISReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_VerticalMaster">
+              <PropertyRef Name="VerticalId" />
+            </Principal>
+            <Dependent Role="MIS_MISReport">
+              <PropertyRef Name="VerticalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MIS_Users__RoleI__145C0A3F">
+          <End Role="MIS_RoleMaster" Type="Self.MIS_RoleMaster" Multiplicity="0..1" />
+          <End Role="MIS_Users" Type="Self.MIS_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_RoleMaster">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MIS_Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MVCProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MIS_FieldData" EntityType="Self.MIS_FieldData" />
+          <EntitySet Name="MIS_GroupFieldsMaster" EntityType="Self.MIS_GroupFieldsMaster" />
+          <EntitySet Name="MIS_GroupsMaster" EntityType="Self.MIS_GroupsMaster" />
+          <EntitySet Name="MIS_MISReport" EntityType="Self.MIS_MISReport" />
+          <EntitySet Name="MIS_ProjectMaster" EntityType="Self.MIS_ProjectMaster" />
+          <EntitySet Name="MIS_RoleMaster" EntityType="Self.MIS_RoleMaster" />
+          <EntitySet Name="MIS_StatusMaster" EntityType="Self.MIS_StatusMaster" />
+          <EntitySet Name="MIS_Users" EntityType="Self.MIS_Users" />
+          <EntitySet Name="MIS_VerticalMaster" EntityType="Self.MIS_VerticalMaster" />
+          <AssociationSet Name="FK__MIS_Field__Field__276EDEB3" Association="Self.FK__MIS_Field__Field__276EDEB3">
+            <End Role="MIS_GroupFieldsMaster" EntitySet="MIS_GroupFieldsMaster" />
+            <End Role="MIS_FieldData" EntitySet="MIS_FieldData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_Field__Repor__267ABA7A" Association="Self.FK__MIS_Field__Repor__267ABA7A">
+            <End Role="MIS_MISReport" EntitySet="MIS_MISReport" />
+            <End Role="MIS_FieldData" EntitySet="MIS_FieldData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_Group__Group__1920BF5C" Association="Self.FK__MIS_Group__Group__1920BF5C">
+            <End Role="MIS_GroupsMaster" EntitySet="MIS_GroupsMaster" />
+            <End Role="MIS_GroupFieldsMaster" EntitySet="MIS_GroupFieldsMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_MISRe__Proje__22AA2996" Association="Self.FK__MIS_MISRe__Proje__22AA2996">
+            <End Role="MIS_ProjectMaster" EntitySet="MIS_ProjectMaster" />
+            <End Role="MIS_MISReport" EntitySet="MIS_MISReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_MISRe__Statu__239E4DCF" Association="Self.FK__MIS_MISRe__Statu__239E4DCF">
+            <End Role="MIS_StatusMaster" EntitySet="MIS_StatusMaster" />
+            <End Role="MIS_MISReport" EntitySet="MIS_MISReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_MISRe__Verti__21B6055D" Association="Self.FK__MIS_MISRe__Verti__21B6055D">
+            <End Role="MIS_VerticalMaster" EntitySet="MIS_VerticalMaster" />
+            <End Role="MIS_MISReport" EntitySet="MIS_MISReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MIS_Users__RoleI__145C0A3F" Association="Self.FK__MIS_Users__RoleI__145C0A3F">
+            <End Role="MIS_RoleMaster" EntitySet="MIS_RoleMaster" />
+            <End Role="MIS_Users" EntitySet="MIS_Users" />
+          </AssociationSet>
+          <EntitySet Name="Designations" EntityType="MVCProjectModel.Designation" />
+          <FunctionImport Name="USP_MIS_AuthenticateUser" ReturnType="Collection(MVCProjectModel.USP_MIS_AuthenticateUser_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="DesignationId" />
+          </Key>
+          <Property Name="DesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesignationName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="USP_MIS_AuthenticateUser_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="RoleId" Nullable="true" />
+          <Property Type="Int32" Name="EntryBy" Nullable="true" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdateBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVCProjectModelStoreContainer" CdmEntityContainer="MVCProjectEntities">
+          <EntitySetMapping Name="MIS_FieldData">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_FieldData">
+              <MappingFragment StoreEntitySet="MIS_FieldData">
+                <ScalarProperty Name="DataId" ColumnName="DataId" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIS_GroupFieldsMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_GroupFieldsMaster">
+              <MappingFragment StoreEntitySet="MIS_GroupFieldsMaster">
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIS_GroupsMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_GroupsMaster">
+              <MappingFragment StoreEntitySet="MIS_GroupsMaster">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIS_MISReport">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_MISReport">
+              <MappingFragment StoreEntitySet="MIS_MISReport">
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIS_ProjectMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_ProjectMaster">
+              <MappingFragment StoreEntitySet="MIS_ProjectMaster">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIS_RoleMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_RoleMaster">
+              <MappingFragment StoreEntitySet="MIS_RoleMaster">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIS_StatusMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_StatusMaster">
+              <MappingFragment StoreEntitySet="MIS_StatusMaster">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIS_Users">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_Users">
+              <MappingFragment StoreEntitySet="MIS_Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIS_VerticalMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_VerticalMaster">
+              <MappingFragment StoreEntitySet="MIS_VerticalMaster">
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="VerticalName" ColumnName="VerticalName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Designations">
+            <EntityTypeMapping TypeName="MVCProjectModel.Designation">
+              <MappingFragment StoreEntitySet="Designation">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_AuthenticateUser" FunctionName="MVCProjectModel.Store.USP_MIS_AuthenticateUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_AuthenticateUser_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

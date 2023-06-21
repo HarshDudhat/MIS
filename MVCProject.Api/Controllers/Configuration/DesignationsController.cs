@@ -49,7 +49,7 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpGet]
         public ApiResponse GetForDropdown()
         {
-            var data = this.entities.Designation.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+            var data = this.entities.Designations.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
@@ -66,8 +66,8 @@ namespace MVCProject.Api.Controllers.Configuration
                 designationDetailParams.Search = string.Empty;
             }
 
-            var designationList = (from s in this.entities.Designation.AsEnumerable().Where(x => x.DesignationName.Trim().ToLower().Contains(designationDetailParams.Search.Trim().ToLower()))
-                                   let TotalRecords = this.entities.Designation.AsEnumerable().Where(x => x.DesignationName.Trim().ToLower().Contains(designationDetailParams.Search.Trim().ToLower())).Count()
+            var designationList = (from s in this.entities.Designations.AsEnumerable().Where(x => x.DesignationName.Trim().ToLower().Contains(designationDetailParams.Search.Trim().ToLower()))
+                                   let TotalRecords = this.entities.Designations.AsEnumerable().Where(x => x.DesignationName.Trim().ToLower().Contains(designationDetailParams.Search.Trim().ToLower())).Count()
                                    select new
                                    {
                                        DesignationId = s.DesignationId,
@@ -88,7 +88,7 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpGet]
         public ApiResponse GetDesignationList(bool isGetAll = false)
         {
-            var result = this.entities.Designation.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new { Id = x.DesignationId, Name = x.DesignationName }).OrderBy(y => y.Name).ToList();
+            var result = this.entities.Designations.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new { Id = x.DesignationId, Name = x.DesignationName }).OrderBy(y => y.Name).ToList();
             return this.Response(MessageTypes.Success, string.Empty, result);
         }
 
@@ -100,7 +100,7 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpGet]
         public ApiResponse GetDesignationById(int designationId)
         {
-            var designationDetail = this.entities.Designation.Where(a => a.DesignationId == designationId)
+            var designationDetail = this.entities.Designations.Where(a => a.DesignationId == designationId)
                         .Select(g => new
                         {
                             DesignationId = g.DesignationId,
@@ -128,18 +128,18 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpPost]
         public ApiResponse SaveDesignationDetails(Designation designationDetail)
         {
-            if (this.entities.Designation.Any(x => x.DesignationId != designationDetail.DesignationId && x.DesignationName.Trim() == designationDetail.DesignationName.Trim()))
+            if (this.entities.Designations.Any(x => x.DesignationId != designationDetail.DesignationId && x.DesignationName.Trim() == designationDetail.DesignationName.Trim()))
             {
                 return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Designation));
             }
             else
             {
-                Designation existingDesignationDetail = this.entities.Designation.Where(a => a.DesignationId == designationDetail.DesignationId).FirstOrDefault();
+                Designation existingDesignationDetail = this.entities.Designations.Where(a => a.DesignationId == designationDetail.DesignationId).FirstOrDefault();
                 if (existingDesignationDetail == null)
                 {
                     //designationDetail.EntryDate = DateTime.UtcNow;
                     //designationDetail.EntryBy = UserContext.EmployeeId;
-                    this.entities.Designation.AddObject(designationDetail);
+                    this.entities.Designations.AddObject(designationDetail);
                     if (!(this.entities.SaveChanges() > 0))
                     {
                         return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Designation));
@@ -155,7 +155,7 @@ namespace MVCProject.Api.Controllers.Configuration
                     existingDesignationDetail.Remarks = designationDetail.Remarks;
                     //existingDesignationDetail.UpdateBy = UserContext.EmployeeId;
                     //existingDesignationDetail.UpdateDate = DateTime.UtcNow;
-                    this.entities.Designation.ApplyCurrentValues(existingDesignationDetail);
+                    this.entities.Designations.ApplyCurrentValues(existingDesignationDetail);
                     if (!(this.entities.SaveChanges() > 0))
                     {
                         return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError), Resource.Designation);

@@ -979,6 +979,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect Credentials.
+        /// </summary>
+        public static string IncorrectCredentials {
+            get {
+                return ResourceManager.GetString("IncorrectCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid file extension. Only files with the following extensions are allowed:.
         /// </summary>
         public static string InvalidFileExtensionMsg {

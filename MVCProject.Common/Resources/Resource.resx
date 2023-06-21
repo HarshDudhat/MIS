@@ -858,4 +858,7 @@
   <data name="ConfigModuleName" xml:space="preserve">
     <value>Module Name</value>
   </data>
+  <data name="IncorrectCredentials" xml:space="preserve">
+    <value>Incorrect Credentials</value>
+  </data>
 </root>
