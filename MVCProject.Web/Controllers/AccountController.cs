@@ -167,6 +167,13 @@ namespace MVCProject.Controllers
             return this.Session["UserContext"] != null;
         }
 
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+
+
         /// <summary>
         /// Logout current User
         /// </summary>

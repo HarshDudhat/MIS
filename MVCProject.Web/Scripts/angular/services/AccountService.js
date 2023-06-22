@@ -34,5 +34,40 @@
         });
     }
 
+    // emaildid of user
+    list.getuserlist = function (user) {
+        return $http({
+            method: 'GET',
+            url: $rootScope.apiURL + '/Account/getusersdetails?user=' + user
+        });
+    };
+
+    // Generate Security Code of User
+    list.generatesecurecode = function (id) {
+        return $http({
+            method: 'POST',
+            url: $rootScope.apiURL + '/Account/GetRandomString?id=' + id,
+            data: JSON.stringify(id),
+        });
+    };
+
+    // VerifyCode
+    list.verifycodes = function (code) {
+        return $http({
+            method: 'POST',
+            url: $rootScope.apiURL + '/Account/VerifyCode?code=' + code,
+            data: JSON.stringify(code)
+        });
+    };
+
+    // upadate pass
+    list.updatepass = function (pass) {
+        return $http({
+            method: 'POST',
+            url: $rootScope.apiURL + '/Account/UpdatePassword?pass=' + pass,
+            data: JSON.stringify(pass)
+        });
+    };
+
     return list;
 } ]);

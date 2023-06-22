@@ -2261,6 +2261,30 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Boolean> _IsActive;
         partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SecurityCode
+        {
+            get
+            {
+                return _SecurityCode;
+            }
+            set
+            {
+                OnSecurityCodeChanging(value);
+                ReportPropertyChanging("SecurityCode");
+                _SecurityCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SecurityCode");
+                OnSecurityCodeChanged();
+            }
+        }
+        private global::System.String _SecurityCode;
+        partial void OnSecurityCodeChanging(global::System.String value);
+        partial void OnSecurityCodeChanged();
 
         #endregion
 
