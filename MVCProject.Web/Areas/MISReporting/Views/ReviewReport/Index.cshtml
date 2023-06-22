@@ -27,25 +27,7 @@
         max-width: 50px !important;
     }
 </style>
-<script>
-    function onMonthChange() {
-        var monthPicker = document.getElementById('monthPicker');
-        var selectedMonth = new Date(monthPicker.value + '-01'); // Assuming day is always set to '01'
 
-        var currentMonth = new Date(); // Get the current month and year
-        var currentYear = currentMonth.getFullYear();
-        var currentMonthIndex = currentMonth.getMonth();
-
-        var selectedYear = selectedMonth.getFullYear();
-        var selectedMonthIndex = selectedMonth.getMonth();
-
-        if (selectedYear > currentYear || (selectedYear === currentYear && selectedMonthIndex > currentMonthIndex)) {
-            // Selected month is in the future, reset the value to the current month and year
-            monthPicker.value = currentYear + '-' + ('0' + (currentMonthIndex + 1)).slice(-2); // Format: yyyy-mm
-        } else {
-        }
-    }
-</script>
 <div ng-controller="ReviewReportCtrl" novalidate>
     <!-- start title section-->
     <div class="main-page-title title-icon relative l">
@@ -110,8 +92,9 @@
                                     @Resource.Month_Year
                                 </label>
                                 <div class="input-group">
-                                    @*<input type="month" class="form-control" id="txtdoj" ng-focus="true" name="txtdoj" required tabindex="1" placeholder="mm-yyyy" ng-model="selectedMonth" min="{{minMonth}}" max="{{maxDate | date:'yyyy-MM'}}">*@
-                                    <input type="month" id="monthPicker" class="form-control" onchange="onMonthChange()" />
+                                    <div class="input-group">
+                                        <input type="month" class="form-control" id="txtdoj" ng-focus="true" name="txtdoj" required tabindex="1" placeholder="mm-yyyy" ng-model="ReviewReportDetailScope.selectedMonth" ng-init="setDefaultMonth()" min="{{minMonth}}" max="{{maxDate | date:'yyyy-MM'}}">
+                                    </div>
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmReviewReport.txtdoj.$dirty && frmReviewReport.txtdoj.$invalid">
                                     <span data-ng-show="frmReviewReport.txtdoj.$error.required">@Resource.DesignationRequired</span>
