@@ -36,6 +36,74 @@
         };
         //End Check login
 
+
+
+        //forgetpassword
+        $scope.forget = function (user) {
+            if (user == undefined) {
+                return;
+            }
+            AccountService.getuserlist(user)
+                .then(function (res) {
+                    $scope.Company = res.data.Result;
+                    $scope.UserId = $scope.Company[0].Id;
+                    $scope.generatecode($scope.UserId);
+                });
+            $scope.useremail = true;
+        }
+
+        $scope.useremail = false;
+        $scope.newpassword = false;
+        $scope.showinputcode = false;
+        $scope.showallpage = true;
+
+        //generatesecuritycode
+        $scope.generatecode = function (id) {
+            AccountService.generatesecurecode(id)
+                .then(function (res) {
+                    $scope.securitycode = res.data.Result;
+                    toastr.success(res.data.Message, successTitle);
+                });
+            $scope.showinputcode = true;
+        }
+
+        //verify code
+
+        $scope.verifycode = function (code) {
+            code.EmpId = $scope.Company[0].Id;
+            code.Email = code.Username;
+            AccountService.verifycodes(code)
+                .then(function (res) {
+                    $scope.veryfied = res.data.Result;
+                    if (res.data.MessageType == messageTypes.Success && res.data.IsAuthenticated) {
+                        $scope.newpassword = true;
+                        $scope.showallpage = false;
+                        toastr.success(res.data.Result, successTitle);
+                    }
+                    else {
+                        toastr.error(res.data.Message, errorTitle);
+                    }
+                });
+            $scope.showinputcode = true;
+        }
+        //update password
+        $scope.updatepassword = function (forgetnewpassword) {
+            if (forgetnewpassword.Password != forgetnewpassword.confirmPassword) {
+                toastr.error("Please Put Same Password", errorTitle)
+            }
+            else {
+                forgetnewpassword.Password = CommonFunctions.EncryptData(forgetnewpassword.Password)
+                forgetnewpassword.EmpId = $scope.Company[0].Id;
+                AccountService.updatepass(forgetnewpassword)
+                    .then(function (res) {
+                        $scope.UpdatedPass = res.data.Result;
+                        toastr.success(res.data.Result, successTitle);
+                        CommonFunctions.RedirectToLoginPage();
+                    });
+                $scope.showinputcode = true;
+            }
+        }
+
         //BEGIN Do Login
         $scope.DoLogin = function (Login, frmLogin) {
             if (frmLogin.$invalid) {

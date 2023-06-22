@@ -32,10 +32,13 @@
                             <div class="input-group">
                                 <span class="input-group-addon "><i class="ti-key icon-color"></i></span>
                                 <input name="txtPassword" id="txtPassword" type="password" ng-model="loginFormData.Password" autocomplete=off @*readonly onfocus="$(this).removeAttr('readonly');"*@
-                                           class="form-control password" maxlength="25" required tabindex="2" placeholder="@Resource.Password" />
+                                       class="form-control password" maxlength="25" required tabindex="2" placeholder="@Resource.Password" />
                                 <div class="c">
                                 </div>
                             </div>
+                            <a href="/Account/ForgetPassword" type="button" class="btn btn-link forgot-pass" tabindex="5">
+                                <i class="fa fa-lock m-r-5"></i>@Resource.ForgotPassword?
+                            </a>
                             <div class="label label-danger" data-ng-show="frmLogin.txtPassword.$dirty && frmLogin.txtPassword.$invalid">
                                 <span data-ng-show="frmLogin.txtPassword.$error.required">@Resource.PasswordRequired</span>
                             </div>
@@ -63,9 +66,9 @@
                             <div class="c">
                             </div>
                             <h4 class="green">
-                                <button type="button" class="btn btn-link no-padding" tabindex="5" ng-click="OpenResetPasswordModel()">
+                                @*<button type="button" class="btn btn-link no-padding" tabindex="5" ng-click="OpenResetPasswordModel()">
                                     <i class="fa fa-lock m-r-5"></i>@Resource.ForgotPassword?
-                                </button>
+                                </button>*@
                             </h4>
                         </div>
                         <div class="c">

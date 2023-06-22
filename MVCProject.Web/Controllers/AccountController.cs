@@ -156,6 +156,10 @@ namespace MVCProject.Controllers
         {
             this.Session.Timeout = 60;
         }
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
 
         /// <summary>
         /// Check Session
