@@ -790,6 +790,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Field Data.
+        /// </summary>
+        public static string FieldData {
+            get {
+                return ResourceManager.GetString("FieldData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File already exists.
         /// </summary>
         public static string FileAlreadyExist {
@@ -1641,6 +1650,15 @@ namespace MVCProject.Common.Resources {
         public static string RemarksRequired {
             get {
                 return ResourceManager.GetString("RemarksRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string Report {
+            get {
+                return ResourceManager.GetString("Report", resourceCulture);
             }
         }
         

@@ -876,4 +876,10 @@
   <data name="Vertical" xml:space="preserve">
     <value>Vertical</value>
   </data>
+  <data name="FieldData" xml:space="preserve">
+    <value>Field Data</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
 </root>

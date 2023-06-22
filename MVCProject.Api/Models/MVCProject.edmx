@@ -98,6 +98,7 @@
           <Property Name="UpdateBy" Type="int" />
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="SecurityCode" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="MIS_VerticalMaster">
           <Key>
@@ -195,10 +196,16 @@
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="USP_MIS_GetDataByReportId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReportId" Type="int" Mode="In" />
+        </Function>
         <Function Name="USP_MIS_GetGroupById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GroupId" Type="int" Mode="In" />
         </Function>
-        <Function Name="USP_MIS_GetGroupList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_GetGroupList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReportDate" Type="date" Mode="In" />
+          <Parameter Name="ProjectId" Type="int" Mode="In" />
+        </Function>
         <Function Name="USP_MIS_GetProjectList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="USP_MIS_GetVerticalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
@@ -342,6 +349,7 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="MIS_RoleMaster" Relationship="Self.FK__MIS_Users__RoleI__145C0A3F" FromRole="MIS_Users" ToRole="MIS_RoleMaster" />
+          <Property Name="SecurityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MIS_VerticalMaster">
           <Key>
@@ -479,11 +487,17 @@
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="USP_MIS_GetGroupList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupList_Result)" />
+          <FunctionImport Name="USP_MIS_GetGroupList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupList_Result)" >
+            <Parameter Name="ReportDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="USP_MIS_GetProjectList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetProjectList_Result)" />
           <FunctionImport Name="USP_MIS_GetVerticalList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetVerticalList_Result)" />
           <FunctionImport Name="USP_MIS_GetGroupById" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupById_Result)">
-            <Parameter Name="GroupId" Mode="In" Type="Int32" />
+          <Parameter Name="GroupId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_MIS_GetDataByReportId" ReturnType="Collection(MVCProjectModel.USP_MIS_GetDataByReportId_Result)">
+          <Parameter Name="ReportId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Designation">
@@ -509,7 +523,6 @@
         <ComplexType Name="USP_MIS_GetGroupList_Result">
           <Property Type="Int32" Name="GroupId" Nullable="false" />
           <Property Type="String" Name="GroupName" Nullable="true" />
-          <Property Type="Boolean" Name="IsActive" Nullable="true" />
         </ComplexType>
         <ComplexType Name="USP_MIS_GetProjectList_Result">
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
@@ -526,6 +539,16 @@
           <Property Type="String" Name="GroupName" Nullable="true" />
           <Property Type="Int32" Name="FieldId" Nullable="false" />
           <Property Type="String" Name="FieldName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_GetDataByReportId_Result">
+          <Property Type="Int32" Name="ReportId" Nullable="false" />
+          <Property Type="DateTime" Name="ReportDate" Nullable="true" />
+          <Property Type="Int32" Name="VerticalId" Nullable="true" />
+          <Property Type="Int32" Name="ProjectId" Nullable="true" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="Int32" Name="FieldId" Nullable="true" />
+          <Property Type="String" Name="FieldValue" Nullable="true" />
+          <Property Type="String" Name="Remarks" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -614,6 +637,7 @@
           <EntitySetMapping Name="MIS_Users">
             <EntityTypeMapping TypeName="MVCProjectModel.MIS_Users">
               <MappingFragment StoreEntitySet="MIS_Users">
+                <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -665,7 +689,6 @@
               <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetGroupList_Result">
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -694,6 +717,20 @@
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="FieldId" ColumnName="FieldId" />
                 <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetDataByReportId" FunctionName="MVCProjectModel.Store.USP_MIS_GetDataByReportId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetDataByReportId_Result">
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

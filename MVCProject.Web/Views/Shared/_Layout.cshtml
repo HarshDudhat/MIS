@@ -108,7 +108,7 @@
                             </i>
                                 @Resource.NotificationSetting
                             </a></li>*@
-                            <li><a ng-click="Logout()" href="javascript:void(0)"><i class="ti-power-off m-r-5"></i>
+                            <li><a href="~/Account/Logout"><i class="ti-power-off m-r-5"></i>
                                 @Resource.Logout
                             </a></li>
                         </ul>
@@ -118,6 +118,29 @@
                             ng-options="r.RoleId as r.RoleName for r in userCurrentRoles" ng-disabled="userCurrentRoles.length == 1">
                         </select>
                     </li>
+
+
+                     @*<li class="text-center">
+                        <div class="d-flex align-items-center p-3">
+                            <div class="me-2">
+                                <a class="d-flex align-items-center">
+                                    <img ng-src="{{userContext.ProfilePicturePath}}" alt="@Resource.ProfilePicture" fallback-src="/Content/images/avatar-1.jpg" 
+                                         src="../../Content/images/avatar-1.jpg" class="img-circle user-img profile-img rounded-circle thumb-sm" />
+                                </a>
+                            </div>
+                            <div class="d-flex flex-column align-items-start">
+                                <span class="username">{{userContext.User}}</span>
+                                <span class="rolename text-light ms-1" style="font-size:12px;">{{role.RoleName}}</span>
+                            </div>
+                            <div class="ms-4">
+                                <a href="~/Account/Logout" class="text-light">
+                                    <i class="fa fa-sign-out ms-2 font-20"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>*@
+
+
                 </ul>
             </div>
             <!-- /top navigation -->

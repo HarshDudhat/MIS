@@ -196,6 +196,7 @@
     <Compile Include="Models\Extended\GroupCurriculumMatrixMaster.cs" />
     <Compile Include="Models\Extended\GroupMaster.cs" />
     <Compile Include="Models\Extended\SubGroupMaster.cs" />
+    <Compile Include="Models\FilterCriterias\MISReport.cs" />
     <Compile Include="Models\LogOn.cs" />
     <Compile Include="Models\Extended\Attachments.cs" />
     <Compile Include="Models\Metadata\NewsMetaData.cs" />
@@ -268,7 +269,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Attachments\Temp\" />
     <Folder Include="Help\Templates\" />
-    <Folder Include="Models\FilterCriterias\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
