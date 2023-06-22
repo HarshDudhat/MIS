@@ -98,7 +98,6 @@
           <Property Name="UpdateBy" Type="int" />
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="SecurityCode" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="MIS_VerticalMaster">
           <Key>
@@ -343,7 +342,6 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="MIS_RoleMaster" Relationship="Self.FK__MIS_Users__RoleI__145C0A3F" FromRole="MIS_Users" ToRole="MIS_RoleMaster" />
-          <Property Name="SecurityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MIS_VerticalMaster">
           <Key>
@@ -485,7 +483,7 @@
           <FunctionImport Name="USP_MIS_GetProjectList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetProjectList_Result)" />
           <FunctionImport Name="USP_MIS_GetVerticalList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetVerticalList_Result)" />
           <FunctionImport Name="USP_MIS_GetGroupById" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupById_Result)">
-          <Parameter Name="GroupId" Mode="In" Type="Int32" />
+            <Parameter Name="GroupId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Designation">
@@ -616,7 +614,6 @@
           <EntitySetMapping Name="MIS_Users">
             <EntityTypeMapping TypeName="MVCProjectModel.MIS_Users">
               <MappingFragment StoreEntitySet="MIS_Users">
-                <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
