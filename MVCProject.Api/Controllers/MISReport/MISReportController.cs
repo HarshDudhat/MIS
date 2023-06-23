@@ -56,6 +56,10 @@ namespace MVCProject.Api.Controllers.MISReport
         public ApiResponse GetGroupList([FromUri]int ProjectId, DateTime ReportDate)
         {
             var list = entities.USP_MIS_GetGroupList(ReportDate,ProjectId).ToList();
+            if(list.Count == 0)
+            {
+                return this.Response(MessageTypes.Error);
+            }
             return this.Response(MessageTypes.Success, string.Empty, list);
         }
 

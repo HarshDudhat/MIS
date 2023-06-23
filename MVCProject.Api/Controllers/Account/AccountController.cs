@@ -63,7 +63,7 @@ namespace MVCProject.Api.Controllers.Account
         [HttpGet]
         public ApiResponse getusersdetails(string user)
         {
-            var data = this.entities.MIS_Users
+           var data = this.entities.MIS_Users
                 .Where(x => x.IsActive.Value && x.Email == user)
                 .Select(x => new
                 {

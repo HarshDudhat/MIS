@@ -215,9 +215,18 @@
         <Function Name="USP_MIS_GetGroupById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GroupId" Type="int" Mode="In" />
         </Function>
+        <Function Name="USP_MIS_GetGroupDataById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReportDate" Type="date" Mode="In" />
+          <Parameter Name="ProjectId" Type="int" Mode="In" />
+          <Parameter Name="GroupId" Type="int" Mode="In" />
+        </Function>
         <Function Name="USP_MIS_GetGroupList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ReportDate" Type="date" Mode="In" />
           <Parameter Name="ProjectId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_MIS_GetGroupListByReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectId" Type="int" Mode="In" />
+          <Parameter Name="ReportDate" Type="date" Mode="In" />
         </Function>
         <Function Name="USP_MIS_GetProjectList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="USP_MIS_GetVerticalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -523,6 +532,15 @@
             <End Role="MIS_VerticalMaster" EntitySet="MIS_VerticalMaster" />
             <End Role="MIS_ProjectMaster" EntitySet="MIS_ProjectMaster" />
           </AssociationSet>
+          <FunctionImport Name="USP_MIS_GetGroupDataById" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupDataById_Result)">
+            <Parameter Name="ReportDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+            <Parameter Name="GroupId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_MIS_GetGroupListByReport" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupListByReport_Result)">
+            <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+            <Parameter Name="ReportDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Designation">
           <Key>
@@ -587,6 +605,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="USP_MIS_GetGroupDataById_Result">
+          <Property Type="Int32" Name="FieldId" Nullable="true" />
+          <Property Type="String" Name="FieldName" Nullable="true" />
+          <Property Type="Int32" Name="DataId" Nullable="true" />
+          <Property Type="Int32" Name="ReportId" Nullable="true" />
+          <Property Type="String" Name="FieldValue" Nullable="true" />
+          <Property Type="String" Name="Remarks" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_GetGroupListByReport_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -770,6 +800,26 @@
                 <ScalarProperty Name="FieldId" ColumnName="FieldId" />
                 <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetGroupDataById" FunctionName="MVCProjectModel.Store.USP_MIS_GetGroupDataById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetGroupDataById_Result">
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="DataId" ColumnName="DataId" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetGroupListByReport" FunctionName="MVCProjectModel.Store.USP_MIS_GetGroupListByReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetGroupListByReport_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
