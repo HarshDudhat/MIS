@@ -11,7 +11,7 @@
     if (Session["PagePermission"] != null)
     {
         permission = (UserContext.PagePermission)Session["PagePermission"];
-    }    
+    }
 }
 <!DOCTYPE html>
 <html ng-app="MVCApp">
@@ -55,98 +55,78 @@
             AllowReport: '@Html.Raw(userContext.AllowReport)',
             AllowSearch: '@Html.Raw(userContext.AllowSearch)',
             AllowAnalytics: '@Html.Raw(userContext.AllowAnalytics)'
-        };        
+        };
         var permission = {
             PageId : @(permission.PageId),
             CanRead : '@(permission.CanRead)' == 'True',
             CanWrite : '@(permission.CanWrite)' == 'True'
         };
         var roles= @Html.RoleJson(userContext.UserRole);
-        
+
     </script>
     <link href="@Url.Content("~/Content/css/nv.d3.min.css")" rel="stylesheet" type="text/css" />
 </head>
 <body ng-controller="MasterCtrl" ng-cloak id="LayoutBody" class="fullscreen" ng-class="isSmallMenu?'nav-sm':'nav-md'"
-    ng-init="CheckUserSession()" style="display: none;">
+      ng-init="CheckUserSession()" style="display: none;">
     @Html.Partial("~/Views/Shared/_Loader.cshtml")
-    <div class="container body">
-        <div class="main_container">
-            <div class="col-md-3 left_col menu_fixed">
-                <div id="sidebar-scroll" class="scroll-view my-scroll-area" ng-nicescroll nice-option="{cursorcolor: '#e2edff', cursoropacitymax:0.50, touchbehavior: false, cursordragontouch: true, preventmultitouchscrolling: true,preservenativescrolling:false, cursorwidth:'3px',cursorborderradius:'0px'}">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="/Account/RedirectToDefaultUrl" class="logo-expanded">
-                            <img src="/Content/images/company-logo.png" ng-src="{{userContext.ApplicationLogo}}"
-                                ng-class="{'blur-7' : !isLogoLoaded}" fallback-src="/Content/images/company-logo.png"
-                                alt="Application Logo" /> </a>
-                        <div class="nav toggle vmenuright" title="Toggle menu">
-                            <a id="menu_toggle" ng-click="SetToggleMenu()"><i class="fa fa-bars"></i></a>
-                        </div>
-                    </div>
-                    <div class="c">
-                    </div>
-                    <!-- sidebar menu -->
-                    @Html.Menu(userContext.PageAccess)
-                    <!-- /sidebar menu -->
-                    <!-- /menu footer buttons -->
+    <div class="col-md-3 left_col menu_fixed">
+        <div id="sidebar-scroll" class="scroll-view my-scroll-area" ng-nicescroll nice-option="{cursorcolor: '#e2edff', cursoropacitymax:0.50, touchbehavior: false, cursordragontouch: true, preventmultitouchscrolling: true,preservenativescrolling:false, cursorwidth:'3px',cursorborderradius:'0px'}">
+            <div class="navbar nav_title" style="border: 0;">
+                <a href="/Account/RedirectToDefaultUrl" class="logo-expanded">
+                    <img src="/Content/images/company-logo.png" ng-src="{{userContext.ApplicationLogo}}"
+                         ng-class="{'blur-7' : !isLogoLoaded}" fallback-src="/Content/images/company-logo.png"
+                         alt="Application Logo" />
+                </a>
+                <div class="nav toggle vmenuright" title="Toggle menu">
+                    <a id="menu_toggle" ng-click="SetToggleMenu()"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
-            <!-- top navigation -->
-            <div class="top_nav">
-                <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
-                    <li class="dropdown text-center"><a data-toggle="dropdown" class="dropdown-toggle waves-effect waves-light profile">
-                        <img ng-src="{{userContext.ProfilePicturePath}}" alt="@Resource.ProfilePicture" fallback-src="/Content/images/avatar-1.jpg" src="../../Content/images/avatar-1.jpg" class="img-circle user-img profile-img thumb-sm" />
-                        <span class="username">{{userContext.EmployeeName}}</span> </a>
-                        <ul class="dropdown-menu">
-                            @*<li><a ng-click="SynchronizeReportingData()" ng-href="/Home"><i class="fa fa-home m-r-5">
-                            </i>
-                                @Resource.BackToHome
-                            </a></li>*@ @*<li><a ng-click="SynchronizeReportingData()" href="javascript:void(0)"><i class="fa fa-refresh m-r-5">
-                            </i>
-                                @Resource.SynchronizeData
-                            </a></li>
-                            <li><a ng-click="UserNotificationSetting()" href="javascript:void(0)"><i class="fa fa-bell m-r-5">
-                            </i>
-                                @Resource.NotificationSetting
-                            </a></li>*@
-                            <li><a href="~/Account/Logout"><i class="ti-power-off m-r-5"></i>
+            <div class="c">
+            </div>
+            <!-- sidebar menu -->
+            @Html.Menu(userContext.PageAccess)
+            <!-- /sidebar menu -->
+            <!-- /menu footer buttons -->
+        </div>
+    </div>
+    <!-- top navigation -->
+    <div class="top_nav">
+        <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
+            <li class="dropdown text-center">
+                <a data-toggle="dropdown" class="dropdown-toggle waves-effect waves-light profile">
+                    <img ng-src="{{userContext.ProfilePicturePath}}" alt="@Resource.ProfilePicture" fallback-src="/Content/images/avatar-1.jpg" src="../../Content/images/avatar-1.jpg" class="img-circle user-img profile-img thumb-sm" />
+                    <span class="username">{{userContext.EmployeeName}}</span>
+                </a>
+                <ul class="dropdown-menu">
+                    @*<li><a ng-click="SynchronizeReportingData()" ng-href="/Home"><i class="fa fa-home m-r-5">
+                        </i>
+                            @Resource.BackToHome
+                        </a></li>*@ @*<li><a ng-click="SynchronizeReportingData()" href="javascript:void(0)"><i class="fa fa-refresh m-r-5">
+                        </i>
+                            @Resource.SynchronizeData
+                        </a></li>
+                        <li><a ng-click="UserNotificationSetting()" href="javascript:void(0)"><i class="fa fa-bell m-r-5">
+                        </i>
+                            @Resource.NotificationSetting
+                        </a></li>*@
+                        <li>
+                            <a ng-click="Logout()" href="javascript:void(0)">
+                                <i class="ti-power-off m-r-5"></i>
                                 @Resource.Logout
-                            </a></li>
-                        </ul>
-                    </li>
-                    <li style="max-width: 200px; margin-top: 13px; margin-right: 5px;">
-                        <select class="form-control" ng-model="userContext.RoleId" ng-change="ChangeRole(userContext.RoleId)"
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li style="max-width: 200px; margin-top: 13px; margin-right: 5px;">
+                    <select class="form-control" ng-model="userContext.RoleId" ng-change="ChangeRole(userContext.RoleId)"
                             ng-options="r.RoleId as r.RoleName for r in userCurrentRoles" ng-disabled="userCurrentRoles.length == 1">
-                        </select>
-                    </li>
-
-
-                     @*<li class="text-center">
-                        <div class="d-flex align-items-center p-3">
-                            <div class="me-2">
-                                <a class="d-flex align-items-center">
-                                    <img ng-src="{{userContext.ProfilePicturePath}}" alt="@Resource.ProfilePicture" fallback-src="/Content/images/avatar-1.jpg" 
-                                         src="../../Content/images/avatar-1.jpg" class="img-circle user-img profile-img rounded-circle thumb-sm" />
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column align-items-start">
-                                <span class="username">{{userContext.User}}</span>
-                                <span class="rolename text-light ms-1" style="font-size:12px;">{{role.RoleName}}</span>
-                            </div>
-                            <div class="ms-4">
-                                <a href="~/Account/Logout" class="text-light">
-                                    <i class="fa fa-sign-out ms-2 font-20"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </li>*@
-
-
-                </ul>
-            </div>
-            <!-- /top navigation -->
-            <div class="right_col" role="main">
-                @RenderBody()
-            </div>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <!-- /top navigation -->
+        <div class="right_col" role="main">
+            @RenderBody()
         </div>
         <!-- footer content -->
         <footer class="footer">
@@ -157,10 +137,9 @@
             </div>
         </footer>
         <!-- /footer content -->
-    </div>
-    <span class="backToTop"><i class="fa fa-arrow-circle-o-up"></i></span>
-    <!--BEGIN Javascript bundles-->
-    <script type="text/javascript">
+        <span class="backToTop"><i class="fa fa-arrow-circle-o-up"></i></span>
+        <!--BEGIN Javascript bundles-->
+        <script type="text/javascript">
         var angularmodule = [
             "ngTable",
             "ngCookies",
@@ -188,11 +167,11 @@
             "ngDragDrop",
             "dndLists"
         ];
-    </script>
-    @Scripts.Render("~/bundles/inner")
-    @RenderSection("scripts", required: false)
-    <!--End Javascript bundles-->
-    <script type="text/javascript">
+        </script>
+        @Scripts.Render("~/bundles/inner")
+        @RenderSection("scripts", required: false)
+        <!--End Javascript bundles-->
+        <script type="text/javascript">
         $(function () {
             $('.nav-sm ul.side-menu li.active ul.child_menu').hide();
             $('.nav-md ul.side-menu li.active ul.child_menu').show();
@@ -274,6 +253,6 @@
 
             $("#sidebar-scroll").getNiceScroll().resize();
         }
-    </script>
-</body>
+        </script>
+    </body>
 </html>
