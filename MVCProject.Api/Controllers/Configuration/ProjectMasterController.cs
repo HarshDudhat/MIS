@@ -47,6 +47,7 @@ namespace MVCProject.Api.Controllers.Configuration
                                    {
                                        ProjectId = s.ProjectId,
                                        ProjectName = s.ProjectName,
+                                       VerticalId=s.VerticalId,
                                        IsActive = s.IsActive,
                                        TotalRecords
                                    }).AsQueryable().OrderByField(projectpagingParams.OrderByColumn, projectpagingParams.IsAscending).Skip((projectpagingParams.CurrentPageNumber - 1) * projectpagingParams.PageSize).Take(projectpagingParams.PageSize);
@@ -67,6 +68,7 @@ namespace MVCProject.Api.Controllers.Configuration
                         {
                             ProjectId = g.ProjectId,
                             ProjectName = g.ProjectName,
+                            VerticalId = g.VerticalId,
                             IsActive = g.IsActive
                         // EntryBy = g.EntryBy,
                         //EntryDate = g.EntryDate,
@@ -112,6 +114,7 @@ namespace MVCProject.Api.Controllers.Configuration
                 else
                 {
                     // For update record
+                    existingProjectDetail.VerticalId = projectDetail.VerticalId;
                     existingProjectDetail.ProjectName = projectDetail.ProjectName;
                     existingProjectDetail.IsActive = projectDetail.IsActive;
                     //existingDesignationDetail.UpdateBy = UserContext.EmployeeId;
@@ -126,6 +129,18 @@ namespace MVCProject.Api.Controllers.Configuration
                 }
             }
         }
+
+        /// <summary>
+        /// Get Vertical List.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ApiResponse VeticalDropDown()
+        {
+            var data = this.entities.MIS_VerticalMaster.Where(x => x.IsActive.Value).Select(x => new { verticalName = x.VerticalName, verticalId = x.VerticalId }).OrderBy(x=>x.verticalName).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
+ 
 
 
         /// <summary>

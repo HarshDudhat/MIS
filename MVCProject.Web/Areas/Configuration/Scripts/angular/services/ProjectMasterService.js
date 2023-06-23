@@ -10,14 +10,15 @@
             data: JSON.stringify(projectDetailParams)
         });
     };
-    //// Get All list of Designation Details
-    //list.GetDesignationList = function (isGetAll) {
-    //    return $http({
-    //        method: 'GET',
-    //        url: $rootScope.apiURL + '/Designations/GetDesignationList' + (angular.isDefined(isGetAll) ? '?isGetAll=' + isGetAll : '')
-    //    });
-    //};
-    
+
+    //Get All Vertical List
+        list.GetVerticalList = function () {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL +'/ProjectMaster/VeticalDropDown/'
+            });
+        }
+
    
 
     // Add/Update Project Details

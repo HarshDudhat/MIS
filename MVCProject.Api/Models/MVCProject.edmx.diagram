@@ -22,6 +22,7 @@
         <AssociationConnector Association="MVCProjectModel.FK__MIS_MISRe__Verti__21B6055D" ManuallyRouted="false" />
         <AssociationConnector Association="MVCProjectModel.FK__MIS_Users__RoleI__145C0A3F" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MVCProjectModel.Designation" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="MVCProjectModel.fk_VerticalId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

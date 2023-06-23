@@ -68,6 +68,7 @@
           <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectName" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="VerticalId" Type="int" />
         </EntityType>
         <EntityType Name="MIS_RoleMaster">
           <Key>
@@ -192,6 +193,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_VerticalId">
+          <End Role="MIS_VerticalMaster" Type="Self.MIS_VerticalMaster" Multiplicity="0..1" />
+          <End Role="MIS_ProjectMaster" Type="Self.MIS_ProjectMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_VerticalMaster">
+              <PropertyRef Name="VerticalId" />
+            </Principal>
+            <Dependent Role="MIS_ProjectMaster">
+              <PropertyRef Name="VerticalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="USP_MIS_AuthenticateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
@@ -246,6 +259,10 @@
           <AssociationSet Name="FK__MIS_Users__RoleI__145C0A3F" Association="Self.FK__MIS_Users__RoleI__145C0A3F">
             <End Role="MIS_RoleMaster" EntitySet="MIS_RoleMaster" />
             <End Role="MIS_Users" EntitySet="MIS_Users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VerticalId" Association="Self.fk_VerticalId">
+            <End Role="MIS_VerticalMaster" EntitySet="MIS_VerticalMaster" />
+            <End Role="MIS_ProjectMaster" EntitySet="MIS_ProjectMaster" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -316,6 +333,8 @@
           <Property Name="ProjectName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="MIS_MISReport" Relationship="Self.FK__MIS_MISRe__Proje__22AA2996" FromRole="MIS_ProjectMaster" ToRole="MIS_MISReport" />
+          <Property Name="VerticalId" Type="Int32" />
+          <NavigationProperty Name="MIS_VerticalMaster" Relationship="MVCProjectModel.fk_VerticalId" FromRole="MIS_ProjectMaster" ToRole="MIS_VerticalMaster" />
         </EntityType>
         <EntityType Name="MIS_RoleMaster">
           <Key>
@@ -359,6 +378,7 @@
           <Property Name="VerticalName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="MIS_MISReport" Relationship="Self.FK__MIS_MISRe__Verti__21B6055D" FromRole="MIS_VerticalMaster" ToRole="MIS_MISReport" />
+          <NavigationProperty Name="MIS_ProjectMaster" Relationship="MVCProjectModel.fk_VerticalId" FromRole="MIS_VerticalMaster" ToRole="MIS_ProjectMaster" />
         </EntityType>
         <Association Name="FK__MIS_Field__Field__276EDEB3">
           <End Role="MIS_GroupFieldsMaster" Type="Self.MIS_GroupFieldsMaster" Multiplicity="0..1" />
@@ -499,6 +519,10 @@
           <FunctionImport Name="USP_MIS_GetDataByReportId" ReturnType="Collection(MVCProjectModel.USP_MIS_GetDataByReportId_Result)">
           <Parameter Name="ReportId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <AssociationSet Name="fk_VerticalId" Association="MVCProjectModel.fk_VerticalId">
+            <End Role="MIS_VerticalMaster" EntitySet="MIS_VerticalMaster" />
+            <End Role="MIS_ProjectMaster" EntitySet="MIS_ProjectMaster" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Designation">
           <Key>
@@ -528,6 +552,7 @@
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
           <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="VerticalId" Nullable="true" />
         </ComplexType>
         <ComplexType Name="USP_MIS_GetVerticalList_Result">
           <Property Type="Int32" Name="VerticalId" Nullable="false" />
@@ -550,6 +575,18 @@
           <Property Type="String" Name="FieldValue" Nullable="true" />
           <Property Type="String" Name="Remarks" Nullable="true" />
         </ComplexType>
+        <Association Name="fk_VerticalId">
+          <End Type="MVCProjectModel.MIS_VerticalMaster" Role="MIS_VerticalMaster" Multiplicity="0..1" />
+          <End Type="MVCProjectModel.MIS_ProjectMaster" Role="MIS_ProjectMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MIS_VerticalMaster">
+              <PropertyRef Name="VerticalId" />
+            </Principal>
+            <Dependent Role="MIS_ProjectMaster">
+              <PropertyRef Name="VerticalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -610,6 +647,7 @@
           <EntitySetMapping Name="MIS_ProjectMaster">
             <EntityTypeMapping TypeName="MVCProjectModel.MIS_ProjectMaster">
               <MappingFragment StoreEntitySet="MIS_ProjectMaster">
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -698,6 +736,7 @@
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

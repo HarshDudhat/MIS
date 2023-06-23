@@ -13,6 +13,7 @@
 
         $scope.projectDetailScope = {
             ProjectId: 0,
+            VerticalId:0,
             ProjectName: '',
             IsActive: true
         };
@@ -83,6 +84,7 @@
         $scope.ClearFormData = function (frmproject) {
             $scope.projectDetailScope = {
                 ProjectId: 0,
+                VerticalId:0,
                 ProjectName: '',
                 IsActive: true
             };
@@ -120,5 +122,18 @@
                 });
             }
         });
+
+        //Initalize the Vertical List
+        $scope.Init = function () {
+            $scope.VerticalScope();
+        }
+
+
+        //Scope For Vertical List
+        $scope.VerticalScope = function () {
+            ProjectMasterService.GetVerticalList().then(function (res) {
+                $scope.Verticals = res.data.Result;
+            });
+        }
     }
 })();

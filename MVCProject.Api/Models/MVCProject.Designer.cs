@@ -26,6 +26,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__MIS_MISRe__Statu__239E4DCF", "MIS_StatusMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.MIS_StatusMaster), "MIS_MISReport", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.MIS_MISReport), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__MIS_MISRe__Verti__21B6055D", "MIS_VerticalMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.MIS_VerticalMaster), "MIS_MISReport", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.MIS_MISReport), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__MIS_Users__RoleI__145C0A3F", "MIS_RoleMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.MIS_RoleMaster), "MIS_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.MIS_Users), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_VerticalId", "MIS_VerticalMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.MIS_VerticalMaster), "MIS_ProjectMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.MIS_ProjectMaster), true)]
 
 #endregion
 
@@ -1765,6 +1766,30 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Boolean> _IsActive;
         partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VerticalId
+        {
+            get
+            {
+                return _VerticalId;
+            }
+            set
+            {
+                OnVerticalIdChanging(value);
+                ReportPropertyChanging("VerticalId");
+                _VerticalId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VerticalId");
+                OnVerticalIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VerticalId;
+        partial void OnVerticalIdChanging(Nullable<global::System.Int32> value);
+        partial void OnVerticalIdChanged();
 
         #endregion
 
@@ -1789,6 +1814,44 @@ namespace MVCProject.Api.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MIS_MISReport>("MVCProjectModel.FK__MIS_MISRe__Proje__22AA2996", "MIS_MISReport", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_VerticalId", "MIS_VerticalMaster")]
+        public MIS_VerticalMaster MIS_VerticalMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MIS_VerticalMaster>("MVCProjectModel.fk_VerticalId", "MIS_VerticalMaster").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MIS_VerticalMaster>("MVCProjectModel.fk_VerticalId", "MIS_VerticalMaster").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<MIS_VerticalMaster> MIS_VerticalMasterReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MIS_VerticalMaster>("MVCProjectModel.fk_VerticalId", "MIS_VerticalMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MIS_VerticalMaster>("MVCProjectModel.fk_VerticalId", "MIS_VerticalMaster", value);
                 }
             }
         }
@@ -2497,6 +2560,28 @@ namespace MVCProject.Api.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MIS_MISReport>("MVCProjectModel.FK__MIS_MISRe__Verti__21B6055D", "MIS_MISReport", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_VerticalId", "MIS_ProjectMaster")]
+        public EntityCollection<MIS_ProjectMaster> MIS_ProjectMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MIS_ProjectMaster>("MVCProjectModel.fk_VerticalId", "MIS_ProjectMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MIS_ProjectMaster>("MVCProjectModel.fk_VerticalId", "MIS_ProjectMaster", value);
                 }
             }
         }
@@ -3275,6 +3360,30 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Boolean> _IsActive;
         partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VerticalId
+        {
+            get
+            {
+                return _VerticalId;
+            }
+            set
+            {
+                OnVerticalIdChanging(value);
+                ReportPropertyChanging("VerticalId");
+                _VerticalId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VerticalId");
+                OnVerticalIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VerticalId;
+        partial void OnVerticalIdChanging(Nullable<global::System.Int32> value);
+        partial void OnVerticalIdChanged();
 
         #endregion
 
