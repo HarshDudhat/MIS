@@ -92,8 +92,8 @@
                 toastr.error("Please Put Same Password", errorTitle)
             }
             else {
-                forgetnewpassword.Password = CommonFunctions.EncryptData(forgetnewpassword.Password)
-                forgetnewpassword.EmpId = $scope.Company[0].Id;
+                /* forgetnewpassword.Password = CommonFunctions.EncryptData(forgetnewpassword.Password)*/
+                forgetnewpassword.UserId = $scope.Company[0].Id;
                 AccountService.updatepass(forgetnewpassword)
                     .then(function (res) {
                         $scope.UpdatedPass = res.data.Result;
