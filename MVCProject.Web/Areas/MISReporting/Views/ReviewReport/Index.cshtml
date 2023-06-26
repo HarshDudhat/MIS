@@ -141,8 +141,11 @@
                                      data-bs-parent=".accordion">
                                     <div class="accordion-body">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-5">
                                                 <h5><b>Performance Indicator</b></h5>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <h5><b>Actual</b></h5>
                                             </div>
                                             <div class="col-lg-1">
                                                 <h5><b>Actual</b></h5>
@@ -152,11 +155,14 @@
                                             </div>
                                         </div>
                                         <div class="row" ng-repeat="field in Group.FieldData">
-                                            <div class="col-lg-6 d-flex align-items-center">
+                                            <div class="col-lg-5 d-flex align-items-center">
                                                 <span class="vertical-middle">{{field.FieldName}}</span>
                                             </div>
                                             <div class="col-lg-1 d-flex align-items-center">
                                                 <input type="text" class="form-control w-75" readonly ng-model="field.FieldValue" />
+                                            </div>
+                                            <div class="col-lg-1 d-flex align-items-center">
+                                                <span class="vertical-middle">{{field.SinceInception}}</span>
                                             </div>
                                             <div class="col-lg-5">
                                                 <textarea ng-model="field.Remarks" class="form-control w-100 mb-3" rows="1"></textarea>

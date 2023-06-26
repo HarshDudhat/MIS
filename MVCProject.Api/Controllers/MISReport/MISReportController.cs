@@ -73,8 +73,8 @@ namespace MVCProject.Api.Controllers.MISReport
         [HttpPost]
         public ApiResponse ReportMIS([FromBody]MISReport mis)
         {
-            var report = this.entities.MIS_MISReport.Where(x => x.ReportId == mis.ReportId).FirstOrDefault();
-            if(report == null)
+            var report = this.entities.USP_MIS_GetReport(mis.ProjectId,mis.ReportDate).FirstOrDefault();
+            if (report == null)
             {
                 MIS_MISReport data = new MIS_MISReport();
                 //data.ReportId = mis.ReportId;
@@ -120,7 +120,25 @@ namespace MVCProject.Api.Controllers.MISReport
             }
             else
             {
-                var reportData = entities.USP_MIS_GetDataByReportId(mis.ReportId).ToList();
+                var ReportId = report.ReportId;
+                List<MISReport.Fields> myField = mis.FieldData;
+                foreach (MISReport.Fields fieldData in myField)
+                {
+                    this.entities.MIS_FieldData.AddObject(new MIS_FieldData()
+                    {
+                        ReportId = ReportId,
+                        FieldId = fieldData.FieldId,
+                        FieldValue = fieldData.FieldValue,
+                        Remarks = fieldData.Remarks,
+                        EntryBy = 1,
+                        EntryDate = DateTime.Now,
+                        IsActive = true
+                    });
+                }
+                if (!(this.entities.SaveChanges() > 0))
+                {
+                    return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
+                }
                 return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
             }
 

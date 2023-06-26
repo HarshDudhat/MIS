@@ -229,6 +229,10 @@
           <Parameter Name="ReportDate" Type="date" Mode="In" />
         </Function>
         <Function Name="USP_MIS_GetProjectList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_GetReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectId" Type="int" Mode="In" />
+          <Parameter Name="ReportDate" Type="date" Mode="In" />
+        </Function>
         <Function Name="USP_MIS_GetVerticalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
@@ -541,6 +545,10 @@
             <Parameter Name="ProjectId" Mode="In" Type="Int32" />
             <Parameter Name="ReportDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="USP_MIS_GetReport" ReturnType="Collection(MVCProjectModel.USP_MIS_GetReport_Result)">
+            <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+            <Parameter Name="ReportDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Designation">
           <Key>
@@ -582,6 +590,7 @@
           <Property Type="String" Name="GroupName" Nullable="true" />
           <Property Type="Int32" Name="FieldId" Nullable="false" />
           <Property Type="String" Name="FieldName" Nullable="true" />
+          <Property Type="Int32" Name="SinceInception" Nullable="true" />
         </ComplexType>
         <ComplexType Name="USP_MIS_GetDataByReportId_Result">
           <Property Type="Int32" Name="ReportId" Nullable="false" />
@@ -612,10 +621,23 @@
           <Property Type="Int32" Name="ReportId" Nullable="true" />
           <Property Type="String" Name="FieldValue" Nullable="true" />
           <Property Type="String" Name="Remarks" Nullable="true" />
+          <Property Type="Int32" Name="SinceInception" Nullable="true" />
         </ComplexType>
         <ComplexType Name="USP_MIS_GetGroupListByReport_Result">
           <Property Type="Int32" Name="GroupId" Nullable="false" />
           <Property Type="String" Name="GroupName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_GetReport_Result">
+          <Property Type="Int32" Name="ReportId" Nullable="false" />
+          <Property Type="DateTime" Name="ReportDate" Nullable="true" />
+          <Property Type="Int32" Name="VerticalId" Nullable="true" />
+          <Property Type="Int32" Name="ProjectId" Nullable="true" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="Int32" Name="EntryBy" Nullable="true" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdateBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -786,6 +808,7 @@
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="FieldId" ColumnName="FieldId" />
                 <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="SinceInception" ColumnName="SinceInception" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -812,6 +835,7 @@
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
                 <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SinceInception" ColumnName="SinceInception" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -820,6 +844,22 @@
               <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetGroupListByReport_Result">
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetReport" FunctionName="MVCProjectModel.Store.USP_MIS_GetReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetReport_Result">
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
