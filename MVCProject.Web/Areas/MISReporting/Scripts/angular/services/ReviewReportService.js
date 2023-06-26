@@ -9,10 +9,10 @@
             });
         };
 
-        list.getprojectlist = function () {
+        list.getprojectlist = function (VerticalId) {
             return $http({
                 method: 'GET',
-                url: $rootScope.apiURL + '/ReviewReport/GetProjectList'
+                url: $rootScope.apiURL + '/ReviewReport/GetProjectList?VerticalId=' + VerticalId
             });
         };
 

@@ -228,7 +228,9 @@
           <Parameter Name="ProjectId" Type="int" Mode="In" />
           <Parameter Name="ReportDate" Type="date" Mode="In" />
         </Function>
-        <Function Name="USP_MIS_GetProjectList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_GetProjectList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VerticalId" Type="int" Mode="In" />
+        </Function>
         <Function Name="USP_MIS_GetReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProjectId" Type="int" Mode="In" />
           <Parameter Name="ReportDate" Type="date" Mode="In" />
@@ -524,7 +526,9 @@
             <Parameter Name="ReportDate" Mode="In" Type="DateTime" />
             <Parameter Name="ProjectId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="USP_MIS_GetProjectList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetProjectList_Result)" />
+          <FunctionImport Name="USP_MIS_GetProjectList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetProjectList_Result)" >
+            <Parameter Name="VerticalId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="USP_MIS_GetVerticalList" ReturnType="Collection(MVCProjectModel.USP_MIS_GetVerticalList_Result)" />
           <FunctionImport Name="USP_MIS_GetGroupById" ReturnType="Collection(MVCProjectModel.USP_MIS_GetGroupById_Result)">
           <Parameter Name="GroupId" Mode="In" Type="Int32" />

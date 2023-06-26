@@ -49,22 +49,16 @@
                 });
         }
 
-        $scope.Projectlist = function () {
-            ReviewReportService.getprojectlist()
+        $scope.Projectlist = function (VerticalId) {
+            ReviewReportService.getprojectlist(VerticalId)
                 .then(function (res) {
                     $scope.Project = res.data.Result;
                 });
         }
 
         $scope.setDefaultMonth = function () {
-            var currentDate = new Date();
-
-            var currentMonth = currentDate.getMonth() + 1; // Add 1 because months are zero-based
-            var currentYear = currentDate.getFullYear();
-
-            $scope.ReportDate = currentYear + '-' + (currentMonth < 10 ? '0' : '') + currentMonth;
-            $scope.minMonth = '2000-01'; //select as per requirement
-            $scope.maxDate = currentYear + '-' + (currentMonth < 10 ? '0' : '') + currentMonth;
+            $scope.maxDate = new Date().toISOString().slice(0, 7);
+            console.log($scope.maxDate)
         };
 
         $scope.search = function (ReviewReportDetailScope) {
@@ -72,6 +66,12 @@
             ReviewReportService.getGroupData(ReviewReportDetailScope).then(function (res) {
                 console.log(res.data.Result)
                 $scope.GroupList = res.data.Result;
+                if ($scope.GroupList.length > 0) {
+                    $scope.show = true;
+                }
+                else {
+                    $scope.show = false;
+                }
             })
         }
 
@@ -82,10 +82,7 @@
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
                         toastr.success(res.data.Message, successTitle);
-                        $scope.ClearFormData(frmReviewReport);
-                        $scope.GroupList = null;
-                        $scope.show = false;
-
+                        window.location.reload();
                     } else if (res.data.MessageType == messageTypes.Error) {
                         toastr.error(res.data.Message, errorTitle);
                     }   
@@ -100,10 +97,7 @@
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
                         toastr.success(res.data.Message, successTitle);
-                        $scope.ClearFormData(frmReviewReport);
-                        $scope.GroupList = null;
-                        $scope.show = false;
-
+                        window.location.reload();
                     } else if (res.data.MessageType == messageTypes.Error) {
                         toastr.error(res.data.Message, errorTitle);
                     }

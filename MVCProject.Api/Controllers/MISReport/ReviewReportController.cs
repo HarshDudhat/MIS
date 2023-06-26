@@ -47,9 +47,9 @@ namespace MVCProject.Api.Controllers.ReviewReport
         }
 
         [HttpGet]
-        public ApiResponse GetProjectList()
+        public ApiResponse GetProjectList(int VerticalId)
         {
-            var list = entities.USP_MIS_GetProjectList().ToList();
+            var list = entities.USP_MIS_GetProjectList(VerticalId).ToList();
             return this.Response(MessageTypes.Success, string.Empty, list);
         }
 

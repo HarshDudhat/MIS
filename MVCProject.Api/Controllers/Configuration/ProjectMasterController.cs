@@ -41,8 +41,8 @@ namespace MVCProject.Api.Controllers.Configuration
                 projectpagingParams.Search = string.Empty;
             }
 
-            var projectlist = (from s in this.entities.USP_MIS_GetProjectList().AsEnumerable().Where(x => x.ProjectName.Trim().ToLower().Contains(projectpagingParams.Search.Trim().ToLower()))
-                                   let TotalRecords = this.entities.USP_MIS_GetProjectList().AsEnumerable().Where(x => x.ProjectName.Trim().ToLower().Contains(projectpagingParams.Search.Trim().ToLower())).Count()
+            var projectlist = (from s in this.entities.MIS_ProjectMaster.AsEnumerable().Where(x => x.ProjectName.Trim().ToLower().Contains(projectpagingParams.Search.Trim().ToLower()))
+                                   let TotalRecords = this.entities.MIS_ProjectMaster.AsEnumerable().Where(x => x.ProjectName.Trim().ToLower().Contains(projectpagingParams.Search.Trim().ToLower())).Count()
                                    select new
                                    {
                                        ProjectId = s.ProjectId,
@@ -63,7 +63,7 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpGet]
         public ApiResponse GetProjectById(int projectId)
         {
-            var projectDetail = this.entities.USP_MIS_GetProjectList().Where(a => a.ProjectId == projectId)
+            var projectDetail = this.entities.MIS_ProjectMaster.Where(a => a.ProjectId == projectId)
                         .Select(g => new
                         {
                             ProjectId = g.ProjectId,

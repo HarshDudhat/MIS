@@ -389,9 +389,20 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectResult<USP_MIS_GetProjectList_Result> USP_MIS_GetProjectList()
+        /// <param name="verticalId">No Metadata Documentation available.</param>
+        public ObjectResult<USP_MIS_GetProjectList_Result> USP_MIS_GetProjectList(Nullable<global::System.Int32> verticalId)
         {
-            return base.ExecuteFunction<USP_MIS_GetProjectList_Result>("USP_MIS_GetProjectList");
+            ObjectParameter verticalIdParameter;
+            if (verticalId.HasValue)
+            {
+                verticalIdParameter = new ObjectParameter("VerticalId", verticalId);
+            }
+            else
+            {
+                verticalIdParameter = new ObjectParameter("VerticalId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<USP_MIS_GetProjectList_Result>("USP_MIS_GetProjectList", verticalIdParameter);
         }
     
         /// <summary>
