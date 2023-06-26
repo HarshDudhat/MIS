@@ -83,7 +83,7 @@ namespace MVCProject.Api.Controllers.ReviewReport
             var report = this.entities.MIS_MISReport.FirstOrDefault(x => x.ReportId == reportId);
             if (report != null)
             {
-                report.StatusId = 3;
+                report.StatusId = 4;
             }
 
             foreach (var misItem in mis)

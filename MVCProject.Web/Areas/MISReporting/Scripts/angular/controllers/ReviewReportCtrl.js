@@ -26,8 +26,8 @@
                 VerticalName: '',
                 ReportDate: new Date().getMonth() + 1,
             };
-
-    /*        $scope.selectedMonth = null;*/
+            $scope.GroupList = null;
+            $scope.show = false;
             frmReviewReport.$setPristine();
 
         };
@@ -58,7 +58,6 @@
 
         $scope.setDefaultMonth = function () {
             $scope.maxDate = new Date().toISOString().slice(0, 7);
-            console.log($scope.maxDate)
         };
 
         $scope.search = function (ReviewReportDetailScope) {
@@ -82,7 +81,7 @@
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
                         toastr.success(res.data.Message, successTitle);
-                        window.location.reload();
+                        $scope.ClearFormData($scope.frmReviewReport);
                     } else if (res.data.MessageType == messageTypes.Error) {
                         toastr.error(res.data.Message, errorTitle);
                     }   
@@ -97,7 +96,7 @@
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
                         toastr.success(res.data.Message, successTitle);
-                        window.location.reload();
+                        $scope.ClearFormData($scope.frmReviewReport);
                     } else if (res.data.MessageType == messageTypes.Error) {
                         toastr.error(res.data.Message, errorTitle);
                     }
