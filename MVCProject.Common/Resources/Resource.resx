@@ -882,4 +882,10 @@
   <data name="Report" xml:space="preserve">
     <value>Report</value>
   </data>
+  <data name="ApproveReport" xml:space="preserve">
+    <value>Approve Report</value>
+  </data>
+  <data name="MonthlyEHSPerformaceapprovereport" xml:space="preserve">
+    <value>MONTHLY EHS PERFORMANCE APPROVE REPORT</value>
+  </data>
 </root>

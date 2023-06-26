@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = Resource.ApproveReport;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .colSrno {
+        width: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
+    }
+
+    .colPosition {
+        width: 400px !important;
+        min-width: 400px !important;
+        max-width: 400px !important;
+    }
+
+    .colActive {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colAction {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+</style>
+
+<div ng-controller="ApproveReportCtrl" novalidate>
+    <!-- start title section-->
+    <div class="main-page-title title-icon relative l">
+        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">@Resource.MonthlyEHSPerformaceapprovereport</h4>
+        <!-- start button-->
+        <div class="pull-right">
+            @*<button type="button" class="btn btn-success btn-xs waves-effect" ng-click="createReport()">
+                    <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+                </button>*@
+        </div>
+        <!-- end button-->
+    </div>
+    <!-- end title section-->
+    <!-- start body section-->
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- start designation form -->
+                <form name="frmApproveReport" novalidate>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <!-- Vertical field -->
+                            <div class="form-group">
+                                <label for="txtVertical">
+                                    @Resource.Vertical
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-select" ng-model="ApproveReportDetailScope.VerticalId" name="VerticalId" id="VerticalId" ng-init="Verticallist()"
+                                            tabindex="1" ng-change="Projectlist(ApproveReportDetailScope.VerticalId)"
+                                            ng-options="Verticallists.VerticalId as Verticallists.VerticalName for Verticallists in Vertical">
+                                        <option value="">Select Vertical</option>
+                                        <!-- Add other options here -->
+                                    </select>
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmApproveReport.VerticalId.$dirty && frmApproveReport.VerticalId.$invalid">
+                                    <span data-ng-show="frmApproveReport.VerticalId.$error.required">@Resource.DesignationRequired</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- Project field -->
+                            <div class="form-group">
+                                <label for="txtCompanyName">
+                                    @Resource.Project
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-select" ng-model="ApproveReportDetailScope.ProjectId" name="ProjectId" id="ProjectId" ng-init="Projectlist()" tabindex="1"
+                                            ng-options="Projectlists.ProjectId as Projectlists.ProjectName for Projectlists in Project" ng-required="true">
+                                        <option value="">Select Project</option>
+                                        <!-- Add other options here -->
+                                    </select>
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmApproveReport.ProjectId.$dirty && frmApproveReport.ProjectId.$invalid">
+                                    <span data-ng-show="frmApproveReport.ProjectId.$error.required">@Resource.DesignationRequired</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- Month and Year field -->
+                            <div class="form-group">
+                                <label for="txtdoj">
+                                    @Resource.Month_Year
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group">
+                                        <input type="month" class="form-control" name="ReportDate" placeholder="mm-yyyy"
+                                               ng-model="ApproveReportDetailScope.ReportDate" min="{{minMonth}}" max="{{maxDate | date:'yyyy-MM'}}">
+                                    </div>
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmApproveReport.ReportDate.$dirty && frmApproveReport.ReportDate.$invalid">
+                                    <span data-ng-show="frmApproveReport.ReportDate.$error.required">@Resource.DesignationRequired</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <!-- Search and Reset buttons -->
+                            <div class="form-group">
+                                <label for="txtdoj">
+
+                                </label>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-primary" ng-click="search(ApproveReportDetailScope);show=true">Search</button>
+                                    <button type="button" class="btn btn-secondary ms-1" ng-click="ClearFormData(frmApproveReport)">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br />
+            </div>
+            <br />
+            <div class="banner-text">
+                @*<h1>@Resource.EmployeeHandBook</h1>*@
+            </div>
+        </div>
+        <div class="container bg-transparent">
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="accordion">
+                            <div class="accordion-item" ng-repeat="Group in GroupList">
+                                <h2 class="accordion-header mt-0" id="heading{{Group.GroupId}}">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{Group.GroupId}}"
+                                            aria-expanded="false" aria-controls="collapse{{Group.GroupId}}">
+                                        {{ Group.GroupName }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{Group.GroupId}}" class="accordion-collapse collapse" aria-labelledby="heading{{Group.GroupId}}"
+                                     data-bs-parent=".accordion">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <h5><b>Performance Indicator</b></h5>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <h5><b>Actual</b></h5>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <h5><b>Actual</b></h5>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <h5><b>Remarks</b></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-repeat="field in Group.FieldData">
+                                            <div class="col-lg-5 d-flex align-items-center">
+                                                <span class="vertical-middle">{{field.FieldName}}</span>
+                                            </div>
+                                            <div class="col-lg-1 d-flex align-items-center">
+                                                <input type="text" class="form-control w-75" readonly ng-model="field.FieldValue" />
+                                            </div>
+                                            <div class="col-lg-1 d-flex align-items-center">
+                                                <span class="vertical-middle">{{field.SinceInception}}</span>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <textarea ng-model="field.Remarks" class="form-control w-100 mb-3" rows="1"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3" ng-if="show">
+                            <button type="button" class="btn btn-primary" ng-click="sendApprove(GroupList)">Submit</button>
+                            <button type="button" class="btn btn-danger" ng-click="rejectApprove(GroupList)">Reject</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end body section-->
+
+@section scripts {
+    @Scripts.Render("~/bundles/MISReporting/ApproveReport")
+}

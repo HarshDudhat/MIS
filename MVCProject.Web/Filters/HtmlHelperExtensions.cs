@@ -43,14 +43,13 @@ namespace System.Web.Mvc
                     menuString.Append(GetSubMenu(Resource.Reportreview, "ti-id-badge", "/MISReporting/ReviewReport"));
 
                     menuString.Append("</ul></li>");
-
                     menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Project, "fa fa-gears"));
+                    menuString.AppendFormat(GetParentMenu(Resource.ApproveReport, "fa fa-gears"));
                     menuString.Append("<ul class='nav child_menu'>");
-
-                    menuString.Append(GetSubMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
+                    menuString.Append(GetSubMenu(Resource.ApproveReport, "ti-id-badge", "/MISReporting/ApproveReport"));
 
                     menuString.Append("</ul></li>");
+
                     menuString.Append("<li>");
                     menuString.AppendFormat(GetParentMenu(Resource.Vertical, "fa fa-gears"));
                     menuString.Append("<ul class='nav child_menu'>");
@@ -59,6 +58,13 @@ namespace System.Web.Mvc
 
                     menuString.Append("</ul></li>");
 
+                    menuString.Append("<li>");
+                    menuString.AppendFormat(GetParentMenu(Resource.Project, "fa fa-gears"));
+                    menuString.Append("<ul class='nav child_menu'>");
+
+                    menuString.Append(GetSubMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
+
+                    menuString.Append("</ul></li>");
 
             menuString.Append("</ul></div></div>");
 

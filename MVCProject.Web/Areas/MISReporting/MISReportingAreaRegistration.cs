@@ -54,10 +54,15 @@ namespace MVCProject.Areas.MISReporting
         private void RegisterBundles(BundleCollection bundles)
         {
 
-            // MISReporting 
+            // MIS Review Reporting 
             bundles.Add(new ScriptBundle("~/bundles/MISReporting/ReviewReport")
                 .Include("~/Areas/MISReporting/Scripts/angular/services/ReviewReportService.js")
                 .Include("~/Areas/MISReporting/Scripts/angular/controllers/ReviewReportCtrl.js"));
+          
+            // MIS Approve Reporting 
+            bundles.Add(new ScriptBundle("~/bundles/MISReporting/ApproveReport")
+                .Include("~/Areas/MISReporting/Scripts/angular/services/ApproveReportService.js")
+                .Include("~/Areas/MISReporting/Scripts/angular/controllers/ApproveReportCtrl.js"));
 
         }
     }

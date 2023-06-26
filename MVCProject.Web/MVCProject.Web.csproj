@@ -165,6 +165,7 @@
     <Compile Include="Areas\Configuration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ProjectMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\VerticalMasterController.cs" />
+    <Compile Include="Areas\MISReporting\Controllers\ApproveReportController.cs" />
     <Compile Include="Areas\MISReporting\Controllers\ReviewReportController.cs" />
     <Compile Include="Areas\MISReporting\MISReportingAreaRegistration.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
@@ -221,7 +222,9 @@
     <Content Include="Areas\Configuration\Scripts\angular\services\VerticalMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
+    <Content Include="Areas\MISReporting\Scripts\angular\controllers\ApproveReportCtrl.js" />
     <Content Include="Areas\MISReporting\Scripts\angular\controllers\ReviewReportCtrl.js" />
+    <Content Include="Areas\MISReporting\Scripts\angular\services\ApproveReportService.js" />
     <Content Include="Areas\MISReporting\Scripts\angular\services\ReviewReportService.js" />
     <Content Include="Areas\Public\Content\css\css\blank.gif" />
     <Content Include="Areas\Public\Content\css\HomePageStyle.css" />
@@ -469,6 +472,7 @@
     <Content Include="Areas\Configuration\Views\Designation\Index.cshtml" />
     <Content Include="Areas\Configuration\Views\VerticalMaster\Index.cshtml" />
     <Content Include="Areas\Configuration\Views\ProjectMaster\Index.cshtml" />
+    <Content Include="Areas\MISReporting\Views\ApproveReport\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

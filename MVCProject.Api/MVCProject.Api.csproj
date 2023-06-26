@@ -175,6 +175,7 @@
     <Compile Include="Controllers\Common\UploadController.cs" />
     <Compile Include="Controllers\Configuration\ProjectMasterController.cs" />
     <Compile Include="Controllers\Configuration\VerticalMasterController.cs" />
+    <Compile Include="Controllers\MISReport\ApproveReportController.cs" />
     <Compile Include="Controllers\MISReport\ReviewReportController.cs" />
     <Compile Include="Controllers\MISReport\MISReportController.cs" />
     <Compile Include="Filters\CompressContentAttribute.cs" />

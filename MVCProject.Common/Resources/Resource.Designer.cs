@@ -19,7 +19,7 @@ namespace MVCProject.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -165,6 +165,15 @@ namespace MVCProject.Common.Resources {
         public static string Apply {
             get {
                 return ResourceManager.GetString("Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve Report.
+        /// </summary>
+        public static string ApproveReport {
+            get {
+                return ResourceManager.GetString("ApproveReport", resourceCulture);
             }
         }
         
@@ -1371,6 +1380,15 @@ namespace MVCProject.Common.Resources {
         public static string Month_Year {
             get {
                 return ResourceManager.GetString("Month_Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MONTHLY EHS PERFORMANCE APPROVE REPORT.
+        /// </summary>
+        public static string MonthlyEHSPerformaceapprovereport {
+            get {
+                return ResourceManager.GetString("MonthlyEHSPerformaceapprovereport", resourceCulture);
             }
         }
         
