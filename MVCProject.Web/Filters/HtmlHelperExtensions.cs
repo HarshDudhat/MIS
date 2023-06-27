@@ -40,19 +40,18 @@ namespace System.Web.Mvc
             //menuString.Append(GetMainMenu(Resource.Vertical, "ti-id-badge", "/Configuration/VerticalMaster"));
             //menuString.Append(GetMainMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
 
-            if (userContext.RoleId == 2 || userContext.RoleId == 3)
-              {
-                    if(userContext.RoleId == 2)
-                    {
-                        menuString.Append(GetMainMenu(Resource.Reportreview, "fa fa-home", "/MISReporting/ReviewReport"));
-                    }
-                    if(userContext.RoleId == 3)
-                    {
-                        menuString.Append(GetMainMenu(Resource.ApproveReport, "fa fa-home", "/MISReporting/ApproveReport"));
-                    }
+        
+                if(userContext.RoleId == 2)
+                {
+                    menuString.Append(GetMainMenu(Resource.Reportreview, "fa fa-home", "/MISReporting/ReviewReport"));
+                }
+                if(userContext.RoleId == 3)
+                {
+                    menuString.Append(GetMainMenu(Resource.ApproveReport, "fa fa-home", "/MISReporting/ApproveReport"));
+                }
                 menuString.Append(GetMainMenu(Resource.Vertical, "ti-id-badge", "/Configuration/VerticalMaster"));
                 menuString.Append(GetMainMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
-              }
+              
 
             menuString.Append("</ul></div></div>");
 
