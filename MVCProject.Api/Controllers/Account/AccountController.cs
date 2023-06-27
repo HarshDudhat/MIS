@@ -185,5 +185,13 @@ namespace MVCProject.Api.Controllers.Account
         }
 
 
+        [HttpGet]
+        public ApiResponse GetCurrentRole([FromUri] int RoleId)
+        {
+            var Role = this.entities.MIS_RoleMaster.Where(x => x.RoleId == RoleId).FirstOrDefault();
+            return this.Response(MessageTypes.Success, string.Empty, Role);
+        }
+
+
     }
 }

@@ -56,7 +56,7 @@ namespace MVCProject.Api.Controllers.ReviewReport
         [HttpGet]
         public ApiResponse GetGroupData([FromUri]int ProjectId, DateTime ReportDate)
         {
-            var groupList = entities.USP_MIS_GetGroupListByReport(ProjectId, ReportDate).ToList();
+            var groupList = entities.USP_MIS_GetGroupListByReport(ProjectId, ReportDate,0).ToList();
             var list = new List<object>();
 
             foreach (var group in groupList)

@@ -84,14 +84,14 @@
             <div class="c">
             </div>
             <!-- sidebar menu -->
-            @Html.Menu(userContext.PageAccess)
+            @Html.Menu(userContext)
             <!-- /sidebar menu -->
             <!-- /menu footer buttons -->
         </div>
     </div>
     <!-- top navigation -->
     <div class="top_nav">
-        <ul class="nav navbar-nav navbar-right top-menu top-right-menu" ng-init="getRoles();getCurrentRole()">
+        <ul class="nav navbar-nav navbar-right top-menu top-right-menu" ng-init="getCurrentRole()">
             <li class="text-center">
                 <div class="d-flex align-items-center p-3">
                     <div class="me-2">
@@ -100,10 +100,10 @@
                         </a>
                     </div>
                     <div class="d-flex flex-column align-items-start">
-                        <span class="username">{{userContext.User}}</span>
+                        <span class="username">{{userContext.UserName}}</span>
                         <span class="rolename text-light ms-1" style="font-size:12px;">{{role.RoleName}}</span>
                     </div>
-                    <div class="ms-4">
+                    <div class="ms-3">
                         <a href="~/Account/Logout" class="text-light">
                             <i class="fa fa-sign-out ms-2 font-20"></i>
                         </a>

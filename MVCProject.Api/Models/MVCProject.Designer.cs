@@ -497,7 +497,8 @@ namespace MVCProject.Api.Models
         /// </summary>
         /// <param name="projectId">No Metadata Documentation available.</param>
         /// <param name="reportDate">No Metadata Documentation available.</param>
-        public ObjectResult<USP_MIS_GetGroupListByReport_Result> USP_MIS_GetGroupListByReport(Nullable<global::System.Int32> projectId, Nullable<global::System.DateTime> reportDate)
+        /// <param name="flag">No Metadata Documentation available.</param>
+        public ObjectResult<USP_MIS_GetGroupListByReport_Result> USP_MIS_GetGroupListByReport(Nullable<global::System.Int32> projectId, Nullable<global::System.DateTime> reportDate, Nullable<global::System.Int32> flag)
         {
             ObjectParameter projectIdParameter;
             if (projectId.HasValue)
@@ -519,7 +520,17 @@ namespace MVCProject.Api.Models
                 reportDateParameter = new ObjectParameter("ReportDate", typeof(global::System.DateTime));
             }
     
-            return base.ExecuteFunction<USP_MIS_GetGroupListByReport_Result>("USP_MIS_GetGroupListByReport", projectIdParameter, reportDateParameter);
+            ObjectParameter flagParameter;
+            if (flag.HasValue)
+            {
+                flagParameter = new ObjectParameter("Flag", flag);
+            }
+            else
+            {
+                flagParameter = new ObjectParameter("Flag", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<USP_MIS_GetGroupListByReport_Result>("USP_MIS_GetGroupListByReport", projectIdParameter, reportDateParameter, flagParameter);
         }
     
         /// <summary>

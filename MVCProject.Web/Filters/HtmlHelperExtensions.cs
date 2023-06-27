@@ -27,7 +27,7 @@ namespace System.Web.Mvc
         /// <param name="helper">Html Helper</param>
         /// <param name="permission">Page Permission</param>
         /// <returns>MVC Html String</returns>
-        public static MvcHtmlString Menu(this HtmlHelper helper, List<UserContext.PagePermission> permission)
+        public static MvcHtmlString Menu(this HtmlHelper helper, UserContext userContext)
         {
             //if (permission != null)
             //{
@@ -35,36 +35,24 @@ namespace System.Web.Mvc
                 menuString.Append("<div id='sidebar-menu' class='main_menu_side hidden-print main_menu'>");
                 menuString.Append("<div class='menu_section'>");
                 menuString.Append("<ul class='nav side-menu'>");
+            //menuString.Append(GetMainMenu(Resource.Reportreview, "fa fa-home", "/MISReporting/ReviewReport"));
+            //menuString.Append(GetMainMenu(Resource.ApproveReport, "fa fa-home", "/MISReporting/ApproveReport"));
+            //menuString.Append(GetMainMenu(Resource.Vertical, "ti-id-badge", "/Configuration/VerticalMaster"));
+            //menuString.Append(GetMainMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
 
-              
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Reportreview, "fa fa-gears"));
-                    menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.Reportreview, "ti-id-badge", "/MISReporting/ReviewReport"));
-
-                    menuString.Append("</ul></li>");
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.ApproveReport, "fa fa-gears"));
-                    menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.ApproveReport, "ti-id-badge", "/MISReporting/ApproveReport"));
-
-                    menuString.Append("</ul></li>");
-
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Vertical, "fa fa-gears"));
-                    menuString.Append("<ul class='nav child_menu'>");
-
-                    menuString.Append(GetSubMenu(Resource.Vertical, "ti-id-badge", "/Configuration/VerticalMaster"));
-
-                    menuString.Append("</ul></li>");
-
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Project, "fa fa-gears"));
-                    menuString.Append("<ul class='nav child_menu'>");
-
-                    menuString.Append(GetSubMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
-
-                    menuString.Append("</ul></li>");
+            if (userContext.RoleId == 2 || userContext.RoleId == 3)
+              {
+                    if(userContext.RoleId == 2)
+                    {
+                        menuString.Append(GetMainMenu(Resource.Reportreview, "fa fa-home", "/MISReporting/ReviewReport"));
+                    }
+                    if(userContext.RoleId == 3)
+                    {
+                        menuString.Append(GetMainMenu(Resource.ApproveReport, "fa fa-home", "/MISReporting/ApproveReport"));
+                    }
+                menuString.Append(GetMainMenu(Resource.Vertical, "ti-id-badge", "/Configuration/VerticalMaster"));
+                menuString.Append(GetMainMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
+              }
 
             menuString.Append("</ul></div></div>");
 

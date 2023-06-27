@@ -175,6 +175,20 @@
 			});
 		}
 
+		$scope.getCurrentRole = function () {
+			console.log(userContext)
+			AccountService.GetCurrentRole(userContext.RoleId).then(function (res) {
+				if (res) {
+					if (res.data.MessageType == messageTypes.Success) {
+						$scope.role = res.data.Result;
+					}
+					else if (res.data.MessageType == messageTypes.Error) {
+						toastr.error(res.data.Message, errorTitle);
+					}
+				}
+			})
+		}
+
 		// Set Toggle Menu
 		$scope.SetToggleMenu = function () {
 			// To resize dashboard chart

@@ -58,7 +58,6 @@
 
         $scope.setDefaultMonth = function () {
             $scope.maxDate = new Date().toISOString().slice(0, 7);
-            console.log($scope.maxDate)
         };
 
         $scope.search = function (ApproveReportDetailScope) {
@@ -66,6 +65,12 @@
             ApproveReportService.getGroupData(ApproveReportDetailScope).then(function (res) {
                 console.log(res.data.Result)
                 $scope.GroupList = res.data.Result;
+                if ($scope.GroupList.length > 0) {
+                    $scope.show = true;
+                }
+                else {
+                    $scope.show = false;
+                }
             })
         }
 
