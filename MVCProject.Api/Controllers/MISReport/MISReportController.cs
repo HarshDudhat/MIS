@@ -28,6 +28,7 @@ namespace MVCProject.Api.Controllers.MISReport
     using System.Threading.Tasks;
     using System.IO;
     using System.Web.UI;
+    using iTextSharp.text;
     #endregion
     public class MISReportController : BaseController
     {
@@ -64,16 +65,36 @@ namespace MVCProject.Api.Controllers.MISReport
         }
 
         [HttpGet]
-        public ApiResponse GetGroupById([FromUri]int GroupId)
+        public ApiResponse GetGroupById([FromUri]int GroupId,int ProjectId, DateTime ReportDate)
         {
-            var list = entities.USP_MIS_GetGroupById(GroupId).ToList();
+            var list = entities.USP_MIS_GetGroupDataById(ReportDate,ProjectId,GroupId).ToList();
+            if(list.Count == 0)
+            {
+                var list2 = entities.USP_MIS_GetGroupById(GroupId).ToList();
+                return this.Response(MessageTypes.Success, string.Empty, list2);
+            }
+            return this.Response(MessageTypes.Success, string.Empty, list);
+        }
+
+        [HttpGet]
+        public ApiResponse GetPendingList()
+        {
+            var list = entities.USP_MIS_PendingReportList().ToList();
+            return this.Response(MessageTypes.Success, string.Empty, list);
+        }
+
+
+        [HttpGet]
+        public ApiResponse GetAllList()
+        {
+            var list = entities.USP_MIS_AllReportList().ToList();
             return this.Response(MessageTypes.Success, string.Empty, list);
         }
 
         [HttpPost]
         public ApiResponse ReportMIS([FromBody]MISReport mis)
         {
-            var report = this.entities.USP_MIS_GetReport(mis.ProjectId,mis.ReportDate).FirstOrDefault();
+            var report = this.entities.MIS_MISReport.Where(x => x.ReportId == mis.ReportId).FirstOrDefault();
             if (report == null)
             {
                 MIS_MISReport data = new MIS_MISReport();
@@ -88,7 +109,7 @@ namespace MVCProject.Api.Controllers.MISReport
                 this.entities.MIS_MISReport.AddObject(data);
                 if(!(this.entities.SaveChanges() > 0))
                 {
-                    return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Report));
+                    return this.Response(MessageTypes.Error, string.Format(Resource.SaveError, Resource.Report));
                 }
                 if(data.ReportId > 0)
                 {
@@ -109,37 +130,31 @@ namespace MVCProject.Api.Controllers.MISReport
                     }
                     if (!(this.entities.SaveChanges() > 0))
                     {
-                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
+                        return this.Response(MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
                     }
-                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
+                    return this.Response(MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
                 }
                 else
                 {
-                    return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
+                    return this.Response(MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
                 }
             }
             else
             {
-                var ReportId = report.ReportId;
+                report.StatusId = 1;
+                this.entities.SaveChanges();
                 List<MISReport.Fields> myField = mis.FieldData;
                 foreach (MISReport.Fields fieldData in myField)
                 {
-                    this.entities.MIS_FieldData.AddObject(new MIS_FieldData()
-                    {
-                        ReportId = ReportId,
-                        FieldId = fieldData.FieldId,
-                        FieldValue = fieldData.FieldValue,
-                        Remarks = fieldData.Remarks,
-                        EntryBy = 1,
-                        EntryDate = DateTime.Now,
-                        IsActive = true
-                    });
+                    var list = this.entities.MIS_FieldData.Where(x => x.FieldId == fieldData.FieldId).FirstOrDefault();
+                    list.FieldValue = fieldData.FieldValue;
+                    list.Remarks = fieldData.Remarks;
                 }
                 if (!(this.entities.SaveChanges() > 0))
                 {
-                    return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
+                    return this.Response(MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
                 }
-                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
+                return this.Response(MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
             }
 
         }

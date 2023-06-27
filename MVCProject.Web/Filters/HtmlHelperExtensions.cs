@@ -38,10 +38,10 @@ namespace System.Web.Mvc
             //menuString.Append(GetMainMenu(Resource.Reportreview, "fa fa-home", "/MISReporting/ReviewReport"));
             //menuString.Append(GetMainMenu(Resource.ApproveReport, "fa fa-home", "/MISReporting/ApproveReport"));
             //menuString.Append(GetMainMenu(Resource.Vertical, "ti-id-badge", "/Configuration/VerticalMaster"));
-            //menuString.Append(GetMainMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
+            menuString.Append(GetMainMenu(Resource.Dashboard, "fa fa-home", "/Dashboard/Dashboard"));
 
-        
-                if(userContext.RoleId == 2)
+
+            if (userContext.RoleId == 2)
                 {
                     menuString.Append(GetMainMenu(Resource.Reportreview, "fa fa-home", "/MISReporting/ReviewReport"));
                 }

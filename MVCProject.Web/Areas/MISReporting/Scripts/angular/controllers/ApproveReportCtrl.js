@@ -32,6 +32,17 @@
 
         };
 
+        $scope.Init = function () {
+            var params = $location.search();
+            if (params != null) {
+                $scope.ReviewReportDetailScope.VerticalId = JSON.parse(params.VerticalId);
+                $scope.Projectlist($scope.ReviewReportDetailScope.VerticalId);
+                $scope.ReviewReportDetailScope.ProjectId = JSON.parse(params.ProjectId);
+                $scope.ReviewReportDetailScope.ReportDate = new Date(params.ReportDate);
+            }
+        }
+
+
         $scope.resetApprovereportDetails = function (frmApproveReport) {
             if ($scope.operationMode() == "Update") {
                 $scope.frmApproveReport = angular.copy($scope.lastStorageGroup);
@@ -81,10 +92,8 @@
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
                         toastr.success(res.data.Message, successTitle);
-                        $scope.ClearFormData(frmApproveReport);
-                        $scope.GroupList = null;
-                        $scope.show = false;
 
+                        window.location.href = '../../MISReporting/ApproveReport';
                     } else if (res.data.MessageType == messageTypes.Error) {
                         toastr.error(res.data.Message, errorTitle);
                     }   
@@ -99,10 +108,7 @@
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
                         toastr.success(res.data.Message, successTitle);
-                        $scope.ClearFormData(frmApproveReport);
-                        $scope.GroupList = null;
-                        $scope.show = false;
-
+                        window.location.href = '../../MISReporting/ApproveReport';
                     } else if (res.data.MessageType == messageTypes.Error) {
                         toastr.error(res.data.Message, errorTitle);
                     }

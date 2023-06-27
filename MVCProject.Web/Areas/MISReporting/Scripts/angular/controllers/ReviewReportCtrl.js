@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module("MVCApp").controller('ReviewReportCtrl', [
-        '$scope', '$rootScope', 'ngTableParams', 'CommonFunctions', 'FileService', 'ReviewReportService', '$timeout', ReviewReportCtrl
+        '$scope', '$rootScope', 'ngTableParams','$location', 'CommonFunctions', 'FileService', 'ReviewReportService', '$timeout', ReviewReportCtrl
     ]);
 
     //BEGIN ReviewReportCtrl
-    function ReviewReportCtrl($scope, $rootScope, ngTableParams, CommonFunctions, FileService, ReviewReportService) {
+    function ReviewReportCtrl($scope, $rootScope, ngTableParams, $location, CommonFunctions, FileService, ReviewReportService) {
         /* Initial Declaration */
         $scope.sampleDate = new Date();
         $scope.ReviewReportDetailScope = {
@@ -16,8 +16,17 @@
             VerticalName: '',
             ReportDate: new Date(),
         };
+        $scope.Init = function () {
+            var params = $location.search();
+            if (params != null) {
+                $scope.ReviewReportDetailScope.VerticalId = JSON.parse(params.VerticalId);
+                $scope.Projectlist($scope.ReviewReportDetailScope.VerticalId);
+                $scope.ReviewReportDetailScope.ProjectId = JSON.parse(params.ProjectId);
+                $scope.ReviewReportDetailScope.ReportDate = new Date(params.ReportDate);
+            }
+        }
+        
 
-        /* var ReviewReportDetailParams = {};*/
         $scope.ClearFormData = function (frmReviewReport) {
             $scope.ReviewReportDetailScope = {
                 VerticalId: 0,
@@ -75,13 +84,13 @@
         }
 
         $scope.sendReview = function (GroupList) {
-            console.log(GroupList[0].FieldData);
-            GroupList[0].ReportId = GroupList[0].FieldData[0].ReportId;
+            console.log(GroupList)
+            debugger
             ReviewReportService.reviewMIS(GroupList).then(function (res) {
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
                         toastr.success(res.data.Message, successTitle);
-                        $scope.ClearFormData($scope.frmReviewReport);
+                        window.location.href = '../../MISReporting/ReviewReport';
                     } else if (res.data.MessageType == messageTypes.Error) {
                         toastr.error(res.data.Message, errorTitle);
                     }   
@@ -90,13 +99,11 @@
         }
 
         $scope.rejectReview = function (GroupList) {
-            console.log(GroupList[0].FieldData);
-            GroupList[0].ReportId = GroupList[0].FieldData[0].ReportId;
             ReviewReportService.rejectMIS(GroupList).then(function (res) {
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
                         toastr.success(res.data.Message, successTitle);
-                        $scope.ClearFormData($scope.frmReviewReport);
+                        window.location.href = '../../MISReporting/ReviewReport';
                     } else if (res.data.MessageType == messageTypes.Error) {
                         toastr.error(res.data.Message, errorTitle);
                     }

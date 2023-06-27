@@ -888,4 +888,19 @@
   <data name="MonthlyEHSPerformaceapprovereport" xml:space="preserve">
     <value>MONTHLY EHS PERFORMANCE APPROVE REPORT</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Project Name</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="VerticalName" xml:space="preserve">
+    <value>Vertical Name</value>
+  </data>
 </root>

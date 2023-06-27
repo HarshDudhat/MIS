@@ -1,0 +1,171 @@
+﻿@{
+    ViewBag.Title = Resource.Dashboard;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .colSrno {
+        width: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
+    }
+
+    .colPosition {
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
+    }
+
+    .colActive {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colAction {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+</style>
+
+<div ng-controller="DashboardCtrl" novalidate>
+    <!-- start title section-->
+    <div class="main-page-title title-icon relative l">
+        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">@Resource.Dashboard</h4>
+        <!-- start button-->
+        <div class="pull-right">
+        </div>
+        <!-- end button-->
+    </div>
+    <!-- end title section-->
+    <!-- start body section-->
+    <div class="card-box">
+        <div class="row mt-4" ng-init="GetCount();tableParams.reload();">
+            <div class="col-lg-3 col-md-6">
+                <div class="card dashboard-card-1">
+                    <button type="button" ng-click="flag=1;tableParams.reload();" class="card-content btn btn-primary">
+                        <div class="card-bg"></div>
+                        <div class="row">
+                            <div class="col-lg-3 dashboard-item-icon">
+                                <div class="icon-div">
+                                    <img src="~/Content/images/meetings-icon.svg" class="dashboard-icon" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9 text-center">
+                                <p class="info-number" id="number1"> {{Count.AllCount}}</p>
+                                <div class="dashboard-card-title">
+                                    All 
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card dashboard-card-2">
+                    <button type="button" ng-click="flag=2;tableParams.reload();" class="card-content btn btn-success">
+                        <div class="card-bg"></div>
+                        <div class="row">
+                            <div class="col-lg-3 dashboard-item-icon">
+                                <div class="icon-div">
+                                    <img src="~/Content/images/openings-icon.svg" class="dashboard-icon" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9 text-center">
+                                <p class="info-number" id="number2"> {{Count.SubmittedCount}}</p>
+                                <div class="dashboard-card-title">
+                                    Submitted 
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card dashboard-card-3">
+                    <button type="button" ng-click="flag=3;tableParams.reload();" class="card-content btn btn-secondary">
+                        <div class="card-bg"></div>
+                        <div class="row">
+                            <div class="col-lg-3 dashboard-item-icon">
+                                <div class="icon-div">
+                                    <img src="~/Content/images/applications.svg" class="dashboard-icon" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9 text-center">
+                                <p class="info-number" id="number3"> {{Count.ReviewedCount}}</p>
+                                <div class="dashboard-card-title">
+                                    Reviewed
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card dashboard-card-4">
+                    <button type="button" ng-click="flag=4;tableParams.reload();" class="card-content btn btn-warning">
+                        <div class="card-bg"></div>
+                        <div class="row">
+                            <div class="col-lg-3 dashboard-item-icon">
+                                <div class="icon-div">
+                                    <img src="~/Content/images/hired.svg" class="dashboard-icon" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9 text-center">
+                                <p class="info-number" id="number4"> {{Count.PendingCount}}</p>
+                                <div class="dashboard-card-title">
+                                    Pending
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="form-control-static">
+                        <scrollable-table scroll-height="427">
+                            <table ng-table="tableParams" id="datatable" class="table table-striped table-bordered table-hover">
+                                <tr ng-repeat="h in List">
+                                    <td data-title="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
+                                        {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
+                                    </td>
+                                    <td data-title="'@Resource.Group'" sortable="'GroupName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.GroupName}}">
+                                        {{h.GroupName}}
+                                    </td>
+                                    <td data-title="'@Resource.ReportDate'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.ReportDate | date:'MMM, yyyy'}}">
+                                        {{h.ReportDate | date:'MMM, yyyy'}}
+                                    </td>
+                                    <td data-title="'@Resource.Vertical'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.VerticalName}}">
+                                        {{h.VerticalName}}
+                                    </td>
+                                    <td data-title="'@Resource.Project'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.ProjectName}}">
+                                        {{h.ProjectName}}
+                                    </td>
+                                    <td data-title="'@Resource.Status'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.StatusName}}">
+                                        {{h.StatusName}}
+                                    </td>
+                                    <td data-title="'@Resource.Action'" ng-show="show()" header-class="'colAction'" ng-class="'colAction text-center'">
+                                        <button type="button" class="btn btn-trans" ng-click="action(h.VerticalId,h.ProjectId,h.ReportDate)"> 
+                                            <img src="~/Content/images/view-details-icon.svg" class="ViewLogo w-100 text-light" />
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </scrollable-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end body section-->
+
+@section scripts {
+    @Scripts.Render("~/bundles/Dashboard/Dashboard")
+}

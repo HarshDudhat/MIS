@@ -75,27 +75,48 @@ namespace MVCProject.Api.Controllers.ReviewReport
         }
 
 
+        //[HttpPost]
+        //public ApiResponse ReviewMIS([FromBody] List<MISReport> mis)
+        //{
+        //    var list = new List<object>();
+        //    int reportId = mis[0].ReportId; 
+        //    var report = this.entities.MIS_MISReport.FirstOrDefault(x => x.ReportId == reportId);
+        //    if (report != null)
+        //    {
+        //        report.StatusId = 3;
+        //    }
+
+        //    foreach (var misItem in mis)
+        //    {
+        //        foreach(var field in misItem.FieldData)
+        //        {
+        //            var fieldData = entities.MIS_FieldData.FirstOrDefault(f => f.FieldId == field.FieldId);
+        //            if (fieldData != null)
+        //            {
+        //                fieldData.Remarks = field.Remarks;
+        //            }
+        //        }
+        //    }
+        //    if (!(this.entities.SaveChanges() > 0))
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
+        //    }
+        //    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
+
+        //}
+
         [HttpPost]
-        public ApiResponse ReviewMIS([FromBody] List<MISReport> mis)
+        public ApiResponse ReviewMIS([FromBody] MIS_FieldData mis)
         {
-            var list = new List<object>();
-            int reportId = mis[0].ReportId; 
-            var report = this.entities.MIS_MISReport.FirstOrDefault(x => x.ReportId == reportId);
-            if (report != null)
+            var list = this.entities.MIS_FieldData.Where(x => x.DataId == mis.DataId).FirstOrDefault();
+            if(list != null)
+            {
+                list.Remarks = mis.Remarks;
+            }
+            var report = this.entities.MIS_MISReport.Where(x => x.ReportId == mis.ReportId).FirstOrDefault();
+            if(report != null)
             {
                 report.StatusId = 3;
-            }
-
-            foreach (var misItem in mis)
-            {
-                foreach(var field in misItem.FieldData)
-                {
-                    var fieldData = entities.MIS_FieldData.FirstOrDefault(f => f.FieldId == field.FieldId);
-                    if (fieldData != null)
-                    {
-                        fieldData.Remarks = field.Remarks;
-                    }
-                }
             }
             if (!(this.entities.SaveChanges() > 0))
             {
@@ -105,28 +126,50 @@ namespace MVCProject.Api.Controllers.ReviewReport
 
         }
 
+        //[HttpPost]
+        //public ApiResponse RejectMIS([FromBody] List<MISReport> mis)
+        //{
+        //    var list = new List<object>();
+        //    int reportId = mis[0].ReportId;
+        //    var report = this.entities.MIS_MISReport.FirstOrDefault(x => x.ReportId == reportId);
+        //    if (report != null)
+        //    {
+        //        report.StatusId = 2;
+        //    }
+
+        //    foreach (var misItem in mis)
+        //    {
+        //        foreach (var field in misItem.FieldData)
+        //        {
+        //            var fieldData = entities.MIS_FieldData.FirstOrDefault(f => f.FieldId == field.FieldId);
+        //            if (fieldData != null)
+        //            {
+        //                fieldData.Remarks = field.Remarks;
+        //            }
+        //        }
+        //    }
+        //    if (!(this.entities.SaveChanges() > 0))
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
+        //    }
+        //    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
+
+        //}
+
+
         [HttpPost]
-        public ApiResponse RejectMIS([FromBody] List<MISReport> mis)
+        public ApiResponse RejectMIS([FromBody] MIS_FieldData mis)
         {
-            var list = new List<object>();
-            int reportId = mis[0].ReportId;
-            var report = this.entities.MIS_MISReport.FirstOrDefault(x => x.ReportId == reportId);
+            var list = this.entities.MIS_FieldData.Where(x => x.DataId == mis.DataId).FirstOrDefault();
+            if (list != null)
+            {
+                list.Remarks = mis.Remarks;
+            }
+            var report = this.entities.MIS_MISReport.Where(x => x.ReportId == mis.ReportId).FirstOrDefault();
             if (report != null)
             {
                 report.StatusId = 2;
             }
-
-            foreach (var misItem in mis)
-            {
-                foreach (var field in misItem.FieldData)
-                {
-                    var fieldData = entities.MIS_FieldData.FirstOrDefault(f => f.FieldId == field.FieldId);
-                    if (fieldData != null)
-                    {
-                        fieldData.Remarks = field.Remarks;
-                    }
-                }
-            }
             if (!(this.entities.SaveChanges() > 0))
             {
                 return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.FieldData));
@@ -134,6 +177,5 @@ namespace MVCProject.Api.Controllers.ReviewReport
             return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
 
         }
-
     }
 }

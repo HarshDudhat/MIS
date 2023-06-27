@@ -165,6 +165,8 @@
     <Compile Include="Areas\Configuration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ProjectMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\VerticalMasterController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\MISReporting\Controllers\ApproveReportController.cs" />
     <Compile Include="Areas\MISReporting\Controllers\ReviewReportController.cs" />
     <Compile Include="Areas\MISReporting\MISReportingAreaRegistration.cs" />
@@ -222,6 +224,8 @@
     <Content Include="Areas\Configuration\Scripts\angular\services\VerticalMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
+    <Content Include="Areas\Dashboard\Scripts\angular\controllers\DashboardCtrl.js" />
+    <Content Include="Areas\Dashboard\Scripts\angular\services\DashboardService.js" />
     <Content Include="Areas\MISReporting\Scripts\angular\controllers\ApproveReportCtrl.js" />
     <Content Include="Areas\MISReporting\Scripts\angular\controllers\ReviewReportCtrl.js" />
     <Content Include="Areas\MISReporting\Scripts\angular\services\ApproveReportService.js" />
@@ -276,6 +280,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\onlinewebfonts.css" />
     <Content Include="Content\fonts\themify.svg" />
+    <Content Include="Content\images\applications.svg" />
     <Content Include="Content\images\arrows_h.gif" />
     <Content Include="Content\images\askehs_logo_demo.png" />
     <Content Include="Content\images\attchment-placeholder-img.png" />
@@ -290,16 +295,19 @@
     <Content Include="Content\images\company-logo.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\ghost.png" />
+    <Content Include="Content\images\hired.svg" />
     <Content Include="Content\images\hp.png" />
     <Content Include="Content\images\image-not-available.jpg" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logo-mix.png" />
+    <Content Include="Content\images\meetings-icon.svg" />
     <Content Include="Content\images\multiple-arrow.png" />
     <Content Include="Content\images\node.png" />
     <Content Include="Content\images\NoDefaultImage.gif" />
     <Content Include="Content\images\noPhotoAvailable.png" />
     <Content Include="Content\images\nothumb.png" />
     <Content Include="Content\images\openhand.cur" />
+    <Content Include="Content\images\openings-icon.svg" />
     <Content Include="Content\images\PDFBG.jpg" />
     <Content Include="Content\images\reload.gif" />
     <Content Include="Content\images\ringLoading.gif" />
@@ -310,6 +318,7 @@
     <Content Include="Content\images\selectimage.png" />
     <Content Include="Content\images\skin.png" />
     <Content Include="Content\images\sprit.png" />
+    <Content Include="Content\images\view-details-icon.svg" />
     <Content Include="Content\images\zydus-logo.jpg" />
     <Content Include="Rotativa\msvcp120.dll" />
     <Content Include="Rotativa\msvcr120.dll" />
@@ -430,6 +439,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Configuration\Views\Shared\" />
+    <Folder Include="Areas\Dashboard\Models\" />
+    <Folder Include="Areas\Dashboard\Views\Shared\" />
     <Folder Include="Areas\MISReporting\Models\" />
     <Folder Include="Areas\MISReporting\Views\Shared\" />
     <Folder Include="Areas\Public\Controllers\" />
@@ -473,6 +484,8 @@
     <Content Include="Areas\Configuration\Views\VerticalMaster\Index.cshtml" />
     <Content Include="Areas\Configuration\Views\ProjectMaster\Index.cshtml" />
     <Content Include="Areas\MISReporting\Views\ApproveReport\Index.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Web.config" />
+    <Content Include="Areas\Dashboard\Views\Dashboard\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

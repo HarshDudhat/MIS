@@ -19,7 +19,7 @@ namespace MVCProject.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -462,6 +462,15 @@ namespace MVCProject.Common.Resources {
         public static string CustomRange {
             get {
                 return ResourceManager.GetString("CustomRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string Dashboard {
+            get {
+                return ResourceManager.GetString("Dashboard", resourceCulture);
             }
         }
         
@@ -966,6 +975,15 @@ namespace MVCProject.Common.Resources {
         public static string Group {
             get {
                 return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Name.
+        /// </summary>
+        public static string GroupName {
+            get {
+                return ResourceManager.GetString("GroupName", resourceCulture);
             }
         }
         
@@ -1600,6 +1618,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project Name.
+        /// </summary>
+        public static string ProjectName {
+            get {
+                return ResourceManager.GetString("ProjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quantity must be greater than zero..
         /// </summary>
         public static string QtyGreaterThanZeroRequired {
@@ -2023,6 +2050,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sub-Catgory.
         /// </summary>
         public static string SubCatgory {
@@ -2316,6 +2352,15 @@ namespace MVCProject.Common.Resources {
         public static string Vertical {
             get {
                 return ResourceManager.GetString("Vertical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical Name.
+        /// </summary>
+        public static string VerticalName {
+            get {
+                return ResourceManager.GetString("VerticalName", resourceCulture);
             }
         }
         

@@ -205,10 +205,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="USP_MIS_AllReportList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="USP_MIS_AuthenticateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="USP_MIS_GetCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="USP_MIS_GetDataByReportId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ReportId" Type="int" Mode="In" />
         </Function>
@@ -237,6 +239,9 @@
           <Parameter Name="ReportDate" Type="date" Mode="In" />
         </Function>
         <Function Name="USP_MIS_GetVerticalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_PendingReportList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_ReviewedReportList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_SubmittedReportList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MIS_FieldData" EntityType="Self.MIS_FieldData" Schema="dbo" store:Type="Tables" />
@@ -555,6 +560,11 @@
             <Parameter Name="ProjectId" Mode="In" Type="Int32" />
             <Parameter Name="ReportDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="USP_MIS_PendingReportList" ReturnType="Collection(MVCProjectModel.USP_MIS_PendingReportList_Result)" />
+          <FunctionImport Name="USP_MIS_AllReportList" ReturnType="Collection(MVCProjectModel.USP_MIS_AllReportList_Result)" />
+          <FunctionImport Name="USP_MIS_ReviewedReportList" ReturnType="Collection(MVCProjectModel.USP_MIS_ReviewedReportList_Result)" />
+          <FunctionImport Name="USP_MIS_SubmittedReportList" ReturnType="Collection(MVCProjectModel.USP_MIS_SubmittedReportList_Result)" />
+          <FunctionImport Name="USP_MIS_GetCount" ReturnType="Collection(MVCProjectModel.USP_MIS_GetCount_Result)" />
         </EntityContainer>
         <EntityType Name="Designation">
           <Key>
@@ -644,6 +654,60 @@
           <Property Type="Int32" Name="UpdateBy" Nullable="true" />
           <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_PendingReportList_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" />
+          <Property Type="Int32" Name="ReportId" Nullable="true" />
+          <Property Type="DateTime" Name="ReportDate" Nullable="true" />
+          <Property Type="Int32" Name="VerticalId" Nullable="true" />
+          <Property Type="String" Name="VerticalName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ProjectId" Nullable="true" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_AllReportList_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" />
+          <Property Type="Int32" Name="ReportId" Nullable="true" />
+          <Property Type="DateTime" Name="ReportDate" Nullable="true" />
+          <Property Type="Int32" Name="VerticalId" Nullable="true" />
+          <Property Type="String" Name="VerticalName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ProjectId" Nullable="true" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_ReviewedReportList_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" />
+          <Property Type="Int32" Name="ReportId" Nullable="true" />
+          <Property Type="DateTime" Name="ReportDate" Nullable="true" />
+          <Property Type="Int32" Name="VerticalId" Nullable="true" />
+          <Property Type="String" Name="VerticalName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ProjectId" Nullable="true" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_SubmittedReportList_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" />
+          <Property Type="Int32" Name="ReportId" Nullable="true" />
+          <Property Type="DateTime" Name="ReportDate" Nullable="true" />
+          <Property Type="Int32" Name="VerticalId" Nullable="true" />
+          <Property Type="String" Name="VerticalName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ProjectId" Nullable="true" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="USP_MIS_GetCount_Result">
+          <Property Type="Int32" Name="AllCount" Nullable="true" />
+          <Property Type="Int32" Name="PendingCount" Nullable="true" />
+          <Property Type="Int32" Name="SubmittedCount" Nullable="true" />
+          <Property Type="Int32" Name="ReviewedCount" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -866,6 +930,80 @@
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_PendingReportList" FunctionName="MVCProjectModel.Store.USP_MIS_PendingReportList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_PendingReportList_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="VerticalName" ColumnName="VerticalName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_AllReportList" FunctionName="MVCProjectModel.Store.USP_MIS_AllReportList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_AllReportList_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="VerticalName" ColumnName="VerticalName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_ReviewedReportList" FunctionName="MVCProjectModel.Store.USP_MIS_ReviewedReportList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_ReviewedReportList_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="VerticalName" ColumnName="VerticalName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_SubmittedReportList" FunctionName="MVCProjectModel.Store.USP_MIS_SubmittedReportList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_SubmittedReportList_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
+                <ScalarProperty Name="VerticalName" ColumnName="VerticalName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_GetCount" FunctionName="MVCProjectModel.Store.USP_MIS_GetCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_GetCount_Result">
+                <ScalarProperty Name="AllCount" ColumnName="AllCount" />
+                <ScalarProperty Name="PendingCount" ColumnName="PendingCount" />
+                <ScalarProperty Name="SubmittedCount" ColumnName="SubmittedCount" />
+                <ScalarProperty Name="ReviewedCount" ColumnName="ReviewedCount" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

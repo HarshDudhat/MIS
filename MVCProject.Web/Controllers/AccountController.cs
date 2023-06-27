@@ -123,7 +123,7 @@ namespace MVCProject.Controllers
 
                 //if (hasGeneralAccess)
                 //{
-                return RedirectToAction("Index", "ReviewReport", new { area = "MISReporting" });
+                return RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
                 //}
                 //else
                 //{

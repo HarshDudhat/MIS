@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- start designation form -->
-                <form name="frmReviewReport" novalidate ng-init="setDefaultMonth()">
+                <form name="frmReviewReport" novalidate ng-init="setDefaultMonth();Init()">
                     <div class="row">
                         <div class="col-md-3">
                             <!-- Vertical field -->
@@ -168,13 +168,13 @@
                                                 <textarea ng-model="field.Remarks" class="form-control w-100 mb-3" rows="1"></textarea>
                                             </div>
                                         </div>
+                                        <div class="mt-3" ng-if="show">
+                                            <button type="button" class="btn btn-primary" ng-click="sendReview(Group.FieldData[0])">Submit</button>
+                                            <button type="button" class="btn btn-danger" ng-click="rejectReview(Group.FieldData[0])">Reject</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mt-3" ng-if="show">
-                            <button type="button" class="btn btn-primary" ng-click="sendReview(GroupList)">Submit</button>
-                            <button type="button" class="btn btn-danger" ng-click="rejectReview(GroupList)">Reject</button>
                         </div>
                     </div>
                 </div>
