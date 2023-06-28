@@ -8,7 +8,7 @@
         <div class="body-sign">
             <div class="center-sign">
                 <div class="login-form-section">
-                    <div class="login-content">
+                        <span class="loginline"></span>
                         <form name="frmLogin" class="form-horizontal m-t-20" role="form" ng-submit="DoLogin(loginFormData,frmLogin);"
                         novalidate>
                         <div class="section-title">
@@ -44,23 +44,23 @@
                             </div>
                         </div>
                         <div class="login-form-action">
-                            <div class="checkbox pull-left">
+                            <div class="checkbox pull-left ms-0">
                                 <div class="custom-checkbox">
                                     <div class="checkbox-primary">
                                         <input id="chkRememberMe" ng-model="loginFormData.Remember" tabindex="3" type="checkbox" />
                                         <label for="chkRememberMe">
                                             Remember me
                                         </label>
-                                        <div class="c">
-                                        </div>
+                                        @*<div class="c">
+                                        </div>*@
                                     </div>
-                                    <div class="c">
-                                    </div>
+                                    @*<div class="c">
+                                    </div>*@
                                 </div>
-                                <div class="c">
-                                </div>
+                                @*<div class="c">
+                                </div>*@
                             </div>
-                            <button type="submit" class="btn btn-primary pull-right green-btn" tabindex="4">
+                            <button type="submit" class="btn btn-primary d-block w-100 mt-5" tabindex="4">
                                 @Resource.Login
                             </button>
                             <div class="c">
@@ -76,12 +76,11 @@
                         </form>
                         <div class="c">
                         </div>
-                    </div>
-                    <div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig"
+                    @*<div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig"
                         data-animation-delay=".2s" style="animation-delay: 0.2s;">
                         <img src="/Content/images/askehs_logo_demo.png" alt="#" ng-class="{'blur-7' : !isLogoLoaded}"
                             style="max-height: 50px;" /><span style="color: #D40003; font-size: 18px; font-weight: bold;"></span>
-                    </div>
+                    </div>*@
                     @* <div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig" data-animation-delay=".2s" style="animation-delay: 0.2s;">
                     <h4 class="blue">Don't have an Account?</h4>
                     <span>No worry</span>

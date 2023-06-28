@@ -78,25 +78,25 @@
 
 
 :root {
-    --inet-primary-color: #008b8b;
-    --inet-primary-color-rgb: 0, 139, 139;
-    --inet-card-border-radius: 10px;
-    --inet-body-font-size: 14px;
-    --inet-nav-link-color: #260944;
-    --inet-nav-link-hover-color: #f5f5f9;
-    --inet-nav-link-active-bg: var(--inet-primary-color);
-    --inet-border-radius: 5px;
+    --mis-primary-color: #4355f1;
+    --mis-primary-color-rgb: 67, 85, 241;
+    --mis-card-border-radius: 8px;
+    --mis-body-font-size: 14px;
+    --mis-nav-link-color: #260944;
+    --mis-nav-link-hover-color: #f5f5f9;
+    --mis-nav-link-active-bg: var(--mis-primary-color);
+    --mis-border-radius: 8px;
 }
 
 
 body {
-    background: #ebeff2;
+    background: #f7f7fa;
     font-family: Roboto,sans-serif;
     margin: 0;
     padding-bottom: 0px;
     overflow-x: hidden;
     color: #797979;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 html {
@@ -512,9 +512,9 @@ ul > li {
 /* Card Box */
 .card-box {
     padding: 20px;
-    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: 0 0 31px 3px rgb(44 50 63/2%);
     -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: var(--mis-border-radius);
     -moz-border-radius: 5px;
     background-clip: padding-box;
     margin-bottom: 60px;
@@ -837,7 +837,7 @@ textarea.form-control {
 
     .form-control:focus {
         background-color: #FFFFFF;
-        border: 2px solid var(--inet-primary-color);
+        border: 2px solid var(--mis-primary-color);
         -webkit-box-shadow: 0px 0px 0px 2px rgba(87, 92, 188, 0.2) !important;
         box-shadow: 0px 0px 0px 2px rgba(87, 92, 188, 0.2) !important;
         color: #333333;
@@ -872,7 +872,7 @@ textarea.form-control {
 
     .form-select:focus {
         background-color: #FFFFFF;
-        border: 2px solid var(--inet-primary-color);
+        border: 2px solid var(--mis-primary-color);
         -webkit-box-shadow: 0px 0px 0px 2px rgba(87, 92, 188, 0.2) !important;
         box-shadow: 0px 0px 0px 2px rgba(87, 92, 188, 0.2) !important;
         color: #333333;
@@ -1120,7 +1120,7 @@ textarea.form-control {
 }
 
     .list-group-item:hover {
-        background-color: rgba(var(--inet-primary-color-rgb), 0.1);
+        background-color: rgba(var(--mis-primary-color-rgb), 0.1);
     }
 
     .list-group-item:first-child {
@@ -1307,7 +1307,7 @@ textarea.form-control {
     padding: 7px;
     border-radius: 0 4px 4px 0;
     border: 1px solid #eeeeee;
-    background: var(--inet-primary-color);
+    background: var(--mis-primary-color);
     color: white;
 }
 /* Tooltips */
@@ -3563,14 +3563,15 @@ div.hopscotch-bubble {
     .btn-white:focus,
     .btn-white:hover,
     .open > .dropdown-toggle.btn-white {
-        background-color: var(--inet-primary-color);
-        border: 1px solid var(--inet-primary-color) !important;
+        background-color: var(--mis-primary-color);
+        border: 1px solid var(--mis-primary-color) !important;
         color: #fff;
     }
 
 .btn-primary {
-    background-color: var(--inet-primary-color) !important;
-    border: 1px solid var(--inet-primary-color) !important;
+    background-color: var(--mis-primary-color) !important;
+    border: 1px solid var(--mis-primary-color) !important;
+    border-radius: var(--mis-border-radius);
 }
 
     .btn-primary:hover,
@@ -3582,20 +3583,20 @@ div.hopscotch-bubble {
     .btn-primary:focus,
     .btn-primary:hover,
     .open > .dropdown-toggle.btn-primary {
-        background-color: #016c6c !important;
-        border: 1px solid #016c6c !important;
-        box-shadow: 0 0 0 2px rgba(var(--inet-primary-color-rgb), .5);
+        background-color: #3a4bdc !important;
+        border: 1px solid #3a4bdc !important;
+        box-shadow: 0 0 0 2px rgba(var(--mis-primary-color-rgb), .5);
     }
 
 .btn-outline-primary {
-    color: var(--inet-primary-color) !important;
-    border-color: var(--inet-primary-color) !important;
+    color: var(--mis-primary-color) !important;
+    border-color: var(--mis-primary-color) !important;
 }
 
     .btn-outline-primary:hover, .btn-outline-primary:focus-visible, .btn-outline-primary:active, .btn-outline-primary:focus, .btn-outline-primary:active {
         color: #fff !important;
-        background: var(--inet-primary-color) !important;
-        border-color: var(--inet-primary-color) !important;
+        background: var(--mis-primary-color) !important;
+        border-color: var(--mis-primary-color) !important;
     }
 
 .btn-success {
@@ -3971,8 +3972,8 @@ div.hopscotch-bubble {
 }
 
 .checkbox-primary input[type="checkbox"]:checked + label::before {
-    background-color: var(--inet-primary-color);
-    border-color: var(--inet-primary-color);
+    background-color: var(--mis-primary-color);
+    border-color: var(--mis-primary-color);
 }
 
 .checkbox-primary input[type="checkbox"]:checked + label::after {
@@ -6363,7 +6364,7 @@ header {
             width: 100%;
             height: 100%;
             opacity: 0.6;
-            /*  background-color: var(--inet-primary-color);*/
+            /*  background-color: var(--mis-primary-color);*/
             background-size: cover;
             -webkit-filter: blur(10px) !important;
             filter: blur(30px) !important;
@@ -6388,7 +6389,82 @@ header {
 
 .login-form-section {
     width: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: white;
 }
+/*
+.login-form-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(30deg,transparent,transparent, var(--mis-primary-color),var(--mis-primary-color),var(--mis-primary-color));
+    transform-origin: bottom right;
+    animation: loginanim 6s linear infinite;
+    z-index: 1;
+}
+    .login-form-section::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 350px;
+        height: 350px;
+        background: linear-gradient(30deg,transparent,transparent, var(--mis-primary-color),var(--mis-primary-color),var(--mis-primary-color));
+        transform-origin: bottom right;
+        animation: loginanim 6s linear infinite;
+        animation-delay: -3s;
+        z-index: 1;
+    }
+    .loginline{
+        position: absolute;
+        top: 0;
+        inset: 0;
+    }
+        .loginline::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(30deg,transparent,transparent, var(--mis-primary-color),var(--mis-primary-color),var(--mis-primary-color));
+            transform-origin: bottom right;
+            animation: loginanim 6s linear infinite;
+            animation-delay: -1.5s;
+            z-index: 1;
+        }
+        .loginline::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(30deg,transparent,transparent, var(--mis-primary-color),var(--mis-primary-color),var(--mis-primary-color));
+            transform-origin: bottom right;
+            animation: loginanim 6s linear infinite;
+            animation-delay: -4.5s;
+            z-index: 1;
+        }
+
+
+@keyframes loginanim{
+    0%{
+        transform: rotate(0deg);
+    }
+    0% {
+        transform: rotate(360deg);
+    }
+}
+
+    .eternity-form form{
+        inset: 2px;
+    }*/
 
 .login-details {
     position: absolute;
@@ -6410,8 +6486,8 @@ header {
     -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-    width: 420px;
-    height: 420px;
+/*    width: 420px;
+    height: 420px;*/
 }
 
 .eternity-form .section-title {
@@ -6441,14 +6517,14 @@ header {
 }
 
     .eternity-form .textbox-wrap .input-group {
-        border: 3px solid var(--inet-primary-color);
+        border: 2px solid var(--mis-primary-color);
         background-color: #ffffff;
-        box-shadow: 2px 2px rgba(var(--inet-primary-color-rgb), 0.4);
-        /*border-radius: 5px;*/
+/*        box-shadow: 2px 2px rgba(var(--mis-primary-color-rgb), 0.4);*/
+        border-radius: 5px;
     }
 
         .eternity-form .textbox-wrap .input-group .input-group-addon {
-            background-color: var(--inet-primary-color);
+            background-color: var(--mis-primary-color);
             border: none;
         }
 
@@ -6456,7 +6532,7 @@ header {
         .eternity-form .textbox-wrap .input-group .form-control {
             background-color: transparent;
             border: none;
-            font-size: var(--inet-body-font-size);
+            font-size: var(--mis-body-font-size);
         }
 
             .eternity-form .textbox-wrap .input-group input,
@@ -6474,7 +6550,7 @@ header {
         }
 
     .eternity-form .textbox-wrap.focused {
-        border-left-color: var(--inet-primary-color);
+        border-left-color: var(--mis-primary-color);
         background-color: #f0f0f0;
         /*            -o-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
             -ms-box-shadow: inset 0 0 3px rgba(0,0,0,.1);*/
@@ -6484,7 +6560,7 @@ header {
     }
 
         .eternity-form .textbox-wrap.focused .eternity-form .textbox-wrap .input-group {
-            border: 1px solid var(--inet-primary-color);
+            border: 1px solid var(--mis-primary-color);
         }
 
 .eternity-form .green-btn,
@@ -6504,7 +6580,7 @@ header {
 }
 
 .eternity-form input[type="checkbox"] {
-    width: 22px;
+    width: 17px;
 }
 
 .eternity-form .blue {
@@ -6869,8 +6945,8 @@ header {
 .body-sign {
     display: table;
     height: 100vh;
-    /* margin: 0 auto; */
-    float: right;
+     margin: 0 auto; 
+/*    float: right;*/
     padding: 0;
     width: 300px;
 }
@@ -6890,7 +6966,7 @@ header {
     background-image: -webkit-gradient(radial, center top, 0, center top, 487, color-stop(0, #5E6CA0), color-stop(1, #1D2544));
     background-image: -webkit-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
     background-image: radial-gradient(circle farthest-side at center top, #5E6CA0 0%, #1D2544 100%);
-    background-image: url(../images/inet-login-bg.jpg);
+    background-image: url(../images/mis-login-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;*/
@@ -7640,4 +7716,106 @@ multilevel-accordion uib-accordion .panel-group {
     .col-expand {
         margin-top: 10px;
     }
+}
+
+
+/***************************************
+    Dashboard Cards
+****************************************/
+.dashboard-card-1, .dashboard-card-2, .dashboard-card-3, .dashboard-card-4 {
+    overflow: hidden;
+}
+
+.card-content {
+    display: block;
+    padding: 30px 20px;
+    background-color: #121212;
+    overflow: hidden;
+    position: relative;
+}
+
+    .card-content:hover,
+    .card-content:hover .ag-courses-item_date {
+        text-decoration: none;
+        color: #FFF;
+    }
+/*.card-content:hover{
+  -webkit-transform: scale(10);
+  -ms-transform: scale(10);
+  transform: scale(10);
+}*/
+.dashboard-card-title {
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFF;
+    z-index: 2;
+    position: relative;
+}
+
+.card-bg {
+    height: 81px;
+    width: 68px;
+    z-index: 1;
+    background: linear-gradient(to right, rgba(255,255,255,0.3), transparent);
+    position: absolute;
+    top: 20px;
+    right: -21px;
+    border-radius: 10px;
+    transform: rotate(-45deg);
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    animation: myAnim 20s ease-in-out 0s infinite normal forwards;
+}
+
+@keyframes myAnim {
+    0% {
+        transform: scale(.8);
+        transform: rotate(-45deg);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1.5);
+        transform: rotate(-45deg);
+    }
+}
+
+.dashboard-card-1 .card-content {
+    background-color: #e09614;
+}
+
+.dashboard-card-2 .card-content {
+    background-color: #0059b7;
+}
+
+.dashboard-card-3 .card-content {
+    background-color: #e13110;
+}
+
+.dashboard-card-4 .card-content {
+    background-color: #0ba42d;
+}
+
+.info-number {
+    color: var(--ats-white);
+    margin-bottom: 0;
+    font-size: 40px;
+}
+
+.dashboard-item-icon {
+    display: flex;
+    align-items: center;
+}
+
+.icon-div {
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    padding: 15px;
+    display: flex;
+    align-items: center;
 }
