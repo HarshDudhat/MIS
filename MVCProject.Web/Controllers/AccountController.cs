@@ -10,6 +10,7 @@ namespace MVCProject.Controllers
     using System.Net;
     using System.Web.Configuration;
     using System.Web.Mvc;
+    using MVCProject.Utilities;
     using MVCProject.ViewModel;
 
     /// <summary>
@@ -117,22 +118,20 @@ namespace MVCProject.Controllers
                     Response.Redirect(url);
                 }
 
-                //UserContext userContext = (UserContext)this.Session["UserContext"];
-                //UserContext.PagePermission generalPermission = userContext.PageAccess.Where(p => p.PageId == Pages.General.Designation || p.PageId == Pages.General.CommonConfiguartion).FirstOrDefault();
-                //bool hasGeneralAccess = generalPermission.CanWrite || generalPermission.CanRead;
+                UserContext userContext = (UserContext)this.Session["UserContext"];
+                UserContext.PagePermission generalPermission = userContext.PageAccess.Where(p => p.PageId == (int)PageAccess.Dashboard).FirstOrDefault();
+                bool hasGeneralAccess = generalPermission.CanWrite || generalPermission.CanRead;
 
-                //if (hasGeneralAccess)
-                //{
-                return RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
-                //}
-                //else
-                //{
-                //    return this.RedirectToAction("ServerError", "Error", new { id = 404 });
-                //}
+                if (hasGeneralAccess)
+                {
+                    return RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
+                }
+                else
+                {
+                    return this.RedirectToAction("ServerError", "Error", new { id = 404 });
+                }
 
             }
-
-            //return RedirectToAction("Index", "Designation", new { area = "Configuration" });
         }
 
         /// <summary>
@@ -177,25 +176,25 @@ namespace MVCProject.Controllers
         private void LogoutUser()
         {
 
-            //try
-            //{
-            //    if (Request.Cookies["SAFEZydusSESSION" + Request.Url.Port] != null && Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString() != string.Empty)
-            //    {
-            //        string apiBaseUrl = WebConfigurationManager.AppSettings["ApiBaseUrl"].ToString();
-            //        string logoutApi = string.Format("{0}{1}", apiBaseUrl, "Account/LogOut");
+            try
+            {
+                if (Request.Cookies["SAFEZydusSESSION" + Request.Url.Port] != null && Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString() != string.Empty)
+                {
+                    string apiBaseUrl = WebConfigurationManager.AppSettings["ApiBaseUrl"].ToString();
+                    string logoutApi = string.Format("{0}{1}", apiBaseUrl, "Account/LogOut");
 
-            //        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(logoutApi);
-            //        request.Method = WebRequestMethods.Http.Post;
-            //        request.ContentType = "application/json";
-            //        request.ContentLength = 0;
-            //        request.Headers.Add("__RequestAuthToken", Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString());
-            //        request.GetResponse();
-            //        Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Expires = DateTime.Now.AddDays(-1);
-            //    }
-            //}
-            //catch
-            //{
-            //}
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(logoutApi);
+                    request.Method = WebRequestMethods.Http.Post;
+                    request.ContentType = "application/json";
+                    request.ContentLength = 0;
+                    request.Headers.Add("__RequestAuthToken", Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString());
+                    request.GetResponse();
+                    Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Expires = DateTime.Now.AddDays(-1);
+                }
+            }
+            catch
+            {
+            }
 
         }
     }

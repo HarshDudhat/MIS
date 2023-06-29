@@ -79,14 +79,14 @@ namespace MVCProject.Filters
 
             if (!isAuthorize)
             {
-                //filterContext.Result = new RedirectToRouteResult(
-                //    new RouteValueDictionary 
-                //{ 
-                //    { "controller", "Account" }, 
-                //    { "action", "RedirectToDefaultUrl" },
-                //    { "area", string.Empty },
-                //    { "noAccess", "y" }
-                //});
+                filterContext.Result = new RedirectToRouteResult(
+                    new RouteValueDictionary
+                {
+                    { "controller", "Account" },
+                    { "action", "RedirectToDefaultUrl" },
+                    { "area", string.Empty },
+                    { "noAccess", "y" }
+                });
             }
         }
     }
