@@ -55,11 +55,11 @@
                                 <label>
                                     @Resource.Vertical <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtvertical" ng-focus="true" name="txtvertical" ng-focus="true" ng-model="verticalDetailScope.VerticalName" required tabindex="1" placeholder="@Resource.Vertical" maxlength="250">
+                                <input type="text" class="form-control" id="txtvertical" ng-focus="true" name="txtvertical"  ng-model="verticalDetailScope.VerticalName" required tabindex="1" placeholder="@Resource.Vertical" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmvertical.txtvertical.$dirty && frmvertical.txtvertical.$invalid">
-                                    <span data-ng-show="frmvertical.txtvertical.$error.required">Vertical Name is Required</span>
+                                    <span data-ng-show="frmvertical.txtvertical.$error.required">@Resource.VericalRequired</span>
                                 </div>
                             </div>
                         </div>

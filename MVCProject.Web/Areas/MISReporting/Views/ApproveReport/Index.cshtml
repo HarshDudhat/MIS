@@ -64,7 +64,7 @@
                                     </select>
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmApproveReport.VerticalId.$dirty && frmApproveReport.VerticalId.$invalid">
-                                    <span data-ng-show="frmApproveReport.VerticalId.$error.required">@Resource.DesignationRequired</span>
+                                    <span data-ng-show="frmApproveReport.VerticalId.$error.required">@Resource.VericalRequired</span>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                                     </select>
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmApproveReport.ProjectId.$dirty && frmApproveReport.ProjectId.$invalid">
-                                    <span data-ng-show="frmApproveReport.ProjectId.$error.required">@Resource.DesignationRequired</span>
+                                    <span data-ng-show="frmApproveReport.ProjectId.$error.required">@Resource.ProjectRequired</span>
                                 </div>
                             </div>
                         </div>
@@ -98,9 +98,9 @@
                                                ng-model="ApproveReportDetailScope.ReportDate" min="{{minMonth}}" max="{{maxDate | date:'yyyy-MM'}}">
                                     </div>
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmApproveReport.ReportDate.$dirty && frmApproveReport.ReportDate.$invalid">
-                                    <span data-ng-show="frmApproveReport.ReportDate.$error.required">@Resource.DesignationRequired</span>
-                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmApproveReport.ReportDate.$dirty && frmApproveReport.ReportDate.$invalid">
+                                    <span data-ng-show="frmApproveReport.ReportDate.$error.required">@Resource.ReportDateRequired</span>
+                                </div>*@
                             </div>
                         </div>
 

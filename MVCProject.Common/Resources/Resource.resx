@@ -903,4 +903,13 @@
   <data name="VerticalName" xml:space="preserve">
     <value>Vertical Name</value>
   </data>
+  <data name="ProjectRequired" xml:space="preserve">
+    <value>Project is required</value>
+  </data>
+  <data name="VericalRequired" xml:space="preserve">
+    <value>Vertical is required</value>
+  </data>
+  <data name="ReportDateRequired" xml:space="preserve">
+    <value>Report Date is required</value>
+  </data>
 </root>

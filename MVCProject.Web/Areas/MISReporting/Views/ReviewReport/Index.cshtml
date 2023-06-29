@@ -64,7 +64,7 @@
                                     </select>
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmReviewReport.VerticalId.$dirty && frmReviewReport.VerticalId.$invalid">
-                                    <span data-ng-show="frmReviewReport.VerticalId.$error.required">@Resource.DesignationRequired</span>
+                                    <span data-ng-show="frmReviewReport.VerticalId.$error.required">@Resource.VericalRequired</span>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                                     </select>
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmReviewReport.ProjectId.$dirty && frmReviewReport.ProjectId.$invalid">
-                                    <span data-ng-show="frmReviewReport.ProjectId.$error.required">@Resource.DesignationRequired</span>
+                                    <span data-ng-show="frmReviewReport.ProjectId.$error.required">@Resource.ProjectRequired</span>
                                 </div>
                             </div>
                         </div>
@@ -98,9 +98,9 @@
                                                ng-model="ReviewReportDetailScope.ReportDate" min="2001-01" max="{{maxDate}}">
                                     </div>
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmReviewReport.ReportDate.$dirty && frmReviewReport.ReportDate.$invalid">
-                                    <span data-ng-show="frmReviewReport.ReportDate.$error.required">@Resource.DesignationRequired</span>
-                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmReviewReport.ReportDate.$dirty && frmReviewReport.ReportDate.$invalid">
+                                    <span data-ng-show="frmReviewReport.ReportDate.$error.required">@Resource.ReportDateRequired</span>
+                                </div>*@
                             </div>
                         </div>
 

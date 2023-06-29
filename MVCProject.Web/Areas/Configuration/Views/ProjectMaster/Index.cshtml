@@ -59,7 +59,7 @@
                                 </select> <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmproject.selectVertical.$dirty && frmproject.selectVertical.$invalid">
-                                    <span data-ng-show="frmproject.selectVertical.$error.required">Vertical is Required</span>
+                                    <span data-ng-show="frmproject.selectVertical.$error.required">@Resource.VericalRequired</span>
                                 </div>
                             </div>
                         </div>
@@ -68,11 +68,11 @@
                                 <label>
                                     @Resource.Project <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtproject" ng-focus="true" name="txtproject" ng-focus="true" ng-model="projectDetailScope.ProjectName" required tabindex="1" placeholder="@Resource.Project" maxlength="250">
+                                <input type="text" class="form-control" id="txtproject" ng-focus="true" name="txtproject" ng-model="projectDetailScope.ProjectName" required tabindex="1" placeholder="@Resource.Project" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmproject.txtproject.$dirty && frmproject.txtproject.$invalid">
-                                    <span data-ng-show="frmproject.txtproject.$error.required">Project Name is Required</span>
+                                    <span data-ng-show="frmproject.txtproject.$error.required">@Resource.ProjectRequired</span>
                                 </div>
                             </div>
                         </div>

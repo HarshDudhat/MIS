@@ -19,7 +19,7 @@ namespace MVCProject.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -1627,6 +1627,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project is required.
+        /// </summary>
+        public static string ProjectRequired {
+            get {
+                return ResourceManager.GetString("ProjectRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quantity must be greater than zero..
         /// </summary>
         public static string QtyGreaterThanZeroRequired {
@@ -1713,6 +1722,15 @@ namespace MVCProject.Common.Resources {
         public static string ReportDate {
             get {
                 return ResourceManager.GetString("ReportDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Date is required.
+        /// </summary>
+        public static string ReportDateRequired {
+            get {
+                return ResourceManager.GetString("ReportDateRequired", resourceCulture);
             }
         }
         
@@ -2343,6 +2361,15 @@ namespace MVCProject.Common.Resources {
         public static string ValueIsRequired {
             get {
                 return ResourceManager.GetString("ValueIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical is required.
+        /// </summary>
+        public static string VericalRequired {
+            get {
+                return ResourceManager.GetString("VericalRequired", resourceCulture);
             }
         }
         
