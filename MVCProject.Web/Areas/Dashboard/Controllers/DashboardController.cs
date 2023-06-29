@@ -13,8 +13,11 @@ namespace MVCProject.Areas.Dashboard.Controllers
     using System.Web.Mvc;
     using MVCProject.Controllers;
     using MVCProject.Filters;
+    using MVCProject.Utilities;
     using MVCProject.ViewModel;
 
+
+    [WebAuthorize(Page = (int)PageAccess.Dashboard)]
     public class DashboardController : Controller
     {
         //

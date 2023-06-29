@@ -120,6 +120,7 @@
             AccountService.DoLogin(Login).then(function (res) {
                 if (res) {
                     var data = res.data;
+                    console.log(res.data.Result)
                     if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                         CommonService.CreateSession(data.Result).then(function (response) {
                             $rootScope.isAjaxLoadingChild = true;

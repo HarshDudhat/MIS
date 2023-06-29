@@ -42,38 +42,93 @@ namespace MVCProject.Api.Controllers.Dashboard
         [HttpPost]
         public ApiResponse GetSubmittedList(PagingParams reportParams)
         {
-            var list = entities.USP_MIS_SubmittedReportList().ToList().AsQueryable().OrderByField(reportParams.OrderByColumn,
-                reportParams.IsAscending).Skip((reportParams.CurrentPageNumber - 1) * reportParams.PageSize).
-                Take(reportParams.PageSize);
+            var result = entities.USP_MIS_SubmittedReportList().ToList();
+            var TotalRecords = result.Count;
+            var list = result.Select(x => new
+            {
+                x.GroupId,
+                x.GroupName,
+                x.ReportId,
+                x.ReportDate,
+                x.VerticalId,
+                x.VerticalName,
+                x.ProjectName,
+                x.StatusName,
+                x.EntryDate,
+                TotalRecords
+            }).AsQueryable().OrderByField(reportParams.OrderByColumn,
+               reportParams.IsAscending).Skip((reportParams.CurrentPageNumber - 1) * reportParams.PageSize).
+               Take(reportParams.PageSize);
             return this.Response(MessageTypes.Success, string.Empty, list);
         }
 
         [HttpPost]
         public ApiResponse GetReviewedList(PagingParams reportParams)
         {
-            var list = entities.USP_MIS_ReviewedReportList().ToList().AsQueryable().OrderByField(reportParams.OrderByColumn,
-                reportParams.IsAscending).Skip((reportParams.CurrentPageNumber - 1) * reportParams.PageSize).
-                Take(reportParams.PageSize);
+            var result = entities.USP_MIS_ReviewedReportList().ToList();
+            var TotalRecords = result.Count;
+            var list = result.Select(x => new
+            {
+                x.GroupId,
+                x.GroupName,
+                x.ReportId,
+                x.ReportDate,
+                x.VerticalId,
+                x.VerticalName,
+                x.ProjectName,
+                x.StatusName,
+                x.EntryDate,
+                TotalRecords
+            }).AsQueryable().OrderByField(reportParams.OrderByColumn,
+               reportParams.IsAscending).Skip((reportParams.CurrentPageNumber - 1) * reportParams.PageSize).
+               Take(reportParams.PageSize);
             return this.Response(MessageTypes.Success, string.Empty, list);
         }
 
         [HttpPost]
         public ApiResponse GetAllList(PagingParams reportParams)
         {
-            var list = entities.USP_MIS_AllReportList().ToList().AsQueryable().OrderByField(reportParams.OrderByColumn,
+            var result = entities.USP_MIS_AllReportList().ToList();
+            var TotalRecords = result.Count;
+            var list = result.Select(x => new
+            {
+                x.GroupId,
+                x.GroupName,
+                x.ReportId,
+                x.ReportDate,
+                x.VerticalId,
+                x.VerticalName,
+                x.ProjectName,
+                x.StatusName,
+                x.EntryDate,
+                TotalRecords
+            }).AsQueryable().OrderByField(reportParams.OrderByColumn,
                 reportParams.IsAscending).Skip((reportParams.CurrentPageNumber - 1) * reportParams.PageSize).
                 Take(reportParams.PageSize);
-            ;
             return this.Response(MessageTypes.Success, string.Empty, list);
+        
         }
 
         [HttpPost]
         public ApiResponse GetPendingList(PagingParams reportParams)
         {
-            var list = entities.USP_MIS_PendingReportList().ToList().AsQueryable().OrderByField(reportParams.OrderByColumn,
-                reportParams.IsAscending).Skip((reportParams.CurrentPageNumber - 1) * reportParams.PageSize).
-                Take(reportParams.PageSize);
-            ;
+            var result = entities.USP_MIS_PendingReportList().ToList();
+            var TotalRecords = result.Count;
+            var list = result.Select(x => new
+            {
+                x.GroupId,
+                x.GroupName,
+                x.ReportId,
+                x.ReportDate,
+                x.VerticalId,
+                x.VerticalName,
+                x.ProjectName,
+                x.StatusName,
+                x.EntryDate,
+                TotalRecords
+            }).AsQueryable().OrderByField(reportParams.OrderByColumn,
+               reportParams.IsAscending).Skip((reportParams.CurrentPageNumber - 1) * reportParams.PageSize).
+               Take(reportParams.PageSize);
             return this.Response(MessageTypes.Success, string.Empty, list);
         }
 

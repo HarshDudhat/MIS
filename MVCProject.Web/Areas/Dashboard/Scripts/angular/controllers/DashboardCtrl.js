@@ -27,7 +27,7 @@
         $scope.tableParams = new ngTableParams({
             page: 1,
             count: $rootScope.pageSize,
-            sorting: { GroupName: 'asc' }
+            sorting: { EntryDate: 'desc' }
         }, {
             getData: function ($defer, params) {
                 if (reportParams == null) {

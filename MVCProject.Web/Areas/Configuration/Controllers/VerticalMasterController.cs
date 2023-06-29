@@ -8,7 +8,10 @@ namespace MVCProject.Areas.Configuration.Controllers
     using System.Web.Mvc;
     using MVCProject.Controllers;
     using MVCProject.Filters;
+    using MVCProject.Utilities;
     using MVCProject.ViewModel;
+
+    [WebAuthorize(Page = (int)PageAccess.VerticalMaster)]
     public class VerticalMasterController : Controller
     {
         //

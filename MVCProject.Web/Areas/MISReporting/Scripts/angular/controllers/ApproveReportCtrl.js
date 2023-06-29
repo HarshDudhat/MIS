@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module("MVCApp").controller('ApproveReportCtrl', [
-        '$scope', '$rootScope', 'ngTableParams', 'CommonFunctions', 'FileService', 'ApproveReportService', '$timeout', ApproveReportCtrl
+        '$scope', '$rootScope', 'ngTableParams','$location', 'CommonFunctions', 'FileService', 'ApproveReportService', '$timeout', ApproveReportCtrl
     ]);
 
     //BEGIN ApproveReportCtrl
-    function ApproveReportCtrl($scope, $rootScope, ngTableParams, CommonFunctions, FileService, ApproveReportService) {
+    function ApproveReportCtrl($scope, $rootScope, ngTableParams, $location, CommonFunctions, FileService, ApproveReportService) {
         /* Initial Declaration */
         $scope.sampleDate = new Date();
         $scope.ApproveReportDetailScope = {
@@ -35,10 +35,11 @@
         $scope.Init = function () {
             var params = $location.search();
             if (params != null) {
-                $scope.ReviewReportDetailScope.VerticalId = JSON.parse(params.VerticalId);
-                $scope.Projectlist($scope.ReviewReportDetailScope.VerticalId);
-                $scope.ReviewReportDetailScope.ProjectId = JSON.parse(params.ProjectId);
-                $scope.ReviewReportDetailScope.ReportDate = new Date(params.ReportDate);
+                $scope.ApproveReportDetailScope.VerticalId = JSON.parse(params.VerticalId);
+                $scope.Projectlist($scope.ApproveReportDetailScope.VerticalId);
+                $scope.ApproveReportDetailScope.ProjectId = JSON.parse(params.ProjectId);
+                $scope.ApproveReportDetailScope.ReportDate = new Date(params.ReportDate);
+                //$scope.search($scope.ApproveReportDetailScope);
             }
         }
 
@@ -86,8 +87,6 @@
         }
 
         $scope.sendApprove = function (GroupList) {
-            console.log(GroupList[0].FieldData);
-            GroupList[0].ReportId = GroupList[0].FieldData[0].ReportId;
             ApproveReportService.approveMIS(GroupList).then(function (res) {
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {
@@ -102,8 +101,7 @@
         }
 
         $scope.rejectApprove = function (GroupList) {
-            console.log(GroupList[0].FieldData);
-            GroupList[0].ReportId = GroupList[0].FieldData[0].ReportId;
+            console.log($scope.GroupList)
             ApproveReportService.rejectMIS(GroupList).then(function (res) {
                 if (res) {
                     if (res.data.MessageType == messageTypes.Success) {

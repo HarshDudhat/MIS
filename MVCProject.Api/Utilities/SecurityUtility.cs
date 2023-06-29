@@ -31,7 +31,7 @@ namespace MVCProject.Api
         /// <summary>
         /// Holds token expiration time in minutes which is 12 hours.
         /// </summary>
-        private const int ExpirationMinutes = 720;
+        private const int ExpirationMinutes = 100;
 
         /// <summary>
         /// Holds name of algorithm of encryption-decryption.
@@ -135,19 +135,17 @@ namespace MVCProject.Api
             string key = Encoding.UTF8.GetString(Convert.FromBase64String(request.Headers[SecurityToken]));
             UserContext userContext = new UserContext();
             string[] parts = key.Split(new char[] { ':' });
-            if (parts.Length == 11)
+            if (parts.Length == 8)
             {
                 userContext = new UserContext()
                 {
                     UserName = parts[1],
-                    CompanyDB = parts[2],
-                    UserId = int.Parse(parts[3]),
-                    RoleId = int.Parse(parts[4]),
+                    UserId = int.Parse(parts[2]),
+                    RoleId = int.Parse(parts[3]),
                     SiteLevelId = 9,
                     FunctionLevelId = 14,
-                    EmployeeId = int.Parse(parts[7]),
-                    TimeZoneMinutes = int.Parse(parts[8]),
-                    Ticks = long.Parse(parts[10])
+                    TimeZoneMinutes = int.Parse(parts[6]),
+                    Ticks = long.Parse(parts[7])
                 };
             }
 
@@ -219,7 +217,7 @@ namespace MVCProject.Api
         /// <returns>Returns generated token.</returns>
         public static string GetToken(UserContext userContext)
         {
-            string tokenInput = string.Format("{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}:{8}:{9}", userContext.UserName, userContext.CompanyDB, userContext.UserId, userContext.RoleId, 9, 14, userContext.EmployeeId, userContext.TimeZoneMinutes, userContext.UserAgent.Replace(":", "="), userContext.Ticks);
+            string tokenInput = string.Format("{0}:{1}:{2}:{3}:{4}:{5}:{6}", userContext.UserName, userContext.UserId, userContext.RoleId, 9, 14, userContext.TimeZoneMinutes, userContext.Ticks);
             string tokenLeft = string.Empty;
             string tokenRight = string.Empty;
             using (HMAC hmac = HMACSHA256.Create(Algorithm))
@@ -250,28 +248,25 @@ namespace MVCProject.Api
 
                 // Split the parts from token.
                 string[] parts = key.Split(new char[] { ':' });
-                if (parts.Length == 11)
+                if (parts.Length == 8)
                 {
                     // Get the hash message, user name, and timestamps.
                     string hash = parts[0];
                     UserContext userContext = new UserContext()
                     {
                         UserName = parts[1],
-                        CompanyDB = parts[2],
-                        UserId = int.Parse(parts[3]),
-                        RoleId = int.Parse(parts[4]),
+                        UserId = int.Parse(parts[2]),
+                        RoleId = int.Parse(parts[3]),
                         SiteLevelId = 9,
                         FunctionLevelId = 14,
-                        EmployeeId = int.Parse(parts[7]),
-                        TimeZoneMinutes = int.Parse(parts[8]),
-                        UserAgent = userAgent,
-                        Ticks = long.Parse(parts[10])
+                        TimeZoneMinutes = int.Parse(parts[6]),
+                        Ticks = long.Parse(parts[7])
                     };
 
                     DateTime timeStamp = new DateTime(userContext.Ticks);
 
                     // Ensure the timestamp is valid.
-                    bool expired = Math.Abs((DateTime.UtcNow - timeStamp).TotalMinutes) > ExpirationMinutes;
+                    bool expired = Math.Abs((DateTime.Now - timeStamp).TotalMinutes) > ExpirationMinutes;
                     if (!expired)
                     {
                         if (userContext.UserName != null)
@@ -290,7 +285,7 @@ namespace MVCProject.Api
                                 //if (result)
                                 //{
                                 //    MVCProjectEntities entities = new MVCProjectEntities();
-                                //    result = entities.Users.Any(x => x.UserId == userContext.UserId && x.IsActive && x.IsTokenExpired == false);
+                                //    result = entities.MIS_Users.Any(x => x.UserId == userContext.UserId && x.IsActive && x.IsTokenExpired == false);
                                 //}
                             }
 

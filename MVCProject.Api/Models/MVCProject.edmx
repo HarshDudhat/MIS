@@ -61,6 +61,17 @@
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="MIS_PageAccess">
+          <Key>
+            <PropertyRef Name="AccessId" />
+          </Key>
+          <Property Name="AccessId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="CanRead" Type="bit" Nullable="false" />
+          <Property Name="CanWrite" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="MIS_ProjectMaster">
           <Key>
             <PropertyRef Name="ProjectId" />
@@ -239,6 +250,9 @@
           <Parameter Name="ReportDate" Type="date" Mode="In" />
         </Function>
         <Function Name="USP_MIS_GetVerticalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_MIS_PageAccessByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleId" Type="int" Mode="In" />
+        </Function>
         <Function Name="USP_MIS_PendingReportList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="USP_MIS_ReviewedReportList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="USP_MIS_SubmittedReportList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -248,6 +262,7 @@
           <EntitySet Name="MIS_GroupFieldsMaster" EntityType="Self.MIS_GroupFieldsMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MIS_GroupsMaster" EntityType="Self.MIS_GroupsMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MIS_MISReport" EntityType="Self.MIS_MISReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIS_PageAccess" EntityType="Self.MIS_PageAccess" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MIS_ProjectMaster" EntityType="Self.MIS_ProjectMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MIS_RoleMaster" EntityType="Self.MIS_RoleMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MIS_StatusMaster" EntityType="Self.MIS_StatusMaster" Schema="dbo" store:Type="Tables" />
@@ -565,6 +580,10 @@
           <FunctionImport Name="USP_MIS_ReviewedReportList" ReturnType="Collection(MVCProjectModel.USP_MIS_ReviewedReportList_Result)" />
           <FunctionImport Name="USP_MIS_SubmittedReportList" ReturnType="Collection(MVCProjectModel.USP_MIS_SubmittedReportList_Result)" />
           <FunctionImport Name="USP_MIS_GetCount" ReturnType="Collection(MVCProjectModel.USP_MIS_GetCount_Result)" />
+          <EntitySet Name="MIS_PageAccess" EntityType="MVCProjectModel.MIS_PageAccess" />
+          <FunctionImport Name="USP_MIS_PageAccessByRoleId" ReturnType="Collection(MVCProjectModel.USP_MIS_PageAccessByRoleId_Result)">
+          <Parameter Name="RoleId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Designation">
           <Key>
@@ -666,6 +685,7 @@
           <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="StatusId" Nullable="true" />
           <Property Type="String" Name="StatusName" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="USP_MIS_AllReportList_Result">
           <Property Type="Int32" Name="GroupId" Nullable="false" />
@@ -678,6 +698,7 @@
           <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="StatusId" Nullable="true" />
           <Property Type="String" Name="StatusName" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="USP_MIS_ReviewedReportList_Result">
           <Property Type="Int32" Name="GroupId" Nullable="false" />
@@ -690,6 +711,7 @@
           <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="StatusId" Nullable="true" />
           <Property Type="String" Name="StatusName" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="USP_MIS_SubmittedReportList_Result">
           <Property Type="Int32" Name="GroupId" Nullable="false" />
@@ -702,12 +724,32 @@
           <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="StatusId" Nullable="true" />
           <Property Type="String" Name="StatusName" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="USP_MIS_GetCount_Result">
           <Property Type="Int32" Name="AllCount" Nullable="true" />
           <Property Type="Int32" Name="PendingCount" Nullable="true" />
           <Property Type="Int32" Name="SubmittedCount" Nullable="true" />
           <Property Type="Int32" Name="ReviewedCount" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="MIS_PageAccess">
+          <Key>
+            <PropertyRef Name="AccessId" />
+          </Key>
+          <Property Name="AccessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="PageId" Type="Int32" Nullable="false" />
+          <Property Name="CanRead" Type="Boolean" Nullable="false" />
+          <Property Name="CanWrite" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="USP_MIS_PageAccessByRoleId_Result">
+          <Property Type="Int32" Name="AccessId" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="Int32" Name="PageId" Nullable="false" />
+          <Property Type="Boolean" Name="CanRead" Nullable="false" />
+          <Property Type="Boolean" Name="CanWrite" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -946,6 +988,7 @@
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -962,6 +1005,7 @@
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -978,6 +1022,7 @@
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -994,6 +1039,7 @@
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1004,6 +1050,30 @@
                 <ScalarProperty Name="PendingCount" ColumnName="PendingCount" />
                 <ScalarProperty Name="SubmittedCount" ColumnName="SubmittedCount" />
                 <ScalarProperty Name="ReviewedCount" ColumnName="ReviewedCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="MIS_PageAccess">
+            <EntityTypeMapping TypeName="MVCProjectModel.MIS_PageAccess">
+              <MappingFragment StoreEntitySet="MIS_PageAccess">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CanWrite" ColumnName="CanWrite" />
+                <ScalarProperty Name="CanRead" ColumnName="CanRead" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="AccessId" ColumnName="AccessId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_MIS_PageAccessByRoleId" FunctionName="MVCProjectModel.Store.USP_MIS_PageAccessByRoleId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.USP_MIS_PageAccessByRoleId_Result">
+                <ScalarProperty Name="AccessId" ColumnName="AccessId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="CanRead" ColumnName="CanRead" />
+                <ScalarProperty Name="CanWrite" ColumnName="CanWrite" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

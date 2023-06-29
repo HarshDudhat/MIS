@@ -104,19 +104,26 @@ namespace MVCProject.Api.Controllers.ReviewReport
         //    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.FieldData));
 
         //}
-
         [HttpPost]
-        public ApiResponse ReviewMIS([FromBody] MIS_FieldData mis)
+        public ApiResponse ReviewMIS([FromBody] List<MIS_FieldData> mis)
         {
-            var list = this.entities.MIS_FieldData.Where(x => x.DataId == mis.DataId).FirstOrDefault();
-            if(list != null)
+            int reportid = 0;
+            DateTime newDate = DateTime.Now;
+            foreach (var field in mis)
             {
-                list.Remarks = mis.Remarks;
+                var list = this.entities.MIS_FieldData.Where(x => x.DataId == field.DataId).FirstOrDefault();
+                if (list != null)
+                {
+                    list.Remarks = field.Remarks;
+                    list.EntryDate = newDate;
+                }
+                reportid = (int)field.ReportId;
             }
-            var report = this.entities.MIS_MISReport.Where(x => x.ReportId == mis.ReportId).FirstOrDefault();
-            if(report != null)
+            var report = this.entities.MIS_MISReport.Where(x => x.ReportId == reportid).FirstOrDefault();
+            if (report != null)
             {
                 report.StatusId = 3;
+                report.EntryDate = newDate;
             }
             if (!(this.entities.SaveChanges() > 0))
             {
@@ -158,17 +165,25 @@ namespace MVCProject.Api.Controllers.ReviewReport
 
 
         [HttpPost]
-        public ApiResponse RejectMIS([FromBody] MIS_FieldData mis)
+        public ApiResponse RejectMIS([FromBody] List<MIS_FieldData> mis)
         {
-            var list = this.entities.MIS_FieldData.Where(x => x.DataId == mis.DataId).FirstOrDefault();
-            if (list != null)
+            int reportid = 0;
+            DateTime newDate = DateTime.Now;
+            foreach (var field in mis)
             {
-                list.Remarks = mis.Remarks;
+                var list = this.entities.MIS_FieldData.Where(x => x.DataId == field.DataId).FirstOrDefault();
+                if (list != null)
+                {
+                    list.Remarks = field.Remarks;
+                    list.EntryDate = newDate;
+                }
+                reportid = (int)field.ReportId;
             }
-            var report = this.entities.MIS_MISReport.Where(x => x.ReportId == mis.ReportId).FirstOrDefault();
+            var report = this.entities.MIS_MISReport.Where(x => x.ReportId == reportid).FirstOrDefault();
             if (report != null)
             {
                 report.StatusId = 2;
+                report.EntryDate = newDate;
             }
             if (!(this.entities.SaveChanges() > 0))
             {

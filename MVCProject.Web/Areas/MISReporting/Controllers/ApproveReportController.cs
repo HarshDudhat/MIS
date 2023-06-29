@@ -13,7 +13,10 @@ namespace MVCProject.Areas.MISReporting.Controllers
     using System.Web.Mvc;
     using MVCProject.Controllers;
     using MVCProject.Filters;
+    using MVCProject.Utilities;
     using MVCProject.ViewModel;
+
+    [WebAuthorize(Page = (int)PageAccess.ApproveReport)]
 
     public class ApproveReportController : Controller
     {
