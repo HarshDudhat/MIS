@@ -292,8 +292,8 @@
     <Content Include="Content\images\border-h.gif" />
     <Content Include="Content\images\border-v.gif" />
     <Content Include="Content\images\collect.gif" />
-    <Content Include="Content\images\company-logo.png" />
-    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\error.svg" />
+    <Content Include="Content\images\forgotpass.svg" />
     <Content Include="Content\images\ghost.png" />
     <Content Include="Content\images\hired.svg" />
     <Content Include="Content\images\hp.png" />
@@ -301,6 +301,10 @@
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logo-mix.png" />
     <Content Include="Content\images\meetings-icon.svg" />
+    <Content Include="Content\images\company-logo.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\mis-logo-lg.svg" />
+    <Content Include="Content\images\mis-logo-sm.svg" />
     <Content Include="Content\images\multiple-arrow.png" />
     <Content Include="Content\images\node.png" />
     <Content Include="Content\images\NoDefaultImage.gif" />
