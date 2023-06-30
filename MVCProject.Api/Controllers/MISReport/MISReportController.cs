@@ -113,6 +113,7 @@ namespace MVCProject.Api.Controllers.MISReport
                 }
                 if(data.ReportId > 0)
                 {
+                    DateTime now = DateTime.Now;
                     var ReportId = data.ReportId;
                     List<MISReport.Fields> myField = mis.FieldData;
                     foreach(MISReport.Fields fieldData in myField)
@@ -124,7 +125,7 @@ namespace MVCProject.Api.Controllers.MISReport
                             FieldValue = fieldData.FieldValue,
                             Remarks = fieldData.Remarks,
                             EntryBy = 1,
-                            EntryDate = DateTime.Now,
+                            EntryDate = now,
                             IsActive = true
                         });
                     }
