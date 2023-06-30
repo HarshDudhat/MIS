@@ -1017,18 +1017,28 @@ textarea.form-control {
 .pagination > li:first-child > span {
     border-bottom-left-radius: 3px;
     border-top-left-radius: 3px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .pagination > li:last-child > a,
 .pagination > li:last-child > span {
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .pagination > li > a,
 .pagination > li > span {
     color: #636e7b;
     text-decoration: none;
+    color: #fff;
+    text-decoration: none;
+    padding: 6px;
+    background: var(--mis-primary-color);
+    margin: 0px 5px;
+    border-radius: 3px;
 }
 
     .pagination > li > a:hover,
@@ -1036,6 +1046,7 @@ textarea.form-control {
     .pagination > li > a:focus,
     .pagination > li > span:focus {
         background-color: #e4e7ea;
+        color: #000;
     }
 
 .pagination-split li {
@@ -1062,7 +1073,9 @@ textarea.form-control {
 .pagination > .active > span:focus {
     /*background-color: #71b6f9;
     border-color: #71b6f9;*/
-    color: #fff;
+    color: var(--mis-primary-color);
+    background: #fff;
+    border: 1px solid var(--mis-primary-color);
 }
 
 .pager li > a,
@@ -1733,6 +1746,7 @@ pre {
     font-size: 12px;
     font-weight: 500;
 }
+
 /* X-Editable */
 .editable-click,
 a.editable-click,
@@ -4944,6 +4958,7 @@ table.focus-on tbody tr.focused td {
 /* Data tables */
 #datatable td {
     font-weight: normal;
+    font-size: 14px;
 }
 
 .paginate_button {
@@ -6335,8 +6350,30 @@ header {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+/*    background: #fff;
+    border-radius: var(--mis-border-radius);*/
+}
+.forgot-img-div {
+    background: #fff;
+    border-radius: 10px 0 0 10px;
+    padding: 30px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.forgot-head{
+    color: #000;
+}
+.forgot-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fff;
+    border-radius: 0px 10px 10px 0;
+    padding: 30px 24px;
+    background: #c7ccfb;
+}
 
 .login-img-content {
     position: absolute;
@@ -6576,7 +6613,7 @@ header {
     }
 
 .eternity-form .login-form-action {
-    padding: 10px 15px 10px 15px;
+    padding: 10px 15px 30px 15px;
 }
 
 .eternity-form input[type="checkbox"] {
@@ -6959,7 +6996,7 @@ header {
 
 .colorBg.colorBg1 {
     padding: 0;
-    /*background-color: #1D2544;
+    background-color: #1D2544;
     background-image: -ms-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
     background-image: -moz-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
     background-image: -o-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
@@ -6969,7 +7006,7 @@ header {
     background-image: url(../images/mis-login-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%;*/
+    height: 100%;
 }
 
 .colorBg.form-seprator {

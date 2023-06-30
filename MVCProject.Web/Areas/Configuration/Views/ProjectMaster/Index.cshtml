@@ -51,7 +51,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>
+                                <label class="form-label">
                                     @Resource.Vertical <span class="required-field">*</span>
                                 </label>
                                 <select class="form-control input-with-icon" id="selectVertical" ng-model="projectDetailScope.VerticalId" ng-options="a.verticalId as a.verticalName for a in Verticals" @*ng-focus="true"*@ name="selectCompany " tabindex="7" required>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>
+                                <label class="form-label">
                                     @Resource.Project <span class="required-field">*</span>
                                 </label>
                                 <input type="text" class="form-control" id="txtproject" ng-focus="true" name="txtproject" ng-model="projectDetailScope.ProjectName" required tabindex="1" placeholder="@Resource.Project" maxlength="250">
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-flex align-items-center">
                             <!--IsActive -->
                             <div class="form-group">
                                 <label>
@@ -113,7 +113,7 @@
                 <!-- start designation details list -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
+                        <div class="row mb-3 d-flex align-items-center">
                             <div class="col-md-7">
                                 <label class="table-title">
                                     @Resource.Project @Resource.Details

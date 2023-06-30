@@ -3,21 +3,33 @@
     bool HasSession = (bool)ViewBag.HasSession;
     Layout = "~/Views/Shared/_Layout" + (HasSession ? "" : "Public") + ".cshtml";
 }
-<div class="row text-center">
-    <div class="col-sm-12">
-        <h1 style="font-size: 120px; margin-top: 10%; color: #fdbf4e;">
-            @Model</h1>
+<div class="row text-center error-row min-vh-100 d-flex">
+    <div class="col-6 d-flex align-items-center">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 style="font-size: 120px; margin-top: 10%; color: #fdbf4e;">
+                    @Model
+                </h1>
+            </div>
+            <div class="col-sm-12 d-flex justify-content-center">
+                <span style="font-size: 2em; line-height: 3em; text-transform: uppercase; color: #004EAC;">@ViewBag.Title</span>
+            </div>
+            <div class="col-sm-12">
+                @ViewBag.ErrorMessage
+            </div>
+        </div>
     </div>
-    <div class="col-sm-12">
-        <span style="font-size: 2em; line-height: 3em; text-transform: uppercase; color: #004EAC;">@ViewBag.Title</span>
+    <div class="col-6">
+        <img src="~/Content/images/error.svg" class="img-fluid"/>
     </div>
-    <div class="col-sm-12">
-        @ViewBag.ErrorMessage
+    <div class="row">
+        <div class="col-sm-12 m-t-20">
+            <a href="/Account/RedirectToDefaultUrl" class="btn btn-primary waves-effect tada animated">
+                <span>@Resource.TakeMeHome</span>
+            </a>
+        </div>
     </div>
-    <div class="col-sm-12 m-t-20">
-        <a href="/Account/RedirectToDefaultUrl" class="btn btn-primary waves-effect tada animated">
-            <span>@Resource.TakeMeHome</span></a>
-    </div>
+    
 </div>
 @*<div class="row">
     <div class="col-sm-12">       

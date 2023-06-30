@@ -76,7 +76,6 @@
     /*.nav-md ul.nav.side-menu li:hover a,*/
     .nav-md ul.nav.child_menu li:not(.current-page):hover, .nav-sm ul.nav.child_menu li:not(.current-page):hover {
         background: rgba(var(--mis-primary-color-rgb), 0.19);
-        border-radius: 0 25px 25px 0;
     }
 
 /*.nav-md ul.nav.side-menu li(not.current-page):hover a, .nav-md ul.nav.child_menu li:hover a{
@@ -261,7 +260,7 @@
     }
 
 body .right_col {
-    background: #f7f7fa;
+    background: #eaeef1;
     position: relative;
     z-index: 0;
 }
