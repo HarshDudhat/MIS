@@ -912,4 +912,7 @@
   <data name="ReportDateRequired" xml:space="preserve">
     <value>Report Date is required</value>
   </data>
+  <data name="YourSearch" xml:space="preserve">
+    <value>Your Search</value>
+  </data>
 </root>
