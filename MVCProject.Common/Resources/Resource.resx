@@ -642,8 +642,8 @@
   <data name="Yesterday" xml:space="preserve">
     <value>Yesterday</value>
   </data>
-  <data name="YourSearch" xml:space="preserve">
-    <value>Your Search</value>
+  <data name="Sendmail" xml:space="preserve">
+    <value>Send a mail</value>
   </data>
   <data name="ActionPerform" xml:space="preserve">
     <value>Action Perform</value>

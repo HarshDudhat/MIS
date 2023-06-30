@@ -19,7 +19,7 @@ namespace MVCProject.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -1960,6 +1960,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send a mail.
+        /// </summary>
+        public static string Sendmail {
+            get {
+                return ResourceManager.GetString("Sendmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to September.
         /// </summary>
         public static string September {
@@ -2433,15 +2442,6 @@ namespace MVCProject.Common.Resources {
         public static string Yesterday {
             get {
                 return ResourceManager.GetString("Yesterday", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your Search.
-        /// </summary>
-        public static string YourSearch {
-            get {
-                return ResourceManager.GetString("YourSearch", resourceCulture);
             }
         }
     }
