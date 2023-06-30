@@ -2,6 +2,13 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LayoutPublic.cshtml";
 }
+<style>
+    .input-group-append {
+        top: 8px;
+        right: 13px;
+        z-index: 1000;
+    }
+</style>
 <span ng-init="IsInChildView()"></span>
 <div ng-controller="AccountCtrl" ng-init="CheckLogin('@ViewBag.IsSessionExpired');" class="eternity-form scroll-animations-activated">
     <div class="container">
@@ -31,9 +38,13 @@
                         <div class="textbox-wrap">
                             <div class="input-group">
                                 <span class="input-group-addon "><i class="ti-key icon-color"></i></span>
-                                <input name="txtPassword" id="txtPassword" type="password" ng-model="loginFormData.Password" autocomplete=off @*readonly onfocus="$(this).removeAttr('readonly');"*@
+                                <input name="txtPassword" id="txtPassword" type="{{showPassword ? 'text' : 'password'}}" ng-model="loginFormData.Password" 
+                                       autocomplete=off @*readonly onfocus="$(this).removeAttr('readonly');"*@
                                        class="form-control password" maxlength="25" required tabindex="2" placeholder="@Resource.Password" />
-                                <div class="c">
+                                <div class="input-group-append cursor-pointer position-absolute">
+                                    <span class="text-dark" ng-click="showPassword = !showPassword">
+                                        <i class="fa text-dark" ng-class="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                                    </span>
                                 </div>
                             </div>
                             <a href="/Account/ForgetPassword" type="button" class="btn btn-link forgot-pass" tabindex="5">

@@ -52,11 +52,14 @@
                                     <img src="~/Content/images/meetings-icon.svg" class="dashboard-icon" />
                                 </div>
                             </div>
-                            <div class="col-lg-9 text-center">
+                            <div class="col-lg-8 text-center">
                                 <p class="info-number" id="number1"> {{Count.AllCount}}</p>
                                 <div class="dashboard-card-title">
-                                    All 
+                                    All
                                 </div>
+                            </div>
+                            <div class="col-lg-1 d-flex justify-content-center align-items-center">
+                                <i ng-class="{'fa fa-arrow-down':flag==1,'fa fa-arrow-right':flag!=1}"></i>
                             </div>
                         </div>
                     </button>
@@ -72,11 +75,14 @@
                                     <img src="~/Content/images/openings-icon.svg" class="dashboard-icon" />
                                 </div>
                             </div>
-                            <div class="col-lg-9 text-center">
+                            <div class="col-lg-8 text-center">
                                 <p class="info-number" id="number2"> {{Count.SubmittedCount}}</p>
                                 <div class="dashboard-card-title">
                                     Submitted 
                                 </div>
+                            </div>
+                            <div class="col-lg-1 d-flex justify-content-center align-items-center">
+                                <i ng-class="{'fa fa-arrow-down':flag==2,'fa fa-arrow-right':flag!=2}"></i>
                             </div>
                         </div>
                     </button>
@@ -92,11 +98,14 @@
                                     <img src="~/Content/images/applications.svg" class="dashboard-icon" />
                                 </div>
                             </div>
-                            <div class="col-lg-9 text-center">
+                            <div class="col-lg-8 text-center">
                                 <p class="info-number" id="number3"> {{Count.ReviewedCount}}</p>
                                 <div class="dashboard-card-title">
                                     Reviewed
                                 </div>
+                            </div>
+                            <div class="col-lg-1 d-flex justify-content-center align-items-center">
+                                <i ng-class="{'fa fa-arrow-down':flag==3,'fa fa-arrow-right':flag!=3}"></i>
                             </div>
                         </div>
                     </button>
@@ -112,11 +121,14 @@
                                     <img src="~/Content/images/hired.svg" class="dashboard-icon" />
                                 </div>
                             </div>
-                            <div class="col-lg-9 text-center">
+                            <div class="col-lg-8 text-center">
                                 <p class="info-number" id="number4"> {{Count.PendingCount}}</p>
                                 <div class="dashboard-card-title">
                                     Pending
                                 </div>
+                            </div>
+                            <div class="col-lg-1 d-flex justify-content-center align-items-center">
+                                <i ng-class="{'fa fa-arrow-down':flag==4,'fa fa-arrow-right':flag!=4}"></i>
                             </div>
                         </div>
                     </button>
