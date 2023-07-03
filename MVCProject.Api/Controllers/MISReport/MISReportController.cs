@@ -147,7 +147,7 @@ namespace MVCProject.Api.Controllers.MISReport
                 List<MISReport.Fields> myField = mis.FieldData;
                 foreach (MISReport.Fields fieldData in myField)
                 {
-                    var list = this.entities.MIS_FieldData.Where(x => x.FieldId == fieldData.FieldId).FirstOrDefault();
+                    var list = this.entities.MIS_FieldData.Where(x => x.FieldId == fieldData.FieldId && x.ReportId == report.ReportId).FirstOrDefault();
                     list.FieldValue = fieldData.FieldValue;
                     list.Remarks = fieldData.Remarks;
                 }
