@@ -5600,6 +5600,7 @@ table.dataTable td.focus {
     margin: 0px;
     font-size: 30px;
     color: #000;
+    line-height: 30px;
 }
 
 
