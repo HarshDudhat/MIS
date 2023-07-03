@@ -3585,7 +3585,7 @@ div.hopscotch-bubble {
 .btn-primary {
     background-color: var(--mis-primary-color) !important;
     border: 1px solid var(--mis-primary-color) !important;
-    border-radius: var(--mis-border-radius);
+    /*border-radius: var(--mis-border-radius);*/
 }
 
     .btn-primary:hover,

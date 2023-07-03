@@ -31,7 +31,7 @@
 <div ng-controller="ApproveReportCtrl" novalidate ng-init="Init()">
     <!-- start title section-->
     <div class="main-page-title title-icon relative l">
-        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+        <i class="fa fa-check-circle icon-position" style="padding-top: 8px;"></i>
         <h4 class="header-title-sub l">@Resource.MonthlyEHSPerformaceapprovereport</h4>
         <!-- start button-->
         <div class="pull-right">
@@ -49,10 +49,10 @@
                 <!-- start designation form -->
                 <form name="frmApproveReport" novalidate>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 md-sm-3">
                             <!-- Vertical field -->
                             <div class="form-group">
-                                <labe class="form-label" for="txtVertical">
+                                <label class="form-label" for="txtVertical">
                                     @Resource.Vertical
                                 </label>
                                 <div class="input-group">
@@ -68,10 +68,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 md-sm-3">
                             <!-- Project field -->
                             <div class="form-group">
-                                <labe class="form-label" for="txtCompanyName">
+                                <label class="form-label" for="txtCompanyName">
                                     @Resource.Project
                                 </label>
                                 <div class="input-group">
@@ -86,10 +86,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 md-sm-3">
                             <!-- Month and Year field -->
                             <div class="form-group">
-                                <labe class="form-label" for="txtdoj">
+                                <label class="form-label" for="txtdoj">
                                     @Resource.Month_Year
                                 </label>
                                 <div class="input-group">
@@ -107,7 +107,7 @@
                         <div class="col-md-3 d-flex align-items-end">
                             <!-- Search and Reset buttons -->
                             <div class="form-group">
-                                <labe class="form-label" for="txtdoj">
+                                <label class="form-label" for="txtdoj">
 
                                 </label>
                                     <button type="button" class="btn btn-primary" ng-click="search(ApproveReportDetailScope);show=true">Search</button>
