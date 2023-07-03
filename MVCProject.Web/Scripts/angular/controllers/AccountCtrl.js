@@ -27,8 +27,8 @@
                 userdata = userdata.split('░');
                 if (userdata.length > 1) {
                     $scope.loginFormData = {
-                        UserName: userdata[0],
-                        UserPassword: userdata[1],
+                        Email: userdata[0],
+                        Password: userdata[1],
                         Remember: true
                     }
                 }

@@ -28,7 +28,7 @@
     }
 </style>
 
-<div ng-controller="ApproveReportCtrl" novalidate ng-init="Init()">
+<div ng-controller="ApproveReportCtrl" novalidate ng-init="setDefaultMonth();Init()">
     <!-- start title section-->
     <div class="main-page-title title-icon relative l">
         <i class="fa fa-check-circle icon-position" style="padding-top: 8px;"></i>
@@ -52,7 +52,7 @@
                         <div class="col-md-3 md-sm-3">
                             <!-- Vertical field -->
                             <div class="form-group">
-                                <label class="form-label" for="txtVertical">
+                                <label class="form-label" for="VerticalId">
                                     @Resource.Vertical
                                 </label>
                                 <div class="input-group">
@@ -71,7 +71,7 @@
                         <div class="col-md-3 md-sm-3">
                             <!-- Project field -->
                             <div class="form-group">
-                                <label class="form-label" for="txtCompanyName">
+                                <label class="form-label" for="ProjectId">
                                     @Resource.Project
                                 </label>
                                 <div class="input-group">
@@ -89,7 +89,7 @@
                         <div class="col-md-3 md-sm-3">
                             <!-- Month and Year field -->
                             <div class="form-group">
-                                <label class="form-label" for="txtdoj">
+                                <label class="form-label" for="ReportDate">
                                     @Resource.Month_Year
                                 </label>
                                 <div class="input-group">
