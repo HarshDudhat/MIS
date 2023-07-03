@@ -295,6 +295,7 @@
     <Content Include="Content\images\error.svg" />
     <Content Include="Content\images\forgotpass.svg" />
     <Content Include="Content\images\ghost.png" />
+    <Content Include="Content\images\pending.svg" />
     <Content Include="Content\images\hired.svg" />
     <Content Include="Content\images\hp.png" />
     <Content Include="Content\images\image-not-available.jpg" />

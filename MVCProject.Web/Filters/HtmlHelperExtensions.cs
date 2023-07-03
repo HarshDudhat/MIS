@@ -43,14 +43,14 @@ namespace System.Web.Mvc
 
             if (userContext.RoleId == 2)
                 {
-                    menuString.Append(GetMainMenu(Resource.Reportreview, "fa fa-home", "/MISReporting/ReviewReport"));
+                    menuString.Append(GetMainMenu(Resource.Reportreview, "fa fa-clipboard-check", "/MISReporting/ReviewReport"));
                 }
                 if(userContext.RoleId == 3)
                 {
-                    menuString.Append(GetMainMenu(Resource.ApproveReport, "fa fa-home", "/MISReporting/ApproveReport"));
+                    menuString.Append(GetMainMenu(Resource.ApproveReport, "fa fa-check-circle", "/MISReporting/ApproveReport"));
                 }
-                menuString.Append(GetMainMenu(Resource.Vertical, "ti-id-badge", "/Configuration/VerticalMaster"));
-                menuString.Append(GetMainMenu(Resource.Project, "ti-id-badge", "/Configuration/ProjectMaster"));
+                menuString.Append(GetMainMenu(Resource.Vertical, "fa fa-sitemap", "/Configuration/VerticalMaster"));
+                menuString.Append(GetMainMenu(Resource.Project, "fa fa-bars-progress", "/Configuration/ProjectMaster"));
               
 
             menuString.Append("</ul></div></div>");
