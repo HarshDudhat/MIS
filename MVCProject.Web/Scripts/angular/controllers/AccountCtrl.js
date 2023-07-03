@@ -5,6 +5,8 @@
             '$scope', '$rootScope', '$uibModal', 'AccountService', 'CommonFunctions', 'CommonService', AccountCtrl
         ]);
 
+
+
     //BEGIN AccountCtrl
     function AccountCtrl($scope, $rootScope, $uibModal, AccountService, CommonFunctions, CommonService) {
 
