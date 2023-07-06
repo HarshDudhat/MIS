@@ -11,9 +11,9 @@
     }
 
     .colPosition {
-        width: 400px !important;
-        min-width: 400px !important;
-        max-width: 400px !important;
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
     }
 
     .colActive {
@@ -76,6 +76,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4 mb-sm-3">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    @Resource.ProjectManager <span class="required-field">*</span>
+                                </label>
+                                <select class="form-control input-with-icon" id="ProjectManagerId" ng-model="projectDetailScope.ProjectManagerId" ng-options="a.ProjectManagerId as a.Email for a in ProjectManager" @*ng-focus="true"*@ 
+                                        name="ProjectManagerId " tabindex="7" required>
+                                    <option value="">Select Project Manager </option>
+                                </select> <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmproject.ProjectManagerId.$dirty && frmproject.ProjectManagerId.$invalid">
+                                    <span data-ng-show="frmproject.ProjectManagerId.$error.required">@Resource.VericalRequired</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-4 d-flex align-items-center">
                             <!--IsActive -->
                             <div class="form-group">
@@ -122,7 +137,7 @@
                             <div class="col-md-5">
                                 <div class="input-group">
                                     <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}", Resource.Search, Resource.Project, Resource.Details)" />
-                                    <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked = true;tableParams.page(1);tableParams.reload();">
+                                    <a href="javacript:void(0)" class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked = true;tableParams.page(1);tableParams.reload();">
                                         <i class="fa fa-search"></i>
                                     </a>
                                 </div>
@@ -140,6 +155,9 @@
                                             </td>
                                             <td data-title="'@Resource.Project'" sortable="'ProjectName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.ProjectName}}">
                                                 {{h.ProjectName}}
+                                            </td>
+                                            <td data-title="'@Resource.Vertical'" sortable="'VerticalName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.VerticalName}}">
+                                                {{h.VerticalName}}
                                             </td>
                                             @*<td data-title="'@Resource.Remarks'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.Remarks}}">
                                                     {{h.Remarks}}

@@ -36,7 +36,14 @@
             method: 'GET',
             url: $rootScope.apiURL + '/ProjectMaster/GetProjectById?projectId=' + projectId
         });
-    };
+        };
+        // Get Project Manager
+        list.GetProjectManager = function () {
+        return $http({
+            method: 'GET',
+            url: $rootScope.apiURL + '/ProjectMaster/GetProjectManager/'
+        });
+    }
 
    
 

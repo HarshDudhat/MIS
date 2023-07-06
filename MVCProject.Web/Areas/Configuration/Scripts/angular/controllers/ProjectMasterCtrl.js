@@ -126,6 +126,7 @@
         //Initalize the Vertical List
         $scope.Init = function () {
             $scope.VerticalScope();
+            $scope.ProjectManager();
         }
 
 
@@ -134,6 +135,12 @@
             ProjectMasterService.GetVerticalList().then(function (res) {
                 $scope.Verticals = res.data.Result;
             });
+        }
+
+        $scope.ProjectManager = function () {
+            ProjectMasterService.GetProjectManager().then(function (res) {
+                $scope.ProjectManager = res.data.Result;
+            })
         }
     }
 })();

@@ -915,4 +915,10 @@
   <data name="YourSearch" xml:space="preserve">
     <value>Your Search</value>
   </data>
+  <data name="ProjectManager" xml:space="preserve">
+    <value>Project Manager</value>
+  </data>
+  <data name="ProjectManagerRequired" xml:space="preserve">
+    <value>Project Manager is Required</value>
+  </data>
 </root>
