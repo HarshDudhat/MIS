@@ -162,6 +162,7 @@
     <Compile Include="Areas\Configuration\Controllers\DesignationController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\UserMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ProjectMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\VerticalMasterController.cs" />
@@ -216,11 +217,13 @@
     <Compile Include="Areas\WebApiConfig.cs" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ApplicationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ProjectMasterCtrl.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\controllers\UserMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\VerticalMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DesignationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ResetToLoginCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ApplicationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ProjectMasterService.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\services\UserMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\VerticalMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
@@ -491,6 +494,7 @@
     <Content Include="Areas\MISReporting\Views\ApproveReport\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\Web.config" />
     <Content Include="Areas\Dashboard\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Configuration\Views\UserMaster\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

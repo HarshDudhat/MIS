@@ -921,4 +921,7 @@
   <data name="ProjectManagerRequired" xml:space="preserve">
     <value>Project Manager is Required</value>
   </data>
+  <data name="UserMaster" xml:space="preserve">
+    <value>User Master</value>
+  </data>
 </root>

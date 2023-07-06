@@ -98,6 +98,11 @@ namespace MVCProject.Areas.Configuration
             bundles.Add(new ScriptBundle("~/bundles/Configuration/ProjectMaster")
                 .Include("~/Areas/Configuration/Scripts/angular/services/ProjectMasterService.js")
                 .Include("~/Areas/Configuration/Scripts/angular/controllers/ProjectMasterCtrl.js"));
+
+            // User Master 
+            bundles.Add(new ScriptBundle("~/bundles/Configuration/UserMaster")
+                .Include("~/Areas/Configuration/Scripts/angular/services/UserMasterService.js")
+                .Include("~/Areas/Configuration/Scripts/angular/controllers/UserMasterCtrl.js"));
         }
     }
 }

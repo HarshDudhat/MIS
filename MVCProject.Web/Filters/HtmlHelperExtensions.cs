@@ -51,6 +51,7 @@ namespace System.Web.Mvc
                 }
                 menuString.Append(GetMainMenu(Resource.Vertical, "fa fa-sitemap", "/Configuration/VerticalMaster"));
                 menuString.Append(GetMainMenu(Resource.Project, "fa fa-bars-progress", "/Configuration/ProjectMaster"));
+                menuString.Append(GetMainMenu(Resource.UserMaster, "fa fa-user", "/Configuration/UserMaster"));
               
 
             menuString.Append("</ul></div></div>");
