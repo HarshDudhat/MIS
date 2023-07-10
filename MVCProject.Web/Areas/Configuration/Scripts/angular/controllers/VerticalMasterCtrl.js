@@ -24,7 +24,11 @@
 
         // BEGIN Add/Update Vertical details
         $scope.SaveVerticalDetails = function (verticalDetailScope, frmvertical) {
-            debugger
+            if (verticalDetailScope.txtvertical == null || verticalDetailScope.txtvertical=="") {
+                toastr.warning("Vertical is required", warningTitle);
+                $("#txtvertical").focus();
+                return;
+            }
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmvertical.$valid) {
                 VerticalMasterService.SaveVerticalDetails(verticalDetailScope).then(function (res) {

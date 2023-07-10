@@ -54,7 +54,7 @@
                                 <label class="form-label">
                                     @Resource.Vertical <span class="required-field">*</span>
                                 </label>
-                                <select class="form-control input-with-icon" id="selectVertical" ng-model="projectDetailScope.VerticalId" ng-options="a.verticalId as a.verticalName for a in Verticals" @*ng-focus="true"*@ name="selectCompany " tabindex="7" required>
+                                <select class="form-control input-with-icon" id="selectVertical" ng-focus="true" ng-model="projectDetailScope.VerticalId" ng-options="a.verticalId as a.verticalName for a in Verticals" @*ng-focus="true"*@ name="selectCompany " tabindex="1" required>
                                     <option value="">Select Vertical </option>
                                 </select> <div class="c">
                                 </div>
@@ -68,7 +68,7 @@
                                 <label class="form-label">
                                     @Resource.Project <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtproject" ng-focus="true" name="txtproject" ng-model="projectDetailScope.ProjectName" required tabindex="1" placeholder="@Resource.Project" maxlength="250">
+                                <input type="text" class="form-control" id="txtproject" name="txtproject" ng-model="projectDetailScope.ProjectName" required tabindex="2" placeholder="@Resource.Project" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmproject.txtproject.$dirty && frmproject.txtproject.$invalid">
@@ -82,7 +82,7 @@
                                     @Resource.ProjectManager <span class="required-field">*</span>
                                 </label>
                                 <select class="form-control input-with-icon" id="ProjectManagerId" ng-model="projectDetailScope.ProjectManagerId" ng-options="a.ProjectManagerId as a.Email for a in ProjectManager" @*ng-focus="true"*@
-                                        name="ProjectManagerId " tabindex="7" required>
+                                        name="ProjectManagerId " tabindex="3" required>
                                     <option value="">Select Project Manager </option>
                                 </select> <div class="c">
                                 </div>
@@ -99,7 +99,7 @@
                                 <div class="form-control-static">
                                     <div class="checkbox checkbox-info m-0">
                                         <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="projectDetailScope.IsActive"
-                                               tabindex="2" />
+                                               tabindex="4" />
 
                                         <label for="chkIsActive">
                                             @Resource.IsActive
@@ -113,11 +113,11 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success mt-3 waves-effect w-md waves-light m-b-5"
-                                        ng-disabled="frmproject.txtproject.$invalid" tabindex="3">
+                                        ng-disabled="frmproject.txtproject.$invalid" tabindex="5">
                                     {{projectDetailScope.ProjectId > 0 ? '@Resource.Update' : '@Resource.Save'}}
                                 </button>
                                 <button type="button" ng-click="ClearFormData(frmproject)" class="btn btn-info mt-3 waves-effect w-md waves-light m-b-5"
-                                        tabindex="4">
+                                        tabindex="6">
                                     @Resource.Clear
                                 </button>
                             </div>

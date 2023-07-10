@@ -25,7 +25,21 @@
 
         // BEGIN Add/Update Project details
         $scope.SaveProjectDetails = function (projectDetailScope, frmproject) {
-            
+            if (projectDetailScope.VerticalId == null || projectDetailScope.VerticalId == "") {
+                toastr.warning("Select Vertical", warningTitle);
+                $("#selectVertical").focus();
+                return;
+            }
+            else if (projectDetailScope.ProjectName == null || projectDetailScope.ProjectName == "") {
+                toastr.warning("Project Name is required", warningTitle);
+                $("#txtproject").focus();
+                return;
+            }
+            else if (projectDetailScope.ProjectManagerId == null || projectDetailScope.ProjectManagerId == "") {
+                toastr.warning("Select Project Manager", warningTitle);
+                $("#ProjectManagerId").focus();
+                return;
+            }
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmproject.$valid) {
                 ProjectMasterService.SaveProjectDetails(projectDetailScope).then(function (res) {
@@ -89,7 +103,7 @@
                 IsActive: true
             };
             frmproject.$setPristine();
-            $("#txtproject").focus();
+            $("#selectVertical").focus();
             CommonFunctions.ScrollToTop();
         };
 
