@@ -23,19 +23,8 @@
             return $scope.verticalDetailScope.VerticalId > 0 ? "Update" : "Save";
         };
 
-        // BEGIN Add/Update Vertical details
         $scope.SaveVerticalDetails = function (verticalDetailScope, frmvertical) {
-            if (verticalDetailScope.VerticalName == null || verticalDetailScope.VerticalName == "") {
-                toastr.warning("Vertical Name is required", warningTitle);
-                $("#txtvertical").focus();
-                return;
-            }
-            else if (verticalDetailScope.SiteinChargeId == null || verticalDetailScope.SiteinChargeId == "") {
-                toastr.warning("Select Site InCharge", warningTitle);
-                $("#SiteinChargeId").focus();
-                return;
-            }
-           
+            
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmvertical.$valid) {
                 VerticalMasterService.SaveVerticalDetails(verticalDetailScope).then(function (res) {
