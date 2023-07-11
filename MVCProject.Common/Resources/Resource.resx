@@ -924,4 +924,10 @@
   <data name="UserMaster" xml:space="preserve">
     <value>User Master</value>
   </data>
+  <data name="SiteinCharge" xml:space="preserve">
+    <value>Site InCharge</value>
+  </data>
+  <data name="SiteinChargeRequired" xml:space="preserve">
+    <value>Site InCharge is required</value>
+  </data>
 </root>

@@ -48,6 +48,7 @@ namespace MVCProject.Api.Controllers.Configuration
                                        VerticalId = s.VerticalId,
                                        VerticalName = s.VerticalName,
                                        IsActive = s.IsActive,
+                                       SiteinchargeId=s.SiteinchargeId,
                                        TotalRecords
                                    }).AsQueryable().OrderByField(verticalpagingParams.OrderByColumn, verticalpagingParams.IsAscending).Skip((verticalpagingParams.CurrentPageNumber - 1) * verticalpagingParams.PageSize).Take(verticalpagingParams.PageSize);
 
@@ -67,6 +68,7 @@ namespace MVCProject.Api.Controllers.Configuration
                         {
                             VerticalId = g.VerticalId,
                             VerticalName = g.VerticalName,
+                            SiteinchargeId=g.SiteinchargeId,
                             IsActive = g.IsActive
                         // EntryBy = g.EntryBy,
                         //EntryDate = g.EntryDate,
@@ -114,6 +116,7 @@ namespace MVCProject.Api.Controllers.Configuration
                     // For update record
                     existingVerticalDetail.VerticalName = verticalDetail.VerticalName;
                     existingVerticalDetail.IsActive = verticalDetail.IsActive;
+                    existingVerticalDetail.SiteinchargeId = verticalDetail.SiteinchargeId;
                     //existingDesignationDetail.UpdateBy = UserContext.EmployeeId;
                     //existingDesignationDetail.UpdateDate = DateTime.UtcNow;
                     this.entities.MIS_VerticalMaster.ApplyCurrentValues(existingVerticalDetail);
@@ -127,6 +130,18 @@ namespace MVCProject.Api.Controllers.Configuration
             }
         }
 
+        /// <summary>
+        /// Get Site in Charge
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ApiResponse GetSiteinCharge()
+        {
+            var data = this.entities.MIS_Users.Where(x => x.IsActive.Value && x.RoleId == 1).
+                   Select(x => new { Email = x.Email, SiteinchargeId = x.UserId }).OrderBy(x => x.Email).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+
+        }
 
         /// <summary>
         /// Disposes expensive resources.

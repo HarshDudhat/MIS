@@ -47,8 +47,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- start vertical form -->
-                <form name="frmvertical" ng-submit="SaveVerticalDetails(verticalDetailScope,frmvertical)"
-                      novalidate>
+                <form name="frmvertical" ng-submit="SaveVerticalDetails(verticalDetailScope,frmvertical)" ng-init="Init()"   novalidate>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -60,6 +59,21 @@
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmvertical.txtvertical.$dirty && frmvertical.txtvertical.$invalid">
                                     <span data-ng-show="frmvertical.txtvertical.$error.required">@Resource.VericalRequired</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-sm-3">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    @Resource.SiteinCharge <span class="required-field">*</span>
+                                </label>
+                                <select class="form-control input-with-icon" id="SiteinchargeId" ng-model="verticalDetailScope.SiteinchargeId" ng-options="a.SiteinchargeId as a.Email for a in SiteinCharge" @*ng-focus="true"*@
+                                        name="SiteinchargeId " tabindex="3" required>
+                                    <option value="">Select Site inCharge </option>
+                                </select> <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmvertical.SiteinChargeId.$dirty && frmvertical.SiteinChargeId.$invalid">
+                                    <span data-ng-show="frmvertical.SiteinChargeId.$error.required">@Resource.SiteinChargeRequired</span>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +94,7 @@
                                 </div>
                             </div>
                         </div>
-                   
+
                     </div>
                     <div class="row">
                         <div class="col-md-10">

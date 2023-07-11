@@ -14,7 +14,8 @@
         $scope.verticalDetailScope = {
             VerticalId: 0,
             VerticalName: '',
-            IsActive: true
+            IsActive: true,
+            SiteinchargeId:0
         };
         $scope.isSearchClicked = false;
         $scope.lastStorageAudit = $scope.lastStorageAudit || {};
@@ -24,15 +25,22 @@
 
         // BEGIN Add/Update Vertical details
         $scope.SaveVerticalDetails = function (verticalDetailScope, frmvertical) {
-            if (verticalDetailScope.txtvertical == null || verticalDetailScope.txtvertical=="") {
-                toastr.warning("Vertical is required", warningTitle);
+            if (verticalDetailScope.VerticalName == null || verticalDetailScope.VerticalName == "") {
+                toastr.warning("Vertical Name is required", warningTitle);
                 $("#txtvertical").focus();
                 return;
             }
+            else if (verticalDetailScope.SiteinChargeId == null || verticalDetailScope.SiteinChargeId == "") {
+                toastr.warning("Select Site InCharge", warningTitle);
+                $("#SiteinChargeId").focus();
+                return;
+            }
+           
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmvertical.$valid) {
                 VerticalMasterService.SaveVerticalDetails(verticalDetailScope).then(function (res) {
                     if (res) {
+                        
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmvertical);
@@ -88,7 +96,8 @@
             $scope.verticalDetailScope = {
                 VerticalId: 0,
                 VerticalName: '',
-                IsActive: true
+                IsActive: true,
+                SiteinchargeId:0,
             };
             frmvertical.$setPristine();
             $("#txtvertical").focus();
@@ -124,5 +133,16 @@
                 });
             }
         });
+
+        $scope.Init = function () {
+            $scope.SiteinCharge();
+        }
+
+        // Get Siteincharge List
+        $scope.SiteinCharge = function () {
+            VerticalMasterService.GetSiteinCharge().then(function (res) {
+                $scope.SiteinCharge = res.data.Result;
+            })
+        }
     }
 })();

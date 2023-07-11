@@ -2023,6 +2023,24 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Site InCharge.
+        /// </summary>
+        public static string SiteinCharge {
+            get {
+                return ResourceManager.GetString("SiteinCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site InCharge is required.
+        /// </summary>
+        public static string SiteinChargeRequired {
+            get {
+                return ResourceManager.GetString("SiteinChargeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plant is required.
         /// </summary>
         public static string SiteRequired {

@@ -120,6 +120,7 @@
           <Property Name="VerticalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VerticalName" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="SiteinchargeId" Type="int" />
         </EntityType>
         <Association Name="FK__MIS_Field__Field__276EDEB3">
           <End Role="MIS_GroupFieldsMaster" Type="Self.MIS_GroupFieldsMaster" Multiplicity="0..1" />
@@ -418,6 +419,7 @@
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="MIS_MISReport" Relationship="Self.FK__MIS_MISRe__Verti__21B6055D" FromRole="MIS_VerticalMaster" ToRole="MIS_MISReport" />
           <NavigationProperty Name="MIS_ProjectMaster" Relationship="MVCProjectModel.fk_VerticalId" FromRole="MIS_VerticalMaster" ToRole="MIS_ProjectMaster" />
+          <Property Name="SiteinchargeId" Type="Int32" />
         </EntityType>
         <Association Name="FK__MIS_Field__Field__276EDEB3">
           <End Role="MIS_GroupFieldsMaster" Type="Self.MIS_GroupFieldsMaster" Multiplicity="0..1" />
@@ -623,6 +625,7 @@
           <Property Type="Int32" Name="VerticalId" Nullable="false" />
           <Property Type="String" Name="VerticalName" Nullable="true" MaxLength="200" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="SiteinchargeId" Nullable="true" />
         </ComplexType>
         <ComplexType Name="USP_MIS_GetGroupById_Result">
           <Property Type="Int32" Name="GroupId" Nullable="false" />
@@ -873,6 +876,7 @@
           <EntitySetMapping Name="MIS_VerticalMaster">
             <EntityTypeMapping TypeName="MVCProjectModel.MIS_VerticalMaster">
               <MappingFragment StoreEntitySet="MIS_VerticalMaster">
+                <ScalarProperty Name="SiteinchargeId" ColumnName="SiteinchargeId" />
                 <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
                 <ScalarProperty Name="VerticalName" ColumnName="VerticalName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -928,6 +932,7 @@
                 <ScalarProperty Name="VerticalId" ColumnName="VerticalId" />
                 <ScalarProperty Name="VerticalName" ColumnName="VerticalName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SiteinchargeId" ColumnName="SiteinchargeId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

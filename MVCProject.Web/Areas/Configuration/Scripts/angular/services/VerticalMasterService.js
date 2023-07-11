@@ -22,6 +22,7 @@
 
     // Add/Update Vertical Details
         list.SaveVerticalDetails = function (verticalDetail) {
+            
         return $http({
             method: 'POST',
             url: $rootScope.apiURL + '/VerticalMaster/SaveVerticalDetails/',
@@ -37,6 +38,13 @@
         });
     };
 
+        // Get Site in-charge
+        list.GetSiteinCharge = function () {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/VerticalMaster/GetSiteinCharge/'
+            });
+        };
    
 
     return list;
